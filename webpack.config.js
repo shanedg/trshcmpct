@@ -120,6 +120,6 @@ function getBaseConfig(env) {
   };
 }
 
-module.exports = function(env) {
+module.exports = function(env = {}) {
   return getBaseConfig(env);
 };
