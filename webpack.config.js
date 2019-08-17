@@ -68,23 +68,35 @@ function getSplitChunks() {
  * Get module rules
  */
 function getModuleRules() {
-  return [{
-    test: /.(js|jsx)$/,
-    include: [path.resolve(__dirname, 'src')],
-    loader: 'babel-loader',
+  return [
+    {
+      enforce: 'pre',
+      test: /\.(js|jsx)$/,
+      exclude: /node_modules/,
+      loader: 'eslint-loader',
 
-    options: {
-      plugins: [
-        'syntax-dynamic-import',
-      ],
-
-      presets: [
-        ['@babel/preset-env', {
-          'modules': false
-        }],
-      ],
+      options: {
+        emitWarning: true,
+      },
     },
-  }];
+    {
+      test: /.(js|jsx)$/,
+      include: [path.resolve(__dirname, 'src')],
+      loader: 'babel-loader',
+
+      options: {
+        plugins: [
+          'syntax-dynamic-import',
+        ],
+
+        presets: [
+          ['@babel/preset-env', {
+            'modules': false
+          }],
+        ],
+      },
+    }
+  ];
 }
 
 /**
