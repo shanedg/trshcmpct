@@ -1,7 +1,8 @@
 const path = require('path');
 const webpack = require('webpack');
 
-const HtmlWebpackPlugin = require('html-webpack-plugin')
+const CleanWebpackPlugin = require('clean-webpack-plugin').CleanWebpackPlugin;
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 /**
  * Get build mode
@@ -38,6 +39,7 @@ function getOutput() {
  */
 function getPlugins() {
   return [
+    new CleanWebpackPlugin(),
     new webpack.ProgressPlugin(),
     new HtmlWebpackPlugin(),
   ];
@@ -66,23 +68,35 @@ function getSplitChunks() {
  * Get module rules
  */
 function getModuleRules() {
-  return [{
-    test: /.(js|jsx)$/,
-    include: [path.resolve(__dirname, 'src')],
-    loader: 'babel-loader',
+  return [
+    {
+      enforce: 'pre',
+      test: /\.(js|jsx)$/,
+      exclude: /node_modules/,
+      loader: 'eslint-loader',
 
-    options: {
-      plugins: [
-        'syntax-dynamic-import',
-      ],
-
-      presets: [
-        ['@babel/preset-env', {
-          'modules': false
-        }],
-      ],
+      options: {
+        emitWarning: true,
+      },
     },
-  }];
+    {
+      test: /.(js|jsx)$/,
+      include: [path.resolve(__dirname, 'src')],
+      loader: 'babel-loader',
+
+      options: {
+        plugins: [
+          'syntax-dynamic-import',
+        ],
+
+        presets: [
+          ['@babel/preset-env', {
+            'modules': false
+          }],
+        ],
+      },
+    }
+  ];
 }
 
 /**
@@ -120,6 +134,6 @@ function getBaseConfig(env) {
   };
 }
 
-module.exports = function(env) {
+module.exports = function(env = {}) {
   return getBaseConfig(env);
 };
