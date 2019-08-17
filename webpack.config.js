@@ -1,7 +1,8 @@
 const path = require('path');
 const webpack = require('webpack');
 
-const HtmlWebpackPlugin = require('html-webpack-plugin')
+const CleanWebpackPlugin = require('clean-webpack-plugin').CleanWebpackPlugin;
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 /**
  * Get build mode
@@ -38,6 +39,7 @@ function getOutput() {
  */
 function getPlugins() {
   return [
+    new CleanWebpackPlugin(),
     new webpack.ProgressPlugin(),
     new HtmlWebpackPlugin(),
   ];

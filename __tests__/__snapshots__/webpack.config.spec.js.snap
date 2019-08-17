@@ -13,6 +13,20 @@ exports[`webpack config matches development snapshot 1`] = `
     },
     \\"plugins\\": [
         {
+            \\"dangerouslyAllowCleanPatternsOutsideProject\\": false,
+            \\"dry\\": false,
+            \\"verbose\\": false,
+            \\"cleanStaleWebpackAssets\\": true,
+            \\"protectWebpackAssets\\": true,
+            \\"cleanAfterEveryBuildPatterns\\": [],
+            \\"cleanOnceBeforeBuildPatterns\\": [
+                \\"**/*\\"
+            ],
+            \\"currentAssets\\": [],
+            \\"initialClean\\": false,
+            \\"outputPath\\": \\"\\"
+        },
+        {
             \\"profile\\": false,
             \\"modulesCount\\": 500,
             \\"showEntries\\": false,
@@ -95,6 +109,20 @@ exports[`webpack config matches production snapshot 1`] = `
         \\"path\\": \\"/Users/shane/dev/trshcmpct/dist\\"
     },
     \\"plugins\\": [
+        {
+            \\"dangerouslyAllowCleanPatternsOutsideProject\\": false,
+            \\"dry\\": false,
+            \\"verbose\\": false,
+            \\"cleanStaleWebpackAssets\\": true,
+            \\"protectWebpackAssets\\": true,
+            \\"cleanAfterEveryBuildPatterns\\": [],
+            \\"cleanOnceBeforeBuildPatterns\\": [
+                \\"**/*\\"
+            ],
+            \\"currentAssets\\": [],
+            \\"initialClean\\": false,
+            \\"outputPath\\": \\"\\"
+        },
         {
             \\"profile\\": false,
             \\"modulesCount\\": 500,
