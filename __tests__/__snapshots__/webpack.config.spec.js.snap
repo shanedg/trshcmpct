@@ -56,6 +56,15 @@ exports[`webpack config matches development snapshot 1`] = `
     \\"module\\": {
         \\"rules\\": [
             {
+                \\"enforce\\": \\"pre\\",
+                \\"test\\": {},
+                \\"exclude\\": {},
+                \\"loader\\": \\"eslint-loader\\",
+                \\"options\\": {
+                    \\"emitWarning\\": true
+                }
+            },
+            {
                 \\"test\\": {},
                 \\"include\\": [
                     \\"/Users/shane/dev/trshcmpct/src\\"
@@ -152,6 +161,15 @@ exports[`webpack config matches production snapshot 1`] = `
     ],
     \\"module\\": {
         \\"rules\\": [
+            {
+                \\"enforce\\": \\"pre\\",
+                \\"test\\": {},
+                \\"exclude\\": {},
+                \\"loader\\": \\"eslint-loader\\",
+                \\"options\\": {
+                    \\"emitWarning\\": true
+                }
+            },
             {
                 \\"test\\": {},
                 \\"include\\": [

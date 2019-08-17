@@ -70,6 +70,16 @@ function getSplitChunks() {
 function getModuleRules() {
   return [
     {
+      enforce: 'pre',
+      test: /\.(js|jsx)$/,
+      exclude: /node_modules/,
+      loader: 'eslint-loader',
+
+      options: {
+        emitWarning: true,
+      },
+    },
+    {
       test: /.(js|jsx)$/,
       include: [path.resolve(__dirname, 'src')],
       loader: 'babel-loader',
