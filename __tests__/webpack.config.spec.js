@@ -6,12 +6,12 @@ const webpackConfig = require('../webpack.config');
 
 describe('webpack config', () => {
 
-  test('matches development snapshot', () => {
+  it('matches development snapshot', () => {
     const env = {};
     expect(JSON.stringify(webpackConfig(env), null, 4)).toMatchSnapshot();
   });
 
-  test('matches production snapshot', () => {
+  it('matches production snapshot', () => {
     const env = {
       production: true,
     };

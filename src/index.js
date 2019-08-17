@@ -1,1 +1,1 @@
-console.log("Hello World from index main file!");
+console.log('Hello World from index main file!');
