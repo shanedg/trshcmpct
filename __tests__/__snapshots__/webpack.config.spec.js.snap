@@ -1,5 +1,167 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`webpack config matches development snapshot 1`] = `"{\\"mode\\":\\"development\\",\\"entry\\":{\\"index\\":\\"./src/index.js\\",\\"other-index\\":\\"./src/other-index.js\\"},\\"output\\":{\\"filename\\":\\"[name].[chunkhash].js\\",\\"path\\":\\"/Users/shane/dev/trshcmpct/dist\\"},\\"plugins\\":[{\\"profile\\":false,\\"modulesCount\\":500,\\"showEntries\\":false,\\"showModules\\":true,\\"showActiveModules\\":true},{\\"options\\":{\\"template\\":\\"/Users/shane/dev/trshcmpct/node_modules/html-webpack-plugin/default_index.ejs\\",\\"filename\\":\\"index.html\\",\\"hash\\":false,\\"inject\\":true,\\"compile\\":true,\\"favicon\\":false,\\"minify\\":false,\\"cache\\":true,\\"showErrors\\":true,\\"chunks\\":\\"all\\",\\"excludeChunks\\":[],\\"chunksSortMode\\":\\"auto\\",\\"meta\\":{},\\"title\\":\\"Webpack App\\",\\"xhtml\\":false}}],\\"module\\":{\\"rules\\":[{\\"test\\":{},\\"include\\":[\\"/Users/shane/dev/trshcmpct/src\\"],\\"loader\\":\\"babel-loader\\",\\"options\\":{\\"plugins\\":[\\"syntax-dynamic-import\\"],\\"presets\\":[[\\"@babel/preset-env\\",{\\"modules\\":false}]]}}]},\\"optimization\\":{\\"splitChunks\\":{\\"cacheGroups\\":{\\"vendors\\":{\\"priority\\":-10,\\"test\\":{}}},\\"chunks\\":\\"async\\",\\"minChunks\\":1,\\"minSize\\":30000,\\"name\\":true}},\\"devServer\\":{\\"open\\":true}}"`;
+exports[`webpack config matches development snapshot 1`] = `
+"{
+    \\"mode\\": \\"development\\",
+    \\"entry\\": {
+        \\"index\\": \\"./src/index.js\\",
+        \\"other-index\\": \\"./src/other-index.js\\"
+    },
+    \\"output\\": {
+        \\"filename\\": \\"[name].[chunkhash].js\\",
+        \\"path\\": \\"/Users/shane/dev/trshcmpct/dist\\"
+    },
+    \\"plugins\\": [
+        {
+            \\"profile\\": false,
+            \\"modulesCount\\": 500,
+            \\"showEntries\\": false,
+            \\"showModules\\": true,
+            \\"showActiveModules\\": true
+        },
+        {
+            \\"options\\": {
+                \\"template\\": \\"/Users/shane/dev/trshcmpct/node_modules/html-webpack-plugin/default_index.ejs\\",
+                \\"filename\\": \\"index.html\\",
+                \\"hash\\": false,
+                \\"inject\\": true,
+                \\"compile\\": true,
+                \\"favicon\\": false,
+                \\"minify\\": false,
+                \\"cache\\": true,
+                \\"showErrors\\": true,
+                \\"chunks\\": \\"all\\",
+                \\"excludeChunks\\": [],
+                \\"chunksSortMode\\": \\"auto\\",
+                \\"meta\\": {},
+                \\"title\\": \\"Webpack App\\",
+                \\"xhtml\\": false
+            }
+        }
+    ],
+    \\"module\\": {
+        \\"rules\\": [
+            {
+                \\"test\\": {},
+                \\"include\\": [
+                    \\"/Users/shane/dev/trshcmpct/src\\"
+                ],
+                \\"loader\\": \\"babel-loader\\",
+                \\"options\\": {
+                    \\"plugins\\": [
+                        \\"syntax-dynamic-import\\"
+                    ],
+                    \\"presets\\": [
+                        [
+                            \\"@babel/preset-env\\",
+                            {
+                                \\"modules\\": false
+                            }
+                        ]
+                    ]
+                }
+            }
+        ]
+    },
+    \\"optimization\\": {
+        \\"splitChunks\\": {
+            \\"cacheGroups\\": {
+                \\"vendors\\": {
+                    \\"priority\\": -10,
+                    \\"test\\": {}
+                }
+            },
+            \\"chunks\\": \\"async\\",
+            \\"minChunks\\": 1,
+            \\"minSize\\": 30000,
+            \\"name\\": true
+        }
+    },
+    \\"devServer\\": {
+        \\"open\\": true
+    }
+}"
+`;
 
-exports[`webpack config matches production snapshot 1`] = `"{\\"mode\\":\\"production\\",\\"entry\\":{\\"index\\":\\"./src/index.js\\",\\"other-index\\":\\"./src/other-index.js\\"},\\"output\\":{\\"filename\\":\\"[name].[chunkhash].js\\",\\"path\\":\\"/Users/shane/dev/trshcmpct/dist\\"},\\"plugins\\":[{\\"profile\\":false,\\"modulesCount\\":500,\\"showEntries\\":false,\\"showModules\\":true,\\"showActiveModules\\":true},{\\"options\\":{\\"template\\":\\"/Users/shane/dev/trshcmpct/node_modules/html-webpack-plugin/default_index.ejs\\",\\"filename\\":\\"index.html\\",\\"hash\\":false,\\"inject\\":true,\\"compile\\":true,\\"favicon\\":false,\\"minify\\":false,\\"cache\\":true,\\"showErrors\\":true,\\"chunks\\":\\"all\\",\\"excludeChunks\\":[],\\"chunksSortMode\\":\\"auto\\",\\"meta\\":{},\\"title\\":\\"Webpack App\\",\\"xhtml\\":false}}],\\"module\\":{\\"rules\\":[{\\"test\\":{},\\"include\\":[\\"/Users/shane/dev/trshcmpct/src\\"],\\"loader\\":\\"babel-loader\\",\\"options\\":{\\"plugins\\":[\\"syntax-dynamic-import\\"],\\"presets\\":[[\\"@babel/preset-env\\",{\\"modules\\":false}]]}}]},\\"optimization\\":{\\"splitChunks\\":{\\"cacheGroups\\":{\\"vendors\\":{\\"priority\\":-10,\\"test\\":{}}},\\"chunks\\":\\"async\\",\\"minChunks\\":1,\\"minSize\\":30000,\\"name\\":true}},\\"devServer\\":{\\"open\\":true}}"`;
+exports[`webpack config matches production snapshot 1`] = `
+"{
+    \\"mode\\": \\"production\\",
+    \\"entry\\": {
+        \\"index\\": \\"./src/index.js\\",
+        \\"other-index\\": \\"./src/other-index.js\\"
+    },
+    \\"output\\": {
+        \\"filename\\": \\"[name].[chunkhash].js\\",
+        \\"path\\": \\"/Users/shane/dev/trshcmpct/dist\\"
+    },
+    \\"plugins\\": [
+        {
+            \\"profile\\": false,
+            \\"modulesCount\\": 500,
+            \\"showEntries\\": false,
+            \\"showModules\\": true,
+            \\"showActiveModules\\": true
+        },
+        {
+            \\"options\\": {
+                \\"template\\": \\"/Users/shane/dev/trshcmpct/node_modules/html-webpack-plugin/default_index.ejs\\",
+                \\"filename\\": \\"index.html\\",
+                \\"hash\\": false,
+                \\"inject\\": true,
+                \\"compile\\": true,
+                \\"favicon\\": false,
+                \\"minify\\": false,
+                \\"cache\\": true,
+                \\"showErrors\\": true,
+                \\"chunks\\": \\"all\\",
+                \\"excludeChunks\\": [],
+                \\"chunksSortMode\\": \\"auto\\",
+                \\"meta\\": {},
+                \\"title\\": \\"Webpack App\\",
+                \\"xhtml\\": false
+            }
+        }
+    ],
+    \\"module\\": {
+        \\"rules\\": [
+            {
+                \\"test\\": {},
+                \\"include\\": [
+                    \\"/Users/shane/dev/trshcmpct/src\\"
+                ],
+                \\"loader\\": \\"babel-loader\\",
+                \\"options\\": {
+                    \\"plugins\\": [
+                        \\"syntax-dynamic-import\\"
+                    ],
+                    \\"presets\\": [
+                        [
+                            \\"@babel/preset-env\\",
+                            {
+                                \\"modules\\": false
+                            }
+                        ]
+                    ]
+                }
+            }
+        ]
+    },
+    \\"optimization\\": {
+        \\"splitChunks\\": {
+            \\"cacheGroups\\": {
+                \\"vendors\\": {
+                    \\"priority\\": -10,
+                    \\"test\\": {}
+                }
+            },
+            \\"chunks\\": \\"async\\",
+            \\"minChunks\\": 1,
+            \\"minSize\\": 30000,
+            \\"name\\": true
+        }
+    },
+    \\"devServer\\": {
+        \\"open\\": true
+    }
+}"
+`;

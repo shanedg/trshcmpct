@@ -4,9 +4,9 @@
   "description": "My webpack project",
   "main": "index.js",
   "scripts": {
-    "test": "jest",
     "build": "webpack",
-    "start": "webpack-dev-server"
+    "start": "webpack-dev-server",
+    "test": "jest"
   },
   "author": "shanedgarrity@gmail.com",
   "license": "ISC",
