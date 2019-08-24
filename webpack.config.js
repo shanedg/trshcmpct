@@ -20,7 +20,7 @@ function getMode(env) {
 function getEntries() {
   return {
     index: './src/index.js',
-    'other-index': './src/other-index.js',
+    lib: './src/lib.js',
   };
 }
 

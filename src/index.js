@@ -1,1 +1,5 @@
-console.log('Hello World from index main file!');
+import { sayHello } from './lib';
+
+if (window) {
+  window.addEventListener('load', sayHello(window.document));
+}
