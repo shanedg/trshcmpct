@@ -5,10 +5,12 @@
   "main": "index.js",
   "scripts": {
     "build": "webpack",
+    "build:production": "webpack --env.production",
     "lint-staged": "lint-staged",
     "lint-staged:debug": "lint-staged -d",
     "lint:js": "eslint --ignore-path .gitignore --fix .",
     "start": "webpack-dev-server",
+    "start:production": "webpack-dev-server --env.production",
     "test": "jest"
   },
   "author": "shanedgarrity@gmail.com",
