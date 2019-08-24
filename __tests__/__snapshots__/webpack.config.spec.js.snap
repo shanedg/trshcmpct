@@ -9,7 +9,7 @@ exports[`webpack config matches development snapshot 1`] = `
     },
     \\"output\\": {
         \\"filename\\": \\"[name].[chunkhash].js\\",
-        \\"path\\": \\"/Users/shane/dev/trshcmpct/dist\\"
+        \\"path\\": \\"/Users/shane/dev/trshcmpctr/dist\\"
     },
     \\"plugins\\": [
         {
@@ -35,7 +35,7 @@ exports[`webpack config matches development snapshot 1`] = `
         },
         {
             \\"options\\": {
-                \\"template\\": \\"/Users/shane/dev/trshcmpct/node_modules/html-webpack-plugin/default_index.ejs\\",
+                \\"template\\": \\"/Users/shane/dev/trshcmpctr/node_modules/html-webpack-plugin/default_index.ejs\\",
                 \\"filename\\": \\"index.html\\",
                 \\"hash\\": false,
                 \\"inject\\": true,
@@ -67,7 +67,7 @@ exports[`webpack config matches development snapshot 1`] = `
             {
                 \\"test\\": {},
                 \\"include\\": [
-                    \\"/Users/shane/dev/trshcmpct/src\\"
+                    \\"/Users/shane/dev/trshcmpctr/src\\"
                 ],
                 \\"loader\\": \\"babel-loader\\",
                 \\"options\\": {
@@ -115,7 +115,7 @@ exports[`webpack config matches production snapshot 1`] = `
     },
     \\"output\\": {
         \\"filename\\": \\"[name].[chunkhash].js\\",
-        \\"path\\": \\"/Users/shane/dev/trshcmpct/dist\\"
+        \\"path\\": \\"/Users/shane/dev/trshcmpctr/dist\\"
     },
     \\"plugins\\": [
         {
@@ -141,7 +141,7 @@ exports[`webpack config matches production snapshot 1`] = `
         },
         {
             \\"options\\": {
-                \\"template\\": \\"/Users/shane/dev/trshcmpct/node_modules/html-webpack-plugin/default_index.ejs\\",
+                \\"template\\": \\"/Users/shane/dev/trshcmpctr/node_modules/html-webpack-plugin/default_index.ejs\\",
                 \\"filename\\": \\"index.html\\",
                 \\"hash\\": false,
                 \\"inject\\": true,
@@ -173,7 +173,7 @@ exports[`webpack config matches production snapshot 1`] = `
             {
                 \\"test\\": {},
                 \\"include\\": [
-                    \\"/Users/shane/dev/trshcmpct/src\\"
+                    \\"/Users/shane/dev/trshcmpctr/src\\"
                 ],
                 \\"loader\\": \\"babel-loader\\",
                 \\"options\\": {
