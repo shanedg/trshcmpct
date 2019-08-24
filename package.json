@@ -5,7 +5,9 @@
   "main": "index.js",
   "scripts": {
     "build": "webpack",
-    "lint:js": "eslint --ignore-path .gitignore .",
+    "lint-staged": "lint-staged",
+    "lint-staged:debug": "lint-staged -d",
+    "lint:js": "eslint --ignore-path .gitignore --fix .",
     "start": "webpack-dev-server",
     "test": "jest"
   },
@@ -22,12 +24,24 @@
     "eslint-loader": "^2.2.1",
     "eslint-plugin-jest": "^22.15.1",
     "html-webpack-plugin": "^3.2.0",
+    "husky": "^3.0.4",
     "jest": "^24.8.0",
+    "lint-staged": "^9.2.3",
     "node-sass": "^4.12.0",
     "sass-loader": "^7.2.0",
     "style-loader": "^1.0.0",
     "webpack": "^4.39.2",
     "webpack-cli": "^3.3.6",
     "webpack-dev-server": "^3.8.0"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": [
+        "npm run lint-staged"
+      ],
+      "pre-push": [
+        "npm run test"
+      ]
+    }
   }
 }
