@@ -53,6 +53,23 @@ exports[`webpack config matches development snapshot 1`] = `
             }
         }
     ],
+    \\"optimization\\": {
+        \\"splitChunks\\": {
+            \\"cacheGroups\\": {
+                \\"vendors\\": {
+                    \\"priority\\": -10,
+                    \\"test\\": {}
+                }
+            },
+            \\"chunks\\": \\"async\\",
+            \\"minChunks\\": 1,
+            \\"minSize\\": 30000,
+            \\"name\\": true
+        }
+    },
+    \\"devServer\\": {
+        \\"open\\": true
+    },
     \\"module\\": {
         \\"rules\\": [
             {
@@ -85,23 +102,6 @@ exports[`webpack config matches development snapshot 1`] = `
                 }
             }
         ]
-    },
-    \\"optimization\\": {
-        \\"splitChunks\\": {
-            \\"cacheGroups\\": {
-                \\"vendors\\": {
-                    \\"priority\\": -10,
-                    \\"test\\": {}
-                }
-            },
-            \\"chunks\\": \\"async\\",
-            \\"minChunks\\": 1,
-            \\"minSize\\": 30000,
-            \\"name\\": true
-        }
-    },
-    \\"devServer\\": {
-        \\"open\\": true
     }
 }"
 `;
@@ -159,6 +159,23 @@ exports[`webpack config matches production snapshot 1`] = `
             }
         }
     ],
+    \\"optimization\\": {
+        \\"splitChunks\\": {
+            \\"cacheGroups\\": {
+                \\"vendors\\": {
+                    \\"priority\\": -10,
+                    \\"test\\": {}
+                }
+            },
+            \\"chunks\\": \\"async\\",
+            \\"minChunks\\": 1,
+            \\"minSize\\": 30000,
+            \\"name\\": true
+        }
+    },
+    \\"devServer\\": {
+        \\"open\\": true
+    },
     \\"module\\": {
         \\"rules\\": [
             {
@@ -191,23 +208,6 @@ exports[`webpack config matches production snapshot 1`] = `
                 }
             }
         ]
-    },
-    \\"optimization\\": {
-        \\"splitChunks\\": {
-            \\"cacheGroups\\": {
-                \\"vendors\\": {
-                    \\"priority\\": -10,
-                    \\"test\\": {}
-                }
-            },
-            \\"chunks\\": \\"async\\",
-            \\"minChunks\\": 1,
-            \\"minSize\\": 30000,
-            \\"name\\": true
-        }
-    },
-    \\"devServer\\": {
-        \\"open\\": true
     }
 }"
 `;
