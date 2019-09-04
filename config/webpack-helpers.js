@@ -40,7 +40,6 @@ function getDevServer() {
 function getEntries() {
   return {
     index: './src/index.js',
-    lib: './src/lib.js',
   };
 }
 
