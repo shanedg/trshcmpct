@@ -8,7 +8,7 @@
     "build:production": "webpack --env.production",
     "lint-staged": "lint-staged",
     "lint-staged:debug": "lint-staged -d",
-    "lint:js": "eslint --ignore-path .eslintignore --ignore-pattern '!.eslintrc.js' --max-warnings=0 --fix .",
+    "lint:js": "eslint --ignore-pattern '!.eslintrc.js' --max-warnings=0 --fix .",
     "start": "webpack-dev-server",
     "start:production": "webpack-dev-server --env.production",
     "test": "jest"
