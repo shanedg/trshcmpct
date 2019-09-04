@@ -16,14 +16,13 @@ describe('webpack helper', () => {
     expect(entries).toEqual(
       expect.objectContaining({
         index: expect.any(String),
-        lib: expect.any(String),
       })
     );
 
     const entryList = Object.keys(entries);
     expect(entryList)
       .toEqual(
-        expect.arrayContaining(['index', 'lib'])
+        expect.arrayContaining(['index'])
       );
   });
 

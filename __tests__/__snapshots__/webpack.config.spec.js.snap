@@ -4,8 +4,7 @@ exports[`webpack config matches development snapshot 1`] = `
 "{
     \\"mode\\": \\"development\\",
     \\"entry\\": {
-        \\"index\\": \\"./src/index.js\\",
-        \\"lib\\": \\"./src/lib.js\\"
+        \\"index\\": \\"./src/index.js\\"
     },
     \\"output\\": {
         \\"filename\\": \\"[name].[chunkhash].js\\",
@@ -97,7 +96,8 @@ exports[`webpack config matches development snapshot 1`] = `
                             {
                                 \\"modules\\": false
                             }
-                        ]
+                        ],
+                        \\"@babel/preset-react\\"
                     ]
                 }
             }
@@ -110,8 +110,7 @@ exports[`webpack config matches production snapshot 1`] = `
 "{
     \\"mode\\": \\"production\\",
     \\"entry\\": {
-        \\"index\\": \\"./src/index.js\\",
-        \\"lib\\": \\"./src/lib.js\\"
+        \\"index\\": \\"./src/index.js\\"
     },
     \\"output\\": {
         \\"filename\\": \\"[name].[chunkhash].js\\",
@@ -203,7 +202,8 @@ exports[`webpack config matches production snapshot 1`] = `
                             {
                                 \\"modules\\": false
                             }
-                        ]
+                        ],
+                        \\"@babel/preset-react\\"
                     ]
                 }
             }
