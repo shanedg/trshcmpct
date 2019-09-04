@@ -1,5 +1,12 @@
 const path = require('path');
-const { getBaseConfig } = require('./config/webpack-helpers');
+const {
+  getDevServer,
+  getEntries,
+  getMode,
+  getOutput,
+  getPlugins,
+  getSplitChunks,
+} = require('./config/webpack-helpers');
 
 const rules = [
   {
@@ -33,9 +40,23 @@ const rules = [
 
 module.exports = function(env = {}) {
   return {
-    ...getBaseConfig(env),
+    mode: getMode(env),
+
+    entry: getEntries(),
+
+    output: getOutput(),
+
     module: {
       rules
     },
+
+    optimization: {
+      splitChunks: getSplitChunks(),
+    },
+
+    plugins: getPlugins(),
+
+    devServer: getDevServer(),
+
   };
 };

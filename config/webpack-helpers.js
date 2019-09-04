@@ -4,28 +4,6 @@ const CleanWebpackPlugin = require('clean-webpack-plugin').CleanWebpackPlugin;
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 /**
- * Generate build config
- * @param env Build environment
- */
-function getBaseConfig(env) {
-  return {
-    mode: getMode(env),
-
-    entry: getEntries(),
-
-    output: getOutput(),
-
-    plugins: getPlugins(),
-
-    optimization: {
-      splitChunks: getSplitChunks(),
-    },
-
-    devServer: getDevServer(),
-  };
-}
-
-/**
  * Get dev server config
  */
 function getDevServer() {
@@ -94,7 +72,6 @@ function getSplitChunks() {
 }
 
 module.exports = {
-  getBaseConfig,
   getDevServer,
   getEntries,
   getMode,

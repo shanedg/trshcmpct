@@ -10,6 +10,54 @@ exports[`webpack config matches development snapshot 1`] = `
         \\"filename\\": \\"[name].[chunkhash].js\\",
         \\"path\\": \\"/Users/shane/dev/trshcmpctr/dist\\"
     },
+    \\"module\\": {
+        \\"rules\\": [
+            {
+                \\"enforce\\": \\"pre\\",
+                \\"test\\": {},
+                \\"exclude\\": {},
+                \\"loader\\": \\"eslint-loader\\",
+                \\"options\\": {
+                    \\"emitWarning\\": true
+                }
+            },
+            {
+                \\"test\\": {},
+                \\"include\\": [
+                    \\"/Users/shane/dev/trshcmpctr/src\\"
+                ],
+                \\"loader\\": \\"babel-loader\\",
+                \\"options\\": {
+                    \\"plugins\\": [
+                        \\"syntax-dynamic-import\\"
+                    ],
+                    \\"presets\\": [
+                        [
+                            \\"@babel/preset-env\\",
+                            {
+                                \\"modules\\": false
+                            }
+                        ],
+                        \\"@babel/preset-react\\"
+                    ]
+                }
+            }
+        ]
+    },
+    \\"optimization\\": {
+        \\"splitChunks\\": {
+            \\"cacheGroups\\": {
+                \\"vendors\\": {
+                    \\"priority\\": -10,
+                    \\"test\\": {}
+                }
+            },
+            \\"chunks\\": \\"async\\",
+            \\"minChunks\\": 1,
+            \\"minSize\\": 30000,
+            \\"name\\": true
+        }
+    },
     \\"plugins\\": [
         {
             \\"dangerouslyAllowCleanPatternsOutsideProject\\": false,
@@ -52,56 +100,8 @@ exports[`webpack config matches development snapshot 1`] = `
             }
         }
     ],
-    \\"optimization\\": {
-        \\"splitChunks\\": {
-            \\"cacheGroups\\": {
-                \\"vendors\\": {
-                    \\"priority\\": -10,
-                    \\"test\\": {}
-                }
-            },
-            \\"chunks\\": \\"async\\",
-            \\"minChunks\\": 1,
-            \\"minSize\\": 30000,
-            \\"name\\": true
-        }
-    },
     \\"devServer\\": {
         \\"open\\": true
-    },
-    \\"module\\": {
-        \\"rules\\": [
-            {
-                \\"enforce\\": \\"pre\\",
-                \\"test\\": {},
-                \\"exclude\\": {},
-                \\"loader\\": \\"eslint-loader\\",
-                \\"options\\": {
-                    \\"emitWarning\\": true
-                }
-            },
-            {
-                \\"test\\": {},
-                \\"include\\": [
-                    \\"/Users/shane/dev/trshcmpctr/src\\"
-                ],
-                \\"loader\\": \\"babel-loader\\",
-                \\"options\\": {
-                    \\"plugins\\": [
-                        \\"syntax-dynamic-import\\"
-                    ],
-                    \\"presets\\": [
-                        [
-                            \\"@babel/preset-env\\",
-                            {
-                                \\"modules\\": false
-                            }
-                        ],
-                        \\"@babel/preset-react\\"
-                    ]
-                }
-            }
-        ]
     }
 }"
 `;
@@ -116,6 +116,54 @@ exports[`webpack config matches production snapshot 1`] = `
         \\"filename\\": \\"[name].[chunkhash].js\\",
         \\"path\\": \\"/Users/shane/dev/trshcmpctr/dist\\"
     },
+    \\"module\\": {
+        \\"rules\\": [
+            {
+                \\"enforce\\": \\"pre\\",
+                \\"test\\": {},
+                \\"exclude\\": {},
+                \\"loader\\": \\"eslint-loader\\",
+                \\"options\\": {
+                    \\"emitWarning\\": true
+                }
+            },
+            {
+                \\"test\\": {},
+                \\"include\\": [
+                    \\"/Users/shane/dev/trshcmpctr/src\\"
+                ],
+                \\"loader\\": \\"babel-loader\\",
+                \\"options\\": {
+                    \\"plugins\\": [
+                        \\"syntax-dynamic-import\\"
+                    ],
+                    \\"presets\\": [
+                        [
+                            \\"@babel/preset-env\\",
+                            {
+                                \\"modules\\": false
+                            }
+                        ],
+                        \\"@babel/preset-react\\"
+                    ]
+                }
+            }
+        ]
+    },
+    \\"optimization\\": {
+        \\"splitChunks\\": {
+            \\"cacheGroups\\": {
+                \\"vendors\\": {
+                    \\"priority\\": -10,
+                    \\"test\\": {}
+                }
+            },
+            \\"chunks\\": \\"async\\",
+            \\"minChunks\\": 1,
+            \\"minSize\\": 30000,
+            \\"name\\": true
+        }
+    },
     \\"plugins\\": [
         {
             \\"dangerouslyAllowCleanPatternsOutsideProject\\": false,
@@ -158,56 +206,8 @@ exports[`webpack config matches production snapshot 1`] = `
             }
         }
     ],
-    \\"optimization\\": {
-        \\"splitChunks\\": {
-            \\"cacheGroups\\": {
-                \\"vendors\\": {
-                    \\"priority\\": -10,
-                    \\"test\\": {}
-                }
-            },
-            \\"chunks\\": \\"async\\",
-            \\"minChunks\\": 1,
-            \\"minSize\\": 30000,
-            \\"name\\": true
-        }
-    },
     \\"devServer\\": {
         \\"open\\": true
-    },
-    \\"module\\": {
-        \\"rules\\": [
-            {
-                \\"enforce\\": \\"pre\\",
-                \\"test\\": {},
-                \\"exclude\\": {},
-                \\"loader\\": \\"eslint-loader\\",
-                \\"options\\": {
-                    \\"emitWarning\\": true
-                }
-            },
-            {
-                \\"test\\": {},
-                \\"include\\": [
-                    \\"/Users/shane/dev/trshcmpctr/src\\"
-                ],
-                \\"loader\\": \\"babel-loader\\",
-                \\"options\\": {
-                    \\"plugins\\": [
-                        \\"syntax-dynamic-import\\"
-                    ],
-                    \\"presets\\": [
-                        [
-                            \\"@babel/preset-env\\",
-                            {
-                                \\"modules\\": false
-                            }
-                        ],
-                        \\"@babel/preset-react\\"
-                    ]
-                }
-            }
-        ]
     }
 }"
 `;
