@@ -97,7 +97,8 @@ exports[`webpack config matches development snapshot 1`] = `
                             {
                                 \\"modules\\": false
                             }
-                        ]
+                        ],
+                        \\"@babel/preset-react\\"
                     ]
                 }
             }
@@ -203,7 +204,8 @@ exports[`webpack config matches production snapshot 1`] = `
                             {
                                 \\"modules\\": false
                             }
-                        ]
+                        ],
+                        \\"@babel/preset-react\\"
                     ]
                 }
             }

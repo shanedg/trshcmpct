@@ -25,6 +25,7 @@ const rules = [
         ['@babel/preset-env', {
           'modules': false,
         }],
+        '@babel/preset-react',
       ],
     },
   }
