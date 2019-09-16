@@ -1,3 +1,6 @@
 module.exports = {
-  '*.js': ['npm run lint:js', 'git add'],
+  '*.js': [
+    'eslint --ignore-pattern \'!.eslintrc.js\' --max-warnings=0 --fix',
+    'git add',
+  ],
 };
