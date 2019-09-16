@@ -31,7 +31,6 @@ function onPrePush() {
     child_process.execSync(
       // lint-staged doesn't make sense in the pre-push context: changes
       // have already been committed
-      // TODO: ensure that this lint command leverages eslint cache!
       'npm run lint:js && npm run test',
       execSyncOptions,
       handleChildExit
