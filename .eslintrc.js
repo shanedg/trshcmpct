@@ -1,3 +1,7 @@
+const OFF = 0;
+const WARN = 1;
+const ERROR = 2;
+
 module.exports = {
   env: {
     'browser': true,
@@ -39,26 +43,26 @@ module.exports = {
   },
   rules: {
     indent: [
-      'error',
+      ERROR,
       2
     ],
     'linebreak-style': [
-      'error',
+      ERROR,
       'unix'
     ],
     quotes: [
-      'error',
+      ERROR,
       'single'
     ],
     semi: [
-      'error',
+      ERROR,
       'always'
     ],
     'jest/consistent-test-it': [
-      'error',
+      ERROR,
     ],
     '@typescript-eslint/no-unused-vars': [
-      'warn',
+      WARN,
       {
         argsIgnorePattern: '^_'
       }
@@ -69,8 +73,8 @@ module.exports = {
       // Override some @typescript-eslint rules creating noise in js files.
       files: ['*.js'],
       rules: {
-        '@typescript-eslint/explicit-function-return-type': 'off',
-        '@typescript-eslint/no-var-requires': 'off',
+        '@typescript-eslint/explicit-function-return-type': OFF,
+        '@typescript-eslint/no-var-requires': OFF,
       }
     },
   ],
