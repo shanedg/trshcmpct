@@ -7,6 +7,9 @@ module.exports = {
   },
   'extends': [
     'eslint:recommended',
+    'plugin:@typescript-eslint/eslint-recommended',
+    'plugin:@typescript-eslint/recommended',
+    'plugin:@typescript-eslint/recommended-requiring-type-checking',
     'plugin:jest/recommended',
     'plugin:react/recommended',
   ],
@@ -14,14 +17,19 @@ module.exports = {
     'Atomics': 'readonly',
     'SharedArrayBuffer': 'readonly'
   },
-  'parser': 'babel-eslint',
+  'parser': '@typescript-eslint/parser',
   'parserOptions': {
     'ecmaVersion': 2018,
+    'project': [
+      './tsconfig.json',
+      './src/tsconfig.json',
+    ],
     'sourceType': 'module',
   },
   'plugins': [
     'eslint-plugin-jest',
     'eslint-plugin-react',
+    '@typescript-eslint',
   ],
   'settings': {
     'react': {
@@ -38,12 +46,6 @@ module.exports = {
       'error',
       'unix'
     ],
-    'no-unused-vars': [
-      'warn',
-      {
-        'argsIgnorePattern': '^_'
-      }
-    ],
     'quotes': [
       'error',
       'single'
@@ -55,5 +57,20 @@ module.exports = {
     'jest/consistent-test-it': [
       'error',
     ],
-  }
+    '@typescript-eslint/no-unused-vars': [
+      'warn',
+      {
+        'argsIgnorePattern': '^_',
+      }
+    ],
+  },
+  'overrides': [
+    {
+      'files': ['*.js'],
+      'rules': {
+        '@typescript-eslint/explicit-function-return-type': 'off',
+        '@typescript-eslint/no-var-requires': 'off',
+      }
+    }
+  ],
 };
