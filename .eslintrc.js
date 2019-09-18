@@ -61,6 +61,7 @@ module.exports = {
     'jest/consistent-test-it': [
       ERROR,
     ],
+    // Warn on unused variables unless name is prefixed with underscore.
     '@typescript-eslint/no-unused-vars': [
       WARN,
       {
