@@ -1,4 +1,4 @@
-const child_process = require('child_process');
+const childProcess = require('child_process');
 
 const {
   onPreCommit,
@@ -25,7 +25,7 @@ describe('on pre-commit', () => {
     delete process.env.NO_PRECOMMIT;
 
     // Setup mocked spies.
-    mockExecSyncSpy = jest.spyOn(child_process, 'execSync')
+    mockExecSyncSpy = jest.spyOn(childProcess, 'execSync')
       .mockImplementation(() => {});
     mockProcessExitSpy = jest.spyOn(process, 'exit')
       .mockImplementation(() => {});
@@ -88,7 +88,7 @@ describe('on pre-push', () => {
     delete process.env.NO_PRECOMMIT;
 
     // Setup mocked execSync spy.
-    mockExecSyncSpy = jest.spyOn(child_process, 'execSync')
+    mockExecSyncSpy = jest.spyOn(childProcess, 'execSync')
       .mockImplementation(() => {});
   });
 

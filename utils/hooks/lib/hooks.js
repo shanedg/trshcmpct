@@ -1,4 +1,4 @@
-const child_process = require('child_process');
+const childProcess = require('child_process');
 
 const { handleChildExit } = require('./helpers');
 
@@ -15,7 +15,7 @@ function onPreCommit() {
   if (process.env.NO_PRECOMMIT) {
     process.exit(0);
   } else {
-    child_process.execSync(
+    childProcess.execSync(
       'npm run lint-staged',
       execSyncOptions,
       handleChildExit
@@ -28,7 +28,7 @@ function onPreCommit() {
  */
 function onPrePush() {
   if (process.env.NO_PRECOMMIT) {
-    child_process.execSync(
+    childProcess.execSync(
       // lint-staged doesn't make sense in the pre-push context: changes
       // have already been committed
       'npm run lint:js && npm run test',
@@ -36,7 +36,7 @@ function onPrePush() {
       handleChildExit
     );
   } else {
-    child_process.execSync(
+    childProcess.execSync(
       'npm run test',
       execSyncOptions,
       handleChildExit
