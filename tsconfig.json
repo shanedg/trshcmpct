@@ -1,0 +1,21 @@
+{
+  "compilerOptions": {
+    "allowJs": false,
+    "noEmit": true,
+    "esModuleInterop": true,
+    "pretty": true
+  },
+  "include": [
+    "./__tests__",
+    "./config",
+    "./utils",
+    ".eslintrc.js",
+    "lint-staged.config.js",
+    "webpack.config.js"
+  ],
+  "references": [
+    {
+      "path": "./src/tsconfig.json"
+    }
+  ]
+}

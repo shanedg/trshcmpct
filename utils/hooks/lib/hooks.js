@@ -1,4 +1,4 @@
-const child_process = require('child_process');
+const childProcess = require('child_process');
 
 const { handleChildExit } = require('./helpers');
 
@@ -9,13 +9,15 @@ const execSyncOptions = {
 };
 
 /**
- * Run on pre-commit, optionally linting staged files first.
+ * Lint staged files and reject commit on any errors or warnings.
+ * Provide option to opt-out and defer linting to pre-push (via environment
+ * variable, NO_PRECOMMIT=1).
  */
 function onPreCommit() {
   if (process.env.NO_PRECOMMIT) {
     process.exit(0);
   } else {
-    child_process.execSync(
+    childProcess.execSync(
       'npm run lint-staged',
       execSyncOptions,
       handleChildExit
@@ -24,20 +26,23 @@ function onPreCommit() {
 }
 
 /**
- * Run on pre-push, testing and optionally linting all files first.
+ * Lint entire project only if opted out of linting staged files on pre-commit
+ * (via environment variable, NO_PRECOMMIT=1).
+ * Perform project type checking and run all project test suites. Reject push
+ * on any errors or warnings.
  */
 function onPrePush() {
   if (process.env.NO_PRECOMMIT) {
-    child_process.execSync(
+    childProcess.execSync(
       // lint-staged doesn't make sense in the pre-push context: changes
       // have already been committed
-      'npm run lint:js && npm run test',
+      'npm run lint:js && npm run type-check && npm run test',
       execSyncOptions,
       handleChildExit
     );
   } else {
-    child_process.execSync(
-      'npm run test',
+    childProcess.execSync(
+      'npm run type-check && npm run test',
       execSyncOptions,
       handleChildExit
     );

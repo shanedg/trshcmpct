@@ -11,7 +11,7 @@ const {
 const rules = [
   {
     enforce: 'pre',
-    test: /\.(js|jsx)$/,
+    test: /\.(js|jsx|ts|tsx)$/,
     exclude: /node_modules/,
     loader: 'eslint-loader',
     options: {
@@ -19,7 +19,7 @@ const rules = [
     },
   },
   {
-    test: /.(js|jsx)$/,
+    test: /.(js|jsx|ts|tsx)$/,
     include: [
       path.resolve(__dirname, './src'),
     ],
@@ -33,6 +33,10 @@ const rules = [
           'modules': false,
         }],
         '@babel/preset-react',
+        ['@babel/preset-typescript', {
+          'allExtensions': true,
+          'isTSX': true,
+        }],
       ],
     },
   }
