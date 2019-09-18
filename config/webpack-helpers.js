@@ -17,7 +17,7 @@ function getDevServer() {
  */
 function getEntries() {
   return {
-    index: './src/index.js',
+    index: './src/index.ts',
   };
 }
 

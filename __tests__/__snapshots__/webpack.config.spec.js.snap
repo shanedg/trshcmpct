@@ -4,7 +4,7 @@ exports[`webpack config matches development snapshot 1`] = `
 "{
     \\"mode\\": \\"development\\",
     \\"entry\\": {
-        \\"index\\": \\"./src/index.js\\"
+        \\"index\\": \\"./src/index.ts\\"
     },
     \\"output\\": {
         \\"filename\\": \\"[name].[chunkhash].js\\",
@@ -117,7 +117,7 @@ exports[`webpack config matches production snapshot 1`] = `
 "{
     \\"mode\\": \\"production\\",
     \\"entry\\": {
-        \\"index\\": \\"./src/index.js\\"
+        \\"index\\": \\"./src/index.ts\\"
     },
     \\"output\\": {
         \\"filename\\": \\"[name].[chunkhash].js\\",
