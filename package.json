@@ -10,7 +10,8 @@
     "lint:js": "eslint --ext .js,.jsx,.ts,.tsx --max-warnings=0 --fix --cache .",
     "start": "webpack-dev-server",
     "start:production": "webpack-dev-server --env.production",
-    "test": "jest"
+    "test": "jest",
+    "type-check": "tsc --project src/tsconfig.json"
   },
   "author": "shanedgarrity@gmail.com",
   "license": "ISC",

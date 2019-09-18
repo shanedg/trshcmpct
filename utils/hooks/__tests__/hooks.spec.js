@@ -98,23 +98,23 @@ describe('on pre-push', () => {
     process.env = initialEnv;
   });
 
-  it('tests but does not lint when NO_PRECOMMIT is not set', () => {
+  it('does not lint if NO_PRECOMMIT is not set but still checks types and runs tests', () => {
     onPrePush();
 
     expect(mockExecSyncSpy).toHaveBeenCalledWith(
-      'npm run test',
+      'npm run type-check && npm run test',
       expect.anything(),
       expect.anything(),
     );
   });
 
-  it('lints and tests when NO_PRECOMMIT is set', () => {
+  it('lints, checks types, and tests when NO_PRECOMMIT is set', () => {
     process.env.NO_PRECOMMIT = true;
 
     onPrePush();
 
     expect(mockExecSyncSpy).toHaveBeenCalledWith(
-      'npm run lint:js && npm run test',
+      'npm run lint:js && npm run type-check && npm run test',
       expect.anything(),
       expect.anything(),
     );

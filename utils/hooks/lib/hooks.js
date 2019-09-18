@@ -28,20 +28,21 @@ function onPreCommit() {
 /**
  * Lint entire project only if opted out of linting staged files on pre-commit
  * (via environment variable, NO_PRECOMMIT=1).
- * Run all project test suites. Reject push on any errors or warnings.
+ * Perform project type checking and run all project test suites. Reject push
+ * on any errors or warnings.
  */
 function onPrePush() {
   if (process.env.NO_PRECOMMIT) {
     childProcess.execSync(
       // lint-staged doesn't make sense in the pre-push context: changes
       // have already been committed
-      'npm run lint:js && npm run test',
+      'npm run lint:js && npm run type-check && npm run test',
       execSyncOptions,
       handleChildExit
     );
   } else {
     childProcess.execSync(
-      'npm run test',
+      'npm run type-check && npm run test',
       execSyncOptions,
       handleChildExit
     );
