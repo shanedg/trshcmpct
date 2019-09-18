@@ -7,7 +7,6 @@
     "build": "webpack",
     "build:production": "webpack --env.production",
     "lint-staged": "lint-staged",
-    "lint-staged:debug": "lint-staged -d",
     "lint:js": "eslint --max-warnings=0 --fix --cache .",
     "start": "webpack-dev-server",
     "start:production": "webpack-dev-server --env.production",
