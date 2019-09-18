@@ -66,6 +66,7 @@ module.exports = {
   },
   overrides: [
     {
+      // Override some @typescript-eslint rules creating noise in js files.
       files: ['*.js'],
       rules: {
         '@typescript-eslint/explicit-function-return-type': 'off',
