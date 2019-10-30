@@ -10,35 +10,31 @@ describe('on pre-commit', () => {
   const initialEnv = process.env;
   Object.freeze(initialEnv);
 
-  // Mock execSync to keep from spawning actual processes.
+  // Mock childProcess.execSync to keep from spawning actual processes.
+  // Mock process.exit to keep from terminating our tests early.
   let mockExecSyncSpy;
-  // Mock process.exit() to keep from terminating our tests early.
   let mockProcessExitSpy;
 
-  // Save process env before each test.
   beforeEach(() => {
-    process.env = {
-      ...initialEnv
-    };
-
-    // Ignore the value if set in the actual process env.
+    // Save process env before each test.
+    // Ignore NO_PRECOMMIT if set in the test environment.
+    process.env = { ...initialEnv };
     delete process.env.NO_PRECOMMIT;
 
-    // Setup mocked spies.
     mockExecSyncSpy = jest.spyOn(childProcess, 'execSync')
       .mockImplementation(() => {});
     mockProcessExitSpy = jest.spyOn(process, 'exit')
       .mockImplementation(() => {});
   });
 
-  // Restore spies and process.env after each test.
   afterEach(() => {
+    // Restore spies and environment variables after each test.
     mockExecSyncSpy.mockRestore();
     mockProcessExitSpy.mockRestore();
     process.env = initialEnv;
   });
 
-  it('lints staged files when NO_PRECOMMIT is not set', () => {
+  it('lints staged files when NO_PRECOMMIT is falsy', () => {
     onPreCommit();
 
     expect(mockExecSyncSpy).toHaveBeenCalledWith(
@@ -48,7 +44,7 @@ describe('on pre-commit', () => {
     );
   });
 
-  it('does not lint staged files when NO_PRECOMMIT is set', () => {
+  it('does not lint staged files when NO_PRECOMMIT is truthy', () => {
     process.env.NO_PRECOMMIT = true;
 
     onPreCommit();
@@ -76,29 +72,26 @@ describe('on pre-push', () => {
   const initialEnv = process.env;
   Object.freeze(initialEnv);
 
+  // Mock childProcess.execSync to keep from spawning actual processes.
   let mockExecSyncSpy;
 
-  // Save process env before each test.
   beforeEach(() => {
-    process.env = {
-      ...initialEnv
-    };
-
-    // Ignore the value if set in the actual process env.
+    // Save environment variables to restore later.
+    // Ignore NO_PRECOMMIT if set in the test environment.
+    process.env = { ...initialEnv };
     delete process.env.NO_PRECOMMIT;
 
-    // Setup mocked execSync spy.
     mockExecSyncSpy = jest.spyOn(childProcess, 'execSync')
       .mockImplementation(() => {});
   });
 
-  // Restore execSync spy and process.env after each test.
   afterEach(() => {
+    // Restore spy and environment variables after each test.
     mockExecSyncSpy.mockRestore();
     process.env = initialEnv;
   });
 
-  it('does not lint if NO_PRECOMMIT is not set but still checks types and runs tests', () => {
+  it('does not lint if NO_PRECOMMIT is falsy but still checks types and runs tests', () => {
     onPrePush();
 
     expect(mockExecSyncSpy).toHaveBeenCalledWith(
@@ -108,7 +101,7 @@ describe('on pre-push', () => {
     );
   });
 
-  it('lints, checks types, and tests when NO_PRECOMMIT is set', () => {
+  it('lints, checks types, and tests when NO_PRECOMMIT is truthy', () => {
     process.env.NO_PRECOMMIT = true;
 
     onPrePush();

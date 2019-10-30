@@ -1,18 +1,17 @@
 const { handleChildExit } = require('../lib/helpers');
 
 describe('child exit code helper', () => {
-
   // Mock process.exit() to keep from terminating our tests early.
   let mockProcessExitSpy;
 
-  // Setup mocked process.exit spy.
   beforeEach(() => {
+    // Setup mocked process.exit spy.
     mockProcessExitSpy = jest.spyOn(process, 'exit')
       .mockImplementation(() => {});
   });
 
-  // Isolate process.exit spy for each test.
   afterEach(() => {
+    // Isolate process.exit spy for each test.
     mockProcessExitSpy.mockRestore();
   });
 
@@ -27,5 +26,4 @@ describe('child exit code helper', () => {
 
     expect(mockProcessExitSpy).toHaveBeenCalledWith(0);
   });
-
 });
