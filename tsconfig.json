@@ -10,6 +10,7 @@
     "./config",
     "./utils",
     ".eslintrc.js",
+    "commitlint.config.js",
     "lint-staged.config.js",
     "webpack.config.js"
   ],
