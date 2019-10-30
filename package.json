@@ -42,16 +42,6 @@
     "webpack-cli": "^3.3.6",
     "webpack-dev-server": "^3.8.0"
   },
-  "husky": {
-    "hooks": {
-      "pre-commit": [
-        "node utils/hooks/pre-commit.js"
-      ],
-      "pre-push": [
-        "node utils/hooks/pre-push.js"
-      ]
-    }
-  },
   "dependencies": {
     "react": "^16.9.0",
     "react-dom": "^16.9.0"
