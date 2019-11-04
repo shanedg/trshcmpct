@@ -1,21 +1,17 @@
 {
-  "extends": "../tsconfig.json",
-  "include": [
-    "*.ts",
-    "*.tsx",
-    "*.js",
-    "*.jsx"
-  ],
   "compilerOptions": {
-    "target": "esnext",
-    "moduleResolution": "node",
     "allowJs": true,
     "checkJs": false,
-    "strict": true,
+    "composite": true,
+    "esModuleInterop": true,
+    "declaration": true,
     "inlineSourceMap": true,
     "inlineSources": true,
     "jsx": "preserve",
-    "composite": true,
-    "declaration": true
+    "moduleResolution": "node",
+    "noEmit": true,
+    "pretty": true,
+    "strict": true,
+    "target": "esnext",
   }
 }

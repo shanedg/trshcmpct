@@ -4,16 +4,12 @@ const ERROR = 2;
 
 module.exports = {
   env: {
-    'browser': true,
-    'commonjs': true,
-    'es6': true,
-    'node': true,
+    commonjs: true,
+    es6: true,
+    node: true,
   },
   extends: [
     'eslint:recommended',
-    'plugin:@typescript-eslint/eslint-recommended',
-    'plugin:@typescript-eslint/recommended',
-    'plugin:@typescript-eslint/recommended-requiring-type-checking',
     'plugin:jest/recommended',
     'plugin:react/recommended',
   ],
@@ -21,19 +17,13 @@ module.exports = {
     Atomics: 'readonly',
     SharedArrayBuffer: 'readonly',
   },
-  parser: '@typescript-eslint/parser',
+  parser: 'babel-eslint',
   parserOptions: {
     ecmaVersion: 2018,
-    project: [
-      './tsconfig.json',
-      './src/tsconfig.json',
-    ],
-    sourceType: 'module',
   },
   plugins: [
     'eslint-plugin-jest',
     'eslint-plugin-react',
-    '@typescript-eslint',
   ],
   settings: {
     react: {
@@ -41,6 +31,7 @@ module.exports = {
       version: 'detect',
     },
   },
+  root: true,
   rules: {
     indent: [
       ERROR,
@@ -61,22 +52,12 @@ module.exports = {
     'jest/consistent-test-it': [
       ERROR,
     ],
-    // Warn on unused variables unless name is prefixed with underscore.
-    '@typescript-eslint/no-unused-vars': [
+    // Warn on unused variables except underscore-prefixed arguments.
+    'no-unused-vars': [
       WARN,
       {
         argsIgnorePattern: '^_'
       }
     ],
   },
-  overrides: [
-    {
-      // Override some @typescript-eslint rules creating noise in js files.
-      files: ['*.js'],
-      rules: {
-        '@typescript-eslint/explicit-function-return-type': OFF,
-        '@typescript-eslint/no-var-requires': OFF,
-      }
-    },
-  ],
 };
