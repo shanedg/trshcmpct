@@ -11,12 +11,13 @@ module.exports = (env = {}) => {
     mode: env.production ? 'production' : 'development',
 
     entry: {
-      index: './src/index.ts',
+      // index: './src/index.ts',
+      index: path.resolve(__dirname, '../src/index.ts'),
     },
 
     output: {
       filename: '[name].[chunkhash].js',
-      path: path.resolve(__dirname, './dist'),
+      path: path.resolve(__dirname, '../dist'),
     },
 
     module: {
@@ -33,7 +34,7 @@ module.exports = (env = {}) => {
         {
           test: /\.(js|jsx|ts|tsx)$/,
           include: [
-            path.resolve(__dirname, './src'),
+            path.resolve(__dirname, '../src'),
           ],
           loader: 'babel-loader',
           options: {

@@ -6,7 +6,7 @@ Object {
     "open": true,
   },
   "entry": Object {
-    "index": "./src/index.ts",
+    "index": "<PROJECT_ROOT>/src/index.ts",
   },
   "mode": "development",
   "module": Object {
@@ -125,7 +125,7 @@ Object {
     "open": true,
   },
   "entry": Object {
-    "index": "./src/index.ts",
+    "index": "<PROJECT_ROOT>/src/index.ts",
   },
   "mode": "production",
   "module": Object {
