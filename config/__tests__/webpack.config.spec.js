@@ -1,8 +1,9 @@
+const serializer = require('jest-serializer-path');
+
 const webpackConfig = require('../../webpack.config');
 
-/**
- * Webpack config snapshot testing.
- */
+// Remove absolute paths from snapshots.
+expect.addSnapshotSerializer(serializer);
 
 describe('webpack config', () => {
 
