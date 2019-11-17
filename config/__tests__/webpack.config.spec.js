@@ -6,6 +6,8 @@ const webpackConfig = require('../../webpack.config');
 expect.addSnapshotSerializer(serializer);
 
 describe('webpack config', () => {
+  const development = {};
+  const production = { production: true };
 
   it('matches development snapshot', () => {
     const env = {};
@@ -17,6 +19,35 @@ describe('webpack config', () => {
       production: true,
     };
     expect(webpackConfig(env)).toMatchSnapshot();
+  });
+
+  // ported from webpack-helpers.spec.js
+  it('sets dev server options', () => {
+    expect(webpackConfig(development).devServer).toStrictEqual({open: true});
+  });
+
+  it('sets entry points', () => {
+    const entries = webpackConfig(development).entry;
+    expect(entries).toEqual(
+      expect.objectContaining({
+        index: expect.any(String),
+      })
+    );
+    const entryList = Object.keys(entries);
+    expect(entryList)
+      .toEqual(
+        expect.arrayContaining(['index'])
+      );
+  });
+
+  it('sets development mode by default', () => {
+    expect(webpackConfig(development).mode)
+      .toEqual('development');
+  });
+
+  it('sets production mode from environment flag', () => {
+    expect(webpackConfig(production).mode)
+      .toEqual('production');
   });
 
 });
