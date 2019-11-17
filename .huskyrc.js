@@ -1,7 +1,7 @@
 module.exports = {
   hooks: {
     'commit-msg': [
-      'commitlint -E HUSKY_GIT_PARAMS'
+      'commitlint --config scripts/commitlint.config.js -E HUSKY_GIT_PARAMS'
     ],
     'pre-commit': [
       'node scripts/hooks/pre-commit.js'
