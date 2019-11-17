@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`webpack config matches development snapshot 1`] = `
+exports[`webpack development config matches snapshot 1`] = `
 Object {
   "devServer": Object {
     "open": true,
@@ -119,7 +119,7 @@ Object {
 }
 `;
 
-exports[`webpack config matches production snapshot 1`] = `
+exports[`webpack production config matches snapshot 1`] = `
 Object {
   "devServer": Object {
     "open": true,
