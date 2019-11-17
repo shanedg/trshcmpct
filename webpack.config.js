@@ -31,7 +31,7 @@ module.exports = (env = {}) => {
           },
         },
         {
-          test: /.(js|jsx|ts|tsx)$/,
+          test: /\.(js|jsx|ts|tsx)$/,
           include: [
             path.resolve(__dirname, './src'),
           ],
