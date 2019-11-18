@@ -1,7 +1,6 @@
 const CleanWebpackPlugin = require('clean-webpack-plugin').CleanWebpackPlugin;
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const serializer = require('jest-serializer-path');
-const webpack = require('webpack');
 
 const webpackConfig = require('../../webpack.config');
 
@@ -47,14 +46,14 @@ describe('webpack', () => {
     it('sets plugins', () => {
       expect(developmentConfig.plugins).toMatchObject([
         expect.any(CleanWebpackPlugin),
-        expect.any(webpack.ProgressPlugin),
+        expect.any(Function), // ProgressBarPlugin, anonymous function signature
         expect.any(HtmlWebpackPlugin),
       ]);
       // Can't use deep-equality checks around plugins since they're unique class instances so repeat same assertion against productionConfig.
       // Otherwise, toEqual/toStrictEqual comparisons fail with "Received: serializes to the same string".
       expect(productionConfig.plugins).toMatchObject([
         expect.any(CleanWebpackPlugin),
-        expect.any(webpack.ProgressPlugin),
+        expect.any(Function), // ProgressBarPlugin
         expect.any(HtmlWebpackPlugin),
       ]);
     });

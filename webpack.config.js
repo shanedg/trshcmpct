@@ -1,7 +1,8 @@
+const chalk = require('chalk');
 const path = require('path');
-const webpack = require('webpack');
 const CleanWebpackPlugin = require('clean-webpack-plugin').CleanWebpackPlugin;
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const ProgressBarPlugin = require('progress-bar-webpack-plugin');
 
 // Config env:
 // https://webpack.js.org/api/cli/#environment-options
@@ -72,7 +73,10 @@ module.exports = (env = {}) => {
 
     plugins: [
       new CleanWebpackPlugin(),
-      new webpack.ProgressPlugin(),
+      new ProgressBarPlugin({
+        format: '  build [:bar] ' + chalk.green.bold(':percent') + ' (:elapsed seconds)',
+        clear: false
+      }),
       new HtmlWebpackPlugin(),
     ],
 
