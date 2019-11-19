@@ -14,7 +14,7 @@
     "test": "jest",
     "type-check": "tsc --project src/tsconfig.json"
   },
-  "author": "shanedgarrity@gmail.com",
+  "author": "Shane Garrity <shanedgarrity@gmail.com> (https://www.shanedg.com)",
   "license": "ISC",
   "devDependencies": {
     "@babel/core": "^7.5.5",
