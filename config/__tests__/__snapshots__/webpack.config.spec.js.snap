@@ -87,14 +87,7 @@ Object {
       "removeFiles": [Function],
       "verbose": false,
     },
-    ProgressPlugin {
-      "handler": undefined,
-      "modulesCount": 500,
-      "profile": false,
-      "showActiveModules": true,
-      "showEntries": false,
-      "showModules": true,
-    },
+    [Function],
     HtmlWebpackPlugin {
       "options": Object {
         "cache": true,
@@ -206,14 +199,7 @@ Object {
       "removeFiles": [Function],
       "verbose": false,
     },
-    ProgressPlugin {
-      "handler": undefined,
-      "modulesCount": 500,
-      "profile": false,
-      "showActiveModules": true,
-      "showEntries": false,
-      "showModules": true,
-    },
+    [Function],
     HtmlWebpackPlugin {
       "options": Object {
         "cache": true,
