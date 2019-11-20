@@ -12,7 +12,6 @@ module.exports = (env = {}) => {
     mode: env.production ? 'production' : 'development',
 
     entry: {
-      // index: './src/index.ts',
       index: path.resolve(__dirname, '../src/index.ts'),
     },
 
