@@ -26,25 +26,7 @@ Object {
         ],
         "loader": "babel-loader",
         "options": Object {
-          "plugins": Array [
-            "syntax-dynamic-import",
-          ],
-          "presets": Array [
-            Array [
-              "@babel/preset-env",
-              Object {
-                "modules": false,
-              },
-            ],
-            "@babel/preset-react",
-            Array [
-              "@babel/preset-typescript",
-              Object {
-                "allExtensions": true,
-                "isTSX": true,
-              },
-            ],
-          ],
+          "configFile": "<PROJECT_ROOT>/config/babel.config.js",
         },
         "test": /\\\\\\.\\(js\\|jsx\\|ts\\|tsx\\)\\$/,
       },
@@ -149,25 +131,7 @@ Object {
         ],
         "loader": "babel-loader",
         "options": Object {
-          "plugins": Array [
-            "syntax-dynamic-import",
-          ],
-          "presets": Array [
-            Array [
-              "@babel/preset-env",
-              Object {
-                "modules": false,
-              },
-            ],
-            "@babel/preset-react",
-            Array [
-              "@babel/preset-typescript",
-              Object {
-                "allExtensions": true,
-                "isTSX": true,
-              },
-            ],
-          ],
+          "configFile": "<PROJECT_ROOT>/config/babel.config.js",
         },
         "test": /\\\\\\.\\(js\\|jsx\\|ts\\|tsx\\)\\$/,
       },
