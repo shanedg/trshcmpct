@@ -21,9 +21,7 @@ Object {
         "test": /\\\\\\.\\(js\\|jsx\\|ts\\|tsx\\)\\$/,
       },
       Object {
-        "include": Array [
-          "<PROJECT_ROOT>/src",
-        ],
+        "exclude": /node_modules/,
         "loader": "babel-loader",
         "options": Object {
           "configFile": "<PROJECT_ROOT>/config/babel.config.js",
@@ -126,9 +124,7 @@ Object {
         "test": /\\\\\\.\\(js\\|jsx\\|ts\\|tsx\\)\\$/,
       },
       Object {
-        "include": Array [
-          "<PROJECT_ROOT>/src",
-        ],
+        "exclude": /node_modules/,
         "loader": "babel-loader",
         "options": Object {
           "configFile": "<PROJECT_ROOT>/config/babel.config.js",

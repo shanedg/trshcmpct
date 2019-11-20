@@ -33,9 +33,7 @@ module.exports = (env = {}) => {
         },
         {
           test: /\.(js|jsx|ts|tsx)$/,
-          include: [
-            path.resolve(__dirname, '../src'),
-          ],
+          exclude: /node_modules/,
           loader: 'babel-loader',
           options: {
             configFile: path.resolve(__dirname, './babel.config.js'),
