@@ -56,6 +56,21 @@ module.exports = (env = {}) => {
       ]
     },
 
+    resolve: {
+      extensions: [
+        // Defaults
+        '.wasm',
+        '.mjs',
+        '.js',
+        '.json',
+        // React
+        '.jsx',
+        // Typescript
+        '.ts',
+        '.tsx',
+      ],
+    },
+
     optimization: {
       splitChunks: {
         cacheGroups: {
