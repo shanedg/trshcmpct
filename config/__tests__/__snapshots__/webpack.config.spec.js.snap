@@ -16,6 +16,7 @@ Object {
         "exclude": /node_modules/,
         "loader": "eslint-loader",
         "options": Object {
+          "cache": true,
           "emitWarning": true,
         },
         "test": /\\\\\\.\\(js\\|jsx\\|ts\\|tsx\\)\\$/,
@@ -119,6 +120,7 @@ Object {
         "exclude": /node_modules/,
         "loader": "eslint-loader",
         "options": Object {
+          "cache": true,
           "emitWarning": true,
         },
         "test": /\\\\\\.\\(js\\|jsx\\|ts\\|tsx\\)\\$/,
