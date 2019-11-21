@@ -69,6 +69,11 @@ Object {
       "verbose": false,
     },
     [Function],
+    DefinePlugin {
+      "definitions": Object {
+        "__DEV__": "true",
+      },
+    },
     HtmlWebpackPlugin {
       "options": Object {
         "cache": true,
@@ -173,6 +178,11 @@ Object {
       "verbose": false,
     },
     [Function],
+    DefinePlugin {
+      "definitions": Object {
+        "__DEV__": "false",
+      },
+    },
     HtmlWebpackPlugin {
       "options": Object {
         "cache": true,

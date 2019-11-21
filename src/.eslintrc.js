@@ -11,5 +11,8 @@ module.exports = {
     commonjs: false,
     node: false,
   },
+  globals: {
+    __DEV__: true,
+  },
   root: true,
 };

@@ -2,6 +2,7 @@ const CleanWebpackPlugin = require('clean-webpack-plugin').CleanWebpackPlugin;
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const path = require('path');
 const serializer = require('jest-serializer-path');
+const webpack = require('webpack');
 
 const webpackConfig = require('../webpack.config');
 
@@ -48,6 +49,7 @@ describe('webpack', () => {
       expect(developmentConfig.plugins).toMatchObject([
         expect.any(CleanWebpackPlugin),
         expect.any(Function), // ProgressBarPlugin, anonymous function signature
+        expect.any(webpack.DefinePlugin),
         expect.any(HtmlWebpackPlugin),
       ]);
       // Can't use deep-equality checks around plugins since they're unique class instances so repeat same assertion against productionConfig.
@@ -55,6 +57,7 @@ describe('webpack', () => {
       expect(productionConfig.plugins).toMatchObject([
         expect.any(CleanWebpackPlugin),
         expect.any(Function), // ProgressBarPlugin
+        expect.any(webpack.DefinePlugin),
         expect.any(HtmlWebpackPlugin),
       ]);
     });
@@ -81,6 +84,11 @@ describe('webpack', () => {
       expect(developmentConfig.mode).toEqual('development');
     });
 
+    it('DefinePlugin sets __DEV__ to "true"', () => {
+      expect(developmentConfig.plugins.find(p => p instanceof webpack.DefinePlugin))
+        .toHaveProperty('definitions.__DEV__', 'true');
+    });
+
   });
 
   describe('production config', () => {
@@ -96,6 +104,11 @@ describe('webpack', () => {
 
     it('sets production mode', () => {
       expect(productionConfig.mode).toEqual('production');
+    });
+
+    it('DefinePlugin set __DEV__ to "false"', () => {
+      expect(productionConfig.plugins.find(p => p instanceof webpack.DefinePlugin))
+        .toHaveProperty('definitions.__DEV__', 'false');
     });
 
   });
