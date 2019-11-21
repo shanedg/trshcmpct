@@ -1,9 +1,12 @@
-const main = (): void => {
-  if (window) {
-    console.log('ts is alright');
-  }
+import renderReact from './utils/renderReact';
+import App from './App/App';
+
+const main = () => {
+  window.addEventListener('load', () => renderReact(App));
 };
 
-main();
+if (window) {
+  main();
+}
 
 export default main;
