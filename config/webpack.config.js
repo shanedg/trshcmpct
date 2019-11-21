@@ -79,7 +79,10 @@ module.exports = (env = {}) => {
         format: '  build [:bar] ' + chalk.green.bold(':percent') + ' (:elapsed seconds)',
         clear: false
       }),
-      new HtmlWebpackPlugin(),
+      new HtmlWebpackPlugin({
+        template: path.resolve(__dirname, '../src/index.html'),
+        title: 'trshcmpctr',
+      }),
     ],
 
     devServer: {
