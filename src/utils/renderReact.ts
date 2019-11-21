@@ -16,7 +16,11 @@ const renderReact = (
   render(
     createElement(RootComponent),
     document.getElementById(containerId),
-    () => console.info(`React mounted at #${containerId}`)
+    () => {
+      if (__DEV__) {
+        console.info(`React mounted at #${containerId}`);
+      }
+    }
   );
 };
 
