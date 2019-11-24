@@ -9,8 +9,10 @@ const webpack = require('webpack');
 // https://webpack.js.org/api/cli/#environment-options
 // https://webpack.js.org/guides/environment-variables/
 module.exports = (env = {}) => {
+  const mode = env.production ? 'production' : 'development';
+
   return {
-    mode: env.production ? 'production' : 'development',
+    mode,
 
     entry: {
       index: path.resolve(__dirname, '../src/index.ts'),
