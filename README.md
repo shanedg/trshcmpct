@@ -18,7 +18,7 @@ npm ci
 
 ### `build`
 
-Builds the project in development mode.
+Build the project in development mode.
 
 ```bash
 npm run build
@@ -26,7 +26,8 @@ npm run build
 
 ### `start`
 
-Start webpack-dev-server in development mode, includes watch & rebuild.
+Start webpack-dev-server and build the project.
+Watch files and rebuild on change.
 
 ```bash
 npm run start
@@ -38,16 +39,24 @@ OR
 npm start
 ```
 
+## `watch`
+
+Build the project and watch files, rebuilding on change.
+
+```bash
+npm run watch
+```
+
 ### `*:production`
 
-`start` and `build` each have corresponding `*:production` command variants for applying production optimizations.
+`build`, `start`, and `watch` each have corresponding `*:production` scripts for applying production optimizations.
 
 ```bash
 npm run start:production
-```
 
-```bash
 npm run build:production
+
+npm run watch:production
 ```
 
 ### `lint`
@@ -124,7 +133,6 @@ Hence, this separate command.
 ## TODO
 
 * Jest tests written in TypeScript
-* Watching for development/production builds -- simple as `npm run build -- --watch` or similar?
 * Add styles, CSS and some preprocessor
   * Add linting for styles
 * Add auto versioning via conventional commits

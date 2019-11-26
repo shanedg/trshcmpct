@@ -12,7 +12,9 @@
     "start": "webpack-dev-server --config config/webpack.config.js",
     "start:production": "webpack-dev-server --config config/webpack.config.js --env.production",
     "test": "jest",
-    "type-check": "tsc --project src/tsconfig.json"
+    "type-check": "tsc --project src/tsconfig.json",
+    "watch": "webpack --config config/webpack.config.js --watch",
+    "watch:production": "webpack --config config/webpack.config.js --env.production --watch"
   },
   "author": "Shane Garrity <shanedgarrity@gmail.com> (https://www.shanedg.com)",
   "license": "ISC",
