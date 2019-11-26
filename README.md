@@ -134,4 +134,3 @@ Hence, this separate command.
 * E2E tests
 * overhaul unit \_\_tests\_\_ organization? prefer test files are directly next to the files they test instead of silo'd in sibling folder
 * consider implementing custom cache busting for `eslint-loader` because it doesn't invalidate when `eslintrc.js` is updated. see [this solution](https://github.com/webpack-contrib/eslint-loader/issues/214#issuecomment-388721691) using `cacheIdentifier`
-  * also consider `eslint-webpack-plugin` because that's recommended in that or a similar thread (I'm skeptical about this plugin but should take a good look at it, or at least keep an eye on their progress)
