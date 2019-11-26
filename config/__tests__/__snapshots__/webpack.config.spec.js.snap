@@ -126,7 +126,7 @@ Object {
         "loader": "eslint-loader",
         "options": Object {
           "cache": true,
-          "emitWarning": true,
+          "emitWarning": false,
         },
         "test": /\\\\\\.\\(js\\|jsx\\|ts\\|tsx\\)\\$/,
       },

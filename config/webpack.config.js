@@ -10,6 +10,7 @@ const webpack = require('webpack');
 // https://webpack.js.org/guides/environment-variables/
 module.exports = (env = {}) => {
   const mode = env.production ? 'production' : 'development';
+  const isProduction = mode === 'production';
 
   return {
     mode,
@@ -32,7 +33,8 @@ module.exports = (env = {}) => {
           loader: 'eslint-loader',
           options: {
             cache: true,
-            emitWarning: true,
+            // Development only
+            emitWarning: !isProduction,
           },
         },
         {

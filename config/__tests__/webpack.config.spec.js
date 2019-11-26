@@ -37,7 +37,7 @@ describe('webpack', () => {
 
     it('sets module rules', () => {
       expect(developmentConfig.module).toHaveProperty('rules', expect.any(Array));
-      expect(productionConfig.module).toStrictEqual(developmentConfig.module);
+      expect(productionConfig.module).toHaveProperty('rules', expect.any(Array));
     });
 
     it('sets optimizations', () => {
