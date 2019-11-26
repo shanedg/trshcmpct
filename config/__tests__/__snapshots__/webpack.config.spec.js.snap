@@ -17,6 +17,7 @@ Object {
         "loader": "eslint-loader",
         "options": Object {
           "cache": true,
+          "emitError": false,
           "emitWarning": true,
         },
         "test": /\\\\\\.\\(js\\|jsx\\|ts\\|tsx\\)\\$/,
@@ -126,6 +127,7 @@ Object {
         "loader": "eslint-loader",
         "options": Object {
           "cache": true,
+          "emitError": true,
           "emitWarning": false,
         },
         "test": /\\\\\\.\\(js\\|jsx\\|ts\\|tsx\\)\\$/,

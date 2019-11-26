@@ -35,6 +35,8 @@ module.exports = (env = {}) => {
             cache: true,
             // Development only
             emitWarning: !isProduction,
+            // Production only
+            emitError: isProduction,
           },
         },
         {
