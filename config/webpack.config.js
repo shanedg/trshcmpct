@@ -37,6 +37,7 @@ module.exports = (env = {}) => {
             emitWarning: !isProduction,
             // Production only
             emitError: isProduction,
+            failOnError: isProduction,
           },
         },
         {
