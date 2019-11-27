@@ -42,7 +42,7 @@ describe('webpack', () => {
 
     it('sets optimizations', () => {
       expect(developmentConfig.optimization).toHaveProperty('splitChunks', expect.any(Object));
-      expect(productionConfig.optimization).toStrictEqual(developmentConfig.optimization);
+      expect(productionConfig.optimization).toHaveProperty('splitChunks', expect.any(Object));
     });
 
     it('sets plugins', () => {
@@ -84,6 +84,10 @@ describe('webpack', () => {
       expect(developmentConfig.mode).toEqual('development');
     });
 
+    it('turns off minimize optimization', () => {
+      expect(developmentConfig.optimization).toHaveProperty('minimize', false);
+    });
+
     it('DefinePlugin sets __DEV__ to "true"', () => {
       expect(developmentConfig.plugins.find(p => p instanceof webpack.DefinePlugin))
         .toHaveProperty('definitions.__DEV__', 'true');
@@ -104,6 +108,10 @@ describe('webpack', () => {
 
     it('sets production mode', () => {
       expect(productionConfig.mode).toEqual('production');
+    });
+
+    it('turns on minimize optimization', () => {
+      expect(productionConfig.optimization).toHaveProperty('minimize', true);
     });
 
     it('DefinePlugin set __DEV__ to "false"', () => {

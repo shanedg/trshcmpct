@@ -3,12 +3,15 @@ const path = require('path');
 const CleanWebpackPlugin = require('clean-webpack-plugin').CleanWebpackPlugin;
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ProgressBarPlugin = require('progress-bar-webpack-plugin');
+const TerserPlugin = require('terser-webpack-plugin');
 const webpack = require('webpack');
 
-// Config env:
+// Config env and argv:
+// https://webpack.js.org/configuration/configuration-types/#exporting-a-function
 // https://webpack.js.org/api/cli/#environment-options
 // https://webpack.js.org/guides/environment-variables/
-module.exports = (env = {}) => {
+module.exports = (env = {}, argv = {}) => {
+  const debug = argv.debug;
   const mode = env.production ? 'production' : 'development';
   const isProduction = mode === 'production';
 
@@ -67,6 +70,17 @@ module.exports = (env = {}) => {
     },
 
     optimization: {
+      minimize: isProduction,
+      minimizer: [
+        // Terser is minimizer by default? but we can customize?
+        new TerserPlugin({
+          // https://webpack.js.org/plugins/terser-webpack-plugin/#terseroptions
+          terserOptions: {
+            warnings: debug ? 'verbose' : false,
+          },
+        })
+      ],
+
       splitChunks: {
         cacheGroups: {
           vendors: {

@@ -34,6 +34,27 @@ Object {
     ],
   },
   "optimization": Object {
+    "minimize": false,
+    "minimizer": Array [
+      TerserPlugin {
+        "options": Object {
+          "cache": true,
+          "cacheKeys": [Function],
+          "chunkFilter": [Function],
+          "exclude": undefined,
+          "extractComments": true,
+          "include": undefined,
+          "minify": undefined,
+          "parallel": true,
+          "sourceMap": undefined,
+          "terserOptions": Object {
+            "warnings": false,
+          },
+          "test": /\\\\\\.m\\?js\\(\\\\\\?\\.\\*\\)\\?\\$/i,
+          "warningsFilter": [Function],
+        },
+      },
+    ],
     "splitChunks": Object {
       "cacheGroups": Object {
         "vendors": Object {
@@ -145,6 +166,27 @@ Object {
     ],
   },
   "optimization": Object {
+    "minimize": true,
+    "minimizer": Array [
+      TerserPlugin {
+        "options": Object {
+          "cache": true,
+          "cacheKeys": [Function],
+          "chunkFilter": [Function],
+          "exclude": undefined,
+          "extractComments": true,
+          "include": undefined,
+          "minify": undefined,
+          "parallel": true,
+          "sourceMap": undefined,
+          "terserOptions": Object {
+            "warnings": false,
+          },
+          "test": /\\\\\\.m\\?js\\(\\\\\\?\\.\\*\\)\\?\\$/i,
+          "warningsFilter": [Function],
+        },
+      },
+    ],
     "splitChunks": Object {
       "cacheGroups": Object {
         "vendors": Object {
