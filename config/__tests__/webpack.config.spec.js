@@ -78,11 +78,9 @@ describe('webpack', () => {
         expect.any(webpack.DefinePlugin),
         expect.any(HtmlWebpackPlugin),
       ]);
-      // Can't use deep-equality checks around plugins since they're unique class instances so repeat same assertion against productionConfig.
-      // Otherwise, toEqual/toStrictEqual comparisons fail with "Received: serializes to the same string".
       expect(productionConfig.plugins).toMatchObject([
         expect.any(CleanWebpackPlugin),
-        expect.any(Function), // ProgressBarPlugin
+        expect.any(Function), // ProgressBarPlugin, anonymous function signature
         expect.any(webpack.DefinePlugin),
         expect.any(HtmlWebpackPlugin),
       ]);
