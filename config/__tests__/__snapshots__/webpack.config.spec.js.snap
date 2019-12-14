@@ -59,7 +59,7 @@ Object {
       "cacheGroups": Object {
         "vendors": Object {
           "priority": -10,
-          "test": /\\[\\\\\\\\\\\\/\\]node_modules\\[\\\\\\\\\\\\/\\]/,
+          "test": /\\[\\\\\\\\/\\]node_modules\\[\\\\\\\\/\\]/,
         },
       },
       "chunks": "async",
@@ -191,7 +191,7 @@ Object {
       "cacheGroups": Object {
         "vendors": Object {
           "priority": -10,
-          "test": /\\[\\\\\\\\\\\\/\\]node_modules\\[\\\\\\\\\\\\/\\]/,
+          "test": /\\[\\\\\\\\/\\]node_modules\\[\\\\\\\\/\\]/,
         },
       },
       "chunks": "async",
