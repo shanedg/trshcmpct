@@ -11,7 +11,7 @@
     "lint:js": "eslint --ext .js,.jsx,.ts,.tsx --max-warnings=0 --fix --cache .",
     "start": "webpack-dev-server --config config/webpack.config.js",
     "start:production": "webpack-dev-server --config config/webpack.config.js --env.production",
-    "test": "jest",
+    "test": "jest --config=config/jest.config.js",
     "type-check": "tsc --project src/tsconfig.json",
     "watch": "webpack --config config/webpack.config.js --watch",
     "watch:production": "webpack --config config/webpack.config.js --env.production --watch"
@@ -20,6 +20,7 @@
   "license": "ISC",
   "devDependencies": {
     "@babel/core": "^7.5.5",
+    "@babel/plugin-transform-modules-commonjs": "^7.8.3",
     "@babel/preset-env": "^7.5.5",
     "@babel/preset-react": "^7.0.0",
     "@babel/preset-typescript": "^7.6.0",
@@ -29,6 +30,7 @@
     "@types/react": "^16.9.11",
     "@types/react-dom": "^16.9.4",
     "babel-eslint": "^10.0.3",
+    "babel-jest": "^24.9.0",
     "babel-loader": "^8.0.6",
     "babel-plugin-syntax-dynamic-import": "^6.18.0",
     "chalk": "^3.0.0",

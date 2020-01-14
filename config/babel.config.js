@@ -1,7 +1,20 @@
 module.exports = {
-  plugins: [
-    'syntax-dynamic-import',
+  env: {
+    test: {
+      plugins: [
+        '@babel/plugin-transform-modules-commonjs',
+      ],
+    },
+  },
+
+  only: [
+    '../src',
   ],
+
+  plugins: [
+    '@babel/plugin-syntax-dynamic-import',
+  ],
+
   presets: [
     [
       '@babel/preset-env', {

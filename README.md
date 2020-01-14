@@ -132,7 +132,6 @@ Hence, this separate command.
 
 ## TODO
 
-* Jest tests written in TypeScript
 * Add styles, CSS and some preprocessor
   * Add linting for styles
 * Add auto versioning via conventional commits
@@ -140,5 +139,4 @@ Hence, this separate command.
 * React strict mode
 * Acceptance tests
 * E2E tests
-* overhaul unit \_\_tests\_\_ organization? prefer test files are directly next to the files they test instead of silo'd in sibling folder
 * consider implementing custom cache busting for `eslint-loader` because it doesn't invalidate when `eslintrc.js` is updated. see [this solution](https://github.com/webpack-contrib/eslint-loader/issues/214#issuecomment-388721691) using `cacheIdentifier`
