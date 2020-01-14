@@ -3,7 +3,7 @@ const childProcess = require('child_process');
 const {
   onPreCommit,
   onPrePush,
-} = require('../lib/index');
+} = require('./hooks');
 
 describe('on pre-commit', () => {
 

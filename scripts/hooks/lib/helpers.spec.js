@@ -1,4 +1,4 @@
-const { handleChildExit } = require('../lib/helpers');
+const { handleChildExit } = require('./helpers');
 
 describe('child exit code helper', () => {
   // Mock process.exit() to keep from terminating our tests early.

@@ -4,7 +4,7 @@ const path = require('path');
 const serializer = require('jest-serializer-path');
 const webpack = require('webpack');
 
-const webpackConfig = require('../webpack.config');
+const webpackConfig = require('./webpack.config');
 
 // Remove absolute paths from snapshots.
 expect.addSnapshotSerializer(serializer);
@@ -25,13 +25,13 @@ describe('webpack', () => {
     });
 
     it('sets entry points', () => {
-      expect(developmentConfig.entry).toHaveProperty('index', path.resolve(__dirname, '../../src/index.ts'));
+      expect(developmentConfig.entry).toHaveProperty('index', path.resolve(__dirname, '../src/index.ts'));
       expect(productionConfig.entry).toStrictEqual(developmentConfig.entry);
     });
 
     it('sets output', () => {
       expect(developmentConfig.output).toHaveProperty('filename', '[name].[chunkhash].js');
-      expect(developmentConfig.output).toHaveProperty('path', path.resolve(__dirname, '../../dist'));
+      expect(developmentConfig.output).toHaveProperty('path', path.resolve(__dirname, '../dist'));
       expect(productionConfig.output).toStrictEqual(developmentConfig.output);
     });
 
