@@ -6,12 +6,8 @@ module.exports = {
     '<rootDir>/src',
   ],
   transform: {
-    '^.+\\.[t|j]sx?$': '<rootDir>/config/babelJest.js',
+    // Only transform files in src/!
+    // Only this directory is built/transpiled by Babel.
+    '\\/src\\/.+\\.[t|j]sx?$': '<rootDir>/config/babelJest.js',
   },
-  transformIgnorePatterns: [
-    '/node_modules/',
-    // Only transform files in <rootDir>/src:
-    // https://jestjs.io/docs/en/tutorial-react-native#transformignorepatterns-customization
-    '<rootDir>/(?!src/)',
-  ],
 };
