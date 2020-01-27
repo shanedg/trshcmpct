@@ -11,4 +11,7 @@ module.exports = {
     '\\/src\\/.+\\.[t|j]sx?$': '<rootDir>/config/babelJest.js',
   },
   collectCoverage: true,
+  setupFilesAfterEnv: [
+    '<rootDir>/config/setupTests.js',
+  ]
 };
