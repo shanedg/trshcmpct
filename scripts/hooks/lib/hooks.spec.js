@@ -6,7 +6,6 @@ const {
 } = require('./hooks');
 
 describe('on pre-commit', () => {
-
   const initialEnv = process.env;
   Object.freeze(initialEnv);
 
@@ -46,7 +45,6 @@ describe('on pre-commit', () => {
 
   it('does not lint staged files when NO_PRECOMMIT is truthy', () => {
     process.env.NO_PRECOMMIT = true;
-
     onPreCommit();
 
     expect(mockExecSyncSpy).not.toHaveBeenCalled();
@@ -68,7 +66,6 @@ describe('on pre-commit', () => {
 });
 
 describe('on pre-push', () => {
-
   const initialEnv = process.env;
   Object.freeze(initialEnv);
 
@@ -103,7 +100,6 @@ describe('on pre-push', () => {
 
   it('lints, checks types, and tests when NO_PRECOMMIT is truthy', () => {
     process.env.NO_PRECOMMIT = true;
-
     onPrePush();
 
     expect(mockExecSyncSpy).toHaveBeenCalledWith(
@@ -124,5 +120,4 @@ describe('on pre-push', () => {
       expect.anything(),
     );
   });
-
 });

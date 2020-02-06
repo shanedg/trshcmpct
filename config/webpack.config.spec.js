@@ -16,7 +16,6 @@ describe('webpack', () => {
   let productionConfig;
 
   describe('common config', () => {
-
     beforeAll(() => {
       developmentConfig = webpackConfig(developmentEnvironment);
       productionConfig = webpackConfig(productionEnvironment);
@@ -36,7 +35,6 @@ describe('webpack', () => {
     });
 
     describe('module', () => {
-
       it('sets rules', () => {
         expect(developmentConfig.module).toHaveProperty('rules', expect.any(Array));
         expect(productionConfig.module).toHaveProperty('rules', expect.any(Array));
@@ -63,7 +61,6 @@ describe('webpack', () => {
         expect(developmentConfig.module.rules.reduce(loadersExcludeNodeModules)).toBeTruthy();
         expect(productionConfig.module.rules.reduce(loadersExcludeNodeModules)).toBeTruthy();
       });
-
     });
 
     it('sets optimizations', () => {
@@ -94,7 +91,6 @@ describe('webpack', () => {
   });
 
   describe('development config', () => {
-
     beforeAll(() => {
       developmentConfig = webpackConfig(developmentEnvironment);
       Object.freeze(developmentConfig);
@@ -116,11 +112,9 @@ describe('webpack', () => {
       expect(developmentConfig.plugins.find(p => p instanceof webpack.DefinePlugin))
         .toHaveProperty('definitions.__DEV__', 'true');
     });
-
   });
 
   describe('production config', () => {
-
     beforeAll(() => {
       productionConfig = webpackConfig(productionEnvironment);
       Object.freeze(productionConfig);
@@ -142,7 +136,5 @@ describe('webpack', () => {
       expect(productionConfig.plugins.find(p => p instanceof webpack.DefinePlugin))
         .toHaveProperty('definitions.__DEV__', 'false');
     });
-
   });
-
 });
