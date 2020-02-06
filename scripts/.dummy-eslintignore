@@ -1,0 +1,3 @@
+# See `filter-ignored.spec.js`
+dist/
+ignored-example.js

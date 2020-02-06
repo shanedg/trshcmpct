@@ -1,6 +1,13 @@
+// Adapted from:
+// https://github.com/okonet/lint-staged/#how-can-i-ignore-files-from-eslintignore-
+const { createIgnoredFilter } = require('./filter-ignored');
+
+const isIgnored = createIgnoredFilter([
+  // Accepts micromatch patterns: https://github.com/micromatch/micromatch.
+  'lint-staged.config.js',
+]);
+
 module.exports = {
-  // ignore .eslintrc.js and lint-staged.config.js and .huskyrc.js
-  '!(.eslintrc|lint-staged.config|.huskyrc)*.{js,jsx,ts,tsx}': [
-    'eslint --max-warnings=0 --fix --cache',
-  ],
+  '*.{js,jsx,ts,tsx}': files =>
+    'eslint --max-warnings=0 --fix --cache ' + files.filter(file => !isIgnored(file)).join(' ')
 };
