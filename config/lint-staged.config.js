@@ -1,6 +1,6 @@
 // Adapted from:
 // https://github.com/okonet/lint-staged/#how-can-i-ignore-files-from-eslintignore-
-const { createIgnoredFilter } = require('./filter-ignored');
+const { createIgnoredFilter } = require('../scripts/filter-ignored');
 
 const isIgnored = createIgnoredFilter([
   // Accepts micromatch patterns: https://github.com/micromatch/micromatch.

@@ -6,7 +6,7 @@
   "scripts": {
     "build": "webpack --config config/webpack.config.js",
     "build:production": "webpack --config config/webpack.config.js --env.production",
-    "lint-staged": "lint-staged --config scripts/lint-staged.config.js",
+    "lint-staged": "lint-staged --config config/lint-staged.config.js",
     "lint": "run-p lint:**",
     "lint:js": "eslint --ext .js,.jsx,.ts,.tsx --max-warnings=0 --fix --cache .",
     "start": "webpack-dev-server --config config/webpack.config.js",
