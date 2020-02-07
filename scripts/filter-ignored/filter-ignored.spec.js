@@ -1,4 +1,4 @@
-const { createIgnoredFilter } = require('./filter-ignored');
+const { createIgnoredFilter } = require('.');
 const eslint = require('eslint');
 const micromatch = require('micromatch');
 const path = require('path');
