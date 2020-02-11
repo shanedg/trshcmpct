@@ -7,7 +7,9 @@ const isIgnored = createIgnoredFilter([
   'lint-staged.config.js',
 ]);
 
+const eslintFlags = '--max-warnings 0 --fix --cache --cache-location node_modules/.cache/.eslint-cache/';
+
 module.exports = {
   '*.{js,jsx,ts,tsx}': files =>
-    'eslint --max-warnings=0 --fix --cache --cache-location node_modules/.cache/eslint-cache/ ' + files.filter(file => !isIgnored(file)).join(' ')
+    `eslint ${eslintFlags} ${files.filter(file => !isIgnored(file)).join(' ')}`
 };
