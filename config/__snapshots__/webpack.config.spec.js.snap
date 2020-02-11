@@ -5,6 +5,7 @@ Object {
   "devServer": Object {
     "open": true,
   },
+  "devtool": "eval-source-map",
   "entry": Object {
     "index": "<PROJECT_ROOT>/src/index.ts",
   },
@@ -137,6 +138,7 @@ Object {
   "devServer": Object {
     "open": true,
   },
+  "devtool": "source-map",
   "entry": Object {
     "index": "<PROJECT_ROOT>/src/index.ts",
   },
