@@ -9,5 +9,5 @@ const isIgnored = createIgnoredFilter([
 
 module.exports = {
   '*.{js,jsx,ts,tsx}': files =>
-    'eslint --max-warnings=0 --fix --cache ' + files.filter(file => !isIgnored(file)).join(' ')
+    'eslint --max-warnings=0 --fix --cache --cache-location node_modules/.cache/eslint-cache/ ' + files.filter(file => !isIgnored(file)).join(' ')
 };
