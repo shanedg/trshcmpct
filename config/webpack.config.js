@@ -30,20 +30,6 @@ module.exports = (env = {}, argv = {}) => {
     module: {
       rules: [
         {
-          enforce: 'pre',
-          test: /\.(js|jsx|ts|tsx)$/,
-          exclude: /node_modules/,
-          loader: 'eslint-loader',
-          options: {
-            cache: true,
-            // Development only
-            emitWarning: !isProduction,
-            // Production only
-            emitError: isProduction,
-            failOnError: isProduction,
-          },
-        },
-        {
           test: /\.(js|jsx|ts|tsx)$/,
           exclude: /node_modules/,
           loader: 'babel-loader',

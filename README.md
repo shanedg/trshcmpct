@@ -139,4 +139,3 @@ Hence, this separate command.
 * React strict mode
 * Acceptance tests
 * E2E tests
-* consider implementing custom cache busting for `eslint-loader` because it doesn't invalidate when `eslintrc.js` is updated. see [this solution](https://github.com/webpack-contrib/eslint-loader/issues/214#issuecomment-388721691) using `cacheIdentifier`

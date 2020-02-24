@@ -40,11 +40,6 @@ describe('webpack', () => {
         expect(productionConfig.module).toHaveProperty('rules', expect.any(Array));
       });
 
-      it('enforces loading source with eslint-loader first', () => {
-        expect(developmentConfig.module.rules.find(rule => rule.loader === 'eslint-loader')).toHaveProperty('enforce', 'pre');
-        expect(productionConfig.module.rules.find(rule => rule.loader === 'eslint-loader')).toHaveProperty('enforce', 'pre');
-      });
-
       it('transpiles source with babel-loader', () => {
         expect(developmentConfig.module.rules.find(rule => rule.loader === 'babel-loader')).toBeTruthy();
         expect(productionConfig.module.rules.find(rule => rule.loader === 'babel-loader')).toBeTruthy();
