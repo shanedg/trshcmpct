@@ -1,5 +1,6 @@
 const chalk = require('chalk');
 const CleanWebpackPlugin = require('clean-webpack-plugin').CleanWebpackPlugin;
+const ESLintPlugin = require('eslint-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const path = require('path');
 const ProgressBarPlugin = require('progress-bar-webpack-plugin');
@@ -14,6 +15,7 @@ module.exports = (env = {}, argv = {}) => {
   const debug = argv.debug;
   const mode = env.production ? 'production' : 'development';
   const isProduction = mode === 'production';
+  const isWatching = argv.watch;
 
   return {
     mode,
@@ -83,6 +85,16 @@ module.exports = (env = {}, argv = {}) => {
 
     plugins: [
       new CleanWebpackPlugin(),
+      new ESLintPlugin({
+        cache: true,
+        cacheLocation: 'node_modules/.cache/eslint-cache/',
+        emitError: isProduction,
+        emitWarning: !isProduction,
+        extensions: ['.js', '.jsx', '.ts', '.tsx'],
+        failOnError: isProduction,
+        lintDirtyModulesOnly: !!isWatching,
+        reportUnusedDisableDirectives: !isProduction,
+      }),
       new ProgressBarPlugin({
         format: '  build [:bar] ' + chalk.green.bold(':percent') + ' (:elapsed seconds)',
         clear: false

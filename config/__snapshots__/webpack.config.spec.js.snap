@@ -80,6 +80,27 @@ Object {
       "removeFiles": [Function],
       "verbose": false,
     },
+    ESLintWebpackPlugin {
+      "options": Object {
+        "CLIEngine": [Function],
+        "cache": true,
+        "cacheLocation": "node_modules/.cache/eslint-cache/",
+        "emitError": false,
+        "emitWarning": true,
+        "eslintPath": "eslint",
+        "extensions": Array [
+          ".js",
+          ".jsx",
+          ".ts",
+          ".tsx",
+        ],
+        "failOnError": false,
+        "files": ".",
+        "formatter": [Function],
+        "lintDirtyModulesOnly": false,
+        "reportUnusedDisableDirectives": true,
+      },
+    },
     [Function],
     DefinePlugin {
       "definitions": Object {
@@ -200,6 +221,27 @@ Object {
       "protectWebpackAssets": true,
       "removeFiles": [Function],
       "verbose": false,
+    },
+    ESLintWebpackPlugin {
+      "options": Object {
+        "CLIEngine": [Function],
+        "cache": true,
+        "cacheLocation": "node_modules/.cache/eslint-cache/",
+        "emitError": true,
+        "emitWarning": false,
+        "eslintPath": "eslint",
+        "extensions": Array [
+          ".js",
+          ".jsx",
+          ".ts",
+          ".tsx",
+        ],
+        "failOnError": true,
+        "files": ".",
+        "formatter": [Function],
+        "lintDirtyModulesOnly": false,
+        "reportUnusedDisableDirectives": false,
+      },
     },
     [Function],
     DefinePlugin {
