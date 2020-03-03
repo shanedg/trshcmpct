@@ -2,7 +2,6 @@ module.exports = {
   rootDir: '..',
   roots: [
     '<rootDir>/config',
-    '<rootDir>/scripts',
     '<rootDir>/src',
   ],
   transform: {
