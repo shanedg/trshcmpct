@@ -3,9 +3,7 @@ const handleChildExit = require('./helpers');
 
 // Always send child's output to parent.
 // i.e. make sure that we see lint-staged and jest in the terminal.
-const execSyncOptions = {
-  stdio: 'inherit',
-};
+const execSyncOptions = { stdio: 'inherit' };
 
 /**
  * Lint staged files and reject commit on any errors or warnings.
