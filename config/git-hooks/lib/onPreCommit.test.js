@@ -2,11 +2,14 @@ const childProcess = require('child_process');
 const onPreCommit = require('./onPreCommit');
 
 describe('on pre-commit', () => {
-  const initialEnv = process.env;
-  Object.freeze(initialEnv);
-
   let childProcessExecSpy;
+  let initialEnv;
   let processExitSpy;
+
+  beforeAll(() => {
+    initialEnv = process.env;
+    Object.freeze(initialEnv);
+  });
 
   beforeEach(() => {
     // Save environment, ignoring `NO_PRECOMMIT` if set.

@@ -2,10 +2,13 @@ const childProcess = require('child_process');
 const onPrePush = require('./onPrePush');
 
 describe('on pre-push', () => {
-  const initialEnv = process.env;
-  Object.freeze(initialEnv);
-
   let childProcessExecSpy;
+  let initialEnv;
+
+  beforeAll(() => {
+    initialEnv = process.env;
+    Object.freeze(initialEnv);
+  });
 
   beforeEach(() => {
     // Save environment, ignoring `NO_PRECOMMIT` if set.
