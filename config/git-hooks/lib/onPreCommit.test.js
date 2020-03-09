@@ -22,8 +22,7 @@ describe('on pre-commit', () => {
   });
 
   afterEach(() => {
-    childProcessExecSpy.mockRestore();
-    processExitSpy.mockRestore();
+    jest.restoreAllMocks();
     process.env = initialEnv;
   });
 
