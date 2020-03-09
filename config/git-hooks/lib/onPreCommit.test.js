@@ -7,7 +7,7 @@ describe('on pre-commit', () => {
 
   // Mock childProcess.execSync to keep from spawning actual processes.
   // Mock process.exit to keep from terminating our tests early.
-  let mockExecSyncSpy;
+  let childProcessExecSpy;
   let processExitSpy;
 
   beforeEach(() => {
@@ -16,7 +16,7 @@ describe('on pre-commit', () => {
     process.env = { ...initialEnv };
     delete process.env.NO_PRECOMMIT;
 
-    mockExecSyncSpy = jest.spyOn(childProcess, 'execSync')
+    childProcessExecSpy = jest.spyOn(childProcess, 'execSync')
       .mockImplementation(() => {});
     processExitSpy = jest.spyOn(process, 'exit')
       .mockImplementation(() => {});
@@ -24,7 +24,7 @@ describe('on pre-commit', () => {
 
   afterEach(() => {
     // Restore spies and environment variables after each test.
-    mockExecSyncSpy.mockRestore();
+    childProcessExecSpy.mockRestore();
     processExitSpy.mockRestore();
     process.env = initialEnv;
   });
@@ -32,7 +32,7 @@ describe('on pre-commit', () => {
   it('lints staged files when NO_PRECOMMIT is falsy', () => {
     onPreCommit();
 
-    expect(mockExecSyncSpy).toHaveBeenCalledWith(
+    expect(childProcessExecSpy).toHaveBeenCalledWith(
       'npm run lint-staged',
       expect.anything(),
       expect.anything(),
@@ -43,14 +43,14 @@ describe('on pre-commit', () => {
     process.env.NO_PRECOMMIT = true;
     onPreCommit();
 
-    expect(mockExecSyncSpy).not.toHaveBeenCalled();
+    expect(childProcessExecSpy).not.toHaveBeenCalled();
     expect(processExitSpy).toHaveBeenCalledWith(0);
   });
 
   it('sends child process output to parent', () => {
     onPreCommit();
 
-    expect(mockExecSyncSpy).toHaveBeenCalledWith(
+    expect(childProcessExecSpy).toHaveBeenCalledWith(
       expect.anything(),
       expect.objectContaining({
         stdio: 'inherit',

@@ -6,7 +6,7 @@ describe('on pre-push', () => {
   Object.freeze(initialEnv);
 
   // Mock childProcess.execSync to keep from spawning actual processes.
-  let mockExecSyncSpy;
+  let childProcessExecSpy;
 
   beforeEach(() => {
     // Save environment variables to restore later.
@@ -14,20 +14,20 @@ describe('on pre-push', () => {
     process.env = { ...initialEnv };
     delete process.env.NO_PRECOMMIT;
 
-    mockExecSyncSpy = jest.spyOn(childProcess, 'execSync')
+    childProcessExecSpy = jest.spyOn(childProcess, 'execSync')
       .mockImplementation(() => {});
   });
 
   afterEach(() => {
     // Restore spy and environment variables after each test.
-    mockExecSyncSpy.mockRestore();
+    childProcessExecSpy.mockRestore();
     process.env = initialEnv;
   });
 
   it('does not lint if NO_PRECOMMIT is falsy but still checks types and runs tests', () => {
     onPrePush();
 
-    expect(mockExecSyncSpy).toHaveBeenCalledWith(
+    expect(childProcessExecSpy).toHaveBeenCalledWith(
       'npm run type-check && npm run test',
       expect.anything(),
       expect.anything(),
@@ -38,7 +38,7 @@ describe('on pre-push', () => {
     process.env.NO_PRECOMMIT = true;
     onPrePush();
 
-    expect(mockExecSyncSpy).toHaveBeenCalledWith(
+    expect(childProcessExecSpy).toHaveBeenCalledWith(
       'npm run lint:js && npm run type-check && npm run test',
       expect.anything(),
       expect.anything(),
@@ -48,7 +48,7 @@ describe('on pre-push', () => {
   it('sends child process output to parent', () => {
     onPrePush();
 
-    expect(mockExecSyncSpy).toHaveBeenCalledWith(
+    expect(childProcessExecSpy).toHaveBeenCalledWith(
       expect.anything(),
       expect.objectContaining({
         stdio: 'inherit',
