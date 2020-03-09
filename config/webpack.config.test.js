@@ -7,7 +7,7 @@ const webpack = require('webpack');
 
 const webpackConfig = require('./webpack.config');
 
-// Remove absolute paths from snapshots.
+// Remove absolute file paths from snapshots.
 expect.addSnapshotSerializer(serializer);
 
 describe('webpack', () => {
