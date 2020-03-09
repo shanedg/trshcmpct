@@ -12,6 +12,4 @@ const handleChildExit = (error, _stdout, _stderr) => {
   }
 };
 
-module.exports = {
-  handleChildExit,
-};
+module.exports = handleChildExit;

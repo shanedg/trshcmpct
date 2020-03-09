@@ -1,6 +1,5 @@
 const childProcess = require('child_process');
-
-const { handleChildExit } = require('./helpers');
+const handleChildExit = require('./helpers');
 
 // Always send child's output to parent.
 // i.e. make sure that we see lint-staged and jest in the terminal.
