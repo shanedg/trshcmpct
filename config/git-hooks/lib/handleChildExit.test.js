@@ -1,4 +1,4 @@
-const handleChildExit = require('./helpers');
+const handleChildExit = require('./handleChildExit');
 
 describe('child exit code helper', () => {
   let processExitSpy;
