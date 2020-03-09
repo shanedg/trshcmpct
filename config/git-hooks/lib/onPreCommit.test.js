@@ -9,8 +9,7 @@ describe('on pre-commit', () => {
   let processExitSpy;
 
   beforeEach(() => {
-    // Save process env before each test.
-    // Ignore NO_PRECOMMIT if set in the test environment.
+    // Save environment, ignoring `NO_PRECOMMIT` if set.
     process.env = { ...initialEnv };
     delete process.env.NO_PRECOMMIT;
 
@@ -23,7 +22,6 @@ describe('on pre-commit', () => {
   });
 
   afterEach(() => {
-    // Restore spies and environment variables after each test.
     childProcessExecSpy.mockRestore();
     processExitSpy.mockRestore();
     process.env = initialEnv;

@@ -8,8 +8,7 @@ describe('on pre-push', () => {
   let childProcessExecSpy;
 
   beforeEach(() => {
-    // Save environment variables to restore later.
-    // Ignore NO_PRECOMMIT if set in the test environment.
+    // Save environment, ignoring `NO_PRECOMMIT` if set.
     process.env = { ...initialEnv };
     delete process.env.NO_PRECOMMIT;
 
@@ -19,7 +18,6 @@ describe('on pre-push', () => {
   });
 
   afterEach(() => {
-    // Restore spy and environment variables after each test.
     childProcessExecSpy.mockRestore();
     process.env = initialEnv;
   });
