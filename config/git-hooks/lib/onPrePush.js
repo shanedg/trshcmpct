@@ -14,8 +14,6 @@ const execSyncOptions = { stdio: 'inherit' };
 function onPrePush() {
   if (process.env.NO_PRECOMMIT) {
     childProcess.execSync(
-      // lint-staged doesn't make sense in the pre-push context: changes
-      // have already been committed
       'npm run lint:js && npm run type-check && npm run test',
       execSyncOptions,
       handleChildExit
