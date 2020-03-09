@@ -5,8 +5,6 @@ describe('on pre-commit', () => {
   const initialEnv = process.env;
   Object.freeze(initialEnv);
 
-  // Mock childProcess.execSync to keep from spawning actual processes.
-  // Mock process.exit to keep from terminating our tests early.
   let childProcessExecSpy;
   let processExitSpy;
 
@@ -16,6 +14,8 @@ describe('on pre-commit', () => {
     process.env = { ...initialEnv };
     delete process.env.NO_PRECOMMIT;
 
+    // Prevent child processes from spawning.
+    // Prevent process from exiting tests early.
     childProcessExecSpy = jest.spyOn(childProcess, 'execSync')
       .mockImplementation(() => {});
     processExitSpy = jest.spyOn(process, 'exit')

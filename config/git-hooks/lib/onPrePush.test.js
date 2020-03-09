@@ -5,7 +5,6 @@ describe('on pre-push', () => {
   const initialEnv = process.env;
   Object.freeze(initialEnv);
 
-  // Mock childProcess.execSync to keep from spawning actual processes.
   let childProcessExecSpy;
 
   beforeEach(() => {
@@ -14,6 +13,7 @@ describe('on pre-push', () => {
     process.env = { ...initialEnv };
     delete process.env.NO_PRECOMMIT;
 
+    // Prevent child processes from spawning.
     childProcessExecSpy = jest.spyOn(childProcess, 'execSync')
       .mockImplementation(() => {});
   });
