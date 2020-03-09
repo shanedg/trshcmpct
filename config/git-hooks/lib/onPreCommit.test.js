@@ -8,7 +8,7 @@ describe('on pre-commit', () => {
   // Mock childProcess.execSync to keep from spawning actual processes.
   // Mock process.exit to keep from terminating our tests early.
   let mockExecSyncSpy;
-  let mockProcessExitSpy;
+  let processExitSpy;
 
   beforeEach(() => {
     // Save process env before each test.
@@ -18,14 +18,14 @@ describe('on pre-commit', () => {
 
     mockExecSyncSpy = jest.spyOn(childProcess, 'execSync')
       .mockImplementation(() => {});
-    mockProcessExitSpy = jest.spyOn(process, 'exit')
+    processExitSpy = jest.spyOn(process, 'exit')
       .mockImplementation(() => {});
   });
 
   afterEach(() => {
     // Restore spies and environment variables after each test.
     mockExecSyncSpy.mockRestore();
-    mockProcessExitSpy.mockRestore();
+    processExitSpy.mockRestore();
     process.env = initialEnv;
   });
 
@@ -44,7 +44,7 @@ describe('on pre-commit', () => {
     onPreCommit();
 
     expect(mockExecSyncSpy).not.toHaveBeenCalled();
-    expect(mockProcessExitSpy).toHaveBeenCalledWith(0);
+    expect(processExitSpy).toHaveBeenCalledWith(0);
   });
 
   it('sends child process output to parent', () => {
