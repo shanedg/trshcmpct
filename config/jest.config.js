@@ -5,8 +5,7 @@ module.exports = {
     '<rootDir>/src',
   ],
   transform: {
-    // Only transform files in src/!
-    // Only this directory is built/transpiled by Babel.
+    // Only files in src/ are built & transpiled by Babel.
     '\\/src\\/.+\\.[t|j]sx?$': '<rootDir>/config/babelJest.js',
   },
   collectCoverage: true,
