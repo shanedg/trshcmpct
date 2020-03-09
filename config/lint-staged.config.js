@@ -1,6 +1,5 @@
-const createIgnoredFilter = require('./filter-ignored');
+const isIgnored = require('./filter-ignored')();
 
-const isIgnored = createIgnoredFilter();
 const eslintFlags = '--max-warnings 0 \
                      --fix \
                      --cache \
