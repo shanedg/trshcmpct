@@ -1,4 +1,4 @@
 #!/usr/bin/env node
-const { onPrePush } = require('./lib');
+const onPrePush = require('./lib/onPrePush');
 
 onPrePush();
