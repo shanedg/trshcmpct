@@ -11,7 +11,7 @@
     "lint:js": "eslint --ext .js,.jsx,.ts,.tsx --max-warnings=0 --fix --cache --cache-location node_modules/.cache/eslint-cache/ .",
     "start": "webpack-dev-server --config config/webpack.config.js",
     "start:production": "webpack-dev-server --config config/webpack.config.js --env.production",
-    "test": "jest --config=config/jest.config.js",
+    "test": "jest --config=config/jest/jest.config.js",
     "type-check": "tsc --project src/tsconfig.json",
     "watch": "webpack --config config/webpack.config.js --watch",
     "watch:production": "webpack --config config/webpack.config.js --env.production --watch"

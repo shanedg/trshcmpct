@@ -5,5 +5,5 @@
 const babelJest = require('babel-jest');
 
 module.exports = babelJest.createTransformer({
-  configFile: require.resolve('./babel.config.js'),
+  configFile: require.resolve('../babel.config.js'),
 });

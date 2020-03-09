@@ -1,15 +1,15 @@
 module.exports = {
-  rootDir: '..',
+  rootDir: '../..',
   roots: [
     '<rootDir>/config',
     '<rootDir>/src',
   ],
   transform: {
     // Only files in src/ are built & transpiled by Babel.
-    '\\/src\\/.+\\.[t|j]sx?$': '<rootDir>/config/babelJest.js',
+    '\\/src\\/.+\\.[t|j]sx?$': '<rootDir>/config/jest/babelJest.js',
   },
   collectCoverage: true,
   setupFilesAfterEnv: [
-    '<rootDir>/config/setupTests.js',
+    '<rootDir>/config/jest/setupTests.js',
   ]
 };
