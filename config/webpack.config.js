@@ -14,7 +14,6 @@ const getMode = productionFlag => productionFlag ? 'production' : 'development';
 // https://webpack.js.org/api/cli/#environment-options
 // https://webpack.js.org/guides/environment-variables/
 module.exports = (env = {}, argv = {}) => {
-  const debug = argv.debug;
   const isProduction = getMode(env.production) === 'production';
   const isWatching = argv.watch;
 
@@ -65,7 +64,7 @@ module.exports = (env = {}, argv = {}) => {
         new TerserPlugin({
           // https://webpack.js.org/plugins/terser-webpack-plugin/#terseroptions
           terserOptions: {
-            warnings: debug ? 'verbose' : false,
+            warnings: argv.debug ? 'verbose' : false,
           },
         })
       ],
