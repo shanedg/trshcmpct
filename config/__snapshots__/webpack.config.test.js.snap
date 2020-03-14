@@ -130,10 +130,7 @@ Object {
   ],
   "resolve": Object {
     "extensions": Array [
-      ".wasm",
-      ".mjs",
       ".js",
-      ".json",
       ".jsx",
       ".ts",
       ".tsx",
@@ -272,10 +269,7 @@ Object {
   ],
   "resolve": Object {
     "extensions": Array [
-      ".wasm",
-      ".mjs",
       ".js",
-      ".json",
       ".jsx",
       ".ts",
       ".tsx",

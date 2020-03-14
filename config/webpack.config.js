@@ -43,18 +43,7 @@ module.exports = (env = {}, argv = {}) => {
     },
 
     resolve: {
-      extensions: [
-        // Defaults
-        '.wasm',
-        '.mjs',
-        '.js',
-        '.json',
-        // React
-        '.jsx',
-        // Typescript
-        '.ts',
-        '.tsx',
-      ],
+      extensions: ['.js', '.jsx', '.ts', '.tsx'],
     },
 
     optimization: {
