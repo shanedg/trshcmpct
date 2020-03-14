@@ -7,13 +7,15 @@ const ProgressBarPlugin = require('progress-bar-webpack-plugin');
 const TerserPlugin = require('terser-webpack-plugin');
 const webpack = require('webpack');
 
+const getMode = productionFlag => productionFlag ? 'production' : 'development';
+
 // Config env and argv:
 // https://webpack.js.org/configuration/configuration-types/#exporting-a-function
 // https://webpack.js.org/api/cli/#environment-options
 // https://webpack.js.org/guides/environment-variables/
 module.exports = (env = {}, argv = {}) => {
   const debug = argv.debug;
-  const mode = env.production ? 'production' : 'development';
+  const mode = getMode(env.production);
   const isProduction = mode === 'production';
   const isWatching = argv.watch;
 
