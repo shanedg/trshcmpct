@@ -15,12 +15,11 @@ const getMode = productionFlag => productionFlag ? 'production' : 'development';
 // https://webpack.js.org/guides/environment-variables/
 module.exports = (env = {}, argv = {}) => {
   const debug = argv.debug;
-  const mode = getMode(env.production);
-  const isProduction = mode === 'production';
+  const isProduction = getMode(env.production) === 'production';
   const isWatching = argv.watch;
 
   return {
-    mode,
+    mode: getMode(env.production),
 
     entry: {
       index: path.resolve(__dirname, '../src/index.ts'),
