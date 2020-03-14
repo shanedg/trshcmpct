@@ -88,7 +88,7 @@ module.exports = (env = {}, argv = {}) => {
         clear: false
       }),
       new webpack.DefinePlugin({
-        __DEV__: JSON.stringify(env.production ? false : true),
+        __DEV__: JSON.stringify(!isProduction),
       }),
       new HtmlWebpackPlugin({
         template: path.resolve(__dirname, '../src/index.html'),
