@@ -8,5 +8,3 @@ const main = () => {
 if (window) {
   main();
 }
-
-export default main;
