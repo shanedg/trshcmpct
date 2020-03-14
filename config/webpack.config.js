@@ -15,7 +15,6 @@ const getMode = productionFlag => productionFlag ? 'production' : 'development';
 // https://webpack.js.org/guides/environment-variables/
 module.exports = (env = {}, argv = {}) => {
   const isProduction = getMode(env.production) === 'production';
-  const isWatching = argv.watch;
 
   return {
     mode: getMode(env.production),
@@ -81,7 +80,7 @@ module.exports = (env = {}, argv = {}) => {
         emitWarning: !isProduction,
         extensions: ['.js', '.jsx', '.ts', '.tsx'],
         failOnError: isProduction,
-        lintDirtyModulesOnly: !!isWatching,
+        lintDirtyModulesOnly: !!argv.watch,
         reportUnusedDisableDirectives: !isProduction,
       }),
       new ProgressBarPlugin({
