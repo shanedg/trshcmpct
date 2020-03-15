@@ -1,4 +1,3 @@
-const WARN = 1;
 const ERROR = 2;
 
 module.exports = {
@@ -53,7 +52,7 @@ module.exports = {
     ],
     // Warn on unused variables except underscore-prefixed arguments.
     'no-unused-vars': [
-      WARN,
+      'warn',
       {
         argsIgnorePattern: '^_'
       }
