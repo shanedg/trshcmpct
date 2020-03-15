@@ -1,5 +1,3 @@
-const ERROR = 2;
-
 module.exports = {
   env: {
     commonjs: true,
@@ -32,23 +30,23 @@ module.exports = {
   root: true,
   rules: {
     indent: [
-      ERROR,
+      'error',
       2
     ],
     'linebreak-style': [
-      ERROR,
+      'error',
       'unix'
     ],
     quotes: [
-      ERROR,
+      'error',
       'single'
     ],
     semi: [
-      ERROR,
+      'error',
       'always'
     ],
     'jest/consistent-test-it': [
-      ERROR,
+      'error',
     ],
     // Warn on unused variables except underscore-prefixed arguments.
     'no-unused-vars': [
