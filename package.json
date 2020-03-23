@@ -19,21 +19,21 @@
   "author": "Shane Garrity <shanedgarrity@gmail.com> (https://www.shanedg.com)",
   "license": "ISC",
   "devDependencies": {
-    "@babel/core": "^7.8.7",
-    "@babel/plugin-transform-modules-commonjs": "^7.8.3",
-    "@babel/preset-env": "^7.8.7",
-    "@babel/preset-react": "^7.8.3",
-    "@babel/preset-typescript": "^7.8.3",
+    "@babel/core": "^7.9.0",
+    "@babel/plugin-transform-modules-commonjs": "^7.9.0",
+    "@babel/preset-env": "^7.9.0",
+    "@babel/preset-react": "^7.9.1",
+    "@babel/preset-typescript": "^7.9.0",
     "@commitlint/cli": "^8.3.5",
     "@commitlint/config-conventional": "^8.3.4",
     "@types/enzyme": "^3.10.5",
     "@types/jest": "^24.9.1",
     "@types/micromatch": "^4.0.1",
-    "@types/react": "^16.9.23",
+    "@types/react": "^16.9.25",
     "@types/react-dom": "^16.9.5",
     "babel-eslint": "^10.1.0",
     "babel-jest": "^24.9.0",
-    "babel-loader": "^8.0.6",
+    "babel-loader": "^8.1.0",
     "babel-plugin-syntax-dynamic-import": "^6.18.0",
     "chalk": "^3.0.0",
     "clean-webpack-plugin": "^3.0.0",
@@ -61,7 +61,7 @@
     "webpack-dev-server": "^3.10.3"
   },
   "dependencies": {
-    "react": "^16.13.0",
-    "react-dom": "^16.13.0"
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1"
   }
 }
