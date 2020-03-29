@@ -1,0 +1,30 @@
+name: default
+
+kind: pipeline
+type: docker
+
+steps:
+- name: install
+  image: node:erbium
+  commands:
+    - npm ci
+
+- name: lint
+  image: node:erbium
+  commands:
+    - npm run lint
+
+- name: type-check
+  image: node:erbium
+  commands:
+    - npm run type-check
+
+- name: test
+  image: node:erbium
+  commands:
+    - npm run test
+
+- name: build
+  image: node:erbium
+  commands:
+    - npm run build:production
