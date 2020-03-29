@@ -1,5 +1,7 @@
 # trshcmpctr
 
+[![Build Status](https://cloud.drone.io/api/badges/shanedg/trshcmpctr/status.svg)](https://cloud.drone.io/shanedg/trshcmpctr)
+
 "_all build config, no substance_"
 
 ## Install
