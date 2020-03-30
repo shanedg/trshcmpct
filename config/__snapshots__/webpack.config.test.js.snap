@@ -7,7 +7,7 @@ Object {
   },
   "devtool": "eval-source-map",
   "entry": Object {
-    "index": "<PROJECT_ROOT>/src/index.ts",
+    "index": "<PROJECT_ROOT>/client/index.ts",
   },
   "mode": "development",
   "module": Object {
@@ -121,7 +121,7 @@ Object {
         "meta": Object {},
         "minify": false,
         "showErrors": true,
-        "template": "<PROJECT_ROOT>/src/index.html",
+        "template": "<PROJECT_ROOT>/client/index.html",
         "templateParameters": [Function],
         "title": "trshcmpctr",
         "xhtml": false,
@@ -146,7 +146,7 @@ Object {
   },
   "devtool": "source-map",
   "entry": Object {
-    "index": "<PROJECT_ROOT>/src/index.ts",
+    "index": "<PROJECT_ROOT>/client/index.ts",
   },
   "mode": "production",
   "module": Object {
@@ -260,7 +260,7 @@ Object {
         "meta": Object {},
         "minify": false,
         "showErrors": true,
-        "template": "<PROJECT_ROOT>/src/index.html",
+        "template": "<PROJECT_ROOT>/client/index.html",
         "templateParameters": [Function],
         "title": "trshcmpctr",
         "xhtml": false,
