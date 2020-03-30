@@ -8,7 +8,7 @@ module.exports = {
   },
 
   only: [
-    '../src',
+    '../client',
   ],
 
   plugins: [

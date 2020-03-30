@@ -25,7 +25,7 @@ describe('webpack', () => {
     });
 
     it('sets entry points', () => {
-      expect(developmentConfig.entry).toHaveProperty('index', path.resolve(__dirname, '../src/index.ts'));
+      expect(developmentConfig.entry).toHaveProperty('index', path.resolve(__dirname, '../client/index.ts'));
       expect(productionConfig.entry).toStrictEqual(developmentConfig.entry);
     });
 
