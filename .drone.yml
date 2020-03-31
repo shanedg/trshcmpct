@@ -28,3 +28,11 @@ steps:
   image: node:erbium
   commands:
     - npm run build:production
+
+- name: notify
+  image: plugins/slack
+  settings:
+    webhook:
+      from_secret: slack_webhook
+    channel:
+      from_secret: slack_channel
