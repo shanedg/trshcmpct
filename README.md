@@ -26,14 +26,9 @@ npm run build
 
 ## Start
 
-Start webpack-dev-server and build the project.
-Watch files and rebuild on change.
-
-```bash
-npm run start
-```
-
-OR
+Start `webpack-dev-server` to serve the project, in-memory.
+Launch project in browser.
+Watch files, rebuilding and reloading incremental changes.
 
 ```bash
 npm start
@@ -41,7 +36,7 @@ npm start
 
 ## Watch
 
-Build the project and watch files, rebuilding on change.
+Build the project in development mode and watch files, rebuilding incremental changes.
 
 ```bash
 npm run watch
@@ -77,37 +72,17 @@ We miss out on potentially-valuable rules powered by type information but we get
 
 ## Test
 
-Run `Jest` unit tests.
+Run `Jest` tests.
 
 ```bash
 npm run test
 ```
 
-OR
-
-```bash
-npm t
-```
-
-### Snapshots
-
-Use the following to update Jest snapshots which need to reflect new changes.
-
-```bash
-npm run test -- -u
-```
-
-### Watching
-
-Watch tests, rerunning on changes.
-
-```bash
-npm run test -- --watch
-```
-
 ## Type Check
 
-Run `tsc` against the project's TypeScript files to catch type errors.
+> This project compiles TypeScript with Babel, not the TypeScript compiler.
+
+Run `tsc` against the project's TS files to catch type errors.
 
 ```bash
 npm run type-check
