@@ -24,6 +24,12 @@ Build the project in development mode.
 npm run build
 ```
 
+Build the project with production optimizations applied.
+
+```bash
+npm run build:production
+```
+
 ## Start
 
 Start `webpack-dev-server` to serve the project, in-memory.
@@ -40,18 +46,6 @@ Build the project in development mode and watch files, rebuilding incremental ch
 
 ```bash
 npm run watch
-```
-
-## `*:production`
-
-`build`, `start`, and `watch` each have corresponding `*:production` scripts for applying production optimizations.
-
-```bash
-npm run start:production
-
-npm run build:production
-
-npm run watch:production
 ```
 
 ## Lint
