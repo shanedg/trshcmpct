@@ -16,9 +16,7 @@ OR
 npm ci
 ```
 
-## Commands
-
-### `build`
+## Build
 
 Build the project in development mode.
 
@@ -26,7 +24,7 @@ Build the project in development mode.
 npm run build
 ```
 
-### `start`
+## Start
 
 Start webpack-dev-server and build the project.
 Watch files and rebuild on change.
@@ -41,7 +39,7 @@ OR
 npm start
 ```
 
-## `watch`
+## Watch
 
 Build the project and watch files, rebuilding on change.
 
@@ -49,7 +47,7 @@ Build the project and watch files, rebuilding on change.
 npm run watch
 ```
 
-### `*:production`
+## `*:production`
 
 `build`, `start`, and `watch` each have corresponding `*:production` scripts for applying production optimizations.
 
@@ -61,7 +59,7 @@ npm run build:production
 npm run watch:production
 ```
 
-### `lint`
+## Lint
 
 Lint JavaScript files with ESLint.
 
@@ -77,7 +75,7 @@ See [What about Babel and babel-eslint](https://github.com/typescript-eslint/typ
 The `@typescript-eslint/parser` does not understand all valid Babel syntax.
 We miss out on potentially-valuable rules powered by type information but we get full support for Babel syntax.
 
-### `test`
+## Test
 
 Run `Jest` unit tests.
 
@@ -91,7 +89,7 @@ OR
 npm t
 ```
 
-#### Snapshots
+### Snapshots
 
 Use the following to update Jest snapshots which need to reflect new changes.
 
@@ -99,7 +97,7 @@ Use the following to update Jest snapshots which need to reflect new changes.
 npm run test -- -u
 ```
 
-#### Watching
+### Watching
 
 Watch tests, rerunning on changes.
 
@@ -107,7 +105,7 @@ Watch tests, rerunning on changes.
 npm run test -- --watch
 ```
 
-### `type-check`
+## Type Check
 
 Run `tsc` against the project's TypeScript files to catch type errors.
 
