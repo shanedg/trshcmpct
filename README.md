@@ -63,22 +63,10 @@ npm run watch:production
 
 ### `lint`
 
-Lint project files.
+Lint JavaScript files with ESLint.
 
 ```bash
 npm run lint
-```
-
-Invoke `run-p` to execute all commands matching `lint:**` in parallel.
-At the moment there is only `lint:js`.
-This is perhaps a premature optimization.
-
-#### `lint:js`
-
-Run ESLint against the project's JavaScript and TypeScript files.
-
-```bash
-npm run lint:js
 ```
 
 We use `babel-eslint` instead of `@typescript-eslint` because this project compiles TypeScript with Babel, not with the TypeScript compiler.
@@ -127,7 +115,7 @@ Run `tsc` against the project's TypeScript files to catch type errors.
 npm run type-check
 ```
 
-For context, see notes on the `lint:js` command above.
+For context, see notes on [linting](##lint) above.
 
 Babel discards all type information during transpilation but supports a wider range of syntax than the TypeScript compiler.
 Hence, this separate command.
