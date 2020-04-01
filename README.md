@@ -69,8 +69,8 @@ Lint JavaScript files with ESLint.
 npm run lint
 ```
 
-We use `babel-eslint` instead of `@typescript-eslint` because this project compiles TypeScript with Babel, not with the TypeScript compiler.
-See [What about Babel and `babel-eslint`](https://github.com/typescript-eslint/typescript-eslint#what-about-babel-and-babel-eslint):
+We use `babel-eslint` instead of `@typescript-eslint` because this project compiles TypeScript with Babel, not the TypeScript compiler.
+See [What about Babel and babel-eslint](https://github.com/typescript-eslint/typescript-eslint#what-about-babel-and-babel-eslint):
 
 > The key trade-off can be summarized as: `babel-eslint` supports additional syntax which TypeScript itself does not, but `typescript-eslint` supports creating rules based on type information, which is not available to Babel because there is no type-checker.
 
