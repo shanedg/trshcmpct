@@ -6,11 +6,7 @@
 
 ## Install
 
-```bash
-npm install
-```
-
-OR
+Prefer to install from the lockfile.
 
 ```bash
 npm ci
