@@ -52,13 +52,14 @@ Lint JavaScript files with ESLint.
 npm run lint
 ```
 
-We use `babel-eslint` instead of `@typescript-eslint` because this project compiles TypeScript with Babel, not the TypeScript compiler.
-See [What about Babel and babel-eslint](https://github.com/typescript-eslint/typescript-eslint#what-about-babel-and-babel-eslint):
+### A Note on Choice of ESLint Parser
+
+This project compiles TypeScript with Babel, not the TypeScript compiler.
+Babel discards all type information during transpilation but supports a wider range of syntax than the TypeScript compiler.
+For this reason, we use the `babel-eslint` parser instead of the parser provided by `@typescript-eslint`.
+For more context, see [What about Babel and babel-eslint](https://github.com/typescript-eslint/typescript-eslint#what-about-babel-and-babel-eslint):
 
 > The key trade-off can be summarized as: `babel-eslint` supports additional syntax which TypeScript itself does not, but `typescript-eslint` supports creating rules based on type information, which is not available to Babel because there is no type-checker.
-
-The `@typescript-eslint/parser` does not understand all valid Babel syntax.
-We miss out on potentially-valuable rules powered by type information but we get full support for Babel syntax.
 
 ## Test
 
@@ -71,17 +72,13 @@ npm run test
 ## Type Check
 
 > This project compiles TypeScript with Babel, not the TypeScript compiler.
+For additional context, see the [note on choice of ESLint parser](##A-Note-on-Choice-of-ESLint-Parser) above.
 
 Run `tsc` against the project's TS files to catch type errors.
 
 ```bash
 npm run type-check
 ```
-
-For context, see notes on [linting](##lint) above.
-
-Babel discards all type information during transpilation but supports a wider range of syntax than the TypeScript compiler.
-Hence, this separate command.
 
 ## TODO
 
