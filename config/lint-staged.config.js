@@ -1,4 +1,4 @@
-const isIgnored = require('./filter-ignored')();
+const filterIgnored = require('./filter-ignored')();
 
 const eslintFlags = '--max-warnings 0 \
                      --fix \
@@ -7,5 +7,5 @@ const eslintFlags = '--max-warnings 0 \
 
 module.exports = {
   '*.{js,jsx,ts,tsx}': files =>
-    `eslint ${eslintFlags} ${files.filter(file => !isIgnored(file)).join(' ')}`
+    `eslint ${eslintFlags} ${filterIgnored(files).join(' ')}`
 };

@@ -15,13 +15,13 @@ const createIgnoredFilter = (options = {}) => {
   const { CLIEngine } = eslint;
   const cli = new CLIEngine(options);
 
-  return file => {
+  return files => files.filter(file => {
     if (cli.isPathIgnored(file)) {
-      return true;
+      return false;
     }
 
-    return false;
-  };
+    return true;
+  });
 };
 
 module.exports = createIgnoredFilter;
