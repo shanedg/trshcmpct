@@ -1,7 +1,7 @@
 {
-  "name": "trshcmpctr",
+  "name": "@shanedg/trshcmpctr",
   "version": "1.0.0",
-  "description": "My webpack project",
+  "description": "All build config, no substance.",
   "main": "client/index.ts",
   "scripts": {
     "build": "webpack --config config/webpack.config.js",
@@ -15,6 +15,10 @@
   },
   "author": "Shane Garrity <shanedgarrity@gmail.com> (https://www.shanedg.com)",
   "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/shanedg/trshcmpctr.git"
+  },
   "devDependencies": {
     "@babel/core": "^7.9.0",
     "@babel/plugin-transform-modules-commonjs": "^7.9.0",
