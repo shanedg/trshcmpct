@@ -4,8 +4,10 @@ const lintStagedFilter = lintStagedConfig['*.{js,jsx,ts,tsx}'];
 
 describe('lintStagedConfig', () => {
   it('ignores default files from ESLint CLI engine', () => {
-    expect(lintStagedFilter(['.eslintrc.js'])).not.toMatch('.eslintrc.js');
+    // ESLint ignores dot files by default.
     expect(lintStagedFilter(['.huskyrc.js'])).not.toMatch('.huskyrc.js');
+    // ESLint no longer ignores .eslintrc files by default in v7.
+    expect(lintStagedFilter(['.eslintrc.js'])).toMatch('.eslintrc.js');
   });
 
   it('ignores directories included in .eslintignore', () => {

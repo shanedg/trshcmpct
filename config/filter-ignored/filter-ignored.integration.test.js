@@ -15,8 +15,10 @@ describe('createIgnoredFilter', () => {
     });
 
     it('ignores default files from ESLint CLI engine', () => {
-      expect(notIgnored(['.eslintrc.js'])).toEqual([]);
+      // ESLint ignores dot files by default.
       expect(notIgnored(['.huskyrc.js'])).toEqual([]);
+      // ESLint no longer ignores .eslintrc files by default in v7.
+      expect(notIgnored(['.eslintrc.js'])).toEqual(['.eslintrc.js']);
     });
 
     it('ignores files included in the project .eslintignore', () => {
