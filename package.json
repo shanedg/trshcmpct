@@ -51,7 +51,7 @@
     "jest-serializer-path": "^0.1.15",
     "lint-staged": "^10.2.4",
     "node-sass": "^4.14.1",
-    "progress-bar-webpack-plugin": "^1.12.1",
+    "progress-bar-webpack-plugin": "^2.1.0",
     "sass-loader": "^7.3.1",
     "style-loader": "^1.2.1",
     "terser-webpack-plugin": "^2.3.6",
