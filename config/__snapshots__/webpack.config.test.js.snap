@@ -29,7 +29,6 @@ Object {
         "options": Object {
           "cache": true,
           "cacheKeys": [Function],
-          "chunkFilter": [Function],
           "exclude": undefined,
           "extractComments": true,
           "include": undefined,
@@ -175,7 +174,6 @@ Object {
         "options": Object {
           "cache": true,
           "cacheKeys": [Function],
-          "chunkFilter": [Function],
           "exclude": undefined,
           "extractComments": true,
           "include": undefined,
