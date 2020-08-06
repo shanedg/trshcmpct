@@ -33,6 +33,7 @@ steps:
   image: node:erbium
   commands:
     - npx standard-version
+    - git push --follow-tags origin main
   when:
     branch:
       include:
