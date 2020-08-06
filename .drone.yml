@@ -45,3 +45,7 @@ steps:
       from_secret: slack_webhook
     channel:
       from_secret: slack_channel
+  when:
+    status:
+    - failure
+    - success
