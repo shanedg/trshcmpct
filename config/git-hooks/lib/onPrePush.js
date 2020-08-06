@@ -9,7 +9,7 @@ const handleChildExit = require('./handleChildExit');
 function onPrePush() {
   if (process.env.NO_PRECOMMIT) {
     childProcess.execSync(
-      'npm run lint:js && npm run type-check && npm run test',
+      'npm run lint && npm run type-check && npm run test',
       { stdio: 'inherit' },
       handleChildExit
     );

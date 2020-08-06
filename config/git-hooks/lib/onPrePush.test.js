@@ -40,7 +40,7 @@ describe('on pre-push', () => {
     onPrePush();
 
     expect(childProcessExecSpy).toHaveBeenCalledWith(
-      'npm run lint:js && npm run type-check && npm run test',
+      'npm run lint && npm run type-check && npm run test',
       expect.anything(),
       expect.anything(),
     );
