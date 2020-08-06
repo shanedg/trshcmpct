@@ -29,6 +29,15 @@ steps:
   commands:
     - npm run build:production
 
+- name: release
+  image: node:erbium
+  commands:
+    - standard-version
+  when:
+    branch:
+      include:
+        - main
+
 - name: notify
   image: plugins/slack
   settings:
