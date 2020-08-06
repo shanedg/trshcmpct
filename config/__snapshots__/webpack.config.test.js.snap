@@ -81,12 +81,10 @@ Object {
     },
     ESLintWebpackPlugin {
       "options": Object {
-        "CLIEngine": [Function],
         "cache": true,
         "cacheLocation": "node_modules/.cache/eslint-cache/",
         "emitError": false,
         "emitWarning": true,
-        "eslintPath": "eslint",
         "extensions": Array [
           ".js",
           ".jsx",
@@ -95,9 +93,8 @@ Object {
         ],
         "failOnError": false,
         "files": ".",
-        "formatter": [Function],
         "lintDirtyModulesOnly": false,
-        "reportUnusedDisableDirectives": true,
+        "reportUnusedDisableDirectives": "warn",
       },
     },
     [Function],
@@ -226,12 +223,10 @@ Object {
     },
     ESLintWebpackPlugin {
       "options": Object {
-        "CLIEngine": [Function],
         "cache": true,
         "cacheLocation": "node_modules/.cache/eslint-cache/",
         "emitError": true,
         "emitWarning": false,
-        "eslintPath": "eslint",
         "extensions": Array [
           ".js",
           ".jsx",
@@ -240,9 +235,8 @@ Object {
         ],
         "failOnError": true,
         "files": ".",
-        "formatter": [Function],
         "lintDirtyModulesOnly": false,
-        "reportUnusedDisableDirectives": false,
+        "reportUnusedDisableDirectives": null,
       },
     },
     [Function],

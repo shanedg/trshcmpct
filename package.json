@@ -43,7 +43,7 @@
     "eslint": "^7.6.0",
     "eslint-plugin-jest": "^23.20.0",
     "eslint-plugin-react": "^7.20.5",
-    "eslint-webpack-plugin": "^1.0.0",
+    "eslint-webpack-plugin": "^2.1.0",
     "html-webpack-plugin": "^4.3.0",
     "husky": "^4.2.5",
     "jest": "^26.2.2",

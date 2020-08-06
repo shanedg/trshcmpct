@@ -81,7 +81,7 @@ module.exports = (env = {}, argv = {}) => {
         extensions: ['.js', '.jsx', '.ts', '.tsx'],
         failOnError: isProduction,
         lintDirtyModulesOnly: !!argv.watch,
-        reportUnusedDisableDirectives: !isProduction,
+        reportUnusedDisableDirectives: !isProduction ? 'warn' : null,
       }),
       new ProgressBarPlugin({
         format: '  build [:bar] ' + chalk.green.bold(':percent') + ' (:elapsed seconds)',
