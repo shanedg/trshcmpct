@@ -29,15 +29,21 @@ steps:
   commands:
     - npm run build:production
 
-- name: release
-  image: node:erbium
-  commands:
-    - npx standard-version
-    - git push --follow-tags origin main
-  when:
-    branch:
-      include:
-        - main
+# TODO: can't push version and changelog back to the mainline branch, see this error:
+# `fatal: could not read Username for 'https://github.com': terminal prompts disabled`
+# Solutions:
+# * https://docs.drone.io/pipeline/docker/syntax/cloning/auth/#machine-accounts
+# * https://docs.github.com/en/developers/overview/managing-deploy-keys#machine-users
+
+# - name: version
+#   image: node:erbium
+#   commands:
+#     - npx standard-version
+#     - git push --follow-tags origin main
+#   when:
+#     branch:
+#       include:
+#         - main
 
 - name: notify
   image: plugins/slack
