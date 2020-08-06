@@ -32,7 +32,7 @@ steps:
 - name: release
   image: node:erbium
   commands:
-    - standard-version
+    - npx standard-version
   when:
     branch:
       include:
