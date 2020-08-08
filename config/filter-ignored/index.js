@@ -24,4 +24,4 @@ const createIgnoredFilter = (options = {}) => {
   });
 };
 
-module.exports = createIgnoredFilter;
+module.exports.createIgnoredFilter = createIgnoredFilter;

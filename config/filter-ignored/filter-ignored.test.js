@@ -1,4 +1,4 @@
-const createIgnoredFilter = require('.');
+const { createIgnoredFilter } = require('.');
 const eslint = require('eslint');
 
 describe('createIgnoredFilter', () => {

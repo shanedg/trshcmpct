@@ -1,13 +1,13 @@
-const createIgnoredFilter = require('.');
+const { createIgnoredFilter } = require('.');
 const path = require('path');
 
-describe('createIgnoredFilter', () => {
+describe('filter-ignored', () => {
   const testCLIOptions = {
     ignorePath: path.join(__dirname, '__fixtures__', '.dummy-eslintignore'),
     useEslintrc: false
   };
 
-  describe('returns a function that', () => {
+  describe('createIgnoredFilter', () => {
     let notIgnored;
 
     beforeAll(() => {
