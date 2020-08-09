@@ -72,7 +72,7 @@ npm run test
 ## Type Check
 
 > This project compiles TypeScript with Babel, not the TypeScript compiler.
-For additional context, see the [note on choice of ESLint parser](##A-Note-on-Choice-of-ESLint-Parser) above.
+For additional context, see the [note on choice of ESLint parser](#a-note-on-choice-of-eslint-parser) above.
 
 Run `tsc` against the project's TS files to catch type errors.
 
