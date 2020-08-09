@@ -4,10 +4,10 @@ module.exports = {
       'commitlint --config config/commitlint.config.js -E HUSKY_GIT_PARAMS'
     ],
     'pre-commit': [
-      'node config/git-hooks/pre-commit.js'
+      'npm run lint-staged'
     ],
     'pre-push': [
-      'node config/git-hooks/pre-push.js'
+      'npm run type-check && npm run test'
     ],
   }
 };
