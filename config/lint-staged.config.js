@@ -1,4 +1,4 @@
-const { ignoredFilter } = require('./filter-ignored');
+const ignoredFilter = require('./filter-ignored');
 
 const eslintFlags = '\
 --max-warnings 0 \

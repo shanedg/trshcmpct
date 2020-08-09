@@ -18,4 +18,4 @@ const ignoredFilter = async (files, options = {}) => {
   return files.filter((_file, index) => fileFilterMap[index]);
 };
 
-module.exports.ignoredFilter = ignoredFilter;
+module.exports = ignoredFilter;

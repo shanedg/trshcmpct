@@ -1,4 +1,4 @@
-const { ignoredFilter } = require('.');
+const ignoredFilter = require('.');
 const path = require('path');
 
 describe('filter-ignored', () => {
