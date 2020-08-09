@@ -1,28 +1,29 @@
-const createIgnoredFilter = require('.');
+const ignoredFilter = require('.');
 const eslint = require('eslint');
 
-describe('createIgnoredFilter', () => {
-  const testCLIOptions = { useEslintrc: false };
+describe('ignoredFilter', () => {
+  const testESLintOptions = { useEslintrc: false };
+  let eslintSpy;
 
-  describe('accepts options for CLIEngine', () => {
-    let cliEngineSpy;
+  beforeEach(() => {
+    eslintSpy = jest.spyOn(eslint, 'ESLint').mockImplementationOnce(jest.fn());
+  });
 
-    beforeAll(() => {
-      cliEngineSpy = jest.spyOn(eslint, 'CLIEngine').mockImplementation(jest.fn());
+  afterEach(() => {
+    eslintSpy.mockClear();
+  });
+
+  it('passes options through to ESLint', async () => {
+    await ignoredFilter([], testESLintOptions);
+    expect(eslintSpy).toHaveBeenCalledWith({
+      useEslintrc: false,
     });
+    expect(eslintSpy).toBeCalledTimes(1);
+  });
 
-    afterEach(() => {
-      cliEngineSpy.mockClear();
-    });
-
-    it('passes options through if present', () => {
-      createIgnoredFilter(testCLIOptions);
-      expect(cliEngineSpy).toHaveBeenCalledWith(testCLIOptions);
-    });
-
-    it('defaults to an empty object', () => {
-      createIgnoredFilter();
-      expect(cliEngineSpy).toHaveBeenCalledWith({});
-    });
+  it('passes an empty object by default', async () => {
+    await ignoredFilter([]);
+    expect(eslintSpy).toHaveBeenCalledWith({});
+    expect(eslintSpy).toBeCalledTimes(1);
   });
 });
