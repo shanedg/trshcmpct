@@ -1,6 +1,6 @@
 import renderReact from './utils/renderReact';
-import App from './App/App';
+import Shell from './Shell/Shell';
 
 import './style.css';
 
-renderReact(App);
+renderReact(Shell);
