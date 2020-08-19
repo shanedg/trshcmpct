@@ -2,8 +2,8 @@
   "compilerOptions": {
     "allowJs": true,
     "checkJs": false,
-    "esModuleInterop": true,
     "declaration": true,
+    "esModuleInterop": true,
     "inlineSourceMap": true,
     "inlineSources": true,
     "jsx": "preserve",
