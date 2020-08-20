@@ -66,6 +66,7 @@ Object {
   "output": Object {
     "filename": "[name].[chunkhash].js",
     "path": "<PROJECT_ROOT>/dist",
+    "publicPath": "/",
   },
   "plugins": Array [
     CleanWebpackPlugin {
@@ -215,6 +216,7 @@ Object {
   "output": Object {
     "filename": "[name].[chunkhash].js",
     "path": "<PROJECT_ROOT>/dist",
+    "publicPath": "/",
   },
   "plugins": Array [
     CleanWebpackPlugin {
