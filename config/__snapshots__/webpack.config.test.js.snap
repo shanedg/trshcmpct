@@ -20,6 +20,13 @@ Object {
         },
         "test": /\\\\\\.\\(js\\|jsx\\|ts\\|tsx\\)\\$/,
       },
+      Object {
+        "test": /\\\\\\.css\\$/i,
+        "use": Array [
+          "style-loader",
+          "css-loader",
+        ],
+      },
     ],
   },
   "optimization": Object {
@@ -161,6 +168,13 @@ Object {
           "configFile": "<PROJECT_ROOT>/config/babel.config.js",
         },
         "test": /\\\\\\.\\(js\\|jsx\\|ts\\|tsx\\)\\$/,
+      },
+      Object {
+        "test": /\\\\\\.css\\$/i,
+        "use": Array [
+          "style-loader",
+          "css-loader",
+        ],
       },
     ],
   },

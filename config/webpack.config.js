@@ -37,7 +37,11 @@ module.exports = (env = {}, argv = {}) => {
           options: {
             configFile: path.resolve(__dirname, './babel.config.js'),
           },
-        }
+        },
+        {
+          test: /\.css$/i,
+          use: ['style-loader', 'css-loader'],
+        },
       ]
     },
 
