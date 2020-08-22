@@ -1,7 +1,6 @@
 const CleanWebpackPlugin = require('clean-webpack-plugin').CleanWebpackPlugin;
 const ESLintWebpackPlugin = require('eslint-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const path = require('path');
 const serializer = require('jest-serializer-path');
 const webpack = require('webpack');
 
@@ -22,46 +21,6 @@ describe('webpack', () => {
       productionConfig = webpackConfig(productionEnvironment);
       Object.freeze(developmentConfig);
       Object.freeze(productionConfig);
-    });
-
-    it('sets entry points', () => {
-      expect(developmentConfig.entry).toHaveProperty('index', path.resolve(__dirname, '../client/index.ts'));
-      expect(productionConfig.entry).toStrictEqual(developmentConfig.entry);
-    });
-
-    it('sets output', () => {
-      expect(developmentConfig.output).toHaveProperty('filename', '[name].[chunkhash].js');
-      expect(developmentConfig.output).toHaveProperty('path', path.resolve(__dirname, '../dist'));
-      expect(productionConfig.output).toStrictEqual(developmentConfig.output);
-    });
-
-    describe('module', () => {
-      it('sets rules', () => {
-        expect(developmentConfig.module).toHaveProperty('rules', expect.any(Array));
-        expect(productionConfig.module).toHaveProperty('rules', expect.any(Array));
-      });
-
-      it('transpiles source with babel-loader', () => {
-        expect(developmentConfig.module.rules.find(rule => rule.loader === 'babel-loader')).toBeTruthy();
-        expect(productionConfig.module.rules.find(rule => rule.loader === 'babel-loader')).toBeTruthy();
-      });
-
-      it('excludes node_modules from all loaders', () => {
-        const loadersExcludeNodeModules = (previousRuleOrResult, currentRule) => {
-          return (
-            (previousRuleOrResult === true || previousRuleOrResult.exclude.toString() === '/node_modules/') &&
-            currentRule.exclude.toString() === '/node_modules/'
-          );
-        };
-
-        expect(developmentConfig.module.rules.reduce(loadersExcludeNodeModules)).toBeTruthy();
-        expect(productionConfig.module.rules.reduce(loadersExcludeNodeModules)).toBeTruthy();
-      });
-    });
-
-    it('sets optimizations', () => {
-      expect(developmentConfig.optimization).toHaveProperty('splitChunks', expect.any(Object));
-      expect(productionConfig.optimization).toHaveProperty('splitChunks', expect.any(Object));
     });
 
     it('sets plugins', () => {
