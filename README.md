@@ -82,10 +82,6 @@ npm run type-check
 
 ## TODO
 
-* Add styles, CSS and some preprocessor
-  * Add linting for styles
-* Add auto versioning via conventional commits
-  * Also publishing for fun? via Github actions maybe?
 * React strict mode
 * Acceptance tests
 * E2E tests
