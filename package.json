@@ -5,10 +5,10 @@
   "main": "client/index.ts",
   "scripts": {
     "build": "webpack --config config/webpack.config.js",
-    "build:production": "webpack --config config/webpack.config.js --env.production",
+    "build:production": "webpack --config config/webpack.config.js --env production",
     "lint-staged": "lint-staged --config config/lint-staged.config.js",
     "lint": "eslint --ext .js,.jsx,.ts,.tsx --max-warnings=0 --fix --cache --cache-location node_modules/.cache/eslint-cache/ .",
-    "start": "webpack-dev-server --config config/webpack.config.js",
+    "start": "webpack serve --config config/webpack.config.js",
     "test": "jest --config=config/jest/jest.config.js --no-cache",
     "type-check": "tsc --project client/tsconfig.json",
     "watch": "webpack --config config/webpack.config.js --watch"
@@ -55,7 +55,7 @@
     "terser-webpack-plugin": "^4.2.3",
     "typescript": "^4.1.2",
     "webpack": "^4.44.2",
-    "webpack-cli": "^3.3.12",
+    "webpack-cli": "^4.2.0",
     "webpack-dev-server": "^3.11.0"
   },
   "dependencies": {
