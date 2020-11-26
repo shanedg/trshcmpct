@@ -37,7 +37,7 @@
     "babel-plugin-syntax-dynamic-import": "^6.18.0",
     "chalk": "^4.1.0",
     "clean-webpack-plugin": "^3.0.0",
-    "css-loader": "^4.3.0",
+    "css-loader": "^5.0.1",
     "enzyme": "^3.11.0",
     "enzyme-adapter-react-16": "^1.15.5",
     "eslint": "^7.14.0",
