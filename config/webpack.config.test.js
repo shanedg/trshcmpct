@@ -1,4 +1,3 @@
-const CleanWebpackPlugin = require('clean-webpack-plugin').CleanWebpackPlugin;
 const ESLintWebpackPlugin = require('eslint-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const serializer = require('jest-serializer-path');
@@ -25,16 +24,12 @@ describe('webpack', () => {
 
     it('sets plugins', () => {
       expect(developmentConfig.plugins).toMatchObject([
-        expect.any(CleanWebpackPlugin),
         expect.any(ESLintWebpackPlugin),
-        expect.any(Function), // ProgressBarPlugin, anonymous function signature
         expect.any(webpack.DefinePlugin),
         expect.any(HtmlWebpackPlugin),
       ]);
       expect(productionConfig.plugins).toMatchObject([
-        expect.any(CleanWebpackPlugin),
         expect.any(ESLintWebpackPlugin),
-        expect.any(Function), // ProgressBarPlugin, anonymous function signature
         expect.any(webpack.DefinePlugin),
         expect.any(HtmlWebpackPlugin),
       ]);
