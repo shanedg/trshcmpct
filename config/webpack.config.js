@@ -1,9 +1,6 @@
-const chalk = require('chalk');
-const CleanWebpackPlugin = require('clean-webpack-plugin').CleanWebpackPlugin;
 const ESLintPlugin = require('eslint-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const path = require('path');
-const ProgressBarPlugin = require('progress-bar-webpack-plugin');
 const TerserPlugin = require('terser-webpack-plugin');
 const webpack = require('webpack');
 
@@ -63,7 +60,7 @@ module.exports = (env = {}, argv = {}) => {
 
       splitChunks: {
         cacheGroups: {
-          vendors: {
+          defaultVendors: {
             priority: -10,
             test: /[\\/]node_modules[\\/]/
           }
@@ -71,12 +68,10 @@ module.exports = (env = {}, argv = {}) => {
         chunks: 'async',
         minChunks: 1,
         minSize: 30000,
-        name: true,
       },
     },
 
     plugins: [
-      new CleanWebpackPlugin(),
       new ESLintPlugin({
         cache: true,
         cacheLocation: 'node_modules/.cache/eslint-cache/',
@@ -86,10 +81,6 @@ module.exports = (env = {}, argv = {}) => {
         failOnError: isProduction,
         lintDirtyModulesOnly: !!argv.watch,
         reportUnusedDisableDirectives: !isProduction ? 'warn' : null,
-      }),
-      new ProgressBarPlugin({
-        format: '  build [:bar] ' + chalk.green.bold(':percent') + ' (:elapsed seconds)',
-        clear: false
       }),
       new webpack.DefinePlugin({
         __DEV__: JSON.stringify(!isProduction),
