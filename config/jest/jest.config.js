@@ -9,7 +9,4 @@ module.exports = {
     '\\/client\\/.+\\.[t|j]sx?$': '<rootDir>/config/jest/babelJest.js',
   },
   collectCoverage: true,
-  setupFilesAfterEnv: [
-    '<rootDir>/config/jest/setupTests.js',
-  ]
 };
