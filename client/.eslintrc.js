@@ -3,6 +3,7 @@ module.exports = {
   extends: [
     '../.eslintrc.js',
     'plugin:react/recommended',
+    'plugin:testing-library/react',
   ],
   env: {
     browser: true,
@@ -14,6 +15,7 @@ module.exports = {
   },
   plugins: [
     'eslint-plugin-react',
+    'eslint-plugin-testing-library',
   ],
   settings: {
     react: {

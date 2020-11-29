@@ -3,7 +3,6 @@ import React from 'react';
 import '@testing-library/jest-dom/extend-expect';
 import {
   render,
-  waitFor,
   screen,
 } from '@testing-library/react';
 
@@ -13,7 +12,7 @@ describe('App', () => {
   it('renders', async () => {
     render(<App />);
 
-    await waitFor(() => screen.getByRole('heading'));
+    await screen.findByRole('heading');
 
     expect(screen.getByRole('heading')).toHaveTextContent('trshcmpctr');
   });
