@@ -2,6 +2,7 @@
 module.exports = {
   extends: [
     '../.eslintrc.js',
+    'plugin:react/recommended',
   ],
   env: {
     browser: true,
@@ -10,6 +11,15 @@ module.exports = {
   },
   globals: {
     __DEV__: true,
+  },
+  plugins: [
+    'eslint-plugin-react',
+  ],
+  settings: {
+    react: {
+      pragma: 'React',
+      version: 'detect',
+    },
   },
   root: true,
 };

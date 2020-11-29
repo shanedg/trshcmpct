@@ -7,7 +7,6 @@ module.exports = {
   extends: [
     'eslint:recommended',
     'plugin:jest/recommended',
-    'plugin:react/recommended',
   ],
   globals: {
     Atomics: 'readonly',
@@ -19,14 +18,7 @@ module.exports = {
   },
   plugins: [
     'eslint-plugin-jest',
-    'eslint-plugin-react',
   ],
-  settings: {
-    react: {
-      pragma: 'React',
-      version: 'detect',
-    },
-  },
   root: true,
   rules: {
     indent: [
