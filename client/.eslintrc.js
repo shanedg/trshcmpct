@@ -4,6 +4,7 @@ module.exports = {
     '../.eslintrc.js',
     'plugin:react/recommended',
     'plugin:testing-library/react',
+    'plugin:jest-dom/recommended',
   ],
   env: {
     browser: true,
@@ -16,6 +17,7 @@ module.exports = {
   plugins: [
     'eslint-plugin-react',
     'eslint-plugin-testing-library',
+    'eslint-plugin-jest-dom',
   ],
   settings: {
     react: {
