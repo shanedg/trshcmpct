@@ -1,3 +1,6 @@
+/**
+ * @jest-environment node
+ */
 const ignoredFilter = require('.');
 const path = require('path');
 

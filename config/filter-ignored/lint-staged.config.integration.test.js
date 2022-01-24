@@ -1,3 +1,6 @@
+/**
+ * @jest-environment node
+ */
 const lintStagedConfig = require('../lint-staged.config');
 
 const lintStagedFilter = lintStagedConfig['*.{js,jsx,ts,tsx}'];
