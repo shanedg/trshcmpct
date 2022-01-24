@@ -37,11 +37,13 @@ Object {
           "exclude": undefined,
           "extractComments": true,
           "include": undefined,
-          "minify": undefined,
-          "parallel": true,
-          "terserOptions": Object {
-            "warnings": false,
+          "minimizer": Object {
+            "implementation": [Function],
+            "options": Object {
+              "warnings": false,
+            },
           },
+          "parallel": true,
           "test": /\\\\\\.\\[cm\\]\\?js\\(\\\\\\?\\.\\*\\)\\?\\$/i,
         },
       },
@@ -64,6 +66,7 @@ Object {
   },
   "plugins": Array [
     ESLintWebpackPlugin {
+      "key": "ESLintWebpackPlugin",
       "options": Object {
         "cache": true,
         "cacheLocation": "node_modules/.cache/eslint-cache/",
@@ -142,11 +145,13 @@ Object {
           "exclude": undefined,
           "extractComments": true,
           "include": undefined,
-          "minify": undefined,
-          "parallel": true,
-          "terserOptions": Object {
-            "warnings": false,
+          "minimizer": Object {
+            "implementation": [Function],
+            "options": Object {
+              "warnings": false,
+            },
           },
+          "parallel": true,
           "test": /\\\\\\.\\[cm\\]\\?js\\(\\\\\\?\\.\\*\\)\\?\\$/i,
         },
       },
@@ -169,6 +174,7 @@ Object {
   },
   "plugins": Array [
     ESLintWebpackPlugin {
+      "key": "ESLintWebpackPlugin",
       "options": Object {
         "cache": true,
         "cacheLocation": "node_modules/.cache/eslint-cache/",
