@@ -9,4 +9,5 @@ module.exports = {
     '\\/client\\/.+\\.[t|j]sx?$': '<rootDir>/config/jest/babelJest.js',
   },
   collectCoverage: true,
+  testEnvironment: 'jsdom',
 };
