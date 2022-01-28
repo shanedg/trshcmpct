@@ -389,6 +389,11 @@
    * 3. It's useful to have a centralized inventory of all projects and their important metadata.
    */
   "projects": [
+    {
+      "packageName": "@shanedg/trshcmpctr",
+      "projectFolder": "client"
+    }
+
     // {
     //   /**
     //    * The NPM package name of the project (must match package.json)
