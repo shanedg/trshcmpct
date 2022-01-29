@@ -3,6 +3,9 @@ name: default
 kind: pipeline
 type: docker
 
+workspace:
+  path: /drone/trshcmpctr
+
 steps:
 - name: install
   image: node:gallium
