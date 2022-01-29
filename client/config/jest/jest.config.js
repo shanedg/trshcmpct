@@ -12,6 +12,6 @@ module.exports = {
   testEnvironment: 'jsdom',
   setupFilesAfterEnv: ['<rootDir>/config/jest/jest-setup.js'],
   globals: {
-    '__DEV__': true
-  }
+    __DEV__: true
+  },
 };

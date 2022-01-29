@@ -9,7 +9,7 @@
     "lint-staged": "lint-staged --config config/lint-staged.config.js",
     "lint": "eslint --ext .js,.jsx,.ts,.tsx --max-warnings=0 --fix --cache --cache-location node_modules/.cache/eslint-cache/ .",
     "start": "webpack serve --config config/webpack.config.js",
-    "test": "jest --config=config/jest/jest.config.js --no-cache",
+    "test": "jest --config=config/jest/jest.config.js --no-cache --reporters=./config/jest/jest-reporter.js --silent",
     "type-check": "tsc --project tsconfig.json",
     "watch": "webpack --config config/webpack.config.js --watch"
   },
@@ -29,6 +29,7 @@
     "@babel/preset-typescript": "^7.16.7",
     "@commitlint/cli": "^16.1.0",
     "@commitlint/config-conventional": "^16.0.0",
+    "@jest/reporters": "~27.4.6",
     "@testing-library/jest-dom": "^5.16.1",
     "@testing-library/react": "^12.1.2",
     "@types/jest": "^27.4.0",

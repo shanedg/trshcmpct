@@ -16,6 +16,7 @@ importers:
       '@babel/preset-typescript': ^7.16.7
       '@commitlint/cli': ^16.1.0
       '@commitlint/config-conventional': ^16.0.0
+      '@jest/reporters': ~27.4.6
       '@testing-library/jest-dom': ^5.16.1
       '@testing-library/react': ^12.1.2
       '@types/express': ~4.17.13
@@ -62,6 +63,7 @@ importers:
       '@babel/preset-typescript': 7.16.7_@babel+core@7.16.12
       '@commitlint/cli': 16.1.0_@types+node@16.11.21
       '@commitlint/config-conventional': 16.0.0
+      '@jest/reporters': 27.4.6
       '@testing-library/jest-dom': 5.16.1
       '@testing-library/react': 12.1.2_react-dom@17.0.2+react@17.0.2
       '@types/express': 4.17.13
