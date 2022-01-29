@@ -7,7 +7,7 @@ Object {
   },
   "devtool": "eval-source-map",
   "entry": Object {
-    "index": "<PROJECT_ROOT>/client/index.ts",
+    "index": "<PROJECT_ROOT>/src/index.ts",
   },
   "mode": "development",
   "module": Object {
@@ -91,7 +91,7 @@ Object {
     },
     HtmlWebpackPlugin {
       "userOptions": Object {
-        "template": "<PROJECT_ROOT>/client/index.html",
+        "template": "<PROJECT_ROOT>/src/index.html",
         "title": "trshcmpctr",
       },
       "version": 5,
@@ -115,7 +115,7 @@ Object {
   },
   "devtool": "source-map",
   "entry": Object {
-    "index": "<PROJECT_ROOT>/client/index.ts",
+    "index": "<PROJECT_ROOT>/src/index.ts",
   },
   "mode": "production",
   "module": Object {
@@ -199,7 +199,7 @@ Object {
     },
     HtmlWebpackPlugin {
       "userOptions": Object {
-        "template": "<PROJECT_ROOT>/client/index.html",
+        "template": "<PROJECT_ROOT>/src/index.html",
         "title": "trshcmpctr",
       },
       "version": 5,

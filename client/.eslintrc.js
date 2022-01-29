@@ -1,29 +1,54 @@
-/* eslint-env node */
 module.exports = {
-  extends: [
-    '../.eslintrc.js',
-    'plugin:react/recommended',
-    'plugin:testing-library/react',
-    'plugin:jest-dom/recommended',
-  ],
   env: {
-    browser: true,
-    commonjs: false,
-    node: false,
+    commonjs: true,
+    es6: true,
+    node: true,
   },
-  globals: {
-    __DEV__: true,
-  },
-  plugins: [
-    'eslint-plugin-react',
-    'eslint-plugin-testing-library',
-    'eslint-plugin-jest-dom',
+  extends: [
+    'eslint:recommended',
+    'plugin:jest/recommended',
   ],
-  settings: {
-    react: {
-      pragma: 'React',
-      version: 'detect',
+  globals: {
+    Atomics: 'readonly',
+    SharedArrayBuffer: 'readonly',
+  },
+  parser: '@babel/eslint-parser',
+  parserOptions: {
+    ecmaVersion: 2018,
+    babelOptions: {
+      configFile: './config/babel.config.js',
     },
   },
+  plugins: [
+    'eslint-plugin-jest',
+  ],
   root: true,
+  rules: {
+    indent: [
+      'error',
+      2
+    ],
+    'linebreak-style': [
+      'error',
+      'unix'
+    ],
+    quotes: [
+      'error',
+      'single'
+    ],
+    semi: [
+      'error',
+      'always'
+    ],
+    'jest/consistent-test-it': [
+      'error',
+    ],
+    // Warn on unused variables except underscore-prefixed arguments.
+    'no-unused-vars': [
+      'warn',
+      {
+        argsIgnorePattern: '^_'
+      }
+    ],
+  },
 };

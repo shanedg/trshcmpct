@@ -17,7 +17,7 @@ module.exports = (env = {}, argv = {}) => {
     mode: getMode(env.production),
 
     entry: {
-      index: path.resolve(__dirname, '../client/index.ts'),
+      index: path.resolve(__dirname, '../src/index.ts'),
     },
 
     output: {
@@ -86,7 +86,7 @@ module.exports = (env = {}, argv = {}) => {
         __DEV__: JSON.stringify(!isProduction),
       }),
       new HtmlWebpackPlugin({
-        template: path.resolve(__dirname, '../client/index.html'),
+        template: path.resolve(__dirname, '../src/index.html'),
         title: 'trshcmpctr',
       }),
     ],
