@@ -11,6 +11,25 @@
    * "rush my-global-command --help".
    */
   "commands": [
+    {
+      "name": "test",
+      "summary": "Test all projects",
+      "commandKind": "bulk",
+      "enableParallelism": true
+    },
+    {
+      "name": "lint",
+      "summary": "Lint all projects",
+      "commandKind": "bulk",
+      "enableParallelism": true
+    },
+    {
+      "name": "type-check",
+      "summary": "Type check all projects",
+      "commandKind": "bulk",
+      "enableParallelism": true
+    }
+
     // {
     //   /**
     //    * (Required) Determines the type of custom command.
