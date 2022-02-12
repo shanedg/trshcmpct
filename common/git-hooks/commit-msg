@@ -1,0 +1,10 @@
+#!/bin/sh
+
+# Called by "git commit" with no arguments.  The hook should
+# exit with non-zero status after issuing an appropriate message if
+# it wants to stop the commit.
+
+# Invoke the "rush commitlint" custom command to lint commit messages
+# before they are committed. The command is defined in common/config/rush/command-line.json
+# and uses the "rush-commitlint" autoinstaller.
+node common/scripts/install-run-rush.js commitlint || exit $?
