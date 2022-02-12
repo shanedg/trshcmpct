@@ -2,86 +2,40 @@
 
 [![Build Status](https://cloud.drone.io/api/badges/shanedg/trshcmpctr/status.svg)](https://cloud.drone.io/shanedg/trshcmpctr)
 
-"_all build config, no substance_"
+_all build config, no substance_
 
-## Install
+This repository is managed by [Rush](https://rushjs.io/pages/developer/new_developer/).
 
-Prefer to install from the lockfile.
-
-```bash
-npm ci
+```sh
+npm i -g @microsoft/rush
 ```
 
-## Build
+Install all project dependencies.
 
-Build the project in development mode.
-
-```bash
-npm run build
+```sh
+rush install
 ```
 
-Build the project with production optimizations applied.
+Build all projects.
 
-```bash
-npm run build:production
+```sh
+rush build
 ```
 
-## Start
+Lint all projects.
 
-Start `webpack-dev-server` to serve the project, in-memory.
-Launch project in browser.
-Watch files, rebuilding and reloading incremental changes.
-
-```bash
-npm start
+```sh
+rush lint
 ```
 
-## Watch
+Run all project tests.
 
-Build the project in development mode and watch files, rebuilding incremental changes.
-
-```bash
-npm run watch
+```sh
+rush test
 ```
 
-## Lint
+Type check all TS projects.
 
-Lint JavaScript files with ESLint.
-
-```bash
-npm run lint
+```sh
+rush type-check
 ```
-
-### A Note on Choice of ESLint Parser
-
-This project compiles TypeScript with Babel, not the TypeScript compiler.
-Babel discards all type information during transpilation but supports a wider range of syntax than the TypeScript compiler.
-For this reason, we use the `babel-eslint` parser instead of the parser provided by `@typescript-eslint`.
-For more context, see [What about Babel and babel-eslint](https://github.com/typescript-eslint/typescript-eslint#what-about-babel-and-babel-eslint):
-
-> The key trade-off can be summarized as: `babel-eslint` supports additional syntax which TypeScript itself does not, but `typescript-eslint` supports creating rules based on type information, which is not available to Babel because there is no type-checker.
-
-## Test
-
-Run `Jest` tests.
-
-```bash
-npm run test
-```
-
-## Type Check
-
-> This project compiles TypeScript with Babel, not the TypeScript compiler.
-For additional context, see the [note on choice of ESLint parser](#a-note-on-choice-of-eslint-parser) above.
-
-Run `tsc` against the project's TS files to catch type errors.
-
-```bash
-npm run type-check
-```
-
-## TODO
-
-* React strict mode
-* Acceptance tests
-* E2E tests

@@ -1,4 +1,4 @@
-const ignoredFilter = require('./filter-ignored');
+const { filter } = require('./eslint-ignored');
 
 const eslintFlags = '\
 --max-warnings 0 \
@@ -8,7 +8,6 @@ const eslintFlags = '\
 
 module.exports = {
   '*.{js,jsx,ts,tsx}': async files => {
-    const lintFiles = await ignoredFilter(files);
-    return `eslint ${eslintFlags} ${lintFiles.join(' ')}`;
+    return `eslint ${eslintFlags} ${(await filter(files)).join(' ')}`;
   }
 };
