@@ -42,8 +42,15 @@ module.exports = {
         '*.tsx',
         '*.ts',
       ],
-      extends: ['plugin:@typescript-eslint/recommended'],
+      extends: [
+        'plugin:@typescript-eslint/recommended',
+        'plugin:@typescript-eslint/recommended-requiring-type-checking',
+      ],
       parser: '@typescript-eslint/parser',
+      parserOptions: {
+        tsconfigRootDir: __dirname,
+        project: ['./tsconfig.json'],
+      },
       env: {
         browser: true,
         commonjs: false,

@@ -39,3 +39,7 @@ Type check all TS projects.
 ```sh
 rush type-check
 ```
+
+## TODO
+
+* Consolidate ESLint configs
