@@ -1,5 +1,5 @@
 {
-  "name": "@shanedg/trshcmpctr",
+  "name": "@trshcmpctr/client",
   "version": "1.0.0",
   "description": "All build config, no substance.",
   "main": "src/index.ts",

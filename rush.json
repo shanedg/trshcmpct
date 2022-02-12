@@ -387,7 +387,7 @@
    */
   "projects": [
     {
-      "packageName": "@shanedg/trshcmpctr",
+      "packageName": "@trshcmpctr/client",
       "projectFolder": "client"
     },
     {
