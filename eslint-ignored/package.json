@@ -6,10 +6,10 @@
   "scripts": {
     "build": "echo fake build || true",
     "lint": "eslint --max-warnings=0 --fix --cache --cache-location node_modules/.cache/eslint-cache/ .",
-    "test": "jest --no-cache --reporters=./jest-reporter.js --silent"
+    "test": "jest --no-cache --reporters=@trshcmpctr/jest-stdout-reporter --silent"
   },
   "devDependencies": {
-    "@jest/reporters": "~27.4.6",
+    "@trshcmpctr/jest-stdout-reporter": "workspace:*",
     "eslint-plugin-jest": "^25.7.0",
     "eslint": "^8.7.0",
     "jest": "^27.4.7",
