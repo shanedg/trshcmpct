@@ -393,6 +393,10 @@
     {
       "packageName": "@trshcmpctr/eslint-ignored",
       "projectFolder": "eslint-ignored"
+    },
+    {
+      "packageName": "@trshcmpctr/jest-stdout-reporter",
+      "projectFolder": "jest-stdout-reporter"
     }
     
     // {

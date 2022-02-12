@@ -1,0 +1,16 @@
+{
+  "name": "@trshcmpctr/jest-stdout-reporter",
+  "version": "1.0.0",
+  "description": "Wraps the default reporter to prevent Jest from logging normal output to stderr.",
+  "main": "lib/jest-stdout-reporter.js",
+  "scripts": {
+    "build": "echo fake build || true",
+    "lint": "eslint --max-warnings=0 --fix --cache --cache-location node_modules/.cache/eslint-cache/ ."
+  },
+  "dependencies": {
+    "@jest/reporters": "^27.4.6"
+  },
+  "devDependencies": {
+    "eslint": "^8.7.0"
+  }
+}
