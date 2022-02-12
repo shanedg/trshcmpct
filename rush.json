@@ -389,8 +389,12 @@
     {
       "packageName": "@shanedg/trshcmpctr",
       "projectFolder": "client"
+    },
+    {
+      "packageName": "@trshcmpctr/eslint-ignored",
+      "projectFolder": "eslint-ignored"
     }
-
+    
     // {
     //   /**
     //    * The NPM package name of the project (must match package.json)

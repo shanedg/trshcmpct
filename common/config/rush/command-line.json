@@ -27,7 +27,8 @@
       "name": "type-check",
       "summary": "Type check all projects",
       "commandKind": "bulk",
-      "enableParallelism": true
+      "enableParallelism": true,
+      "ignoreMissingScript": true
     }
 
     // {

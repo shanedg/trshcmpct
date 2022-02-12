@@ -4,13 +4,17 @@
  */
 const eslint = require('eslint');
 
+// TypeError: Class constructor ESLint cannot be invoked without 'new'
+// (new eslint.ESLint() doesn't work)
+const ESLint = eslint.ESLint;
+
 /**
- * Filter out files ignored by ESLint.
+ * Remove files ignored by ESLint.
  * @param {string[]} files List of filepaths to filter.
- * @param {eslint.ESLint.Options} options ESLint options.
+ * @param {ESLint.Options} options ESLint options.
  */
-const ignoredFilter = async (files, options = {}) => {
-  const cli = new eslint.ESLint(options);
+const filter = async (files, options = {}) => {
+  const cli = new ESLint(options);
 
   const shouldBeFiltered = async file => !(await cli.isPathIgnored(file));
   const fileFilterMap = await Promise.all(files.map(shouldBeFiltered));
@@ -18,4 +22,6 @@ const ignoredFilter = async (files, options = {}) => {
   return files.filter((_file, index) => fileFilterMap[index]);
 };
 
-module.exports = ignoredFilter;
+module.exports = {
+  filter,
+};
