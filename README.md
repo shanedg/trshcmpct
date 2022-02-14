@@ -42,4 +42,4 @@ rush type-check
 
 ## TODO
 
-* Consolidate ESLint configs
+* lint markdown files?

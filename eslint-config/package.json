@@ -1,0 +1,16 @@
+{
+  "name": "@trshcmpctr/eslint-config",
+  "version": "1.0.0",
+  "description": "Base ESLint config for JavaScript projects.",
+  "main": "lib/eslint-config.js",
+  "scripts": {
+    "build": "echo fake build || true",
+    "lint": "eslint --max-warnings=0 --fix --cache --cache-location node_modules/.cache/eslint-cache/ ."
+  },
+  "devDependencies": {
+    "eslint": "^8.7.0"
+  },
+  "peerDependencies": {
+    "eslint": "^7.x.x || ^8.x.x"
+  }
+}

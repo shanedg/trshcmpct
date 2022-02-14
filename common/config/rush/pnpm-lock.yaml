@@ -88,6 +88,12 @@ importers:
       webpack-cli: 4.9.2_19108610e47e80b101fe97b50133aa84
       webpack-dev-server: 4.7.4_webpack-cli@4.9.2+webpack@5.68.0
 
+  ../../eslint-config:
+    specifiers:
+      eslint: ^8.7.0
+    devDependencies:
+      eslint: 8.9.0
+
   ../../eslint-ignored:
     specifiers:
       '@trshcmpctr/jest-stdout-reporter': workspace:*
