@@ -397,6 +397,10 @@
     {
       "packageName": "@trshcmpctr/jest-stdout-reporter",
       "projectFolder": "jest-stdout-reporter"
+    },
+    {
+      "packageName": "@trshcmpctr/eslint-config",
+      "projectFolder": "eslint-config"
     }
     
     // {
