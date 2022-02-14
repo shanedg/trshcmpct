@@ -117,10 +117,12 @@ importers:
   ../../jest-stdout-reporter:
     specifiers:
       '@jest/reporters': ^27.4.6
+      '@trshcmpctr/eslint-config': workspace:*
       eslint: ^8.7.0
     dependencies:
       '@jest/reporters': 27.5.1
     devDependencies:
+      '@trshcmpctr/eslint-config': link:../eslint-config
       eslint: 8.9.0
 
 packages:
