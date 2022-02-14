@@ -9,6 +9,7 @@
     "test": "jest --no-cache --reporters=@trshcmpctr/jest-stdout-reporter --silent"
   },
   "devDependencies": {
+    "@trshcmpctr/eslint-config": "workspace:*",
     "@trshcmpctr/jest-stdout-reporter": "workspace:*",
     "eslint-plugin-jest": "^25.7.0",
     "eslint": "^8.7.0",
