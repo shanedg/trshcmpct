@@ -14,7 +14,6 @@
     "watch": "webpack --config config/webpack.config.js --watch"
   },
   "author": "Shane Garrity <shanedgarrity@gmail.com> (https://www.shanedg.com)",
-  "license": "ISC",
   "repository": {
     "type": "git",
     "url": "https://github.com/shanedg/trshcmpctr.git",
