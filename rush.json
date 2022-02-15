@@ -401,6 +401,18 @@
     {
       "packageName": "@trshcmpctr/eslint-config",
       "projectFolder": "eslint-config"
+    },
+    {
+      "packageName": "@trshcmpctr/eslint-config-jest",
+      "projectFolder": "eslint-config-jest"
+    },
+    {
+      "packageName": "@trshcmpctr/eslint-config-typescript",
+      "projectFolder": "eslint-config-typescript"
+    },
+    {
+      "packageName": "@trshcmpctr/eslint-config-react",
+      "projectFolder": "eslint-config-react"
     }
     
     // {

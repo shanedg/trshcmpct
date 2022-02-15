@@ -6,11 +6,7 @@ module.exports = {
     // Tests
     {
       files: ['*.test.js'],
-      extends: ['plugin:jest/recommended'],
-      plugins: ['eslint-plugin-jest'],
-      rules: {
-        'jest/consistent-test-it': ['error'],
-      },
+      extends: ['@trshcmpctr/eslint-config-jest'],
     },
   ],
 };

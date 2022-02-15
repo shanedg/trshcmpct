@@ -9,11 +9,7 @@ module.exports = {
         '*.tsx',
         '*.ts',
       ],
-      extends: [
-        'plugin:@typescript-eslint/recommended',
-        'plugin:@typescript-eslint/recommended-requiring-type-checking',
-      ],
-      parser: '@typescript-eslint/parser',
+      extends: ['@trshcmpctr/eslint-config-typescript'],
       parserOptions: {
         tsconfigRootDir: __dirname,
         project: ['./tsconfig.json'],
@@ -25,14 +21,12 @@ module.exports = {
       globals: {
         __DEV__: true,
       },
-      plugins: ['@typescript-eslint/eslint-plugin'],
     },
 
     // React
     {
       files: ['*.tsx'],
-      extends: ['plugin:react/recommended'],
-      plugins: ['eslint-plugin-react'],
+      extends: ['@trshcmpctr/eslint-config-react'],
       settings: {
         react: {
           pragma: 'React',
@@ -49,27 +43,18 @@ module.exports = {
         '*.test.ts',
         '*.test.tsx',
       ],
-      extends: ['plugin:jest/recommended'],
-      plugins: ['eslint-plugin-jest'],
-      rules: {
-        'jest/consistent-test-it': ['error'],
-      },
+      extends: ['@trshcmpctr/eslint-config-jest'],
     },
 
-    // React tests
+    // React tests using @testing-library/react.
     {
       files: [
         '*.test.jsx',
         '*.test.tsx',
       ],
-      extends: [
-        'plugin:testing-library/react',
-        'plugin:jest-dom/recommended',
-      ],
-      plugins: [
-        'eslint-plugin-testing-library',
-        'eslint-plugin-jest-dom',
-      ],
+      // To see what rules are in the recommended set: https://www.npmjs.com/package/eslint-plugin-testing-library
+      extends: ['plugin:testing-library/react'],
+      plugins: ['eslint-plugin-testing-library'],
     },
   ],
 };

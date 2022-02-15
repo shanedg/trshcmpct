@@ -7,7 +7,7 @@ Useful for avoiding `File ignored by default` warnings when passing files to ESL
 ## Installation
 
 ```sh
-npm install @trshcmpctr/eslint-ignored eslint --save-dev
+npm install eslint @trshcmpctr/eslint-ignored eslint --save-dev
 ```
 
 ## Usage with [lint-staged](https://github.com/okonet/lint-staged)

@@ -6,6 +6,7 @@
   "scripts": {
     "build": "webpack --config config/webpack.config.js",
     "build:production": "webpack --config config/webpack.config.js --env production",
+    "clean": "rimraf *.build.log coverage dist",
     "lint": "eslint --ext .js,.jsx,.ts,.tsx --max-warnings=0 --fix --cache --cache-location node_modules/.cache/eslint-cache/ .",
     "start": "webpack serve --config config/webpack.config.js",
     "test": "jest --config=config/jest/jest.config.js --no-cache --reporters=@trshcmpctr/jest-stdout-reporter --silent",
@@ -13,7 +14,6 @@
     "watch": "webpack --config config/webpack.config.js --watch"
   },
   "author": "Shane Garrity <shanedgarrity@gmail.com> (https://www.shanedg.com)",
-  "license": "ISC",
   "repository": {
     "type": "git",
     "url": "https://github.com/shanedg/trshcmpctr.git",
@@ -29,6 +29,9 @@
     "@testing-library/jest-dom": "^5.16.1",
     "@testing-library/react": "^12.1.2",
     "@trshcmpctr/eslint-config": "workspace:*",
+    "@trshcmpctr/eslint-config-jest": "workspace:*",
+    "@trshcmpctr/eslint-config-react": "workspace:*",
+    "@trshcmpctr/eslint-config-typescript": "workspace:*",
     "@trshcmpctr/jest-stdout-reporter": "workspace:*",
     "@types/express": "~4.17.13",
     "@types/jest": "^27.4.0",
@@ -41,7 +44,6 @@
     "babel-loader": "^8.2.3",
     "babel-plugin-syntax-dynamic-import": "^6.18.0",
     "css-loader": "^6.5.1",
-    "eslint-plugin-jest-dom": "^4.0.1",
     "eslint-plugin-jest": "^25.7.0",
     "eslint-plugin-react": "^7.28.0",
     "eslint-plugin-testing-library": "^5.0.4",
@@ -50,13 +52,16 @@
     "html-webpack-plugin": "^5.5.0",
     "jest-serializer-path": "^0.1.15",
     "jest": "^27.4.7",
+    "rimraf": "~3.0.2",
     "standard-version": "^9.3.2",
     "style-loader": "^3.3.1",
     "terser-webpack-plugin": "^5.3.0",
     "typescript": "^4.5.5",
     "webpack-cli": "^4.9.1",
     "webpack-dev-server": "^4.7.3",
-    "webpack": "^5.67.0"
+    "webpack": "^5.67.0",
+    "eslint-plugin-react-hooks": "~4.3.0",
+    "eslint-plugin-jsx-a11y": "~6.5.1"
   },
   "dependencies": {
     "core-js": "^3.20.3",

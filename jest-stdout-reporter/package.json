@@ -5,6 +5,7 @@
   "main": "lib/jest-stdout-reporter.js",
   "scripts": {
     "build": "echo fake build || true",
+    "clean": "rimraf *.build.log",
     "lint": "eslint --max-warnings=0 --fix --cache --cache-location node_modules/.cache/eslint-cache/ ."
   },
   "dependencies": {
@@ -12,6 +13,7 @@
   },
   "devDependencies": {
     "@trshcmpctr/eslint-config": "workspace:*",
-    "eslint": "^8.7.0"
+    "eslint": "^8.7.0",
+    "rimraf": "~3.0.2"
   }
 }

@@ -1,0 +1,27 @@
+{
+  "name": "@trshcmpctr/eslint-config-react",
+  "version": "1.0.0",
+  "description": "ESLint config for React in JavaScript projects.",
+  "main": "lib/eslint-config-react.js",
+  "scripts": {
+    "build": "echo fake build || true",
+    "clean": "rimraf *.build.log",
+    "lint": "eslint --max-warnings=0 --fix --cache --cache-location node_modules/.cache/eslint-cache/ ."
+  },
+  "dependencies": {
+    "@trshcmpctr/eslint-config": "workspace:*"
+  },
+  "devDependencies": {
+    "eslint": "^8.7.0",
+    "eslint-plugin-jsx-a11y": "~6.5.1",
+    "eslint-plugin-react": "^7.28.0",
+    "eslint-plugin-react-hooks": "~4.3.0",
+    "rimraf": "~3.0.2"
+  },
+  "peerDependencies": {
+    "eslint": "^7.x.x || ^8.x.x",
+    "eslint-plugin-jsx-a11y": "^6.5.1",
+    "eslint-plugin-react": "^7.28.0",
+    "eslint-plugin-react-hooks": "^4.3.0"
+  }
+}
