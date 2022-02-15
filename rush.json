@@ -409,6 +409,10 @@
     {
       "packageName": "@trshcmpctr/eslint-config-typescript",
       "projectFolder": "eslint-config-typescript"
+    },
+    {
+      "packageName": "@trshcmpctr/eslint-config-react",
+      "projectFolder": "eslint-config-react"
     }
     
     // {
