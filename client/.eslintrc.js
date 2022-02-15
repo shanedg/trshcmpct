@@ -26,8 +26,7 @@ module.exports = {
     // React
     {
       files: ['*.tsx'],
-      extends: ['plugin:react/recommended'],
-      plugins: ['eslint-plugin-react'],
+      extends: ['@trshcmpctr/eslint-config-react'],
       settings: {
         react: {
           pragma: 'React',
