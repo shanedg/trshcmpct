@@ -9,11 +9,7 @@ module.exports = {
         '*.tsx',
         '*.ts',
       ],
-      extends: [
-        'plugin:@typescript-eslint/recommended',
-        'plugin:@typescript-eslint/recommended-requiring-type-checking',
-      ],
-      parser: '@typescript-eslint/parser',
+      extends: ['@trshcmpctr/eslint-config-typescript'],
       parserOptions: {
         tsconfigRootDir: __dirname,
         project: ['./tsconfig.json'],
@@ -25,7 +21,6 @@ module.exports = {
       globals: {
         __DEV__: true,
       },
-      plugins: ['@typescript-eslint/eslint-plugin'],
     },
 
     // React
