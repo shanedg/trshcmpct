@@ -46,20 +46,15 @@ module.exports = {
       extends: ['@trshcmpctr/eslint-config-jest'],
     },
 
-    // React tests
+    // React tests using @testing-library/react.
     {
       files: [
         '*.test.jsx',
         '*.test.tsx',
       ],
-      extends: [
-        'plugin:testing-library/react',
-        'plugin:jest-dom/recommended',
-      ],
-      plugins: [
-        'eslint-plugin-testing-library',
-        'eslint-plugin-jest-dom',
-      ],
+      // To see what rules are in the recommended set: https://www.npmjs.com/package/eslint-plugin-testing-library
+      extends: ['plugin:testing-library/react'],
+      plugins: ['eslint-plugin-testing-library'],
     },
   ],
 };
