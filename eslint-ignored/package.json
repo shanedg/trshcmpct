@@ -10,6 +10,7 @@
   },
   "devDependencies": {
     "@trshcmpctr/eslint-config": "workspace:*",
+    "@trshcmpctr/eslint-config-jest": "workspace:*",
     "@trshcmpctr/jest-stdout-reporter": "workspace:*",
     "eslint-plugin-jest": "^25.7.0",
     "eslint": "^8.7.0",

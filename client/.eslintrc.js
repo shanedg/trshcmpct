@@ -49,11 +49,7 @@ module.exports = {
         '*.test.ts',
         '*.test.tsx',
       ],
-      extends: ['plugin:jest/recommended'],
-      plugins: ['eslint-plugin-jest'],
-      rules: {
-        'jest/consistent-test-it': ['error'],
-      },
+      extends: ['@trshcmpctr/eslint-config-jest'],
     },
 
     // React tests
