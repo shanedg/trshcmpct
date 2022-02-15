@@ -405,6 +405,10 @@
     {
       "packageName": "@trshcmpctr/eslint-config-jest",
       "projectFolder": "eslint-config-jest"
+    },
+    {
+      "packageName": "@trshcmpctr/eslint-config-typescript",
+      "projectFolder": "eslint-config-typescript"
     }
     
     // {
