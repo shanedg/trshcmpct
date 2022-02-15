@@ -9,7 +9,7 @@ and for extending via file extension overrides.
 ## Installation
 
 ```sh
-npm install @trshcmpctr/eslint-config --save-dev
+npm install eslint @trshcmpctr/eslint-config --save-dev
 ```
 
 ## Usage
