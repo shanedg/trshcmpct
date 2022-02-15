@@ -43,5 +43,7 @@ rush type-check
 ## TODO
 
 * lint markdown files?
-* https://github.com/dangreenisrael/eslint-plugin-jest-formatting
-* https://github.com/istanbuljs/eslint-plugin-istanbul
+* https://www.npmjs.com/package/eslint-plugin-eslint-comments
+* https://www.npmjs.com/package/eslint-plugin-import
+* https://www.npmjs.com/package/eslint-plugin-node
+* test eslint-config-* packages
