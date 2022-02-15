@@ -20,7 +20,6 @@ module.exports = {
       },
       env: {
         browser: true,
-        commonjs: false,
         node: false,
       },
       globals: {
