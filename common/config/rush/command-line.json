@@ -39,6 +39,12 @@
       // Because I can never remember all the types:
       // https://github.com/conventional-changelog/commitlint/blob/master/%40commitlint/config-conventional/README.md
       "shellCommand": "commitlint --extends=@commitlint/config-conventional --edit=$1"
+    },
+    {
+      "name": "clean",
+      "summary": "Remove generated files in all projects",
+      "commandKind": "bulk",
+      "enableParallelism": true
     }
 
     // {
