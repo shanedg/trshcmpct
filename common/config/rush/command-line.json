@@ -22,7 +22,8 @@
       "name": "lint",
       "summary": "Lint all projects",
       "commandKind": "bulk",
-      "enableParallelism": true
+      "enableParallelism": true,
+      "ignoreMissingScript": true
     },
     {
       "name": "type-check",

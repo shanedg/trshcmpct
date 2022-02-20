@@ -1,0 +1,17 @@
+{
+  "name": "@trshcmpctr/markdownlint-config",
+  "version": "1.0.0",
+  "description": "Shareable config for markdownlint (markdownlint-cli2).",
+  "main": ".markdownlint-cli2.jsonc",
+  "scripts": {
+    "build": "echo fake build || true",
+    "clean": "rimraf *.build.log",
+    "lint:md": "markdownlint-cli2-config '.markdownlint-config.jsonc' '**/*.md' '#node_modules'"
+  },
+  "devDependencies": {
+    "markdownlint-cli2": "~0.4.0"
+  },
+  "peerDependencies": {
+    "markdownlint-cli2": "~0.4.0"
+  }
+}
