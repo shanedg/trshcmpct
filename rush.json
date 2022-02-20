@@ -413,6 +413,10 @@
     {
       "packageName": "@trshcmpctr/eslint-config-react",
       "projectFolder": "eslint-config-react"
+    },
+    {
+      "packageName": "@trshcmpctr/markdownlint-config",
+      "projectFolder": "markdownlint-config"
     }
     
     // {

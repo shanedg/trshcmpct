@@ -1,6 +1,6 @@
 # @trshcmpctr/client
 
-_all build config, no substance_
+all build config, no substance
 
 ## Build
 

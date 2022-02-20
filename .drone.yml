@@ -19,6 +19,13 @@ steps:
   depends_on:
     - install
 
+- name: lint:md
+  image: node:gallium
+  commands:
+    - node common/scripts/install-run-rush.js lint:md
+  depends_on:
+    - install
+
 - name: type-check
   image: node:gallium
   commands:
@@ -70,6 +77,7 @@ steps:
   depends_on:
     - install
     - lint
+    - lint:md
     - type-check
     - test
     - build
