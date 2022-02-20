@@ -29,6 +29,6 @@ module.exports = {
 
 ## TODO
 
-* https://github.com/dangreenisrael/eslint-plugin-jest-formatting
-* https://github.com/istanbuljs/eslint-plugin-istanbul
-* https://www.npmjs.com/package/eslint-plugin-jest-dom
+* <https://github.com/dangreenisrael/eslint-plugin-jest-formatting>
+* <https://github.com/istanbuljs/eslint-plugin-istanbul>
+* <https://www.npmjs.com/package/eslint-plugin-jest-dom>
