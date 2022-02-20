@@ -26,6 +26,12 @@
       "ignoreMissingScript": true
     },
     {
+      "name": "lint:md",
+      "summary": "Lint Markdown in all projects",
+      "commandKind": "bulk",
+      "enableParallelism": true
+    },
+    {
       "name": "type-check",
       "summary": "Type check all projects",
       "commandKind": "bulk",

@@ -20,6 +20,7 @@ importers:
       '@trshcmpctr/eslint-config-react': workspace:*
       '@trshcmpctr/eslint-config-typescript': workspace:*
       '@trshcmpctr/jest-stdout-reporter': workspace:*
+      '@trshcmpctr/markdownlint-config': workspace:*
       '@types/express': ~4.17.13
       '@types/jest': ^27.4.0
       '@types/node': ^16.11.21
@@ -42,6 +43,7 @@ importers:
       html-webpack-plugin: ^5.5.0
       jest: ^27.4.7
       jest-serializer-path: ^0.1.15
+      markdownlint-cli2: ~0.4.0
       react: ^17.0.2
       react-dom: ^17.0.2
       rimraf: ~3.0.2
@@ -70,6 +72,7 @@ importers:
       '@trshcmpctr/eslint-config-react': link:../eslint-config-react
       '@trshcmpctr/eslint-config-typescript': link:../eslint-config-typescript
       '@trshcmpctr/jest-stdout-reporter': link:../jest-stdout-reporter
+      '@trshcmpctr/markdownlint-config': link:../markdownlint-config
       '@types/express': 4.17.13
       '@types/jest': 27.4.0
       '@types/node': 16.11.24
@@ -91,6 +94,7 @@ importers:
       html-webpack-plugin: 5.5.0_webpack@5.68.0
       jest: 27.5.1
       jest-serializer-path: 0.1.15
+      markdownlint-cli2: 0.4.0
       rimraf: 3.0.2
       standard-version: 9.3.2
       style-loader: 3.3.1_webpack@5.68.0
@@ -102,58 +106,74 @@ importers:
 
   ../../eslint-config:
     specifiers:
+      '@trshcmpctr/markdownlint-config': workspace:*
       eslint: ^8.7.0
+      markdownlint-cli2: ~0.4.0
       rimraf: ~3.0.2
     devDependencies:
+      '@trshcmpctr/markdownlint-config': link:../markdownlint-config
       eslint: 8.9.0
+      markdownlint-cli2: 0.4.0
       rimraf: 3.0.2
 
   ../../eslint-config-jest:
     specifiers:
       '@trshcmpctr/eslint-config': workspace:*
+      '@trshcmpctr/markdownlint-config': workspace:*
       eslint: ^8.7.0
       eslint-plugin-jest: ^25.7.0
+      markdownlint-cli2: ~0.4.0
       rimraf: ~3.0.2
       typescript: ^4.5.5
     dependencies:
       '@trshcmpctr/eslint-config': link:../eslint-config
     devDependencies:
+      '@trshcmpctr/markdownlint-config': link:../markdownlint-config
       eslint: 8.9.0
       eslint-plugin-jest: 25.7.0_eslint@8.9.0+typescript@4.5.5
+      markdownlint-cli2: 0.4.0
       rimraf: 3.0.2
       typescript: 4.5.5
 
   ../../eslint-config-react:
     specifiers:
       '@trshcmpctr/eslint-config': workspace:*
+      '@trshcmpctr/markdownlint-config': workspace:*
       eslint: ^8.7.0
       eslint-plugin-jsx-a11y: ~6.5.1
       eslint-plugin-react: ^7.28.0
       eslint-plugin-react-hooks: ~4.3.0
+      markdownlint-cli2: ~0.4.0
       rimraf: ~3.0.2
     dependencies:
       '@trshcmpctr/eslint-config': link:../eslint-config
     devDependencies:
+      '@trshcmpctr/markdownlint-config': link:../markdownlint-config
       eslint: 8.9.0
       eslint-plugin-jsx-a11y: 6.5.1_eslint@8.9.0
       eslint-plugin-react: 7.28.0_eslint@8.9.0
       eslint-plugin-react-hooks: 4.3.0_eslint@8.9.0
+      markdownlint-cli2: 0.4.0
       rimraf: 3.0.2
 
   ../../eslint-config-typescript:
     specifiers:
       '@trshcmpctr/eslint-config': workspace:*
+      '@trshcmpctr/markdownlint-config': workspace:*
       '@typescript-eslint/eslint-plugin': ~5.11.0
       '@typescript-eslint/parser': ~5.11.0
       eslint: ^8.7.0
+      markdownlint-cli2: ~0.4.0
       rimraf: ~3.0.2
       typescript: ^4.5.5
     dependencies:
       '@trshcmpctr/eslint-config': link:../eslint-config
     devDependencies:
+      '@trshcmpctr/markdownlint-config': link:../markdownlint-config
       '@typescript-eslint/eslint-plugin': 5.11.0_15a231715447500ed5c06da64c8aef1c
       '@typescript-eslint/parser': 5.11.0_eslint@8.9.0+typescript@4.5.5
       eslint: 8.9.0
+      markdownlint-cli2: 0.4.0
       rimraf: 3.0.2
       typescript: 4.5.5
 
@@ -162,20 +182,24 @@ importers:
       '@trshcmpctr/eslint-config': workspace:*
       '@trshcmpctr/eslint-config-jest': workspace:*
       '@trshcmpctr/jest-stdout-reporter': workspace:*
+      '@trshcmpctr/markdownlint-config': workspace:*
       eslint: ^8.7.0
       eslint-plugin-jest: ^25.7.0
       jest: ^27.4.7
       lint-staged: ~12.3.3
+      markdownlint-cli2: ~0.4.0
       rimraf: ~3.0.2
       typescript: ^4.5.5
     devDependencies:
       '@trshcmpctr/eslint-config': link:../eslint-config
       '@trshcmpctr/eslint-config-jest': link:../eslint-config-jest
       '@trshcmpctr/jest-stdout-reporter': link:../jest-stdout-reporter
+      '@trshcmpctr/markdownlint-config': link:../markdownlint-config
       eslint: 8.9.0
       eslint-plugin-jest: 25.7.0_e40de970075d4d5a10c059e5371fff87
       jest: 27.5.1
       lint-staged: 12.3.3
+      markdownlint-cli2: 0.4.0
       rimraf: 3.0.2
       typescript: 4.5.5
 
@@ -183,13 +207,17 @@ importers:
     specifiers:
       '@jest/reporters': ^27.4.6
       '@trshcmpctr/eslint-config': workspace:*
+      '@trshcmpctr/markdownlint-config': workspace:*
       eslint: ^8.7.0
+      markdownlint-cli2: ~0.4.0
       rimraf: ~3.0.2
     dependencies:
       '@jest/reporters': 27.5.1
     devDependencies:
       '@trshcmpctr/eslint-config': link:../eslint-config
+      '@trshcmpctr/markdownlint-config': link:../markdownlint-config
       eslint: 8.9.0
+      markdownlint-cli2: 0.4.0
       rimraf: 3.0.2
 
   ../../markdownlint-config:
