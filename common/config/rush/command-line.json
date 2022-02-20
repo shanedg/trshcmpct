@@ -52,6 +52,13 @@
       "summary": "Remove generated files in all projects",
       "commandKind": "bulk",
       "enableParallelism": true
+    },
+    {
+      "name": "scaffold",
+      "summary": "Add a new project.",
+      "commandKind": "global",
+      "autoinstallerName": "rush-plop",
+      "shellCommand": "plop --plopfile scaffold/lib/index.js"
     }
 
     // {

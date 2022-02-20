@@ -417,6 +417,10 @@
     {
       "packageName": "@trshcmpctr/markdownlint-config",
       "projectFolder": "markdownlint-config"
+    },
+    {
+      "packageName": "@trshcmpctr/scaffold",
+      "projectFolder": "scaffold"
     }
     
     // {

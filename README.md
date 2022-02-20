@@ -46,6 +46,12 @@ Type check all TS projects.
 rush type-check
 ```
 
+Scaffold a new JS project.
+
+```sh
+rush scaffold
+```
+
 ## TODO
 
 * <https://www.npmjs.com/package/eslint-plugin-eslint-comments>
