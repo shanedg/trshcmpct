@@ -2,7 +2,7 @@
 
 [![Build Status](https://cloud.drone.io/api/badges/shanedg/trshcmpctr/status.svg)](https://cloud.drone.io/shanedg/trshcmpctr)
 
-_all build config, no substance_
+all build config, no substance
 
 This repository is managed by [Rush](https://rushjs.io/pages/developer/new_developer/).
 
@@ -42,7 +42,7 @@ rush type-check
 
 ## TODO
 
-* https://www.npmjs.com/package/eslint-plugin-eslint-comments
-* https://www.npmjs.com/package/eslint-plugin-import
-* https://www.npmjs.com/package/eslint-plugin-node
+* <https://www.npmjs.com/package/eslint-plugin-eslint-comments>
+* <https://www.npmjs.com/package/eslint-plugin-import>
+* <https://www.npmjs.com/package/eslint-plugin-node>
 * test eslint-config-* packages
