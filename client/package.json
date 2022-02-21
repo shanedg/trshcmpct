@@ -11,7 +11,7 @@
     "lint:md": "markdownlint-cli2-config 'node_modules/@trshcmpctr/markdownlint-config/.markdownlint-cli2.jsonc' '**/*.md' '#node_modules'",
     "start": "webpack serve --config config/webpack.config.js",
     "test": "jest --config=config/jest/jest.config.js --no-cache --reporters=@trshcmpctr/jest-stdout-reporter --silent",
-    "type-check": "tsc --project tsconfig.json",
+    "type-check": "tsc",
     "watch": "webpack --config config/webpack.config.js --watch"
   },
   "author": "Shane Garrity <shanedgarrity@gmail.com> (https://www.shanedg.com)",
