@@ -1,0 +1,13 @@
+{
+  "eslint.workingDirectories": [
+    "client",
+    "eslint-config",
+    "eslint-config-jest",
+    "eslint-config-react",
+    "eslint-config-typescript",
+    "eslint-ignored",
+    "jest-stdout-reporter",
+    "markdownlint-config",
+    "scaffold"
+  ]
+}
