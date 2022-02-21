@@ -1,16 +1,38 @@
+// This config supports type checking but all transpilation
+// is left to Webpack and Babel.
 {
   "compilerOptions": {
-    "allowJs": true,
-    "checkJs": false,
+    // Treat `import x from 'y'` as `import * as x from 'y'`
+    // when y has no default export
     "esModuleInterop": true,
-    "declaration": true,
-    "inlineSourceMap": true,
-    "inlineSources": true,
+
+    // Apply stricter rules around properties which have a ? prefix
+    "exactOptionalPropertyTypes": true,
+
+    // Enforce file case sensitivity
+    "forceConsistentCasingInFileNames": true,
+
+    // Leave JSX transformation to Babel
     "jsx": "preserve",
+
+    // Include latest supported JS features
+    "lib": ["ESNext", "DOM"],
+
+    // Node.js' CommonJS implementation
     "moduleResolution": "node",
+
+    // Leave transpilation to Babel
     "noEmit": true,
-    "pretty": true,
+
+    // TODO: interesting that this is a "recommended on" property
+    // *saves about half of my type-checking time
+    // "skipLibCheck": true,
+
+    // Turn on all strict mode family options for
+    // "stronger guarantees of program correctness"
     "strict": true,
-    "target": "esnext"
+
+    // Ensure module is set to at least "ES6/ES2015"
+    "target": "ESNext",
   }
 }
