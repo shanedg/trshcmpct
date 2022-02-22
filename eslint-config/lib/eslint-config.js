@@ -7,8 +7,13 @@ module.exports = {
     'eslint:recommended',
     // https://mysticatea.github.io/eslint-plugin-eslint-comments/rules/
     'plugin:eslint-comments/recommended',
+    // https://www.npmjs.com/package/eslint-plugin-import
+    'plugin:import/recommended',
   ],
-  plugins: ['eslint-plugin-eslint-comments'],
+  plugins: [
+    'eslint-plugin-eslint-comments',
+    'eslint-plugin-import',
+  ],
 
   // https://eslint.org/docs/user-guide/configuring/language-options#specifying-environments
   env: {
