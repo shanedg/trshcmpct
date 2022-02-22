@@ -3,6 +3,13 @@ module.exports = {
   root: true,
   
   overrides: [
+    // Node config files
+    {
+      files: ['config/**/*.js', '.eslintrc.js'],
+      extends: ['plugin:node/recommended'],
+      plugins: ['eslint-plugin-node'],
+    },
+
     // Typescript source files
     {
       files: [

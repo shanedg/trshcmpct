@@ -1,5 +1,9 @@
 module.exports = {
-  // It lints itself :)
-  extends: ['./lib/eslint-config.js'],
+  extends: [
+    // It lints itself :)
+    './lib/eslint-config.js',
+    'plugin:node/recommended',
+  ],
+  plugins: ['eslint-plugin-node'],
   root: true,
 };

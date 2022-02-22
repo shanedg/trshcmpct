@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "All build config, no substance.",
   "main": "src/index.ts",
+  "files": ["dist"],
   "scripts": {
     "build": "webpack --config config/webpack.config.js",
     "build:production": "webpack --config config/webpack.config.js --env production",
@@ -48,6 +49,7 @@
     "css-loader": "^6.5.1",
     "eslint-plugin-jest": "^25.7.0",
     "eslint-plugin-jsx-a11y": "~6.5.1",
+    "eslint-plugin-node": "~11.1.0",
     "eslint-plugin-react-hooks": "~4.3.0",
     "eslint-plugin-react": "^7.28.0",
     "eslint-plugin-testing-library": "^5.0.4",
