@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "All build config, no substance.",
   "main": "src/index.ts",
+  "files": ["dist"],
   "scripts": {
     "build": "webpack --config config/webpack.config.js",
     "build:production": "webpack --config config/webpack.config.js --env production",
