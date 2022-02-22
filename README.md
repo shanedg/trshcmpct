@@ -22,10 +22,16 @@ Build all projects.
 rush build
 ```
 
-Lint all projects.
+Lint JS in all projects.
 
 ```sh
 rush lint
+```
+
+Lint Markdown in all projects.
+
+```sh
+rush lint:md
 ```
 
 Run all project tests.
@@ -38,6 +44,12 @@ Type check all TS projects.
 
 ```sh
 rush type-check
+```
+
+Scaffold a new JS project.
+
+```sh
+rush scaffold
 ```
 
 ## TODO
