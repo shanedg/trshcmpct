@@ -54,6 +54,5 @@ rush scaffold
 
 ## TODO
 
-* <https://www.npmjs.com/package/eslint-plugin-eslint-comments>
 * <https://www.npmjs.com/package/eslint-plugin-import>
 * test eslint-config-* packages

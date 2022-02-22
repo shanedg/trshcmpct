@@ -11,12 +11,14 @@
   },
   "devDependencies": {
     "@trshcmpctr/markdownlint-config": "workspace:*",
+    "eslint-plugin-eslint-comments": "~3.2.0",
     "eslint-plugin-node": "~11.1.0",
     "eslint": "^8.7.0",
     "markdownlint-cli2": "~0.4.0",
     "rimraf": "~3.0.2"
   },
   "peerDependencies": {
+    "eslint-plugin-eslint-comments": "~3.2.0",
     "eslint": "^7.x.x || ^8.x.x"
   }
 }
