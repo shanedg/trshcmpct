@@ -5,7 +5,7 @@ ESLint config for TypeScript in JavaScript projects.
 ## Installation
 
 ```sh
-npm install typescript @typescript-eslint/parser @typescript-eslint/eslint-plugin @trshcmpctr/eslint-config-typescript --save-dev
+npm install typescript @typescript-eslint/parser @typescript-eslint/eslint-plugin eslint-import-resolver-typescript @trshcmpctr/eslint-config-typescript --save-dev
 ```
 
 ## Usage
@@ -20,6 +20,7 @@ for large projects, it can take longer (30s or more).
 
 Use overrides to apply config settings to TypeScript files only.
 Provide the location of the `tsconfig.json` file via `parserOptions`.
+Configure plugin settings for compatibility with `eslint-plugin-import`.
 
 ```js
 // .eslintrc.js
@@ -32,6 +33,18 @@ module.exports = {
       parserOptions: {
         tsconfigRootDir: __dirname,
         project: ['./tsconfig.json']
+      },
+
+      // Settings for compatibility with eslint-plugin-import
+      settings: {
+        'import/parsers': {
+          '@typescript-eslint/parser': ['.ts', '.tsx']
+        },
+        'import/resolver': {
+          typescript: {
+            project: './tsconfig.json'
+          }
+        }
       }
     }
   ],
@@ -42,4 +55,3 @@ module.exports = {
 ## TODO
 
 * <https://typescript-eslint.io/docs/linting/troubleshooting/#the-indent--typescript-eslintindent-rules>
-* <https://typescript-eslint.io/docs/linting/troubleshooting/#eslint-plugin-import>

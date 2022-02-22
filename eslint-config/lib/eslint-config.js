@@ -2,8 +2,18 @@
  * Base ESLint config for JavaScript projects.
  */
 module.exports = {
-  // To see what rules are in the recommended set: https://eslint.org/docs/rules/
-  extends: ['eslint:recommended'],
+  extends: [
+    // To see what rules are in the recommended set: https://eslint.org/docs/rules/
+    'eslint:recommended',
+    // https://mysticatea.github.io/eslint-plugin-eslint-comments/rules/
+    'plugin:eslint-comments/recommended',
+    // https://www.npmjs.com/package/eslint-plugin-import
+    'plugin:import/recommended',
+  ],
+  plugins: [
+    'eslint-plugin-eslint-comments',
+    'eslint-plugin-import',
+  ],
 
   // https://eslint.org/docs/user-guide/configuring/language-options#specifying-environments
   env: {
