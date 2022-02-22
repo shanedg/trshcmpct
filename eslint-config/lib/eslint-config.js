@@ -39,7 +39,8 @@ module.exports = {
     // Warn on unused variables unless underscore-prefixed arguments.
     'no-unused-vars': ['warn', { argsIgnorePattern: '^_' }],
     indent: ['warn', 2], 
-    quotes: ['warn', 'single'],
+    // Allow other quotes if they avoid escaping single quotes.
+    quotes: ['warn', 'single', { avoidEscape: true }],
     semi: ['warn', 'always'],
   },
 };
