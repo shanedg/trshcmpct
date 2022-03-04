@@ -9,7 +9,8 @@
     "lint:md": "markdownlint-cli2-config '.markdownlint-config.jsonc' '**/*.md' '#node_modules'"
   },
   "devDependencies": {
-    "markdownlint-cli2": "~0.4.0"
+    "markdownlint-cli2": "~0.4.0",
+    "rimraf": "~3.0.2"
   },
   "peerDependencies": {
     "markdownlint-cli2": "~0.4.0"
