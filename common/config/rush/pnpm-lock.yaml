@@ -269,8 +269,10 @@ importers:
   ../../markdownlint-config:
     specifiers:
       markdownlint-cli2: ~0.4.0
+      rimraf: ~3.0.2
     devDependencies:
       markdownlint-cli2: 0.4.0
+      rimraf: 3.0.2
 
   ../../scaffold:
     specifiers:
@@ -4690,6 +4692,7 @@ packages:
     resolution: {integrity: sha512-xiqMQR4xAeHTuB9uWm+fFRcIOgKBMiOBP+eXiyT7jsgVCq1bkVygt00oASowB7EdtpOHaaPgKt812P9ab+DDKA==}
     engines: {node: ^8.16.0 || ^10.6.0 || >=11.0.0}
     os: [darwin]
+    requiresBuild: true
     optional: true
 
   /function-bind/1.1.1:
@@ -8380,6 +8383,7 @@ packages:
     resolution: {integrity: sha512-FAGKF12fWdkpvNJZENacOH0e/83eG6JyVQyanIJaBXCN1J11TUQv1T1/z8S+Z0CG0ZPk1nPcreF/c7lrTd0TEQ==}
     engines: {node: '>=0.8.0'}
     hasBin: true
+    requiresBuild: true
     dev: true
     optional: true
 
