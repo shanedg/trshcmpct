@@ -400,7 +400,11 @@
     },
     {
       "packageName": "@trshcmpctr/eslint-config",
-      "projectFolder": "eslint-config"
+      "projectFolder": "eslint-config",
+      "cyclicDependencyProjects": [
+        "@trshcmpctr/eslint-config-jest",
+        "@trshcmpctr/jest-stdout-reporter"
+      ]
     },
     {
       "packageName": "@trshcmpctr/eslint-config-jest",

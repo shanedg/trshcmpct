@@ -8,6 +8,7 @@ module.exports = {
     // https://mysticatea.github.io/eslint-plugin-eslint-comments/rules/
     'plugin:eslint-comments/recommended',
     // https://www.npmjs.com/package/eslint-plugin-import
+    // Extending this plugin also sets parserOptions.sourceType = 'module'.
     'plugin:import/recommended',
   ],
   plugins: [
@@ -45,12 +46,12 @@ module.exports = {
 
   // Only include rules that will make sense in both Node and browser environments.
   rules: {
+    indent: ['warn', 2],
     'linebreak-style': ['error', 'unix'],
     // Warn on unused variables unless underscore-prefixed arguments.
     'no-unused-vars': ['warn', { argsIgnorePattern: '^_' }],
-    indent: ['warn', 2], 
-    // Allow other quotes if they avoid escaping single quotes.
-    quotes: ['warn', 'single', { avoidEscape: true }],
     semi: ['warn', 'always'],
+    // Allow double quotes if they avoid escaping single quotes.
+    quotes: ['warn', 'single', { avoidEscape: true }],
   },
 };
