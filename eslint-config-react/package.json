@@ -7,20 +7,26 @@
     "build": "echo fake build || true",
     "clean": "rimraf *.build.log",
     "lint": "eslint --max-warnings=0 --fix --cache --cache-location node_modules/.cache/eslint-cache/ .",
-    "lint:md": "markdownlint-cli2-config 'node_modules/@trshcmpctr/markdownlint-config/.markdownlint-cli2.jsonc' '**/*.md' '#node_modules'"
+    "lint:md": "markdownlint-cli2-config 'node_modules/@trshcmpctr/markdownlint-config/.markdownlint-cli2.jsonc' '**/*.md' '#node_modules'",
+    "test": "jest --no-cache --reporters=@trshcmpctr/jest-stdout-reporter --silent"
   },
   "devDependencies": {
     "@trshcmpctr/eslint-config": "workspace:*",
+    "@trshcmpctr/eslint-config-jest": "workspace:*",
+    "@trshcmpctr/jest-stdout-reporter": "workspace:*",
     "@trshcmpctr/markdownlint-config": "workspace:*",
     "eslint-plugin-eslint-comments": "~3.2.0",
+    "eslint-plugin-jest": "^25.7.0",
     "eslint-plugin-import": "~2.25.4",
     "eslint-plugin-jsx-a11y": "~6.5.1",
     "eslint-plugin-node": "~11.1.0",
     "eslint-plugin-react-hooks": "~4.3.0",
     "eslint-plugin-react": "^7.28.0",
     "eslint": "^8.7.0",
+    "jest": "^27.4.7",
     "markdownlint-cli2": "~0.4.0",
-    "rimraf": "~3.0.2"
+    "rimraf": "~3.0.2",
+    "typescript": "^4.5.5"
   },
   "peerDependencies": {
     "eslint": "^7.x.x || ^8.x.x",
