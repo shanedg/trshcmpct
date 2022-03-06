@@ -16,7 +16,7 @@
     "@trshcmpctr/markdownlint-config": "workspace:*",
     "eslint-plugin-eslint-comments": "~3.2.0",
     "eslint-plugin-import": "~2.25.4",
-    "eslint-plugin-jest": "^25.7.0",
+    "eslint-plugin-jest": "~26.1.1",
     "eslint-plugin-node": "~11.1.0",
     "eslint": "^8.7.0",
     "jest": "^27.4.7",
@@ -26,6 +26,6 @@
   },
   "peerDependencies": {
     "eslint": "^7.x.x || ^8.x.x",
-    "eslint-plugin-jest": "^25.7.0"
+    "eslint-plugin-jest": "~26.1.1"
   }
 }
