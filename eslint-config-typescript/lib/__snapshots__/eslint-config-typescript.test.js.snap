@@ -1,0 +1,253 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`eslint-config-typescript calculated config snapshots parserOptions 1`] = `
+Object {
+  "sourceType": "module",
+}
+`;
+
+exports[`eslint-config-typescript calculated config snapshots rules 1`] = `
+Object {
+  "@typescript-eslint/adjacent-overload-signatures": Array [
+    "error",
+  ],
+  "@typescript-eslint/await-thenable": Array [
+    "error",
+  ],
+  "@typescript-eslint/ban-ts-comment": Array [
+    "error",
+  ],
+  "@typescript-eslint/ban-types": Array [
+    "error",
+  ],
+  "@typescript-eslint/no-array-constructor": Array [
+    "error",
+  ],
+  "@typescript-eslint/no-empty-function": Array [
+    "error",
+  ],
+  "@typescript-eslint/no-empty-interface": Array [
+    "error",
+  ],
+  "@typescript-eslint/no-explicit-any": Array [
+    "warn",
+  ],
+  "@typescript-eslint/no-extra-non-null-assertion": Array [
+    "error",
+  ],
+  "@typescript-eslint/no-extra-semi": Array [
+    "error",
+  ],
+  "@typescript-eslint/no-floating-promises": Array [
+    "error",
+  ],
+  "@typescript-eslint/no-for-in-array": Array [
+    "error",
+  ],
+  "@typescript-eslint/no-implied-eval": Array [
+    "error",
+  ],
+  "@typescript-eslint/no-inferrable-types": Array [
+    "error",
+  ],
+  "@typescript-eslint/no-loss-of-precision": Array [
+    "error",
+  ],
+  "@typescript-eslint/no-misused-new": Array [
+    "error",
+  ],
+  "@typescript-eslint/no-misused-promises": Array [
+    "error",
+  ],
+  "@typescript-eslint/no-namespace": Array [
+    "error",
+  ],
+  "@typescript-eslint/no-non-null-asserted-optional-chain": Array [
+    "error",
+  ],
+  "@typescript-eslint/no-non-null-assertion": Array [
+    "warn",
+  ],
+  "@typescript-eslint/no-this-alias": Array [
+    "error",
+  ],
+  "@typescript-eslint/no-unnecessary-type-assertion": Array [
+    "error",
+  ],
+  "@typescript-eslint/no-unnecessary-type-constraint": Array [
+    "error",
+  ],
+  "@typescript-eslint/no-unsafe-argument": Array [
+    "error",
+  ],
+  "@typescript-eslint/no-unsafe-assignment": Array [
+    "error",
+  ],
+  "@typescript-eslint/no-unsafe-call": Array [
+    "error",
+  ],
+  "@typescript-eslint/no-unsafe-member-access": Array [
+    "error",
+  ],
+  "@typescript-eslint/no-unsafe-return": Array [
+    "error",
+  ],
+  "@typescript-eslint/no-unused-vars": Array [
+    "warn",
+  ],
+  "@typescript-eslint/no-var-requires": Array [
+    "error",
+  ],
+  "@typescript-eslint/prefer-as-const": Array [
+    "error",
+  ],
+  "@typescript-eslint/prefer-namespace-keyword": Array [
+    "error",
+  ],
+  "@typescript-eslint/require-await": Array [
+    "error",
+  ],
+  "@typescript-eslint/restrict-plus-operands": Array [
+    "error",
+  ],
+  "@typescript-eslint/restrict-template-expressions": Array [
+    "error",
+  ],
+  "@typescript-eslint/triple-slash-reference": Array [
+    "error",
+  ],
+  "@typescript-eslint/unbound-method": Array [
+    "error",
+  ],
+  "constructor-super": Array [
+    "off",
+  ],
+  "getter-return": Array [
+    "off",
+  ],
+  "import/default": Array [
+    "off",
+  ],
+  "import/named": Array [
+    "off",
+  ],
+  "import/namespace": Array [
+    "off",
+  ],
+  "import/no-named-as-default-member": Array [
+    "off",
+  ],
+  "no-array-constructor": Array [
+    "off",
+  ],
+  "no-const-assign": Array [
+    "off",
+  ],
+  "no-dupe-args": Array [
+    "off",
+  ],
+  "no-dupe-class-members": Array [
+    "off",
+  ],
+  "no-dupe-keys": Array [
+    "off",
+  ],
+  "no-empty-function": Array [
+    "off",
+  ],
+  "no-extra-semi": Array [
+    "off",
+  ],
+  "no-func-assign": Array [
+    "off",
+  ],
+  "no-implied-eval": Array [
+    "off",
+  ],
+  "no-import-assign": Array [
+    "off",
+  ],
+  "no-loss-of-precision": Array [
+    "off",
+  ],
+  "no-new-symbol": Array [
+    "off",
+  ],
+  "no-obj-calls": Array [
+    "off",
+  ],
+  "no-redeclare": Array [
+    "off",
+  ],
+  "no-setter-return": Array [
+    "off",
+  ],
+  "no-this-before-super": Array [
+    "off",
+  ],
+  "no-undef": Array [
+    "off",
+  ],
+  "no-unreachable": Array [
+    "off",
+  ],
+  "no-unsafe-negation": Array [
+    "off",
+  ],
+  "no-unused-vars": Array [
+    "off",
+  ],
+  "no-var": Array [
+    "error",
+  ],
+  "prefer-const": Array [
+    "error",
+  ],
+  "prefer-rest-params": Array [
+    "error",
+  ],
+  "prefer-spread": Array [
+    "error",
+  ],
+  "require-await": Array [
+    "off",
+  ],
+  "valid-typeof": Array [
+    "off",
+  ],
+}
+`;
+
+exports[`eslint-config-typescript calculated config snapshots settings 1`] = `
+Object {
+  "import/extensions": Array [
+    ".ts",
+    ".tsx",
+    ".js",
+    ".jsx",
+  ],
+  "import/external-module-folders": Array [
+    "node_modules",
+    "node_modules/@types",
+  ],
+  "import/parsers": Object {
+    "@typescript-eslint/parser": Array [
+      ".ts",
+      ".tsx",
+    ],
+  },
+  "import/resolver": Object {
+    "node": Object {
+      "extensions": Array [
+        ".ts",
+        ".tsx",
+        ".js",
+        ".jsx",
+      ],
+    },
+    "typescript": Object {
+      "project": "tsconfig.json",
+    },
+  },
+}
+`;

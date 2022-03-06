@@ -2,7 +2,7 @@ const eslint = require('eslint');
 
 const ESLint = eslint.ESLint;
 
-describe('eslint-config', () => {
+describe('eslint-config-jest', () => {
   let eslintApi;
 
   beforeAll(() => {

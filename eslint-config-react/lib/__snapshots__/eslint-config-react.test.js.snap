@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`eslint-config calculated config snapshots parserOptions 1`] = `
+exports[`eslint-config-react calculated config snapshots parserOptions 1`] = `
 Object {
   "ecmaFeatures": Object {
     "jsx": true,
@@ -8,7 +8,7 @@ Object {
 }
 `;
 
-exports[`eslint-config calculated config snapshots rules 1`] = `
+exports[`eslint-config-react calculated config snapshots rules 1`] = `
 Object {
   "jsx-a11y/alt-text": Array [
     "error",

@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "Quickly generate new package boilerplate.",
   "main": "lib/index.js",
+  "files": ["lib"],
   "type": "module",
   "scripts": {
     "asdf": "plop --plopfile lib/index.js project -- --name asdf --path asdf",

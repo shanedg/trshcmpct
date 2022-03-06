@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "Wraps the default reporter to prevent Jest from logging normal output to stderr.",
   "main": "lib/jest-stdout-reporter.js",
+  "files": ["lib/jest-stdout-reporter.js"],
   "scripts": {
     "build": "echo fake build || true",
     "clean": "rimraf *.build.log",

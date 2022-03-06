@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "Base ESLint config for JavaScript projects.",
   "main": "lib/eslint-config.js",
+  "files": ["lib/eslint-config.js"],
   "scripts": {
     "build": "echo fake build || true",
     "clean": "rimraf *.build.log",
