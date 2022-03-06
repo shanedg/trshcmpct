@@ -1,0 +1,80 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`eslint-config calculated config snapshots env 1`] = `
+Object {
+  "jest/globals": true,
+}
+`;
+
+exports[`eslint-config calculated config snapshots rules 1`] = `
+Object {
+  "jest/consistent-test-it": Array [
+    "error",
+  ],
+  "jest/expect-expect": Array [
+    "warn",
+  ],
+  "jest/no-commented-out-tests": Array [
+    "warn",
+  ],
+  "jest/no-conditional-expect": Array [
+    "error",
+  ],
+  "jest/no-deprecated-functions": Array [
+    "error",
+  ],
+  "jest/no-disabled-tests": Array [
+    "warn",
+  ],
+  "jest/no-done-callback": Array [
+    "error",
+  ],
+  "jest/no-export": Array [
+    "error",
+  ],
+  "jest/no-focused-tests": Array [
+    "error",
+  ],
+  "jest/no-identical-title": Array [
+    "error",
+  ],
+  "jest/no-interpolation-in-snapshots": Array [
+    "error",
+  ],
+  "jest/no-jasmine-globals": Array [
+    "error",
+  ],
+  "jest/no-jest-import": Array [
+    "error",
+  ],
+  "jest/no-mocks-import": Array [
+    "error",
+  ],
+  "jest/no-standalone-expect": Array [
+    "error",
+  ],
+  "jest/no-test-prefixes": Array [
+    "error",
+  ],
+  "jest/valid-describe-callback": Array [
+    "error",
+  ],
+  "jest/valid-expect": Array [
+    "error",
+  ],
+  "jest/valid-expect-in-promise": Array [
+    "error",
+  ],
+  "jest/valid-title": Array [
+    "error",
+  ],
+  "quotes": Array [
+    "warn",
+    "single",
+    Object {
+      "allowTemplateLiterals": true,
+      "avoidEscape": true,
+    },
+  ],
+}
+`;
