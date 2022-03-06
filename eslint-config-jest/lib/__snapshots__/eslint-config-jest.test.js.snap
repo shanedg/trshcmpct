@@ -1,12 +1,12 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`eslint-config calculated config snapshots env 1`] = `
+exports[`eslint-config-jest calculated config snapshots env 1`] = `
 Object {
   "jest/globals": true,
 }
 `;
 
-exports[`eslint-config calculated config snapshots rules 1`] = `
+exports[`eslint-config-jest calculated config snapshots rules 1`] = `
 Object {
   "jest/consistent-test-it": Array [
     "error",
