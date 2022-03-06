@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "Shareable config for markdownlint (markdownlint-cli2).",
   "main": ".markdownlint-cli2.jsonc",
+  "files": [".markdownlint-cli2.jsonc"],
   "scripts": {
     "build": "echo fake build || true",
     "clean": "rimraf *.build.log",

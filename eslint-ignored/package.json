@@ -2,7 +2,8 @@
   "name": "@trshcmpctr/eslint-ignored",
   "version": "1.0.0",
   "description": "Filter paths ignored by ESLint.",
-  "main": "lib/filter-ignored.js",
+  "main": "lib/eslint-ignored.js",
+  "files": ["lib/eslint-ignored.js"],
   "scripts": {
     "build": "echo fake build || true",
     "clean": "rimraf *.build.log",

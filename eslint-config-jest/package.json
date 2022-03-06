@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "ESLint config for Jest tests in JavaScript projects.",
   "main": "lib/eslint-config-jest.js",
+  "files": ["lib/eslint-config-jest.js"],
   "scripts": {
     "build": "echo fake build || true",
     "clean": "rimraf *.build.log",
