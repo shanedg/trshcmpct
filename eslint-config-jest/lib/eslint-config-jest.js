@@ -7,8 +7,6 @@ module.exports = {
 
   plugins: [
     'eslint-plugin-jest',
-    // TODO: add eslint-plugin-jest-formatting?
-    // TODO: add eslint-plugin-istanbul?
   ],
 
   // Only include rules that will make sense in both Node and browser environments.
