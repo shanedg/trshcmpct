@@ -32,13 +32,6 @@
       "enableParallelism": true
     },
     {
-      "name": "type-check",
-      "summary": "Type check all projects",
-      "commandKind": "bulk",
-      "enableParallelism": true,
-      "ignoreMissingScript": true
-    },
-    {
       "name": "commitlint",
       "summary": "Used by the commit-msg Git hook. This command invokes commitlint to lint commit messages.",
       "commandKind": "global",

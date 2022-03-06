@@ -40,12 +40,6 @@ Run all project tests.
 rush test
 ```
 
-Type check all TS projects.
-
-```sh
-rush type-check
-```
-
 Scaffold a new JS project.
 
 ```sh
