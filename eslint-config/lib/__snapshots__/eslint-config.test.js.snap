@@ -1,0 +1,265 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`eslint-config calculated config snapshots env 1`] = `
+Object {
+  "es2022": true,
+  "es6": true,
+  "node": true,
+}
+`;
+
+exports[`eslint-config calculated config snapshots parserOptions 1`] = `
+Object {
+  "ecmaVersion": "latest",
+  "sourceType": "module",
+}
+`;
+
+exports[`eslint-config calculated config snapshots rules 1`] = `
+Object {
+  "constructor-super": Array [
+    "error",
+  ],
+  "eslint-comments/disable-enable-pair": Array [
+    "error",
+  ],
+  "eslint-comments/no-aggregating-enable": Array [
+    "error",
+  ],
+  "eslint-comments/no-duplicate-disable": Array [
+    "error",
+  ],
+  "eslint-comments/no-unlimited-disable": Array [
+    "error",
+  ],
+  "eslint-comments/no-unused-enable": Array [
+    "error",
+  ],
+  "for-direction": Array [
+    "error",
+  ],
+  "getter-return": Array [
+    "error",
+  ],
+  "import/default": Array [
+    "error",
+  ],
+  "import/export": Array [
+    "error",
+  ],
+  "import/named": Array [
+    "error",
+  ],
+  "import/namespace": Array [
+    "error",
+  ],
+  "import/no-duplicates": Array [
+    "warn",
+  ],
+  "import/no-named-as-default": Array [
+    "warn",
+  ],
+  "import/no-named-as-default-member": Array [
+    "warn",
+  ],
+  "import/no-unresolved": Array [
+    "error",
+  ],
+  "indent": Array [
+    "warn",
+    2,
+  ],
+  "linebreak-style": Array [
+    "error",
+    "unix",
+  ],
+  "no-async-promise-executor": Array [
+    "error",
+  ],
+  "no-case-declarations": Array [
+    "error",
+  ],
+  "no-class-assign": Array [
+    "error",
+  ],
+  "no-compare-neg-zero": Array [
+    "error",
+  ],
+  "no-cond-assign": Array [
+    "error",
+  ],
+  "no-const-assign": Array [
+    "error",
+  ],
+  "no-constant-condition": Array [
+    "error",
+  ],
+  "no-control-regex": Array [
+    "error",
+  ],
+  "no-debugger": Array [
+    "error",
+  ],
+  "no-delete-var": Array [
+    "error",
+  ],
+  "no-dupe-args": Array [
+    "error",
+  ],
+  "no-dupe-class-members": Array [
+    "error",
+  ],
+  "no-dupe-else-if": Array [
+    "error",
+  ],
+  "no-dupe-keys": Array [
+    "error",
+  ],
+  "no-duplicate-case": Array [
+    "error",
+  ],
+  "no-empty": Array [
+    "error",
+  ],
+  "no-empty-character-class": Array [
+    "error",
+  ],
+  "no-empty-pattern": Array [
+    "error",
+  ],
+  "no-ex-assign": Array [
+    "error",
+  ],
+  "no-extra-boolean-cast": Array [
+    "error",
+  ],
+  "no-extra-semi": Array [
+    "error",
+  ],
+  "no-fallthrough": Array [
+    "error",
+  ],
+  "no-func-assign": Array [
+    "error",
+  ],
+  "no-global-assign": Array [
+    "error",
+  ],
+  "no-import-assign": Array [
+    "error",
+  ],
+  "no-inner-declarations": Array [
+    "error",
+  ],
+  "no-invalid-regexp": Array [
+    "error",
+  ],
+  "no-irregular-whitespace": Array [
+    "error",
+  ],
+  "no-loss-of-precision": Array [
+    "error",
+  ],
+  "no-misleading-character-class": Array [
+    "error",
+  ],
+  "no-mixed-spaces-and-tabs": Array [
+    "error",
+  ],
+  "no-new-symbol": Array [
+    "error",
+  ],
+  "no-nonoctal-decimal-escape": Array [
+    "error",
+  ],
+  "no-obj-calls": Array [
+    "error",
+  ],
+  "no-octal": Array [
+    "error",
+  ],
+  "no-prototype-builtins": Array [
+    "error",
+  ],
+  "no-redeclare": Array [
+    "error",
+  ],
+  "no-regex-spaces": Array [
+    "error",
+  ],
+  "no-self-assign": Array [
+    "error",
+  ],
+  "no-setter-return": Array [
+    "error",
+  ],
+  "no-shadow-restricted-names": Array [
+    "error",
+  ],
+  "no-sparse-arrays": Array [
+    "error",
+  ],
+  "no-this-before-super": Array [
+    "error",
+  ],
+  "no-undef": Array [
+    "error",
+  ],
+  "no-unexpected-multiline": Array [
+    "error",
+  ],
+  "no-unreachable": Array [
+    "error",
+  ],
+  "no-unsafe-finally": Array [
+    "error",
+  ],
+  "no-unsafe-negation": Array [
+    "error",
+  ],
+  "no-unsafe-optional-chaining": Array [
+    "error",
+  ],
+  "no-unused-labels": Array [
+    "error",
+  ],
+  "no-unused-vars": Array [
+    "warn",
+    Object {
+      "argsIgnorePattern": "^_",
+    },
+  ],
+  "no-useless-backreference": Array [
+    "error",
+  ],
+  "no-useless-catch": Array [
+    "error",
+  ],
+  "no-useless-escape": Array [
+    "error",
+  ],
+  "no-with": Array [
+    "error",
+  ],
+  "quotes": Array [
+    "warn",
+    "single",
+    Object {
+      "avoidEscape": true,
+    },
+  ],
+  "require-yield": Array [
+    "error",
+  ],
+  "semi": Array [
+    "warn",
+    "always",
+  ],
+  "use-isnan": Array [
+    "error",
+  ],
+  "valid-typeof": Array [
+    "error",
+  ],
+}
+`;
