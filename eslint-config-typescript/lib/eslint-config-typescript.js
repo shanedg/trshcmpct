@@ -9,20 +9,17 @@ module.exports = {
     // The folks behind `@typescript-eslint` suggest it's worth it: https://typescript-eslint.io/docs/linting/type-linting/#how-is-performance
     'plugin:@typescript-eslint/recommended-requiring-type-checking',
     // For TypeScript compatibility with eslint-plugin-import
+    // Extending this plugin also sets parserOptions.sourceType = 'module'.
     'plugin:import/typescript',
   ],
 
   parser: '@typescript-eslint/parser',
 
   settings: {
-    'import/parsers': {
-      '@typescript-eslint/parser': ['.ts'],
-    },
-
     // eslint-import-resolver-typescript
     'import/resolver': {
       typescript: {
-        project: './tsconfig.json',
+        project: 'tsconfig.json',
       }
     }
   },
@@ -32,9 +29,9 @@ module.exports = {
   rules: {
     // Turn off rules that TypeScript already enforces as part of type checking.
     // See https://typescript-eslint.io/docs/linting/troubleshooting/#eslint-plugin-import.
+    'import/default': ['off'],
     'import/named': ['off'],
     'import/namespace': ['off'],
-    'import/default': ['off'],
     'import/no-named-as-default-member': ['off'],
   }
 };

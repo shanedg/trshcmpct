@@ -207,27 +207,37 @@ importers:
   ../../eslint-config-typescript:
     specifiers:
       '@trshcmpctr/eslint-config': workspace:*
+      '@trshcmpctr/eslint-config-jest': workspace:*
+      '@trshcmpctr/jest-stdout-reporter': workspace:*
       '@trshcmpctr/markdownlint-config': workspace:*
       '@typescript-eslint/eslint-plugin': ~5.13.0
       '@typescript-eslint/parser': ~5.13.0
+      enhanced-resolve: ~5.9.2
       eslint: ^8.7.0
       eslint-import-resolver-typescript: ~2.5.0
       eslint-plugin-eslint-comments: ~3.2.0
       eslint-plugin-import: ~2.25.4
+      eslint-plugin-jest: ~26.1.1
       eslint-plugin-node: ~11.1.0
+      jest: ^27.4.7
       markdownlint-cli2: ~0.4.0
       rimraf: ~3.0.2
       typescript: ^4.5.5
     devDependencies:
       '@trshcmpctr/eslint-config': link:../eslint-config
+      '@trshcmpctr/eslint-config-jest': link:../eslint-config-jest
+      '@trshcmpctr/jest-stdout-reporter': link:../jest-stdout-reporter
       '@trshcmpctr/markdownlint-config': link:../markdownlint-config
       '@typescript-eslint/eslint-plugin': 5.13.0_33fffc354ccfa91fbe7d1677b9395a0a
       '@typescript-eslint/parser': 5.13.0_eslint@8.10.0+typescript@4.6.2
+      enhanced-resolve: 5.9.2
       eslint: 8.10.0
       eslint-import-resolver-typescript: 2.5.0_8b406960a2a06af75ddac353adbd0cfd
       eslint-plugin-eslint-comments: 3.2.0_eslint@8.10.0
       eslint-plugin-import: 2.25.4_eslint@8.10.0
+      eslint-plugin-jest: 26.1.1_6471581eabfd588523a344337c838f00
       eslint-plugin-node: 11.1.0_eslint@8.10.0
+      jest: 27.5.1
       markdownlint-cli2: 0.4.0
       rimraf: 3.0.2
       typescript: 4.6.2
