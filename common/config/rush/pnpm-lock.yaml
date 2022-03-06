@@ -142,9 +142,8 @@ importers:
       markdownlint-cli2: ~0.4.0
       rimraf: ~3.0.2
       typescript: ^4.5.5
-    dependencies:
-      '@trshcmpctr/eslint-config': link:../eslint-config
     devDependencies:
+      '@trshcmpctr/eslint-config': link:../eslint-config
       '@trshcmpctr/markdownlint-config': link:../markdownlint-config
       eslint: 8.10.0
       eslint-plugin-eslint-comments: 3.2.0_eslint@8.10.0
@@ -168,9 +167,8 @@ importers:
       eslint-plugin-react-hooks: ~4.3.0
       markdownlint-cli2: ~0.4.0
       rimraf: ~3.0.2
-    dependencies:
-      '@trshcmpctr/eslint-config': link:../eslint-config
     devDependencies:
+      '@trshcmpctr/eslint-config': link:../eslint-config
       '@trshcmpctr/markdownlint-config': link:../markdownlint-config
       eslint: 8.10.0
       eslint-plugin-eslint-comments: 3.2.0_eslint@8.10.0
@@ -196,9 +194,8 @@ importers:
       markdownlint-cli2: ~0.4.0
       rimraf: ~3.0.2
       typescript: ^4.5.5
-    dependencies:
-      '@trshcmpctr/eslint-config': link:../eslint-config
     devDependencies:
+      '@trshcmpctr/eslint-config': link:../eslint-config
       '@trshcmpctr/markdownlint-config': link:../markdownlint-config
       '@typescript-eslint/eslint-plugin': 5.11.0_42c0cf1adaaa84428a936a5fc5b2308d
       '@typescript-eslint/parser': 5.11.0_eslint@8.10.0+typescript@4.6.2
