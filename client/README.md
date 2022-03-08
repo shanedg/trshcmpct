@@ -47,7 +47,7 @@ npm run lint
 Run `Jest` tests.
 
 ```bash
-npm run test
+npm run test:jest
 ```
 
 ## Type Check
