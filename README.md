@@ -48,4 +48,10 @@ rush scaffold
 
 ## TODO
 
-* test eslint-config-* packages
+* audit project.json's and scaffold template
+* add tests for:
+  * @trshcmpctr/jest-stdout-reporter
+  * @trshcmpctr/markdownlint-config
+  * @trshcmpctr/scaffold
+* build cache things
+* changelog generation

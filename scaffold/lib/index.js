@@ -1,3 +1,5 @@
+import { join } from 'path';
+
 const relativePathToRepoRoot = '../../';
 
 /**
@@ -36,6 +38,22 @@ export default function (plop) {
         // By default, globs don't match file names that start with dot, i.e. '.eslintrc.js.hbs'.
         globOptions: { dot: true },
       },
+
+      // Update rush.json projects
+      {
+        type: 'append',
+        path: join(relativePathToRepoRoot, 'rush.json'),
+        // This regular expression matches the start of the projects list.
+        // The template is appended immediately after this line.
+        pattern: /"projects": \[/,
+        data: {
+          scope: '@trshcmpctr',
+        },
+        template: `    {
+      "packageName": "@trshcmpctr/{{name}}",
+      "projectFolder": "{{path}}"
+    },`
+      }
     ]
   });
 }

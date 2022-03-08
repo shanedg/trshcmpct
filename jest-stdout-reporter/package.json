@@ -8,7 +8,8 @@
     "build": "echo fake build || true",
     "clean": "rimraf *.build.log",
     "lint": "eslint --max-warnings=0 --fix --cache --cache-location node_modules/.cache/eslint-cache/ .",
-    "lint:md": "markdownlint-cli2-config 'node_modules/@trshcmpctr/markdownlint-config/.markdownlint-cli2.jsonc' '**/*.md' '#node_modules'"
+    "lint:md": "markdownlint-cli2-config 'node_modules/@trshcmpctr/markdownlint-config/.markdownlint-cli2.jsonc' '**/*.md' '#node_modules'",
+    "test": "true"
   },
   "dependencies": {
     "@jest/reporters": "^27.4.6"
