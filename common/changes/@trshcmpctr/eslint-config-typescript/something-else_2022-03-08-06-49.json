@@ -1,0 +1,10 @@
+{
+  "changes": [
+    {
+      "packageName": "@trshcmpctr/eslint-config-typescript",
+      "comment": "",
+      "type": "none"
+    }
+  ],
+  "packageName": "@trshcmpctr/eslint-config-typescript"
+}
