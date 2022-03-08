@@ -3,5 +3,10 @@
   "config": {
     // Make rule consistent with defaults for the VSCode Extension.
     "line-length": false
-  }
+  },
+  "ignores": [
+    // CHANGELOG files are automatically generated.
+    // Avoid linting generated files.
+    "CHANGELOG.md"
+  ]
 }
