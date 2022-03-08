@@ -2,6 +2,18 @@
   "name": "@trshcmpctr/markdownlint-config",
   "entries": [
     {
+      "version": "1.1.0",
+      "tag": "@trshcmpctr/markdownlint-config_v1.1.0",
+      "date": "Tue, 08 Mar 2022 06:59:26 GMT",
+      "comments": {
+        "minor": [
+          {
+            "comment": "Ignore generated CHANGELOG.md files"
+          }
+        ]
+      }
+    },
+    {
       "version": "1.0.0",
       "tag": "@trshcmpctr/markdownlint-config_v1.0.0",
       "date": "Tue, 08 Mar 2022 06:40:04 GMT",

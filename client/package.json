@@ -1,6 +1,6 @@
 {
   "name": "@trshcmpctr/client",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "All build config, no substance.",
   "main": "src/index.ts",
   "files": ["dist"],

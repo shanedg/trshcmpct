@@ -1,6 +1,6 @@
 {
   "name": "@trshcmpctr/eslint-ignored",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Filter paths ignored by ESLint.",
   "main": "lib/eslint-ignored.js",
   "files": ["lib/eslint-ignored.js"],

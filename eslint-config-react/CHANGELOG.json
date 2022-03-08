@@ -2,6 +2,27 @@
   "name": "@trshcmpctr/eslint-config-react",
   "entries": [
     {
+      "version": "1.0.1",
+      "tag": "@trshcmpctr/eslint-config-react_v1.0.1",
+      "date": "Tue, 08 Mar 2022 06:59:26 GMT",
+      "comments": {
+        "dependency": [
+          {
+            "comment": "Updating dependency \"@trshcmpctr/eslint-config\" to `1.0.1`"
+          },
+          {
+            "comment": "Updating dependency \"@trshcmpctr/eslint-config-jest\" to `1.0.1`"
+          },
+          {
+            "comment": "Updating dependency \"@trshcmpctr/jest-stdout-reporter\" to `1.0.1`"
+          },
+          {
+            "comment": "Updating dependency \"@trshcmpctr/markdownlint-config\" to `1.1.0`"
+          }
+        ]
+      }
+    },
+    {
       "version": "1.0.0",
       "tag": "@trshcmpctr/eslint-config-react_v1.0.0",
       "date": "Tue, 08 Mar 2022 06:40:04 GMT",

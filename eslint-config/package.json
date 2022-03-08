@@ -1,6 +1,6 @@
 {
   "name": "@trshcmpctr/eslint-config",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Base ESLint config for JavaScript projects.",
   "main": "lib/eslint-config.js",
   "files": ["lib/eslint-config.js"],

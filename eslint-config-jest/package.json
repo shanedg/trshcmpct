@@ -1,6 +1,6 @@
 {
   "name": "@trshcmpctr/eslint-config-jest",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "ESLint config for Jest tests in JavaScript projects.",
   "main": "lib/eslint-config-jest.js",
   "files": ["lib/eslint-config-jest.js"],
