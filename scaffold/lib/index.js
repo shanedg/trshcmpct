@@ -1,3 +1,5 @@
+import { join } from 'path';
+
 const relativePathToRepoRoot = '../../';
 
 /**
@@ -37,14 +39,20 @@ export default function (plop) {
         globOptions: { dot: true },
       },
 
-      // Print rush.json snippet
-      function (answers, _config, _plop) {
-        const { name, path } = answers;
-        const toJson = JSON.stringify({
-          packageName: `@trshcmpctr/${name}`,
-          projectFolder: path
-        }, null, 2);
-        return `Succeeded! Copy this into rush.json:\n\n${toJson}\n`;
+      // Update rush.json projects
+      {
+        type: 'append',
+        path: join(relativePathToRepoRoot, 'rush.json'),
+        // This regular expression matches the start of the projects list.
+        // The template is appended immediately after this line.
+        pattern: /"projects": \[/,
+        data: {
+          scope: '@trshcmpctr',
+        },
+        template: `    {
+      "packageName": "@trshcmpctr/{{name}}",
+      "projectFolder": "{{path}}"
+    },`
       }
     ]
   });
