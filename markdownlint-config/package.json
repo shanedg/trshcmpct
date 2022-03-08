@@ -7,7 +7,8 @@
   "scripts": {
     "build": "echo fake build || true",
     "clean": "rimraf *.build.log",
-    "lint:md": "markdownlint-cli2-config '.markdownlint-config.jsonc' '**/*.md' '#node_modules'"
+    "lint:md": "markdownlint-cli2-config '.markdownlint-config.jsonc' '**/*.md' '#node_modules'",
+    "test": "true"
   },
   "devDependencies": {
     "markdownlint-cli2": "~0.4.0",

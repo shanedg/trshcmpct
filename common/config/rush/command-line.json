@@ -15,8 +15,7 @@
       "name": "test",
       "summary": "Test all projects",
       "commandKind": "bulk",
-      "enableParallelism": true,
-      "ignoreMissingScript": true
+      "enableParallelism": true
     },
     {
       "name": "lint",
