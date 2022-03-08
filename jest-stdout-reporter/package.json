@@ -4,6 +4,20 @@
   "description": "Wraps the default reporter to prevent Jest from logging normal output to stderr.",
   "main": "lib/jest-stdout-reporter.js",
   "files": ["lib/jest-stdout-reporter.js"],
+  "contributors": [
+    {
+      "email": "shanedgarrity@gmail.com",
+      "name": "Shane Garrity"
+    }
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/shanedg/trshcmpctr.git",
+    "directory": "jest-stdout-reporter"
+  },
+  "homepage": "https://github.com/shanedg/trshcmpctr/tree/main/jest-stdout-reporter#readme",
+  "private": true,
+  "license": "UNLICENSED",
   "scripts": {
     "build": "echo fake build || true",
     "clean": "rimraf *.build.log",
