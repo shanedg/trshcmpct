@@ -36,6 +36,16 @@ export default function (plop) {
         // By default, globs don't match file names that start with dot, i.e. '.eslintrc.js.hbs'.
         globOptions: { dot: true },
       },
+
+      // Print rush.json snippet
+      function (answers, _config, _plop) {
+        const { name, path } = answers;
+        const toJson = JSON.stringify({
+          packageName: `@trshcmpctr/${name}`,
+          projectFolder: path
+        }, null, 2);
+        return `Succeeded! Copy this into rush.json:\n\n${toJson}\n`;
+      }
     ]
   });
 }
