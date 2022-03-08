@@ -1,0 +1,10 @@
+{
+  "changes": [
+    {
+      "packageName": "@trshcmpctr/jest-stdout-reporter",
+      "comment": "",
+      "type": "none"
+    }
+  ],
+  "packageName": "@trshcmpctr/jest-stdout-reporter"
+}
