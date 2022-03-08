@@ -50,7 +50,7 @@
       "summary": "Add a new project.",
       "commandKind": "global",
       "autoinstallerName": "rush-plop",
-      "shellCommand": "plop --plopfile scaffold/lib/index.js"
+      "shellCommand": "plop --plopfile build/scaffold/lib/index.js"
     }
 
     // {

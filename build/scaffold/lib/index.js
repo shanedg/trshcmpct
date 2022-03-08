@@ -1,6 +1,6 @@
 import { join } from 'path';
 
-const relativePathToRepoRoot = '../../';
+const relativePathToRepoRoot = '../../../';
 
 /**
  * Plopfile
