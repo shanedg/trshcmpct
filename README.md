@@ -48,4 +48,3 @@ rush scaffold
 
 ## TODO
 
-* test eslint-config-* packages
