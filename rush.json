@@ -388,15 +388,18 @@
   "projects": [
     {
       "packageName": "@trshcmpctr/client",
-      "projectFolder": "client"
+      "projectFolder": "client",
+      "shouldPublish": true
     },
     {
       "packageName": "@trshcmpctr/eslint-ignored",
-      "projectFolder": "eslint-ignored"
+      "projectFolder": "eslint-ignored",
+      "shouldPublish": true
     },
     {
       "packageName": "@trshcmpctr/jest-stdout-reporter",
-      "projectFolder": "jest-stdout-reporter"
+      "projectFolder": "jest-stdout-reporter",
+      "shouldPublish": true
     },
     {
       "packageName": "@trshcmpctr/eslint-config",
@@ -404,27 +407,33 @@
       "cyclicDependencyProjects": [
         "@trshcmpctr/eslint-config-jest",
         "@trshcmpctr/jest-stdout-reporter"
-      ]
+      ],
+      "shouldPublish": true
     },
     {
       "packageName": "@trshcmpctr/eslint-config-jest",
-      "projectFolder": "eslint-config-jest"
+      "projectFolder": "eslint-config-jest",
+      "shouldPublish": true
     },
     {
       "packageName": "@trshcmpctr/eslint-config-typescript",
-      "projectFolder": "eslint-config-typescript"
+      "projectFolder": "eslint-config-typescript",
+      "shouldPublish": true
     },
     {
       "packageName": "@trshcmpctr/eslint-config-react",
-      "projectFolder": "eslint-config-react"
+      "projectFolder": "eslint-config-react",
+      "shouldPublish": true
     },
     {
       "packageName": "@trshcmpctr/markdownlint-config",
-      "projectFolder": "markdownlint-config"
+      "projectFolder": "markdownlint-config",
+      "shouldPublish": true
     },
     {
       "packageName": "@trshcmpctr/scaffold",
-      "projectFolder": "scaffold"
+      "projectFolder": "scaffold",
+      "shouldPublish": true
     }
     
     // {
