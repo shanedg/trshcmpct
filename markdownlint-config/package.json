@@ -4,6 +4,20 @@
   "description": "Shareable config for markdownlint (markdownlint-cli2).",
   "main": ".markdownlint-cli2.jsonc",
   "files": [".markdownlint-cli2.jsonc"],
+  "contributors": [
+    {
+      "email": "shanedgarrity@gmail.com",
+      "name": "Shane Garrity"
+    }
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/shanedg/trshcmpctr.git",
+    "directory": "markdownlint-config"
+  },
+  "homepage": "https://github.com/shanedg/trshcmpctr/tree/main/markdownlint-config#readme",
+  "private": true,
+  "license": "UNLICENSED",
   "scripts": {
     "build": "echo fake build || true",
     "clean": "rimraf *.build.log",

@@ -5,6 +5,20 @@
   "main": "lib/index.js",
   "files": ["lib"],
   "type": "module",
+  "contributors": [
+    {
+      "email": "shanedgarrity@gmail.com",
+      "name": "Shane Garrity"
+    }
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/shanedg/trshcmpctr.git",
+    "directory": "scaffold"
+  },
+  "homepage": "https://github.com/shanedg/trshcmpctr/tree/main/scaffold#readme",
+  "private": true,
+  "license": "UNLICENSED",
   "scripts": {
     "asdf": "plop --plopfile lib/index.js project -- --name asdf --path asdf",
     "build": "echo fake build || true",
