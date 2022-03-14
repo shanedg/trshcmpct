@@ -112,6 +112,20 @@ importers:
       webpack-cli: 4.9.2_6d3cb84eb7e855ae6fc0a3ee585c0c26
       webpack-dev-server: 4.7.4_webpack-cli@4.9.2+webpack@5.70.0
 
+  ../../discord:
+    specifiers:
+      '@trshcmpctr/eslint-config': workspace:*
+      '@trshcmpctr/markdownlint-config': workspace:*
+      eslint: ^8.7.0
+      markdownlint-cli2: ~0.4.0
+      rimraf: ~3.0.2
+    devDependencies:
+      '@trshcmpctr/eslint-config': link:../eslint-config
+      '@trshcmpctr/markdownlint-config': link:../markdownlint-config
+      eslint: 8.10.0
+      markdownlint-cli2: 0.4.0
+      rimraf: 3.0.2
+
   ../../eslint-config:
     specifiers:
       '@trshcmpctr/eslint-config-jest': workspace:*
