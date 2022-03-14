@@ -23,6 +23,7 @@
     "clean": "rimraf *.build.log",
     "lint": "eslint --max-warnings=0 .",
     "lint:md": "markdownlint-cli2-config 'node_modules/@trshcmpctr/markdownlint-config/.markdownlint-cli2.jsonc' '**/*.md' '#node_modules'",
+    "start": "node lib/index.js",
     "test": "true"
   },
   "devDependencies": {
@@ -34,5 +35,8 @@
     "eslint": "^8.7.0",
     "markdownlint-cli2": "~0.4.0",
     "rimraf": "~3.0.2"
+  },
+  "dependencies": {
+    "express": "~4.17.3"
   }
 }
