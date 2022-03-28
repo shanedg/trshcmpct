@@ -68,7 +68,6 @@ steps:
     - failure
     - success
   depends_on:
-    - install
     - lint
     - lint:md
     - test
