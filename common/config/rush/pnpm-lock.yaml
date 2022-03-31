@@ -115,29 +115,39 @@ importers:
   ../../discord:
     specifiers:
       '@trshcmpctr/eslint-config': workspace:*
+      '@trshcmpctr/eslint-config-jest': workspace:*
+      '@trshcmpctr/jest-stdout-reporter': workspace:*
       '@trshcmpctr/markdownlint-config': workspace:*
       eslint: ^8.7.0
       eslint-plugin-eslint-comments: ~3.2.0
       eslint-plugin-import: ~2.25.4
+      eslint-plugin-jest: ~26.1.1
       eslint-plugin-node: ~11.1.0
       express: ~4.17.3
       hbs: ~4.2.0
+      jest: ^27.4.7
       markdownlint-cli2: ~0.4.0
       node-fetch: ~2.6.7
       rimraf: ~3.0.2
+      typescript: ^4.5.5
     dependencies:
       express: 4.17.3
       hbs: 4.2.0
       node-fetch: 2.6.7
     devDependencies:
       '@trshcmpctr/eslint-config': link:../eslint-config
+      '@trshcmpctr/eslint-config-jest': link:../eslint-config-jest
+      '@trshcmpctr/jest-stdout-reporter': link:../jest-stdout-reporter
       '@trshcmpctr/markdownlint-config': link:../markdownlint-config
       eslint: 8.12.0
       eslint-plugin-eslint-comments: 3.2.0_eslint@8.12.0
       eslint-plugin-import: 2.25.4_eslint@8.12.0
+      eslint-plugin-jest: 26.1.3_d0062e76d70ab01651d408ef76fbe2be
       eslint-plugin-node: 11.1.0_eslint@8.12.0
+      jest: 27.5.1
       markdownlint-cli2: 0.4.0
       rimraf: 3.0.2
+      typescript: 4.6.3
 
   ../../eslint-config:
     specifiers:
