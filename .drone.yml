@@ -19,6 +19,8 @@ steps:
       from_secret: discord_client_id
     DISCORD_CLIENT_SECRET:
       from_secret: discord_client_secret
+    DISCORD_GUILD_ID:
+      from_secret: discord_guild_id
   commands:
     - (cd discord && ./client_config_ci.sh)
 

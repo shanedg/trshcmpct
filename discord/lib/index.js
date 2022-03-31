@@ -4,7 +4,7 @@ const express = require('express');
 // We have to use node-fetch@^2 because node-fetch@>=3 is esm-only.
 const fetch = require('node-fetch');
 
-const { clientId, clientSecret, port } = require('./config.json');
+const { clientId, clientSecret, guildId, port } = require('./config.json');
 
 /**
  * Get auth token
