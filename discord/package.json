@@ -25,6 +25,7 @@
     "build": "echo fake build || true",
     "clean": "rimraf *.build.log",
     "debug": "node --inspect-brk lib/index.js",
+    "dev": "nodemon lib/index.js",
     "lint": "eslint --max-warnings=0 .",
     "lint:md": "markdownlint-cli2-config 'node_modules/@trshcmpctr/markdownlint-config/.markdownlint-cli2.jsonc' '**/*.md' '#node_modules'",
     "start": "node lib/index.js",
@@ -45,6 +46,7 @@
     "eslint": "^8.7.0",
     "jest": "^27.4.7",
     "markdownlint-cli2": "~0.4.0",
+    "nodemon": "~2.0.15",
     "rimraf": "~3.0.2",
     "typescript": "^4.5.5"
   },
