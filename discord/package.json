@@ -1,0 +1,58 @@
+{
+  "name": "@trshcmpctr/discord",
+  "version": "1.0.0",
+  "description": "discord",
+  "main": "lib/index.js",
+  "files": ["lib"],
+  "engines": {
+    "node": ">=16.0.0"
+  },
+  "contributors": [
+    {
+      "email": "shanedgarrity@gmail.com",
+      "name": "Shane Garrity"
+    }
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/shanedg/trshcmpctr.git",
+    "directory": "discord"
+  },
+  "homepage": "https://github.com/shanedg/trshcmpctr/tree/main/discord#readme",
+  "private": true,
+  "license": "UNLICENSED",
+  "scripts": {
+    "build": "echo fake build || true",
+    "clean": "rimraf *.build.log",
+    "debug": "node --inspect-brk lib/index.js",
+    "dev": "nodemon lib/index.js",
+    "lint": "eslint --max-warnings=0 .",
+    "lint:md": "markdownlint-cli2-config 'node_modules/@trshcmpctr/markdownlint-config/.markdownlint-cli2.jsonc' '**/*.md' '#node_modules'",
+    "start": "node lib/index.js",
+    "test": "jest --no-cache --silent"
+  },
+  "jest": {
+    "reporters": ["@trshcmpctr/jest-stdout-reporter"]
+  },
+  "devDependencies": {
+    "@trshcmpctr/eslint-config": "workspace:*",
+    "@trshcmpctr/eslint-config-jest": "workspace:*",
+    "@trshcmpctr/jest-stdout-reporter": "workspace:*",
+    "@trshcmpctr/markdownlint-config": "workspace:*",
+    "eslint-plugin-eslint-comments": "~3.2.0",
+    "eslint-plugin-import": "~2.25.4",
+    "eslint-plugin-jest": "~26.1.1",
+    "eslint-plugin-node": "~11.1.0",
+    "eslint": "^8.7.0",
+    "jest": "^27.4.7",
+    "markdownlint-cli2": "~0.4.0",
+    "nodemon": "~2.0.15",
+    "rimraf": "~3.0.2",
+    "typescript": "^4.5.5"
+  },
+  "dependencies": {
+    "express": "~4.17.3",
+    "hbs": "~4.2.0",
+    "node-fetch": "~2.6.7"
+  }
+}

@@ -387,6 +387,10 @@
    */
   "projects": [
     {
+      "packageName": "@trshcmpctr/discord",
+      "projectFolder": "discord"
+    },
+    {
       "packageName": "@trshcmpctr/client",
       "projectFolder": "client"
     },

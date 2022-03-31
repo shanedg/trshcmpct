@@ -12,12 +12,25 @@ steps:
   commands:
     - node common/scripts/install-run-rush.js install
 
+- name: inject_secrets
+  image: node:gallium
+  environment:
+    DISCORD_CLIENT_ID:
+      from_secret: discord_client_id
+    DISCORD_CLIENT_SECRET:
+      from_secret: discord_client_secret
+    DISCORD_GUILD_ID:
+      from_secret: discord_guild_id
+  commands:
+    - (cd discord && ./client_config_ci.sh)
+
 - name: lint
   image: node:gallium
   commands:
     - node common/scripts/install-run-rush.js lint
   depends_on:
     - install
+    - inject_secrets
 
 - name: lint:md
   image: node:gallium
@@ -68,7 +81,6 @@ steps:
     - failure
     - success
   depends_on:
-    - install
     - lint
     - lint:md
     - test
