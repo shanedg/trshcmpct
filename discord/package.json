@@ -24,6 +24,7 @@
   "scripts": {
     "build": "echo fake build || true",
     "clean": "rimraf *.build.log",
+    "debug": "node --inspect-brk lib/index.js",
     "lint": "eslint --max-warnings=0 .",
     "lint:md": "markdownlint-cli2-config 'node_modules/@trshcmpctr/markdownlint-config/.markdownlint-cli2.jsonc' '**/*.md' '#node_modules'",
     "start": "node lib/index.js",
