@@ -1,8 +1,9 @@
 const path = require('path');
 
+const cookieSession = require('cookie-session');
 const express = require('express');
 
-const { clientId, clientSecret, guildId, port } = require('./config.json');
+const { clientId, clientSecret, guildId, port, sessionSecret } = require('./config.json');
 const { authFromCode, getFetchWithOauth, getGuildById } = require('./utils');
 
 const app = express();
@@ -10,6 +11,15 @@ const app = express();
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'html');
 app.engine('html', require('hbs').__express);
+
+app.use(cookieSession({
+  // keys: [sessionSecret1, sessionSecret2],
+  // maxAge: 7 * 24 * 60 * 60 * 1000 // 1 week (how long tokens are valid)
+  // maxAge: 24 * 60 * 60 * 1000 // 24 hours
+  // maxAge: 10 * 60 * 1000 // 10 minutes
+  maxAge: 60 * 1000, // 1 minute
+  secret: sessionSecret,
+}));
 
 app.get('/', async (request, response) => {
   let avatar,

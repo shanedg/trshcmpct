@@ -53,6 +53,7 @@
   "dependencies": {
     "express": "~4.17.3",
     "hbs": "~4.2.0",
-    "node-fetch": "~2.6.7"
+    "node-fetch": "~2.6.7",
+    "cookie-session": "~2.0.0"
   }
 }
