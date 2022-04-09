@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>{{username}}#{{discriminator}}</title>
+  <style>
+    body {
+      background: black;
+      color: white;
+    }
+  </style>
+</head>
+
+<body>
+  <article id="info">
+    <h1>{{username}}#{{discriminator}}</h1>
+    <img src="https://cdn.discordapp.com/avatars/{{id}}/{{avatar}}.webp?size=128" />
+
+    {{#if guild}}
+    <p>member: {{guild.name}}</p>
+    <img src="https://cdn.discordapp.com/icons/{{guild.id}}/{{guild.icon}}.webp?size=128" />
+    {{else}}
+    <p>not a member of the server (or rate limited)</p>
+    {{/if}}
+
+    <!-- <p><button>logout</button></p> -->
+  </article>
+
+  {{#if newSession}}
+  <script>
+    const fragment = new URLSearchParams(window.location.search.slice(1));
+    const state = fragment.get('state');
+    if (localStorage.getItem('oauth-state') !== atob(decodeURIComponent(state))) {
+      console.log('You may have been clickjacked!');
+    }
+  </script>
+  {{/if}}
+  <script>
+    window.history.replaceState(null, null, '/');
+  </script>
+</body>
+
+</html>
