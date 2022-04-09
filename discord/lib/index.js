@@ -1,9 +1,12 @@
 const path = require('path');
 
+const cookieSession = require('cookie-session');
 const express = require('express');
+// We have to use node-fetch@^2 because node-fetch@>=3 is esm-only.
+const fetch = require('node-fetch');
 
-const { clientId, clientSecret, guildId, port } = require('./config.json');
-const { authFromCode, getFetchWithOauth, getGuildById } = require('./utils');
+const { clientId, clientSecret, guildId, port, sessionSecret } = require('./config.json');
+const { authFromCode, batchRequests, getFetchWithOauth, getGuildById } = require('./utils');
 
 const app = express();
 
@@ -11,41 +14,94 @@ app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'html');
 app.engine('html', require('hbs').__express);
 
+app.use(cookieSession({
+  // keys: [sessionSecret1, sessionSecret2],
+  // maxAge: 7 * 24 * 60 * 60 * 1000 // 1 week (how long tokens are valid)
+  // maxAge: 24 * 60 * 60 * 1000 // 24 hours
+  // maxAge: 10 * 60 * 1000 // 10 minutes
+  maxAge: 60 * 1000, // 1 minute
+  secret: sessionSecret,
+}));
+
 app.get('/', async (request, response) => {
-  let avatar,
-    id,
-    username,
-    discriminator;
+  request.session.views = (request.session.views || 0) + 1;
+
+  const nowInSeconds = Date.now()/1000;
 
   const { code } = request.query;
-  if (code) {
-    try {
-      // Auth user
-      const oauthResult = await authFromCode({ code, clientId, clientSecret, port });
-      const fetchWithOauth = getFetchWithOauth(await oauthResult.json());
+  const sessionHasToken = request.session.oauth && request.session.oauth.access_token;
+  const tokenIsNotExpired = request.session.oauthExpires > nowInSeconds;
+  const hasSession = sessionHasToken && tokenIsNotExpired;
 
-      // Get user details
-      const userResult = await fetchWithOauth('https://discord.com/api/users/@me');
-      ({ avatar, discriminator, id, username } = await userResult.json());
-
-      // Get user guilds
-      const guildsResult = await fetchWithOauth('https://discord.com/api/users/@me/guilds');
-      const guilds = await guildsResult.json();
-
-      const guild = getGuildById(guilds, guildId);
-      if (guild) {
-        console.log('in the guild!');
-        // TODO: get user has a specific role in our guild?
+  // RENDER LOGIN LINK
+  if (!code && !hasSession) {
+    response.render('index', { clientId }, (err, html) => {
+      if (err) {
+        console.error(err);
       }
-
-    } catch (error) {
-      // NOTE: An unauthorized token will not throw an error;
-      // it will return a 401 Unauthorized response in the try block above
-      console.error(error);
-    }
+      response.send(html);
+    });
+    return;
   }
 
-  response.render('index', { avatar, clientId, discriminator, id, username }, (err, html) => {
+  const commonEndpointUrls = [
+    'https://discord.com/api/users/@me',
+    'https://discord.com/api/users/@me/guilds',
+    // TODO: alternatively: https://discord.com/developers/docs/resources/user#get-current-user-guild-member
+    // requires: guilds.members.read
+    // `https://discord.com/api/users/@me/guilds/${guildId}/member`
+  ];
+
+  // REUSE SESSION TOKEN
+  if (request.session.oauth && request.session.oauth.access_token) {
+    const fetchWithOauth = getFetchWithOauth(fetch, request.session.oauth);
+    const [user, guilds] = await batchRequests(fetchWithOauth, commonEndpointUrls);
+    const { avatar, discriminator, id, username } = user;
+
+    // Guilds won't be an array if the request fails (rate limited).
+    const guild = Array.isArray(guilds) && getGuildById(guilds, guildId);
+
+    const data = {
+      avatar,
+      discriminator,
+      guild,
+      id,
+      newSession: false,
+      username,
+    };
+    response.render('logged-in', data, (err, html) => {
+      if (err) {
+        console.error(err);
+      }
+      response.send(html);
+    });
+    return;
+  }
+
+  // GET NEW TOKEN
+  const oauthResult = await authFromCode(fetch, { code, clientId, clientSecret, port });
+  const oauthFinal = await oauthResult.json();
+
+  request.session.oauth = oauthFinal;
+  request.session.oauthExpires = nowInSeconds + oauthFinal.expires_in;
+
+  const fetchWithOauth = getFetchWithOauth(fetch, oauthFinal);
+  
+  const [user, guilds] = await batchRequests(fetchWithOauth, commonEndpointUrls);
+  const { avatar, discriminator, id, username } = user;
+
+  // Guilds won't be an array if the request fails (rate limited).
+  const guild = Array.isArray(guilds) && getGuildById(guilds, guildId);
+
+  const data = {
+    avatar,
+    discriminator,
+    guild,
+    id,
+    newSession: true,
+    username,
+  };
+  response.render('logged-in', data, (err, html) => {
     if (err) {
       console.error(err);
     }

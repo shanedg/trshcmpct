@@ -26,9 +26,15 @@ if [ -z "$DISCORD_GUILD_ID" ]; then
   exit 1
 fi
 
+if [ -z "$SESSION_SECRET" ]; then
+  echo 'missing SESSION_SECRET'
+  exit 1
+fi
+
 echo "{
   \"clientId\": \"$DISCORD_CLIENT_ID\",
   \"clientSecret\": \"$DISCORD_CLIENT_SECRET\",
   \"guildId\": \"$DISCORD_GUILD_ID\",
-  \"port\": 53134
+  \"port\": 53134,
+  \"sessionSecret\": \"$SESSION_SECRET\"
 }" > $client_config_file
