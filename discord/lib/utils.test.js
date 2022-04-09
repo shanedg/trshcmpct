@@ -1,7 +1,3 @@
-jest.mock('node-fetch');
-
-const fetch = require('node-fetch');
-
 const {
   authFromCode,
   batchRequests,
@@ -35,10 +31,13 @@ const fetchWithBadResponseJson =
   url => Promise.resolve({ json: () => { throw new Error('response from ' + url); } });
 
 describe('utils', () => {
+  let fetch;
+
   describe('authFromCode', () => {
     beforeEach(async () => {
-      fetch.mockClear();
-      await authFromCode({
+      fetch && fetch.mockClear();
+      fetch = jest.fn(fetchSucceeds);
+      await authFromCode(fetch, {
         code: 'mycode',
         clientId: 'myclientid',
         clientSecret: 'myclientsecret',
@@ -122,11 +121,13 @@ describe('utils', () => {
   });
 
   describe('getFetchWithOauth', () => {
+    let fetch;
     let fetchWithOauth;
 
     beforeEach(() => {
-      fetch.mockClear();
-      fetchWithOauth = getFetchWithOauth({
+      fetch && fetch.mockClear();
+      fetch = jest.fn(fetchSucceeds);
+      fetchWithOauth = getFetchWithOauth(fetch, {
         token_type: 'Bearer',
         access_token: 'accesstoken'
       });
