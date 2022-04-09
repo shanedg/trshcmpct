@@ -27,7 +27,7 @@ if [ -z "$DISCORD_GUILD_ID" ]; then
 fi
 
 if [ -z "$DISCORD_SESSION_SECRET" ]; then
-  echo 'missing SESSION_SECRET'
+  echo 'missing DISCORD_SESSION_SECRET'
   exit 1
 fi
 
