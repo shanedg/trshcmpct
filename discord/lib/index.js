@@ -4,16 +4,22 @@ const cookieSession = require('cookie-session');
 const express = require('express');
 // We have to use node-fetch@^2 because node-fetch@>=3 is esm-only.
 const fetch = require('node-fetch');
+const pinoHttp = require('pino-http');
 
 const { clientId, clientSecret, guildId, port, sessionSecret } = require('./config.json');
 const { authFromCode, batchRequests, getFetchWithOauth, getGuildById } = require('./utils');
 
 const app = express();
+const pinoLogger = pinoHttp({
+  autoLogging: false,
+  level: process.env.DISCORD_LOG_LEVEL || 'info',
+});
 
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'html');
 app.engine('html', require('hbs').__express);
 
+app.use(pinoLogger);
 app.use(cookieSession({
   // keys: [sessionSecret1, sessionSecret2],
   // maxAge: 7 * 24 * 60 * 60 * 1000 // 1 week (how long tokens are valid)
@@ -35,9 +41,10 @@ app.get('/', async (request, response) => {
 
   // RENDER LOGIN LINK
   if (!code && !hasSession) {
+    request.log.debug('render login page');
     response.render('index', { clientId }, (err, html) => {
       if (err) {
-        console.error(err);
+        request.log.error(err);
       }
       response.send(html);
     });
@@ -54,6 +61,7 @@ app.get('/', async (request, response) => {
 
   // REUSE SESSION TOKEN
   if (request.session.oauth && request.session.oauth.access_token) {
+    request.log.debug('reuse session token');
     const fetchWithOauth = getFetchWithOauth(fetch, request.session.oauth);
     const [user, guilds] = await batchRequests(fetchWithOauth, commonEndpointUrls);
     const { avatar, discriminator, id, username } = user;
@@ -71,7 +79,7 @@ app.get('/', async (request, response) => {
     };
     response.render('logged-in', data, (err, html) => {
       if (err) {
-        console.error(err);
+        request.log.error(err);
       }
       response.send(html);
     });
@@ -79,6 +87,7 @@ app.get('/', async (request, response) => {
   }
 
   // GET NEW TOKEN
+  request.log.debug('get new token');
   const oauthResult = await authFromCode(fetch, { code, clientId, clientSecret, port });
   const oauthFinal = await oauthResult.json();
 
@@ -103,10 +112,10 @@ app.get('/', async (request, response) => {
   };
   response.render('logged-in', data, (err, html) => {
     if (err) {
-      console.error(err);
+      request.log.error(err);
     }
     response.send(html);
   });
 });
 
-app.listen(port, () => console.log(`App listening at http://localhost:${port}`));
+app.listen(port, () => pinoLogger.logger.info(`App listening at http://localhost:${port}`));
