@@ -9,6 +9,37 @@ const pinoHttp = require('pino-http');
 const { clientId, clientSecret, guildId, port, sessionSecret } = require('./config.json');
 const { authFromCode, batchRequests, getFetchWithOauth, getGuildById } = require('./utils');
 
+/**
+ * Get data for logged-in view
+ * @param {Function} fetch Fetch implementation
+ * @param {boolean} newSession If session is new
+ * @returns Logged-in template local variables
+ */
+const getLoggedInData = async (fetch, newSession) => {
+  const commonEndpointUrls = [
+    'https://discord.com/api/users/@me',
+    'https://discord.com/api/users/@me/guilds',
+    // TODO: alternatively: https://discord.com/developers/docs/resources/user#get-current-user-guild-member
+    // requires: guilds.members.read
+    // `https://discord.com/api/users/@me/guilds/${guildId}/member`
+  ];
+  const [user, guilds] = await batchRequests(fetch, commonEndpointUrls);
+  const { avatar, discriminator, id, username } = user;
+
+  // Guilds won't be an array if the request fails (rate limited).
+  const guild = Array.isArray(guilds) && getGuildById(guilds, guildId);
+
+  const data = {
+    avatar,
+    discriminator,
+    guild,
+    id,
+    newSession,
+    username,
+  };
+  return data;
+};
+
 const app = express();
 const pinoLogger = pinoHttp({
   autoLogging: false,
@@ -29,14 +60,6 @@ app.use(cookieSession({
   secret: sessionSecret,
 }));
 
-const commonEndpointUrls = [
-  'https://discord.com/api/users/@me',
-  'https://discord.com/api/users/@me/guilds',
-  // TODO: alternatively: https://discord.com/developers/docs/resources/user#get-current-user-guild-member
-  // requires: guilds.members.read
-  // `https://discord.com/api/users/@me/guilds/${guildId}/member`
-];
-
 /**
  * Render login screen for un-auth'd sessions
  * @param {Object} request Request object
@@ -53,7 +76,6 @@ const renderLogin = (request, response, next) => {
   const tokenIsNotExpired = request.session.oauthExpires > nowInSeconds;
   const hasSession = sessionHasToken && tokenIsNotExpired;
 
-  // RENDER LOGIN LINK
   if (!code && !hasSession) {
     request.log.debug('render login page');
     response.render('index', { clientId });
@@ -70,24 +92,10 @@ const renderLogin = (request, response, next) => {
  * @returns 
  */
 const reuseSessionToken = async (request, response, next) => {
-  // REUSE SESSION TOKEN
   if (request.session.oauth && request.session.oauth.access_token) {
     request.log.debug('reuse session token');
     const fetchWithOauth = getFetchWithOauth(fetch, request.session.oauth);
-    const [user, guilds] = await batchRequests(fetchWithOauth, commonEndpointUrls);
-    const { avatar, discriminator, id, username } = user;
-
-    // Guilds won't be an array if the request fails (rate limited).
-    const guild = Array.isArray(guilds) && getGuildById(guilds, guildId);
-
-    const data = {
-      avatar,
-      discriminator,
-      guild,
-      id,
-      newSession: false,
-      username,
-    };
+    const data = await getLoggedInData(fetchWithOauth, false);
     response.render('logged-in', data);
     return;
   }
@@ -101,7 +109,6 @@ const reuseSessionToken = async (request, response, next) => {
  * @param {Function} _next Middleware callback
  */
 const getNewToken = async (request, response, _next) => {
-  // GET NEW TOKEN
   request.log.debug('get new token');
   const { code } = request.query;
   const oauthResult = await authFromCode(fetch, { code, clientId, clientSecret, port });
@@ -113,21 +120,7 @@ const getNewToken = async (request, response, _next) => {
   request.session.oauthExpires = nowInSeconds + oauthFinal.expires_in;
 
   const fetchWithOauth = getFetchWithOauth(fetch, oauthFinal);
-  
-  const [user, guilds] = await batchRequests(fetchWithOauth, commonEndpointUrls);
-  const { avatar, discriminator, id, username } = user;
-
-  // Guilds won't be an array if the request fails (rate limited).
-  const guild = Array.isArray(guilds) && getGuildById(guilds, guildId);
-
-  const data = {
-    avatar,
-    discriminator,
-    guild,
-    id,
-    newSession: true,
-    username,
-  };
+  const data = await getLoggedInData(fetchWithOauth, true);
   response.render('logged-in', data);
 };
 
