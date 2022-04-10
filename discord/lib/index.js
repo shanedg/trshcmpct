@@ -29,7 +29,13 @@ app.use(cookieSession({
   secret: sessionSecret,
 }));
 
-app.get('/', async (request, response) => {
+/**
+ * Main rendering logic
+ * @param {Object} request Request object
+ * @param {Object} response Response object
+ * @param {Function} _next Middleware callback
+ */
+const handler = async (request, response, _next) => {
   request.session.views = (request.session.views || 0) + 1;
 
   const nowInSeconds = Date.now()/1000;
@@ -101,7 +107,9 @@ app.get('/', async (request, response) => {
     username,
   };
   response.render('logged-in', data);
-});
+};
+
+app.get('/', handler);
 
 app.use((error, request, response, next) => {
   request.log.error(error);
