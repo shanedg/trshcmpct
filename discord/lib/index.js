@@ -42,12 +42,7 @@ app.get('/', async (request, response) => {
   // RENDER LOGIN LINK
   if (!code && !hasSession) {
     request.log.debug('render login page');
-    response.render('index', { clientId }, (err, html) => {
-      if (err) {
-        request.log.error(err);
-      }
-      response.send(html);
-    });
+    response.render('index', { clientId });
     return;
   }
 
@@ -77,12 +72,7 @@ app.get('/', async (request, response) => {
       newSession: false,
       username,
     };
-    response.render('logged-in', data, (err, html) => {
-      if (err) {
-        request.log.error(err);
-      }
-      response.send(html);
-    });
+    response.render('logged-in', data);
     return;
   }
 
@@ -110,9 +100,16 @@ app.get('/', async (request, response) => {
     newSession: true,
     username,
   };
-  response.render('logged-in', data, (err, html) => {
+  response.render('logged-in', data);
+});
+
+app.use((error, request, response, next) => {
+  request.log.error(error);
+
+  response.render('error', null, (err, html) => {
     if (err) {
       request.log.error(err);
+      next();
     }
     response.send(html);
   });
