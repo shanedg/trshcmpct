@@ -29,13 +29,21 @@ app.use(cookieSession({
   secret: sessionSecret,
 }));
 
+const commonEndpointUrls = [
+  'https://discord.com/api/users/@me',
+  'https://discord.com/api/users/@me/guilds',
+  // TODO: alternatively: https://discord.com/developers/docs/resources/user#get-current-user-guild-member
+  // requires: guilds.members.read
+  // `https://discord.com/api/users/@me/guilds/${guildId}/member`
+];
+
 /**
- * Main rendering logic
+ * Render login screen for un-auth'd sessions
  * @param {Object} request Request object
  * @param {Object} response Response object
- * @param {Function} _next Middleware callback
+ * @param {Function} next Middleware callback
  */
-const handler = async (request, response, _next) => {
+const renderLogin = (request, response, next) => {
   request.session.views = (request.session.views || 0) + 1;
 
   const nowInSeconds = Date.now()/1000;
@@ -51,15 +59,17 @@ const handler = async (request, response, _next) => {
     response.render('index', { clientId });
     return;
   }
+  next();
+};
 
-  const commonEndpointUrls = [
-    'https://discord.com/api/users/@me',
-    'https://discord.com/api/users/@me/guilds',
-    // TODO: alternatively: https://discord.com/developers/docs/resources/user#get-current-user-guild-member
-    // requires: guilds.members.read
-    // `https://discord.com/api/users/@me/guilds/${guildId}/member`
-  ];
-
+/**
+ * Render logged-in content using the existing session token
+ * @param {Object} request Request object
+ * @param {Object} response Response object
+ * @param {Function} next Middleware callback
+ * @returns 
+ */
+const reuseSessionToken = async (request, response, next) => {
   // REUSE SESSION TOKEN
   if (request.session.oauth && request.session.oauth.access_token) {
     request.log.debug('reuse session token');
@@ -81,11 +91,23 @@ const handler = async (request, response, _next) => {
     response.render('logged-in', data);
     return;
   }
+  next();
+};
 
+/**
+ * Render logged-in content after getting a fresh auth token
+ * @param {Object} request Request object
+ * @param {Object} response Response object
+ * @param {Function} _next Middleware callback
+ */
+const getNewToken = async (request, response, _next) => {
   // GET NEW TOKEN
   request.log.debug('get new token');
+  const { code } = request.query;
   const oauthResult = await authFromCode(fetch, { code, clientId, clientSecret, port });
   const oauthFinal = await oauthResult.json();
+
+  const nowInSeconds = Date.now()/1000;
 
   request.session.oauth = oauthFinal;
   request.session.oauthExpires = nowInSeconds + oauthFinal.expires_in;
@@ -109,7 +131,7 @@ const handler = async (request, response, _next) => {
   response.render('logged-in', data);
 };
 
-app.get('/', handler);
+app.get('/', [renderLogin, reuseSessionToken, getNewToken]);
 
 app.use((error, request, response, next) => {
   request.log.error(error);
