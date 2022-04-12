@@ -69,7 +69,7 @@ describe('getNewTokenWithDependencies creates a handler that', () => {
 
   it('renders the logged in template', () => {
     expect(renderSpy.mock.calls.length).toBe(1);
-    expect(renderSpy.mock.calls[0][0]).toBe('logged-in');
+    expect(renderSpy.mock.calls[0][0]).toBe('authenticated');
   });
 
   it('injects new session flag', () => {
@@ -95,7 +95,7 @@ describe('getReuseSessionTokenWithDependencies creates a handler that', () => {
 
   it('renders the logged in template', () => {
     expect(renderSpy.mock.calls.length).toBe(1);
-    expect(renderSpy.mock.calls[0][0]).toBe('logged-in');
+    expect(renderSpy.mock.calls[0][0]).toBe('authenticated');
   });
 
   it('injects new session flag', () => {

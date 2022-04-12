@@ -18,10 +18,10 @@ const batchRequests = async (fetch, urls) => {
 const selectGuildById = (guilds, guildId) => guilds.find(({ id }) => id === guildId); 
  
 /**
- * Get data for logged-in view
+ * Get data for authenticated view
  * @param {Function} fetch Fetch implementation
  * @param {Object} data Required data
- * @returns Logged-in template local variables
+ * @returns Authenticated template local variables
  */
 const getLoggedInData = async (fetch, { guildId }) => {
   const commonEndpointUrls = [

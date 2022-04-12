@@ -1,7 +1,7 @@
 const {
   getNewTokenWithDependencies,
   getReuseSessionTokenWithDependencies,
-} = require('./logged-in');
+} = require('./authenticated');
 const { getRenderLoginWithData } = require('./login');
 const { handleErrors } = require('./error');
 
