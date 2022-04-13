@@ -48,7 +48,7 @@ const getLoggedInData = async (fetch, { guildId }) => {
 };
 
 module.exports = {
-  batchRequests,
-  getLoggedInData,
-  selectGuildById,
+  batchRequests, // only exported for testing
+  getLoggedInData, 
+  selectGuildById, // only exported for testing
 };

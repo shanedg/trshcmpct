@@ -1,6 +1,7 @@
-// Public, exported in index
+// Exported in utils/index as part of the utils "public api"
 const { getLoggedInData } = require('.');
-// "Private"
+
+// "private", imported directly from the module
 const { batchRequests, selectGuildById } = require('./get-logged-in-data');
 
 /**
