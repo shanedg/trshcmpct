@@ -1,4 +1,6 @@
-const { getFetchWithOauth } = require('.');
+import { jest } from '@jest/globals';
+
+import { getFetchWithOauth } from '.';
 
 /**
  * Fake implementation of fetch

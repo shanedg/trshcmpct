@@ -1,8 +1,10 @@
+import { jest } from '@jest/globals';
+
 // Exported in utils/index as part of the utils "public api"
-const { getLoggedInData } = require('.');
+import { getLoggedInData } from '.';
 
 // "private", imported directly from the module
-const { batchRequests, selectGuildById } = require('./get-logged-in-data');
+import { batchRequests, selectGuildById } from './get-logged-in-data';
 
 /**
  * Fake implementation of fetch

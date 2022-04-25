@@ -1,10 +1,21 @@
-const path = require('path');
+import { dirname, join } from 'path';
+import { fileURLToPath } from 'url';
 
-const cookieSession = require('cookie-session');
-const express = require('express');
+import cookieSession from 'cookie-session';
+import express from 'express';
 // We have to use node-fetch@^2 because node-fetch@>=3 is esm-only.
-const fetch = require('node-fetch');
-const pinoHttp = require('pino-http');
+// Someday soon we'll use the fetch api from node itself :)
+import fetch from 'node-fetch';
+import handlebars from 'hbs';
+import pinoHttp from 'pino-http';
+
+import config from './config.json';
+import {
+  getRenderLoginWithData,
+  getNewTokenWithDependencies,
+  getReuseSessionTokenWithDependencies,
+  handleErrors,
+} from './handlers';
 
 const {
   clientId,
@@ -12,13 +23,9 @@ const {
   guildId,
   port,
   sessionSecret,
-} = require('./config.json');
-const {
-  getRenderLoginWithData,
-  getNewTokenWithDependencies,
-  getReuseSessionTokenWithDependencies,
-  handleErrors,
-} = require('./handlers');
+} = config;
+
+const { __express: handlebarsForExpress } = handlebars;
 
 const app = express();
 const pinoLogger = pinoHttp({
@@ -26,9 +33,11 @@ const pinoLogger = pinoHttp({
   level: process.env.DISCORD_LOG_LEVEL || 'info',
 });
 
-app.set('views', path.join(__dirname, 'views'));
+const __dirname = dirname(fileURLToPath(import.meta.url));
+
+app.set('views', join(__dirname, 'views'));
 app.set('view engine', 'html');
-app.engine('html', require('hbs').__express);
+app.engine('html', handlebarsForExpress);
 
 app.use(pinoLogger);
 app.use(cookieSession({

@@ -1,4 +1,6 @@
-const { handleErrors } = require('.');
+import { jest } from '@jest/globals';
+
+import { handleErrors } from '.';
 
 describe('handleErrors', () => {
   const logDebugSpy = jest.fn();

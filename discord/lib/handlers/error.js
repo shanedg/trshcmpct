@@ -15,4 +15,4 @@ const handleErrors = (error, request, response, _next) => {
   });
 };
 
-module.exports = { handleErrors };
+export { handleErrors };

@@ -114,6 +114,7 @@ importers:
 
   ../../discord:
     specifiers:
+      '@jest/globals': ~27.5.1
       '@trshcmpctr/eslint-config': workspace:*
       '@trshcmpctr/eslint-config-jest': workspace:*
       '@trshcmpctr/jest-stdout-reporter': workspace:*
@@ -140,6 +141,7 @@ importers:
       node-fetch: 2.6.7
       pino-http: 6.6.0
     devDependencies:
+      '@jest/globals': 27.5.1
       '@trshcmpctr/eslint-config': link:../eslint-config
       '@trshcmpctr/eslint-config-jest': link:../eslint-config-jest
       '@trshcmpctr/jest-stdout-reporter': link:../jest-stdout-reporter

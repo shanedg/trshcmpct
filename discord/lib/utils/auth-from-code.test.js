@@ -1,4 +1,6 @@
-const { authFromCode } = require('.');
+import { jest } from '@jest/globals';
+
+import { authFromCode } from '.';
 
 /**
  * Fake implementation of fetch

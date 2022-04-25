@@ -2,11 +2,14 @@
   "name": "@trshcmpctr/discord",
   "version": "1.0.0",
   "description": "discord",
-  "main": "lib/index.js",
-  "files": ["lib"],
+  "files": [
+    "lib",
+    "!lib/**/*.test.*"
+  ],
   "engines": {
     "node": ">=16.0.0"
   },
+  "type": "module",
   "contributors": [
     {
       "email": "shanedgarrity@gmail.com",
@@ -24,19 +27,20 @@
   "scripts": {
     "build": "echo fake build || true",
     "clean": "rimraf *.build.log",
-    "debug": "node --inspect-brk lib/index.js",
-    "dev": "nodemon --inspect lib/index.js",
+    "debug": "node --experimental-specifier-resolution=node --experimental-json-modules --trace-warnings --inspect-brk lib/index.js",
+    "dev": "nodemon --experimental-specifier-resolution=node --experimental-json-modules --trace-warnings --inspect lib/index.js",
     "lint": "eslint --max-warnings=0 .",
     "lint:md": "markdownlint-cli2-config 'node_modules/@trshcmpctr/markdownlint-config/.markdownlint-cli2.jsonc' '**/*.md' '#node_modules'",
-    "start": "node lib/index.js",
-    "test": "jest --no-cache --silent"
+    "start": "node --experimental-specifier-resolution=node --experimental-json-modules lib/index.js",
+    "test": "NODE_OPTIONS=--experimental-vm-modules jest --no-cache --silent"
   },
   "jest": {
     "reporters": ["@trshcmpctr/jest-stdout-reporter"]
   },
   "devDependencies": {
-    "@trshcmpctr/eslint-config": "workspace:*",
+    "@jest/globals": "~27.5.1",
     "@trshcmpctr/eslint-config-jest": "workspace:*",
+    "@trshcmpctr/eslint-config": "workspace:*",
     "@trshcmpctr/jest-stdout-reporter": "workspace:*",
     "@trshcmpctr/markdownlint-config": "workspace:*",
     "eslint-plugin-eslint-comments": "~3.2.0",

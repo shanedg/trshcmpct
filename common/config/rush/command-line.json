@@ -15,7 +15,8 @@
       "name": "test",
       "summary": "Test all projects",
       "commandKind": "bulk",
-      "enableParallelism": true
+      "enableParallelism": true,
+      "allowWarningsInSuccessfulBuild": true
     },
     {
       "name": "lint",

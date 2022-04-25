@@ -8,6 +8,14 @@ module.exports = {
 
   overrides: [
     {
+      files: ['lib/**'],
+      parserOptions: {
+        sourceType: 'module',
+        ecmaVersion: 'latest',
+      },
+    },
+
+    {
       files: ['*.test.js'],
       extends: ['@trshcmpctr/eslint-config-jest'],
     },

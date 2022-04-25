@@ -1,8 +1,8 @@
-const {
+import {
   authFromCode,
   getFetchWithOauth,
   getLoggedInData,
-} = require('../utils');
+} from '../utils';
 
 /**
  * Create handler for getting a fresh token
@@ -55,7 +55,7 @@ const getReuseSessionTokenWithDependencies = (fetch, { guildId }) => {
   };
 };
 
-module.exports = {
+export {
   getNewTokenWithDependencies,
   getReuseSessionTokenWithDependencies,
 };

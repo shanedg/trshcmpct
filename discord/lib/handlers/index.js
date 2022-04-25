@@ -1,11 +1,11 @@
-const {
+import {
   getNewTokenWithDependencies,
   getReuseSessionTokenWithDependencies,
-} = require('./authenticated');
-const { getRenderLoginWithData } = require('./login');
-const { handleErrors } = require('./error');
+} from './authenticated';
+import { getRenderLoginWithData } from './login';
+import { handleErrors } from './error';
 
-module.exports = {
+export {
   getRenderLoginWithData,
   getNewTokenWithDependencies,
   getReuseSessionTokenWithDependencies,

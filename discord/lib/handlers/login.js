@@ -24,4 +24,4 @@ const getRenderLoginWithData = ({ clientId }) => {
   };
 };
 
-module.exports = { getRenderLoginWithData };
+export { getRenderLoginWithData };
