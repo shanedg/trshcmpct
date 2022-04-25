@@ -3,8 +3,8 @@ import { jest } from '@jest/globals';
 // Exported in utils/index as part of the utils "public api"
 import { getLoggedInData } from '.';
 
-// "private", imported directly from the module
-import { batchRequests, selectGuildById } from './get-logged-in-data';
+import { batchRequests } from './batch-requests';
+import { selectGuildById } from './select-guild-by-id';
 
 /**
  * Fake implementation of fetch
