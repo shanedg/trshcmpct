@@ -7,3 +7,7 @@ Quickly generate new package boilerplate.
 ```sh
 rush scaffold
 ```
+
+## TODO
+
+* scaffold should update .vscode/settings.json with package directory
