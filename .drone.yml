@@ -48,6 +48,13 @@ steps:
   depends_on:
     - install
 
+- name: test:ava
+  image: node:gallium
+  commands:
+    - node common/scripts/install-run-rush.js test:ava
+  depends_on:
+    - install
+
 - name: build
   image: node:gallium
   commands:
@@ -86,4 +93,5 @@ steps:
     - lint
     - lint:md
     - test
+    - test:ava
     - build

@@ -4,7 +4,6 @@ import { jest } from '@jest/globals';
 import { getLoggedInData } from '.';
 
 import { batchRequests } from './batch-requests';
-import { selectGuildById } from './select-guild-by-id';
 
 /**
  * Fake implementation of fetch
@@ -134,37 +133,3 @@ describe('getLoggedInData', () => {
     });
   });
 });
-
-describe('selectGuildById', () => {
-  const testGuilds = [
-    {
-      id: 'someid',
-      name: 'server name',
-      icon: 'icon',
-      owner: true,
-      permissions: 'permissions',
-      features: [],
-      permissions_new: 'new permissions'
-    },
-    {
-      id: 'anotherid',
-      name: 'server name',
-      icon: 'icon',
-      owner: true,
-      permissions: 'permissions',
-      features: [],
-      permissions_new: 'new permissions'
-    },
-  ];
-
-  it('returns guild if present', () => {
-    const result = selectGuildById(testGuilds, 'someid');
-    expect(result).toBeTruthy();
-    expect(result.id).toBe('someid');
-  });
-
-  it('returns undefined if guild not present', () => {
-    expect(selectGuildById(testGuilds, 'missingid')).toBeUndefined();
-  });
-});
-

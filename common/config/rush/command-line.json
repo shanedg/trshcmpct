@@ -19,6 +19,14 @@
       "allowWarningsInSuccessfulBuild": true
     },
     {
+      "name": "test:ava",
+      "summary": "Test all projects",
+      "commandKind": "bulk",
+      "enableParallelism": true,
+      "ignoreMissingScript": true,
+      "allowWarningsInSuccessfulBuild": true
+    },
+    {
       "name": "lint",
       "summary": "Lint all projects",
       "commandKind": "bulk",
