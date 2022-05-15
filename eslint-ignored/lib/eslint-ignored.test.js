@@ -1,5 +1,6 @@
+const path = require('node:path');
+
 const { filter } = require('./eslint-ignored');
-const path = require('path');
 
 const eslintTestOptions = {
   ignorePath: path.join(__dirname, '__fixtures__', '.dummy-eslintignore'),
