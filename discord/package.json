@@ -62,7 +62,7 @@
     "nodemon": "~2.0.15",
     "rimraf": "~3.0.2",
     "sinon": "~13.0.2",
-    "typescript": "^4.5.5"
+    "typescript": "~4.6.4"
   },
   "dependencies": {
     "cookie-session": "~2.0.0",
