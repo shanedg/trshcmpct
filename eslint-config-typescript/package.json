@@ -30,8 +30,8 @@
     "resolver": "<rootDir>/jestResolver.js"
   },
   "devDependencies": {
-    "@trshcmpctr/eslint-config": "workspace:*",
     "@trshcmpctr/eslint-config-jest": "workspace:*",
+    "@trshcmpctr/eslint-config": "workspace:*",
     "@trshcmpctr/jest-stdout-reporter": "workspace:*",
     "@trshcmpctr/markdownlint-config": "workspace:*",
     "@typescript-eslint/eslint-plugin": "~5.23.0",
