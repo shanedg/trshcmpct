@@ -30,10 +30,10 @@
     "@trshcmpctr/jest-stdout-reporter": "workspace:*",
     "@trshcmpctr/markdownlint-config": "workspace:*",
     "eslint-plugin-eslint-comments": "~3.2.0",
-    "eslint-plugin-import": "~2.25.4",
-    "eslint-plugin-jest": "~26.1.1",
+    "eslint-plugin-import": "~2.26.0",
+    "eslint-plugin-jest": "~26.2.2",
     "eslint-plugin-node": "~11.1.0",
-    "eslint": "^8.7.0",
+    "eslint": "~8.15.0",
     "jest": "~28.1.0",
     "markdownlint-cli2": "~0.4.0",
     "rimraf": "~3.0.2",
@@ -41,7 +41,7 @@
   },
   "peerDependencies": {
     "eslint-plugin-eslint-comments": "~3.2.0",
-    "eslint-plugin-import": "~2.25.4",
-    "eslint": "^7.x.x || ^8.x.x"
+    "eslint-plugin-import": "~2.26.0",
+    "eslint": "~8.15.0"
   }
 }
