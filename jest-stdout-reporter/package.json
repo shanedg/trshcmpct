@@ -26,7 +26,7 @@
     "test": "true"
   },
   "dependencies": {
-    "@jest/reporters": "^27.4.6"
+    "@jest/reporters": "~28.1.0"
   },
   "devDependencies": {
     "@trshcmpctr/eslint-config": "workspace:*",
