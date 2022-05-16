@@ -37,8 +37,8 @@
     "@babel/preset-env": "~7.17.10",
     "@babel/preset-react": "~7.16.7",
     "@babel/preset-typescript": "~7.16.7",
-    "@testing-library/jest-dom": "^5.16.1",
-    "@testing-library/react": "^12.1.2",
+    "@testing-library/jest-dom": "~5.16.4",
+    "@testing-library/react": "~13.2.0",
     "@trshcmpctr/eslint-config-jest": "workspace:*",
     "@trshcmpctr/eslint-config-react": "workspace:*",
     "@trshcmpctr/eslint-config-typescript": "workspace:*",
@@ -46,9 +46,9 @@
     "@trshcmpctr/jest-stdout-reporter": "workspace:*",
     "@trshcmpctr/markdownlint-config": "workspace:*",
     "@types/jest": "~27.5.1",
-    "@types/node": "^16.11.21",
-    "@types/react-dom": "^17.0.11",
-    "@types/react": "^17.0.38",
+    "@types/node": "~16.11.35",
+    "@types/react-dom": "~17.0.17",
+    "@types/react": "~17.0.45",
     "@typescript-eslint/eslint-plugin": "~5.23.0",
     "@typescript-eslint/parser": "~5.23.0",
     "babel-jest": "~28.1.0",
@@ -81,7 +81,7 @@
   },
   "dependencies": {
     "core-js": "^3.20.3",
-    "react": "^17.0.2",
-    "react-dom": "^17.0.2"
+    "react-dom": "~18.1.0",
+    "react": "~18.1.0"
   }
 }
