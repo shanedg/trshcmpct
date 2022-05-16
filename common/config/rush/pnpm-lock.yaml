@@ -365,7 +365,7 @@ importers:
       eslint-plugin-import: ~2.26.0
       eslint-plugin-node: ~11.1.0
       markdownlint-cli2: ~0.4.0
-      plop: ~3.0.5
+      plop: ~3.1.0
       rimraf: ~3.0.2
     devDependencies:
       '@trshcmpctr/eslint-config': link:../eslint-config
@@ -375,7 +375,7 @@ importers:
       eslint-plugin-import: 2.26.0_eslint@8.15.0
       eslint-plugin-node: 11.1.0_eslint@8.15.0
       markdownlint-cli2: 0.4.0
-      plop: 3.0.5
+      plop: 3.1.0
       rimraf: 3.0.2
 
 packages:
@@ -2896,7 +2896,7 @@ packages:
     dev: true
 
   /array-each/1.0.1:
-    resolution: {integrity: sha1-p5SvDAWrF1KEbudTofIRoFugxE8=}
+    resolution: {integrity: sha512-zHjL5SZa68hkKHBFBK6DJCTtr9sfTCPCaph/L7tMSLcTFgy+zX7E+6q5UArbtOtMBCtxdICpfTCspRse+ywyXA==}
     engines: {node: '>=0.10.0'}
     dev: true
 
@@ -5160,18 +5160,6 @@ packages:
       slash: 4.0.0
     dev: true
 
-  /globby/12.2.0:
-    resolution: {integrity: sha512-wiSuFQLZ+urS9x2gGPl1H5drc5twabmm4m2gTR27XDFyjUHJUNsS8o/2aKyIF6IoBaR630atdher0XJ5g6OMmA==}
-    engines: {node: ^12.20.0 || ^14.13.1 || >=16.0.0}
-    dependencies:
-      array-union: 3.0.1
-      dir-glob: 3.0.1
-      fast-glob: 3.2.11
-      ignore: 5.2.0
-      merge2: 1.4.1
-      slash: 4.0.0
-    dev: true
-
   /globby/13.1.1:
     resolution: {integrity: sha512-XMzoDZbGZ37tufiv7g0N4F/zp3zkwdFtVbV3EHsVl1KQr4RPLfNoT068/97RPshz2J5xYNEjLKKBKaGHifBd3Q==}
     engines: {node: ^12.20.0 || ^14.13.1 || >=16.0.0}
@@ -7098,14 +7086,14 @@ packages:
   /node-int64/0.4.0:
     resolution: {integrity: sha1-h6kGXNs1XTGC2PlM4RGIuCXGijs=}
 
-  /node-plop/0.30.0:
-    resolution: {integrity: sha512-5w9+jWoy9OtMm3qRmHgL2z/3L5VL3RhEegKkKC4tA1IIjG3aXf8Ee/8wdgU9qXyt1yDfPWI9Tan1rHpXAp0ZnA==}
+  /node-plop/0.31.0:
+    resolution: {integrity: sha512-aKLPxiBoFTNUovvtK8j/Whc4PZREkYx6htw2HJPiU8wYquXmN8pkd9B3xlFo6AJ4ZlzFsQSf/NXR5xET8EqRYw==}
     engines: {node: ^12.20.0 || ^14.13.1 || >=16.0.0}
     dependencies:
       '@types/inquirer': 8.2.1
       change-case: 4.1.2
       del: 6.0.0
-      globby: 12.2.0
+      globby: 13.1.1
       handlebars: 4.7.7
       inquirer: 8.2.2
       isbinaryfile: 4.0.10
@@ -7671,8 +7659,8 @@ packages:
       find-up: 5.0.0
     dev: true
 
-  /plop/3.0.5:
-    resolution: {integrity: sha512-bD+/Lr+7NCjNIaYJq1cyHDfxtVCdjwfprgKsNwHwFnwntTiNwZWyxd1NuRDygdQWyPi+rstFMMFAPMek0cYaqA==}
+  /plop/3.1.0:
+    resolution: {integrity: sha512-bkKZ5X7V2hjH1ha5x8eX2mzyxM/sR166icNdQAbuAK5L4iHTT7fNKjV7VOpF3hBWtRNnzBoctjC3hC5syX5iYg==}
     engines: {node: ^12.20.0 || ^14.13.1 || >=16.0.0}
     hasBin: true
     dependencies:
@@ -7681,7 +7669,7 @@ packages:
       interpret: 2.2.0
       liftoff: 4.0.0
       minimist: 1.2.6
-      node-plop: 0.30.0
+      node-plop: 0.31.0
       ora: 6.1.0
       v8flags: 4.0.0
     dev: true
