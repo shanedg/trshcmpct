@@ -34,6 +34,7 @@
     "lint:md": "markdownlint-cli2-config 'node_modules/@trshcmpctr/markdownlint-config/.markdownlint-cli2.jsonc' '**/*.md' '#node_modules'",
     "start": "node --experimental-specifier-resolution=node --experimental-json-modules lib/index.js",
     "test": "NODE_OPTIONS=--experimental-vm-modules jest --no-cache --silent",
+    "test:debug": "NODE_OPTIONS='--experimental-vm-modules --inspect' jest --no-cache --runInBand",
     "test:ava": "NODE_OPTIONS=--experimental-specifier-resolution=node ava"
   },
   "jest": {
