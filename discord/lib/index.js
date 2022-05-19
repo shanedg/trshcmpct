@@ -3,7 +3,6 @@ import { fileURLToPath } from 'node:url';
 
 import cookieSession from 'cookie-session';
 import express from 'express';
-// We have to use node-fetch@^2 because node-fetch@>=3 is esm-only.
 // Someday soon we'll use the fetch api from node itself :)
 import fetch from 'node-fetch';
 import handlebars from 'hbs';
