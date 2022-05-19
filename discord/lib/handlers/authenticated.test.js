@@ -1,22 +1,4 @@
-// https://jestjs.io/docs/ecmascript-modules#differences-between-esm-and-commonjs
 import { jest } from '@jest/globals';
-
-// jest.mock('../utils', () => {
-//   // FIXME: how to jest.requireActual in esm?
-//   const originalModule = jest.requireActual('../utils');
-//   return {
-//     ...originalModule,
-//     // Mock authFromCode so we can spy on it.
-//     authFromCode: jest.fn((_fetch, _data) => {
-//       return Promise.resolve({ json: jest.fn().mockReturnValue({
-//         access_token: 'some-access-token',
-//         expires_in: 90,
-//       })});
-//     }),
-//   };
-// });
-
-import { authFromCode } from '../utils';
 
 import {
   getNewTokenWithDependencies,
@@ -37,40 +19,28 @@ const logErrorSpy = jest.fn();
 const nextSpy = jest.fn();
 const renderSpy = jest.fn();
 const sendSpy = jest.fn();
-
-const goodRequest = {
-  log: { error: logErrorSpy, debug: logDebugSpy },
-  session: { views: 0 },
-  query: { code: 'abc456' },
-};
-const goodResponse = { render: renderSpy, send: sendSpy };
+const spiedResponse = { render: renderSpy, send: sendSpy };
 
 describe('getNewTokenWithDependencies creates a handler that', () => {
-  const getNewToken = getNewTokenWithDependencies(fetchSucceeds, {
-    clientId: 'my-client-id',
-    clientSecret: 'my-client-secret',
-    guildId: '456',
-    port: 1234
-  });
-
   beforeEach(async () => {
     jest.clearAllMocks();
-    await getNewToken(goodRequest, goodResponse, nextSpy);
+    const getNewToken = getNewTokenWithDependencies(fetchSucceeds, {
+      clientId: 'my-client-id',
+      clientSecret: 'my-client-secret',
+      guildId: '456',
+      port: 1234
+    });
+    const newTokenRequest = {
+      log: { error: logErrorSpy, debug: logDebugSpy },
+      session: { views: 0 },
+      query: { code: 'abc456' },
+    };
+    await getNewToken(newTokenRequest, spiedResponse, nextSpy);
   });
 
   it('logs to debug', () => {
     expect(logDebugSpy.mock.calls.length).toBe(1);
     expect(logDebugSpy.mock.calls[0][0]).toBe('get new token');
-  });
-  
-  // TODO: figure this out for either 1. jest w/ esm 2. ava
-  // eslint-disable-next-line jest/no-disabled-tests
-  it.skip('authenticates with the code in the query param', async () => {
-    expect(authFromCode.mock.calls.length).toBe(1);
-    expect(authFromCode.mock.calls[0].length).toBe(2);
-    expect(authFromCode.mock.calls[0][1]).toStrictEqual(expect.objectContaining({
-      code: 'abc456'
-    }));
   });
 
   it('renders the logged in template', () => {
@@ -87,13 +57,21 @@ describe('getNewTokenWithDependencies creates a handler that', () => {
   });
 });
 
-// TODO: figure this out for either 1. jest w/ esm 2. ava
-// eslint-disable-next-line jest/no-disabled-tests
-describe.skip('getReuseSessionTokenWithDependencies creates a handler that', () => {
-  const reuseSessionToken = getReuseSessionTokenWithDependencies(fetchSucceeds, { guildId: '456' });
+describe('getReuseSessionTokenWithDependencies creates a handler that', () => {
   beforeEach(async () => {
     jest.clearAllMocks();
-    await reuseSessionToken(goodRequest, goodResponse, nextSpy);
+    const reuseSessionToken = getReuseSessionTokenWithDependencies(fetchSucceeds, { guildId: '456' });
+    const sessionTokenRequest = {
+      log: { error: logErrorSpy, debug: logDebugSpy },
+      session: {
+        oauth: {
+          access_token: 'some-access-token',
+          expires_in: 90,
+        },
+        views: 10,
+      },
+    };
+    await reuseSessionToken(sessionTokenRequest, spiedResponse, nextSpy);
   });
 
   it('logs to debug', () => {
