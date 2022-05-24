@@ -3,11 +3,11 @@ import {
   getReuseSessionTokenWithDependencies,
 } from './authenticated';
 import { getRenderLoginWithData } from './login';
-import { handleErrors } from './error';
+import { handleError } from './handle-error';
 
 export {
   getRenderLoginWithData,
   getNewTokenWithDependencies,
   getReuseSessionTokenWithDependencies,
-  handleErrors,
+  handleError,
 };

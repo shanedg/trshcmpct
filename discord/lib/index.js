@@ -9,11 +9,12 @@ import handlebars from 'hbs';
 import pinoHttp from 'pino-http';
 
 import config from './config.json';
+
 import {
   getRenderLoginWithData,
   getNewTokenWithDependencies,
   getReuseSessionTokenWithDependencies,
-  handleErrors,
+  handleError,
 } from './handlers';
 
 const {
@@ -55,6 +56,6 @@ const getNewToken = getNewTokenWithDependencies(fetch, { clientId, clientSecret,
 
 app.get('/', [renderLogin, reuseSessionToken, getNewToken]);
 
-app.use(handleErrors);
+app.use(handleError);
 
 app.listen(port, () => pinoLogger.logger.info(`App listening at http://localhost:${port}`));
