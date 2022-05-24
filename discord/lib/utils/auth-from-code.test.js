@@ -13,8 +13,8 @@ const fetchSucceeds =
 
 describe('authFromCode', () => {
   let fetch;
-  beforeEach(async () => {
-    fetch && fetch.mockClear();
+
+  beforeAll(async () => {
     fetch = jest.fn(fetchSucceeds);
     await authFromCode(fetch, {
       code: 'mycode',

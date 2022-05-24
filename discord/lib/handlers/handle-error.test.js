@@ -19,7 +19,7 @@ describe('handleError', () => {
   });
   const goodErrorResponse = { render: errorRenderSpy, send: sendSpy };
 
-  beforeEach(() => {
+  beforeAll(() => {
     jest.clearAllMocks();
     handleError(new Error('some-error'), goodRequest, goodErrorResponse, nextSpy);
   });

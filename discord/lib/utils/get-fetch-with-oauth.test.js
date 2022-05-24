@@ -15,13 +15,16 @@ describe('getFetchWithOauth', () => {
   let fetch;
   let fetchWithOauth;
 
-  beforeEach(() => {
-    fetch && fetch.mockClear();
+  beforeAll(() => {
     fetch = jest.fn(fetchSucceeds);
     fetchWithOauth = getFetchWithOauth(fetch, {
       token_type: 'Bearer',
       access_token: 'accesstoken'
     });
+  });
+
+  afterEach(() => {
+    fetch.mockClear();
   });
 
   it('calls fetch with url', async () => {
