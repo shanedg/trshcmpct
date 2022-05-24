@@ -11,8 +11,8 @@ import pinoHttp from 'pino-http';
 import config from './config.json';
 
 import {
-  getRenderLoginWithData,
   getNewTokenWithDependencies,
+  getRenderLoginWithData,
   getReuseSessionTokenWithDependencies,
   handleError,
 } from './handlers';

@@ -1,6 +1,6 @@
 import { jest } from '@jest/globals';
 
-import { getRenderLoginWithData } from '.';
+import { getRenderLoginWithData } from './get-render-login-with-data';
 
 describe('getRenderLoginWithData creates a handler that', () => {
   const renderLogin = getRenderLoginWithData({ clientId: 'my-client-id' });

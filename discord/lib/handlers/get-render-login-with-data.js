@@ -3,7 +3,7 @@
  * @param {Object} data Required data
  * @returns Handler that renders the login view with the provided data
  */
-const getRenderLoginWithData = ({ clientId }) => {
+export const getRenderLoginWithData = ({ clientId }) => {
   // Render login screen for un-auth'd sessions
   return (request, response, next) => {
     request.session.views = (request.session.views || 0) + 1;
@@ -23,5 +23,3 @@ const getRenderLoginWithData = ({ clientId }) => {
     next();
   };
 };
-
-export { getRenderLoginWithData };
