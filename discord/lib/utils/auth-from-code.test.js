@@ -1,6 +1,6 @@
 import { jest } from '@jest/globals';
 
-import { authFromCode } from '.';
+import { authFromCode } from './auth-from-code';
 
 /**
  * Fake implementation of fetch

@@ -1,6 +1,6 @@
 import { jest } from '@jest/globals';
 
-import { getFetchWithOauth } from '.';
+import { getFetchWithOauth } from './get-fetch-with-oauth';
 
 /**
  * Fake implementation of fetch
