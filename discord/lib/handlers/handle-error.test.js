@@ -1,6 +1,8 @@
-const { handleErrors } = require('.');
+import { jest } from '@jest/globals';
 
-describe('handleErrors', () => {
+import { handleError } from './handle-error';
+
+describe('handleError', () => {
   const logDebugSpy = jest.fn();
   const logErrorSpy = jest.fn();
   const nextSpy = jest.fn();
@@ -17,9 +19,9 @@ describe('handleErrors', () => {
   });
   const goodErrorResponse = { render: errorRenderSpy, send: sendSpy };
 
-  beforeEach(() => {
+  beforeAll(() => {
     jest.clearAllMocks();
-    handleErrors(new Error('some-error'), goodRequest, goodErrorResponse, nextSpy);
+    handleError(new Error('some-error'), goodRequest, goodErrorResponse, nextSpy);
   });
 
   it('logs the original error', () => {
@@ -43,7 +45,7 @@ describe('handleErrors', () => {
       render: badRenderSpy,
       send: sendSpy,
     };
-    handleErrors(new Error('some-error'), goodRequest, badErrorResponseRender, nextSpy);
+    handleError(new Error('some-error'), goodRequest, badErrorResponseRender, nextSpy);
     expect(logErrorSpy.mock.calls.length).toBe(2);
     expect(logErrorSpy.mock.calls[1][0]).toStrictEqual(new Error('render-error'));
   });

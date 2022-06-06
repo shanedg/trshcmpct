@@ -1,8 +1,8 @@
-const { authFromCode } = require('./auth-from-code');
-const { getFetchWithOauth } = require('./get-fetch-with-oauth');
-const { getLoggedInData } = require('./get-logged-in-data');
+import { authFromCode } from './auth-from-code';
+import { getFetchWithOauth } from './get-fetch-with-oauth';
+import { getLoggedInData } from './get-logged-in-data';
 
-module.exports = {
+export {
   authFromCode,
   getFetchWithOauth,
   getLoggedInData,

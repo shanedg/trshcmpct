@@ -1,22 +1,6 @@
-/**
- * Batch custom fetch requests to several urls at once
- * @param {Function} fetch Fetch implementation
- * @param {string[]} urls Endpoints to fetch against
- * @returns List of request results
- */
-const batchRequests = async (fetch, urls) => {
-  const requests = await Promise.all(urls.map(url => fetch(url)));
-  return await Promise.all(requests.map(r => r.json()));
-};
+import { batchRequests } from './batch-requests';
+import { selectGuildById } from './select-guild-by-id';
 
-/**
- * Get guild from list by id
- * @param {*} guilds List of guilds
- * @param {string} guildId Id of guild
- * @returns Guild if present, else undefined
- */
-const selectGuildById = (guilds, guildId) => guilds.find(({ id }) => id === guildId); 
- 
 /**
  * Get data for authenticated view
  * @param {Function} fetch Fetch implementation
@@ -47,8 +31,6 @@ const getLoggedInData = async (fetch, { guildId }) => {
   return data;
 };
 
-module.exports = {
-  batchRequests, // only exported for testing
-  getLoggedInData, 
-  selectGuildById, // only exported for testing
+export {
+  getLoggedInData,
 };

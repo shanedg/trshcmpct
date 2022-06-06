@@ -19,4 +19,4 @@ const authFromCode = async (fetch, { clientId, clientSecret, code, port }) => {
   });
 };
 
-module.exports = { authFromCode };
+export { authFromCode };

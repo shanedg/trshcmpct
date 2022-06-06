@@ -1,11 +1,11 @@
 /**
- * Handle application errors
+ * Handle an application error
  * @param {Error} error Error object
  * @param {Object} request Request object
  * @param {Object} response Response object
  * @param {Function} next Middleware callback
  */
-const handleErrors = (error, request, response, _next) => {
+export const handleError = (error, request, response, _next) => {
   request.log.error(error);
   response.render('error', null, (err, html) => {
     if (err) {
@@ -14,5 +14,3 @@ const handleErrors = (error, request, response, _next) => {
     response.send(html);
   });
 };
-
-module.exports = { handleErrors };

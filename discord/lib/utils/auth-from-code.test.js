@@ -1,4 +1,6 @@
-const { authFromCode } = require('.');
+import { jest } from '@jest/globals';
+
+import { authFromCode } from './auth-from-code';
 
 /**
  * Fake implementation of fetch
@@ -11,8 +13,8 @@ const fetchSucceeds =
 
 describe('authFromCode', () => {
   let fetch;
-  beforeEach(async () => {
-    fetch && fetch.mockClear();
+
+  beforeAll(async () => {
     fetch = jest.fn(fetchSucceeds);
     await authFromCode(fetch, {
       code: 'mycode',

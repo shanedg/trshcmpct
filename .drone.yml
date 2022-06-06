@@ -8,12 +8,12 @@ workspace:
 
 steps:
 - name: install
-  image: node:gallium
+  image: node:16.13.2
   commands:
     - node common/scripts/install-run-rush.js install
 
 - name: inject_secrets
-  image: node:gallium
+  image: node:16.13.2
   environment:
     DISCORD_CLIENT_ID:
       from_secret: discord_client_id
@@ -27,7 +27,7 @@ steps:
     - (cd discord && ./client_config_ci.sh)
 
 - name: lint
-  image: node:gallium
+  image: node:16.13.2
   commands:
     - node common/scripts/install-run-rush.js lint
   depends_on:
@@ -35,41 +35,32 @@ steps:
     - inject_secrets
 
 - name: lint:md
-  image: node:gallium
+  image: node:16.13.2
   commands:
     - node common/scripts/install-run-rush.js lint:md
   depends_on:
     - install
 
 - name: test
-  image: node:gallium
+  image: node:16.13.2
   commands:
     - node common/scripts/install-run-rush.js test
   depends_on:
     - install
 
+- name: test:ava
+  image: node:16.13.2
+  commands:
+    - node common/scripts/install-run-rush.js test:ava
+  depends_on:
+    - install
+
 - name: build
-  image: node:gallium
+  image: node:16.13.2
   commands:
     - node common/scripts/install-run-rush.js build
   depends_on:
     - install
-
-# TODO: can't push version and changelog back to the mainline branch, see this error:
-# `fatal: could not read Username for 'https://github.com': terminal prompts disabled`
-# Solutions:
-# * https://docs.drone.io/pipeline/docker/syntax/cloning/auth/#machine-accounts
-# * https://docs.github.com/en/developers/overview/managing-deploy-keys#machine-users
-
-# - name: version
-#   image: node:gallium
-#   commands:
-#     - npx standard-version
-#     - git push --follow-tags origin main
-#   when:
-#     branch:
-#       include:
-#         - main
 
 - name: notify
   image: plugins/slack
@@ -86,4 +77,5 @@ steps:
     - lint
     - lint:md
     - test
+    - test:ava
     - build

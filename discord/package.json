@@ -2,11 +2,15 @@
   "name": "@trshcmpctr/discord",
   "version": "1.0.0",
   "description": "discord",
-  "main": "lib/index.js",
-  "files": ["lib"],
+  "files": [
+    "lib",
+    "!lib/**/*.test.*",
+    "!lib/**/*.ava-test.*"
+  ],
   "engines": {
     "node": ">=16.0.0"
   },
+  "type": "module",
   "contributors": [
     {
       "email": "shanedgarrity@gmail.com",
@@ -24,37 +28,49 @@
   "scripts": {
     "build": "echo fake build || true",
     "clean": "rimraf *.build.log",
-    "debug": "node --inspect-brk lib/index.js",
-    "dev": "nodemon --inspect lib/index.js",
+    "debug": "node --experimental-specifier-resolution=node --experimental-json-modules --trace-warnings --inspect-brk lib/index.js",
+    "dev": "nodemon --experimental-specifier-resolution=node --experimental-json-modules --trace-warnings --inspect lib/index.js",
     "lint": "eslint --max-warnings=0 .",
     "lint:md": "markdownlint-cli2-config 'node_modules/@trshcmpctr/markdownlint-config/.markdownlint-cli2.jsonc' '**/*.md' '#node_modules'",
-    "start": "node lib/index.js",
-    "test": "jest --no-cache --silent"
+    "start": "node --experimental-specifier-resolution=node --experimental-json-modules lib/index.js",
+    "test": "NODE_OPTIONS=--experimental-vm-modules jest --no-cache --silent",
+    "test:debug": "NODE_OPTIONS='--experimental-vm-modules --inspect' jest --no-cache --runInBand",
+    "test:ava": "NODE_OPTIONS=--experimental-specifier-resolution=node ava",
+    "test:ava:debug": "NODE_OPTIONS='--experimental-specifier-resolution=node' ava debug --break"
   },
   "jest": {
     "reporters": ["@trshcmpctr/jest-stdout-reporter"]
   },
+  "ava": {
+    "cache": false,
+    "files": ["**/*.ava-test.*"]
+  },
   "devDependencies": {
-    "@trshcmpctr/eslint-config": "workspace:*",
+    "@jest/globals": "~28.1.0",
+    "@tophat/eslint-import-resolver-require": "0.1.3",
     "@trshcmpctr/eslint-config-jest": "workspace:*",
+    "@trshcmpctr/eslint-config": "workspace:*",
     "@trshcmpctr/jest-stdout-reporter": "workspace:*",
     "@trshcmpctr/markdownlint-config": "workspace:*",
+    "ava": "~4.2.0",
+    "eslint-plugin-ava": "~13.2.0",
     "eslint-plugin-eslint-comments": "~3.2.0",
-    "eslint-plugin-import": "~2.25.4",
-    "eslint-plugin-jest": "~26.1.1",
+    "eslint-plugin-import": "~2.26.0",
+    "eslint-plugin-jest": "~26.2.2",
     "eslint-plugin-node": "~11.1.0",
-    "eslint": "^8.7.0",
-    "jest": "^27.4.7",
+    "eslint": "~8.15.0",
+    "jest": "~28.1.0",
     "markdownlint-cli2": "~0.4.0",
-    "nodemon": "~2.0.15",
+    "nodemon": "~2.0.16",
     "rimraf": "~3.0.2",
-    "typescript": "^4.5.5"
+    "sinon": "~14.0.0",
+    "typescript": "~4.6.4"
   },
   "dependencies": {
     "cookie-session": "~2.0.0",
-    "express": "~4.17.3",
+    "express": "~4.18.1",
     "hbs": "~4.2.0",
-    "node-fetch": "~2.6.7",
-    "pino-http": "~6.6.0"
+    "node-fetch": "~3.2.4",
+    "pino-http": "~7.0.0"
   }
 }
