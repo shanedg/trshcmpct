@@ -9,9 +9,17 @@ module.exports = {
   overrides: [
     {
       files: ['lib/**'],
+      parser: '@babel/eslint-parser',
       parserOptions: {
         sourceType: 'module',
         ecmaVersion: 'latest',
+
+        // We need these options to enable @babel/eslint-parser
+        // and support import assertion syntax for JSON modules.
+        requireConfigFile: false,
+        babelOptions: {
+          plugins: ['@babel/plugin-syntax-import-assertions']
+        },
       },
     },
 

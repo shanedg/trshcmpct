@@ -60,6 +60,20 @@
       "commandKind": "global",
       "autoinstallerName": "rush-plop",
       "shellCommand": "plop --plopfile scaffold/lib/index.js"
+    },
+    {
+      "name": "check-minor-updates",
+      "summary": "Upgrade dependencies in all projects to the latest minor version not already satisfied by semver range",
+      "commandKind": "bulk",
+      "enableParallelism": false,
+      "allowWarningsInSuccessfulBuild": true
+    },
+    {
+      "name": "check-latest-updates",
+      "summary": "Upgrade dependencies in all projects to the latest version not already satisfied by the semver range. This includes major versions and is best to run after `check-minor-updates`.",
+      "commandKind": "bulk",
+      "enableParallelism": false,
+      "allowWarningsInSuccessfulBuild": true
     }
 
     // {

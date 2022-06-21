@@ -22,6 +22,8 @@
   "scripts": {
     "asdf": "plop --plopfile lib/index.js project -- --name asdf --path asdf",
     "build": "echo fake build || true",
+    "check-latest-updates": "npm-check-updates --upgrade --minimal --target latest --packageFile package.json",
+    "check-minor-updates": "npm-check-updates --upgrade --minimal --target minor --packageFile package.json",
     "clean": "rimraf *.build.log",
     "lint:md": "markdownlint-cli2-config 'node_modules/@trshcmpctr/markdownlint-config/.markdownlint-cli2.jsonc' '**/*.md' '#node_modules'",
     "lint": "eslint --ext .cjs,.js --max-warnings=0 .",
@@ -33,8 +35,9 @@
     "eslint-plugin-eslint-comments": "~3.2.0",
     "eslint-plugin-import": "~2.26.0",
     "eslint-plugin-node": "~11.1.0",
-    "eslint": "~8.15.0",
+    "eslint": "~8.18.0",
     "markdownlint-cli2": "~0.4.0",
+    "npm-check-updates": "~14.0.1",
     "plop": "~3.1.0",
     "rimraf": "~3.0.2"
   },
