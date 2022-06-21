@@ -3,17 +3,18 @@ name: default
 kind: pipeline
 type: docker
 
+# Create workspace at /drone/trshcmpctr instead of /drone/src (default).
 workspace:
-  path: /drone/trshcmpctr
+  base: /drone/trshcmpctr
 
 steps:
 - name: install
-  image: node:16.13.2
+  image: node:16.15.1
   commands:
-    - node common/scripts/install-run-rush.js install
+    - node common/scripts/install-run-rush.js install --purge
 
 - name: inject_secrets
-  image: node:16.13.2
+  image: node:16.15.1
   environment:
     DISCORD_CLIENT_ID:
       from_secret: discord_client_id
@@ -27,7 +28,7 @@ steps:
     - (cd discord && ./client_config_ci.sh)
 
 - name: lint
-  image: node:16.13.2
+  image: node:16.15.1
   commands:
     - node common/scripts/install-run-rush.js lint
   depends_on:
@@ -35,28 +36,28 @@ steps:
     - inject_secrets
 
 - name: lint:md
-  image: node:16.13.2
+  image: node:16.15.1
   commands:
     - node common/scripts/install-run-rush.js lint:md
   depends_on:
     - install
 
 - name: test
-  image: node:16.13.2
+  image: node:16.15.1
   commands:
     - node common/scripts/install-run-rush.js test
   depends_on:
     - install
 
 - name: test:ava
-  image: node:16.13.2
+  image: node:16.15.1
   commands:
     - node common/scripts/install-run-rush.js test:ava
   depends_on:
     - install
 
 - name: build
-  image: node:16.13.2
+  image: node:16.15.1
   commands:
     - node common/scripts/install-run-rush.js build
   depends_on:
