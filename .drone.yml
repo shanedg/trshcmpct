@@ -3,8 +3,9 @@ name: default
 kind: pipeline
 type: docker
 
+# Create workspace at /drone/trshcmpctr instead of /drone/src (default).
 workspace:
-  path: /drone/trshcmpctr
+  base: /drone/trshcmpctr
 
 steps:
 - name: install
