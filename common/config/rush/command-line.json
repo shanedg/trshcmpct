@@ -46,7 +46,7 @@
       "autoinstallerName": "rush-commitlint",
       // Because I can never remember all the types:
       // https://github.com/conventional-changelog/commitlint/blob/master/%40commitlint/config-conventional/README.md
-      "shellCommand": "commitlint --extends=@commitlint/config-conventional --edit=$1"
+      "shellCommand": "commitlint --extends=@commitlint/config-conventional --cwd=common/autoinstallers/rush-commitlint --edit=$1"
     },
     {
       "name": "clean",
