@@ -8,14 +8,7 @@ import fetch from 'node-fetch';
 import handlebars from 'hbs';
 import pinoHttp from 'pino-http';
 
-// TODO: Use import assertion for .json once supported by eslint parser:
-// ```
-// import config from './config.json' assert { type: 'json' };
-// ```
-// Alternatively, use @babel/eslint-parser instead of default estree.
-// See: https://github.com/eslint/eslint/discussions/15305
-// In either case, can then remove `--experimental-json-modules` from package scripts!
-import config from './config.json';
+import config from './config.json' assert { type: 'json' };
 
 import {
   getNewTokenWithDependencies,
