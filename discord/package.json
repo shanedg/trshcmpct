@@ -41,7 +41,7 @@
     "test:ava:debug": "NODE_OPTIONS='--experimental-specifier-resolution=node' ava debug --break"
   },
   "jest": {
-    "reporters": ["@trshcmpctr/jest-stdout-reporter"]
+    "reporters": ["jest-standard-reporter"]
   },
   "ava": {
     "cache": false,
@@ -70,7 +70,8 @@
     "npm-check-updates": "~14.1.1",
     "rimraf": "~3.0.2",
     "sinon": "~14.0.0",
-    "typescript": "~4.7.4"
+    "typescript": "~4.7.4",
+    "jest-standard-reporter": "~2.0.0"
   },
   "dependencies": {
     "cookie-session": "~2.0.0",

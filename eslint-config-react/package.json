@@ -25,7 +25,7 @@
     "clean": "rimraf *.build.log",
     "lint": "eslint --max-warnings=0 .",
     "lint:md": "markdownlint-cli2-config 'node_modules/@trshcmpctr/markdownlint-config/.markdownlint-cli2.jsonc' '**/*.md' '#node_modules'",
-    "test": "jest --no-cache --reporters=@trshcmpctr/jest-stdout-reporter --silent"
+    "test": "jest --no-cache --reporters=jest-standard-reporter --silent"
   },
   "devDependencies": {
     "@trshcmpctr/eslint-config-jest": "workspace:*",
@@ -44,7 +44,8 @@
     "markdownlint-cli2": "~0.4.0",
     "npm-check-updates": "~14.1.1",
     "rimraf": "~3.0.2",
-    "typescript": "~4.7.4"
+    "typescript": "~4.7.4",
+    "jest-standard-reporter": "~2.0.0"
   },
   "peerDependencies": {
     "eslint-plugin-jsx-a11y": "~6.6.0",

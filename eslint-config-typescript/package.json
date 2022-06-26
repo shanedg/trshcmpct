@@ -28,7 +28,7 @@
     "test": "jest --no-cache --silent"
   },
   "jest": {
-    "reporters": ["@trshcmpctr/jest-stdout-reporter"],
+    "reporters": ["jest-standard-reporter"],
     "resolver": "<rootDir>/jestResolver.js"
   },
   "devDependencies": {
@@ -49,7 +49,8 @@
     "markdownlint-cli2": "~0.4.0",
     "npm-check-updates": "~14.1.1",
     "rimraf": "~3.0.2",
-    "typescript": "~4.7.4"
+    "typescript": "~4.7.4",
+    "jest-standard-reporter": "~2.0.0"
   },
   "peerDependencies": {
     "@typescript-eslint/eslint-plugin": "~5.29.0",
