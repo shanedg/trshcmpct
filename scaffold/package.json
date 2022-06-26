@@ -24,7 +24,7 @@
     "build": "echo fake build || true",
     "check-latest-updates": "npm-check-updates --upgrade --minimal --target latest --packageFile package.json",
     "check-minor-updates": "npm-check-updates --upgrade --minimal --target minor --packageFile package.json",
-    "clean": "rimraf *.build.log",
+    "clean": "rimraf *.build.log *.build.error.log",
     "lint:md": "markdownlint-cli2-config 'node_modules/@trshcmpctr/markdownlint-config/.markdownlint-cli2.jsonc' '**/*.md' '#node_modules'",
     "lint": "eslint --ext .cjs,.js --max-warnings=0 .",
     "test": "true"

@@ -9,7 +9,7 @@
     "build:production": "webpack --config config/webpack.config.js --env production",
     "check-latest-updates": "npm-check-updates --upgrade --minimal --target latest --packageFile package.json",
     "check-minor-updates": "npm-check-updates --upgrade --minimal --target minor --packageFile package.json",
-    "clean": "rimraf *.build.log coverage dist",
+    "clean": "rimraf *.build.log *.build.error.log coverage dist",
     "lint": "eslint --ext .js,.jsx,.ts,.tsx --max-warnings=0 .",
     "lint:md": "markdownlint-cli2-config 'node_modules/@trshcmpctr/markdownlint-config/.markdownlint-cli2.jsonc' '**/*.md' '#node_modules'",
     "start": "webpack serve --config config/webpack.config.js",
