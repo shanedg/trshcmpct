@@ -34,6 +34,12 @@ After `--fix`ing:
 ✖ 711 problems (707 errors, 4 warnings)
 ```
 
+Afer installing and configuring `eslint-plugin-cypress`:
+
+```sh
+✖ 20 problems (16 errors, 4 warnings)
+```
+
 ### ReferenceError: Your configFile is invalid
 
 Cypress initially generated .ts versions of configFile and cypress/support files
