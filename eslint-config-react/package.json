@@ -35,19 +35,19 @@
     "eslint-plugin-eslint-comments": "~3.2.0",
     "eslint-plugin-import": "~2.26.0",
     "eslint-plugin-jest": "~26.5.3",
-    "eslint-plugin-jsx-a11y": "~6.5.1",
+    "eslint-plugin-jsx-a11y": "~6.6.0",
     "eslint-plugin-node": "~11.1.0",
     "eslint-plugin-react-hooks": "~4.6.0",
     "eslint-plugin-react": "~7.30.0",
     "eslint": "~8.18.0",
     "jest": "~28.1.0",
     "markdownlint-cli2": "~0.4.0",
-    "npm-check-updates": "~14.0.1",
+    "npm-check-updates": "~14.1.1",
     "rimraf": "~3.0.2",
     "typescript": "~4.7.4"
   },
   "peerDependencies": {
-    "eslint-plugin-jsx-a11y": "~6.5.1",
+    "eslint-plugin-jsx-a11y": "~6.6.0",
     "eslint-plugin-react-hooks": "~4.6.0",
     "eslint-plugin-react": "~7.30.0",
     "eslint": "~8.18.0"
