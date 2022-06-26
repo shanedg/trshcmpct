@@ -19,6 +19,21 @@ npm start
 
 ## Troubleshooting
 
+### Linting
+
+Initial eslint run after Cypress generated files:
+
+```sh
+✖ 1446 problems (707 errors, 739 warnings)
+  0 errors and 735 warnings potentially fixable with the `--fix` option.
+```
+
+After `--fix`ing:
+
+```sh
+✖ 711 problems (707 errors, 4 warnings)
+```
+
 ### ReferenceError: Your configFile is invalid
 
 Cypress initially generated .ts versions of configFile and cypress/support files
