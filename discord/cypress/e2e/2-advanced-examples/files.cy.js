@@ -56,32 +56,34 @@ context('Files', () => {
     });
   });
 
-  it('cy.writeFile() - write to a file', () => {
-    // https://on.cypress.io/writefile
+  // This example writes placeholder data to cypress/fixtures
+  // which is neat but we don't need to keep generated fixtures around.
+  // it('cy.writeFile() - write to a file', () => {
+  //   // https://on.cypress.io/writefile
 
-    // You can write to a file
+  //   // You can write to a file
 
-    // Use a response from a request to automatically
-    // generate a fixture file for use later
-    cy.request('https://jsonplaceholder.cypress.io/users')
-      .then((response) => {
-        cy.writeFile('cypress/fixtures/users.json', response.body);
-      });
+  //   // Use a response from a request to automatically
+  //   // generate a fixture file for use later
+  //   cy.request('https://jsonplaceholder.cypress.io/users')
+  //     .then((response) => {
+  //       cy.writeFile('cypress/fixtures/users.json', response.body);
+  //     });
 
-    cy.fixture('users').should((users) => {
-      expect(users[0].name).to.exist;
-    });
+  //   cy.fixture('users').should((users) => {
+  //     expect(users[0].name).to.exist;
+  //   });
 
-    // JavaScript arrays and objects are stringified
-    // and formatted into text.
-    cy.writeFile('cypress/fixtures/profile.json', {
-      id: 8739,
-      name: 'Jane',
-      email: 'jane@example.com',
-    });
+  //   // JavaScript arrays and objects are stringified
+  //   // and formatted into text.
+  //   cy.writeFile('cypress/fixtures/profile.json', {
+  //     id: 8739,
+  //     name: 'Jane',
+  //     email: 'jane@example.com',
+  //   });
 
-    cy.fixture('profile').should((profile) => {
-      expect(profile.name).to.eq('Jane');
-    });
-  });
+  //   cy.fixture('profile').should((profile) => {
+  //     expect(profile.name).to.eq('Jane');
+  //   });
+  // });
 });

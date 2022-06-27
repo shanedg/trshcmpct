@@ -75,25 +75,27 @@ context('Misc', () => {
     cy.focused().should('have.id', 'description');
   });
 
-  context('Cypress.Screenshot', function () {
-    it('cy.screenshot() - take a screenshot', () => {
-      // https://on.cypress.io/screenshot
-      cy.screenshot('my-image');
-    });
+  // This example takes a screenshot and resulting image is like 200+kb
+  // so it doesn't need to be a part of the git history :)
+  // context('Cypress.Screenshot', function () {
+  //   it('cy.screenshot() - take a screenshot', () => {
+  //     // https://on.cypress.io/screenshot
+  //     cy.screenshot('my-image');
+  //   });
 
-    it('Cypress.Screenshot.defaults() - change default config of screenshots', function () {
-      Cypress.Screenshot.defaults({
-        blackout: ['.foo'],
-        capture: 'viewport',
-        clip: { x: 0, y: 0, width: 200, height: 200 },
-        scale: false,
-        disableTimersAndAnimations: true,
-        screenshotOnRunFailure: true,
-        onBeforeScreenshot () { },
-        onAfterScreenshot () { },
-      });
-    });
-  });
+  //   it('Cypress.Screenshot.defaults() - change default config of screenshots', function () {
+  //     Cypress.Screenshot.defaults({
+  //       blackout: ['.foo'],
+  //       capture: 'viewport',
+  //       clip: { x: 0, y: 0, width: 200, height: 200 },
+  //       scale: false,
+  //       disableTimersAndAnimations: true,
+  //       screenshotOnRunFailure: true,
+  //       onBeforeScreenshot () { },
+  //       onAfterScreenshot () { },
+  //     });
+  //   });
+  // });
 
   it('cy.wrap() - wrap an object', () => {
     // https://on.cypress.io/wrap
