@@ -52,8 +52,17 @@ rush scaffold
 (never mind that they work anyway,
 that's gotta just be a weird module resolution quirk of eslint)
 * add tests for:
-  * @trshcmpctr/jest-stdout-reporter
-  * @trshcmpctr/markdownlint-config
-  * @trshcmpctr/scaffold
+  * @trshcmpctr/discord (definitely)
+    * need a discord test user
+    * also a discord test server?
+    * cypress for integration testing?
+  * @trshcmpctr/jest-stdout-reporter (meh, maybe deleting this)
+  * @trshcmpctr/markdownlint-config (nah; this is a config, maybe a snapshot?)
+  * @trshcmpctr/scaffold (ehh, this will be hard)
 * build cache things
 * changelog generation
+* frontend ui for discord service
+* q: what is the interface/api for discord service authing a particular frontend?
+* esm-ify more packages
+* publish
+* generate changelogs
