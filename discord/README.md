@@ -17,7 +17,19 @@ Populate `clientId` and `clientSecret` with the values from the Discord app's OA
 npm start
 ```
 
-## Troubleshooting
+## Cypress Troubleshooting
+
+### Running in Drone
+
+Below error message mentioned in [cypress-io/cypress-docker-images#686](https://github.com/cypress-io/cypress-docker-images/issues/686)
+though not necessarily related to a read-only project directory.
+Cypress runs do succeed but these warnings are scary.
+
+```sh
+libva error: vaGetDriverNameByIndex() failed with unknown libva error, driver_name = (null)
+[290:0627/023407.514203:ERROR:sandbox_linux.cc(377)] InitializeSandbox() called with multiple threads in process gpu-process.
+[290:0627/023407.517340:ERROR:gpu_memory_buffer_support_x11.cc(44)] dri3 extension not supported.
+```
 
 ### Linting
 

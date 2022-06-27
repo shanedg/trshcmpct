@@ -55,6 +55,14 @@
       "enableParallelism": true
     },
     {
+      "name": "cy:run",
+      "summary": "Run Cypress in all projects",
+      "commandKind": "bulk",
+      "ignoreMissingScript": true,
+      "enableParallelism": false,
+      "allowWarningsInSuccessfulBuild": true
+    },
+    {
       "name": "scaffold",
       "summary": "Add a new project.",
       "commandKind": "global",

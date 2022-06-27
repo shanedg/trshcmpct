@@ -56,6 +56,14 @@ steps:
   depends_on:
     - install
 
+- name: test:cypress
+  image: cypress/included:10.2.0
+  commands:
+    - node common/scripts/install-run-rush.js cy:run --verbose
+  depends_on:
+    - install
+    - inject_secrets
+
 - name: build
   image: node:16.15.1
   commands:
@@ -79,4 +87,5 @@ steps:
     - lint:md
     - test
     - test:ava
+    - test:cypress
     - build
