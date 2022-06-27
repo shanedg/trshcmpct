@@ -38,6 +38,7 @@
     "lint:md": "markdownlint-cli2-config 'node_modules/@trshcmpctr/markdownlint-config/.markdownlint-cli2.jsonc' '**/*.md' '#node_modules'",
     "start": "node --experimental-specifier-resolution=node lib/index.js",
     "test": "NODE_OPTIONS=--experimental-vm-modules jest --no-cache --silent",
+    "test:cypress": "npm start & wait-on http://localhost:53134 && npm run cy:run",
     "test:debug": "NODE_OPTIONS='--experimental-vm-modules --inspect' jest --no-cache --runInBand",
     "test:ava": "NODE_OPTIONS=--experimental-specifier-resolution=node ava",
     "test:ava:debug": "NODE_OPTIONS='--experimental-specifier-resolution=node' ava debug --break"
@@ -74,7 +75,8 @@
     "npm-check-updates": "~14.1.1",
     "rimraf": "~3.0.2",
     "sinon": "~14.0.0",
-    "typescript": "~4.7.4"
+    "typescript": "~4.7.4",
+    "wait-on": "~6.0.1"
   },
   "dependencies": {
     "cookie-session": "~2.0.0",

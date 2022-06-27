@@ -59,7 +59,7 @@ steps:
 - name: test:cypress
   image: cypress/included:10.2.0
   commands:
-    - node common/scripts/install-run-rush.js cy:run --verbose
+    - node common/scripts/install-run-rush.js test:cypress --verbose
   depends_on:
     - install
     - inject_secrets

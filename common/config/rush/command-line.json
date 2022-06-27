@@ -55,7 +55,7 @@
       "enableParallelism": true
     },
     {
-      "name": "cy:run",
+      "name": "test:cypress",
       "summary": "Run Cypress in all projects",
       "commandKind": "bulk",
       "ignoreMissingScript": true,
