@@ -19,6 +19,37 @@ npm start
 
 ## Cypress Troubleshooting
 
+### Actually starting the server in Drone
+
+Discord server is failing to start and `test:cypress` step is then running until timeout.
+This isn't what I thought at first glance: `ERR_IMPORT_ASSERTION_TYPE_FAILED`.
+The config file somehow isn't JSON.
+Maybe `inject_secrets` is broken?
+Try printing `discord/lib/config.json` during Drone run.
+
+```sh
+==[ @trshcmpctr/discord ]=========================================[ 9 of 10 ]==
+
+Invoking: node --experimental-specifier-resolution=node lib/index.js & wait-on http://localhost:53134 && npm run cy:run 
+node:internal/errors:464
+    ErrorCaptureStackTrace(err);
+    ^
+
+TypeError [ERR_IMPORT_ASSERTION_TYPE_FAILED]: Module "file:///drone/trshcmpctr/discord/lib/config.json" is not of type "json"
+    at new NodeError (node:internal/errors:371:5)
+    at handleInvalidType (node:internal/modules/esm/assert:103:9)
+    at validateAssertions (node:internal/modules/esm/assert:71:14)
+    at defaultLoad (node:internal/modules/esm/load:24:3)
+    at ESMLoader.load (node:internal/modules/esm/loader:359:26)
+    at ESMLoader.moduleProvider (node:internal/modules/esm/loader:280:58)
+    at new ModuleJob (node:internal/modules/esm/module_job:66:26)
+    at ESMLoader.#createModuleJob (node:internal/modules/esm/loader:297:17)
+    at ESMLoader.getModuleJob (node:internal/modules/esm/loader:261:34)
+    at async ModuleWrap.<anonymous> (node:internal/modules/esm/module_job:81:21) {
+  code: 'ERR_IMPORT_ASSERTION_TYPE_FAILED'
+}
+```
+
 ### Running in Drone
 
 Below error message mentioned in [cypress-io/cypress-docker-images#686](https://github.com/cypress-io/cypress-docker-images/issues/686)
