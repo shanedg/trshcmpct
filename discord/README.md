@@ -25,7 +25,16 @@ Discord server is failing to start and `test:cypress` step is then running until
 This isn't what I thought at first glance: `ERR_IMPORT_ASSERTION_TYPE_FAILED`.
 The config file somehow isn't JSON.
 Maybe `inject_secrets` is broken?
-Try printing `discord/lib/config.json` during Drone run.
+~~Try printing `discord/lib/config.json` during Drone run.~~
+Don't do this, it just prints client secrets in the Drone logs :upside-down-smile:
+
+> TODO: Rotate all secrets when this is settled.
+
+Tried `npm start` with the same node version as the Cypress image, v16.14.2
+(see <https://github.com/cypress-io/cypress-docker-images/tree/master/included>)
+and got the same error locally.
+This is a problem with type assertion support in that version.
+Either need to downgrade to 16.14.2 generally or build my own Cypress image :upside-down-smile:.
 
 ```sh
 ==[ @trshcmpctr/discord ]=========================================[ 9 of 10 ]==
