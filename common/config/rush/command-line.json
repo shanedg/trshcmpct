@@ -69,6 +69,10 @@
       "autoinstallerName": "rush-plop",
       "shellCommand": "plop --plopfile scaffold/lib/index.js"
     },
+    // TODO: can these be global commands instead of bulk?
+    // can we centralize the npm-check-updates commands in a script and
+    // just cd into each project directory instead of cluttering
+    // every package.json?
     {
       "name": "check-minor-updates",
       "summary": "Upgrade dependencies in all projects to the latest minor version not already satisfied by semver range",
