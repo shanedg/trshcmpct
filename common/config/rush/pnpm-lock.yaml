@@ -125,7 +125,7 @@ importers:
       '@trshcmpctr/markdownlint-config': workspace:*
       ava: ~4.3.0
       cookie-session: ~2.0.0
-      cypress: ~10.2.0
+      cypress: 10.3.0
       eslint: ~8.18.0
       eslint-plugin-ava: ~13.2.0
       eslint-plugin-cypress: ~2.12.1
@@ -162,7 +162,7 @@ importers:
       '@trshcmpctr/jest-stdout-reporter': link:../jest-stdout-reporter
       '@trshcmpctr/markdownlint-config': link:../markdownlint-config
       ava: 4.3.0
-      cypress: 10.2.0
+      cypress: 10.3.0
       eslint: 8.18.0
       eslint-plugin-ava: 13.2.0_eslint@8.18.0
       eslint-plugin-cypress: 2.12.1_eslint@8.18.0
@@ -4206,8 +4206,8 @@ packages:
       array-find-index: 1.0.2
     dev: true
 
-  /cypress/10.2.0:
-    resolution: {integrity: sha512-+i9lY5ENlfi2mJwsggzR+XASOIgMd7S/Gd3/13NCpv596n3YSplMAueBTIxNLcxDpTcIksp+9pM3UaDrJDpFqA==}
+  /cypress/10.3.0:
+    resolution: {integrity: sha512-txkQWKzvBVnWdCuKs5Xc08gjpO89W2Dom2wpZgT9zWZT5jXxqPIxqP/NC1YArtkpmp3fN5HW8aDjYBizHLUFvg==}
     engines: {node: '>=12.0.0'}
     hasBin: true
     requiresBuild: true

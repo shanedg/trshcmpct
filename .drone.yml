@@ -57,7 +57,10 @@ steps:
     - install
 
 - name: test:cypress
-  image: cypress/included:10.2.0
+  # TODO: Replace custom image with next version of cypress/included that ships with node ^16.15.1
+  # Custom image published to:
+  # https://hub.docker.com/r/shanedg/cypress
+  image: shanedg/cypress:10.3.0-0
   commands:
     - node common/scripts/install-run-rush.js test:cypress --verbose
   depends_on:
