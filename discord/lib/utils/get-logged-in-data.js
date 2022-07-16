@@ -22,8 +22,10 @@ const getLoggedInData = async (fetch, { guildId }) => {
   const guild = Array.isArray(guilds) && selectGuildById(guilds, guildId);
 
   const data = {
+    // TODO: avatar can be null
     avatar,
     discriminator,
+    // TODO: guild.icon can be null
     guild,
     id,
     username,
