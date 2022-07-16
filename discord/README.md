@@ -63,12 +63,6 @@ There's probably no way to work around this unless I build my own image.
 
 Discord server is failing to start and `test:cypress` step is then running until timeout.
 This isn't what I thought at first glance: `ERR_IMPORT_ASSERTION_TYPE_FAILED`.
-The config file somehow isn't JSON.
-Maybe `inject_secrets` is broken?
-~~Try printing `discord/lib/config.json` during Drone run.~~
-Don't do this, it just prints client secrets in the Drone logs :upside-down-smile:
-
-> TODO: Rotate all secrets when this is settled.
 
 Tried `npm start` with the same node version as the Cypress image, v16.14.2
 (see <https://github.com/cypress-io/cypress-docker-images/tree/master/included>)
@@ -109,27 +103,6 @@ Cypress runs do succeed but these warnings are scary.
 libva error: vaGetDriverNameByIndex() failed with unknown libva error, driver_name = (null)
 [290:0627/023407.514203:ERROR:sandbox_linux.cc(377)] InitializeSandbox() called with multiple threads in process gpu-process.
 [290:0627/023407.517340:ERROR:gpu_memory_buffer_support_x11.cc(44)] dri3 extension not supported.
-```
-
-### Linting
-
-Initial eslint run after Cypress generated files:
-
-```sh
-✖ 1446 problems (707 errors, 739 warnings)
-  0 errors and 735 warnings potentially fixable with the `--fix` option.
-```
-
-After `--fix`ing:
-
-```sh
-✖ 711 problems (707 errors, 4 warnings)
-```
-
-Afer installing and configuring `eslint-plugin-cypress`:
-
-```sh
-✖ 20 problems (16 errors, 4 warnings)
 ```
 
 ### ReferenceError: Your configFile is invalid
