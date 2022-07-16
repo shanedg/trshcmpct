@@ -14,10 +14,12 @@
 <body>
   <article id="info">
     <h1>{{username}}#{{discriminator}}</h1>
+    <!-- TODO: avatar can be null -->
     <img src="https://cdn.discordapp.com/avatars/{{id}}/{{avatar}}.webp?size=128" />
 
     {{#if guild}}
     <p>member: {{guild.name}}</p>
+    <!-- TODO: guild.icon can be null -->
     <img src="https://cdn.discordapp.com/icons/{{guild.id}}/{{guild.icon}}.webp?size=128" />
     {{else}}
     <p>not a member of the server (or rate limited)</p>

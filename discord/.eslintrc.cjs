@@ -50,5 +50,11 @@ module.exports = {
         'node/no-missing-import': 'off'
       },
     },
+
+    {
+      files: ['cypress/**'],
+      extends: ['plugin:eslint-plugin-cypress/recommended'],
+      plugins: ['eslint-plugin-cypress'],
+    },
   ],
 };

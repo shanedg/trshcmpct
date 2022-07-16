@@ -56,6 +56,17 @@ steps:
   depends_on:
     - install
 
+- name: test:cypress
+  # TODO: Replace custom image with next version of cypress/included that ships with node ^16.15.1
+  # Custom image published to:
+  # https://hub.docker.com/r/shanedg/cypress
+  image: shanedg/cypress:10.3.0-0
+  commands:
+    - node common/scripts/install-run-rush.js test:cypress --verbose
+  depends_on:
+    - install
+    - inject_secrets
+
 - name: build
   image: node:16.15.1
   commands:
@@ -79,4 +90,5 @@ steps:
     - lint:md
     - test
     - test:ava
+    - test:cypress
     - build
