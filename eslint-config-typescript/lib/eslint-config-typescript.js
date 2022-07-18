@@ -27,6 +27,9 @@ module.exports = {
   plugins: ['@typescript-eslint/eslint-plugin'],
 
   rules: {
+    // Warn on unused variables unless underscore-prefixed arguments.
+    '@typescript-eslint/no-unused-vars': ['warn', { argsIgnorePattern: '^_' }],
+
     // Turn off rules that TypeScript already enforces as part of type checking.
     // See https://typescript-eslint.io/docs/linting/troubleshooting/#eslint-plugin-import.
     'import/default': ['off'],
