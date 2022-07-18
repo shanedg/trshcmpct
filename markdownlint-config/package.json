@@ -28,7 +28,7 @@
   },
   "devDependencies": {
     "markdownlint-cli2": "~0.4.0",
-    "npm-check-updates": "~14.1.1",
+    "npm-check-updates": "~15.3.4",
     "rimraf": "~3.0.2"
   },
   "peerDependencies": {
