@@ -24,9 +24,8 @@
     // Leave transpilation to Babel
     "noEmit": true,
 
-    // TODO: interesting that this is a "recommended on" property
-    // *saves about half of my type-checking time
-    // "skipLibCheck": true,
+    // Ignore inconsistent global definitions from Jest and Cypress
+    "skipLibCheck": true,
 
     // Turn on all strict mode family options for
     // "stronger guarantees of program correctness"

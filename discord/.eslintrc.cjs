@@ -38,9 +38,13 @@ module.exports = {
           // error  Unable to resolve path to module 'ava'  import/no-unresolved
           // Remove this if/when eslint-plugin-import adds support for export maps:
           // https://github.com/import-js/eslint-plugin-import/issues/1810
+          // https://github.com/import-js/eslint-plugin-import/issues/1868#issuecomment-864575179
           '@tophat/eslint-import-resolver-require': {},
           // TODO: wait this one looks more legit: https://www.npmjs.com/package/@jsenv/importmap-eslint-resolver
           // TODO: this seems nice: https://github.com/lukeed/resolve.exports
+          // TODO: someone else from the original thread published another resolver for this:
+          // https://github.com/import-js/eslint-plugin-import/issues/1810#issuecomment-1188684050
+          // https://www.npmjs.com/package/eslint-import-resolver-exports
         },
       },
       rules: {

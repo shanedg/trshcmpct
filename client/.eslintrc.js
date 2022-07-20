@@ -73,5 +73,12 @@ module.exports = {
       extends: ['plugin:testing-library/react'],
       plugins: ['eslint-plugin-testing-library'],
     },
+
+    // Cypress tests
+    {
+      files: ['cypress/**'],
+      extends: ['plugin:eslint-plugin-cypress/recommended'],
+      plugins: ['eslint-plugin-cypress'],
+    },
   ],
 };

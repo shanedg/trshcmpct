@@ -92,10 +92,6 @@ module.exports = (env = {}, argv = {}) => {
       }),
     ],
 
-    devServer: {
-      open: true,
-    },
-
     devtool: isProduction ? 'source-map' : 'eval-source-map',
   };
 };
