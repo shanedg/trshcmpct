@@ -14,9 +14,10 @@
     "cy:run": "cypress run",
     "lint": "eslint --ext .js,.jsx,.ts,.tsx --max-warnings=0 .",
     "lint:md": "markdownlint-cli2-config 'node_modules/@trshcmpctr/markdownlint-config/.markdownlint-cli2.jsonc' '**/*.md' '#node_modules'",
-    "start": "webpack serve --config config/webpack.config.js",
+    "serve": "webpack serve --config config/webpack.config.js",
+    "start": "npm run serve -- --open",
     "test": "npm run test:jest && npm run type-check",
-    "test:cypress": "start-server-and-test start http://localhost:8080 cy:run",
+    "test:cypress": "start-server-and-test serve http://localhost:8080 cy:run",
     "test:jest": "jest --config=config/jest/jest.config.js --no-cache --reporters=@trshcmpctr/jest-stdout-reporter --silent",
     "type-check": "tsc",
     "watch": "webpack --config config/webpack.config.js --watch"

@@ -34,12 +34,6 @@ describe('webpack', () => {
         expect.any(HtmlWebpackPlugin),
       ]);
     });
-
-    it('sets dev server options', () => {
-      expect(developmentConfig.devServer).toHaveProperty('open', true);
-      expect(productionConfig.devServer).toStrictEqual(developmentConfig.devServer);
-    });
-
   });
 
   describe('development config', () => {

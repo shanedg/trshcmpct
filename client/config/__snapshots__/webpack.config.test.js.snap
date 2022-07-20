@@ -2,9 +2,6 @@
 
 exports[`webpack development config matches snapshot 1`] = `
 Object {
-  "devServer": Object {
-    "open": true,
-  },
   "devtool": "eval-source-map",
   "entry": Object {
     "index": "<PROJECT_ROOT>/src/index.ts",
@@ -111,9 +108,6 @@ Object {
 
 exports[`webpack production config matches snapshot 1`] = `
 Object {
-  "devServer": Object {
-    "open": true,
-  },
   "devtool": "source-map",
   "entry": Object {
     "index": "<PROJECT_ROOT>/src/index.ts",
