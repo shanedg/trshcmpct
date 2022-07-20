@@ -10,7 +10,7 @@
     "check-latest-updates": "npm-check-updates --upgrade --minimal --target latest --packageFile package.json",
     "check-minor-updates": "npm-check-updates --upgrade --minimal --target minor --packageFile package.json",
     "clean": "rimraf *.build.log *.build.error.log coverage dist",
-    "cy:open": "cypress open",
+    "cy:open": "cypress open --e2e --browser=chrome",
     "cy:run": "cypress run",
     "lint": "eslint --ext .js,.jsx,.ts,.tsx --max-warnings=0 .",
     "lint:md": "markdownlint-cli2-config 'node_modules/@trshcmpctr/markdownlint-config/.markdownlint-cli2.jsonc' '**/*.md' '#node_modules'",
