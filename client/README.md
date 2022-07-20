@@ -60,12 +60,6 @@ Run `tsc` against the project's TS files to catch type errors.
 npm run type-check
 ```
 
-## TODO
-
-* Acceptance tests
-* E2E tests
-(working on Cypress in this branch ^^)
-
 ## Troubleshooting
 
 ### Adding Cypress to this project
