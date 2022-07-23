@@ -3,8 +3,6 @@ import { fileURLToPath } from 'node:url';
 
 import cookieSession from 'cookie-session';
 import express from 'express';
-// Someday soon we'll use the fetch api from node itself :)
-import fetch from 'node-fetch';
 import handlebars from 'hbs';
 import pinoHttp from 'pino-http';
 
@@ -49,8 +47,10 @@ app.use(cookieSession({
   secret: sessionSecret,
 }));
 
+const redirectUri = `http://localhost:${port}`;
+const renderLogin = getRenderLoginWithData({ clientId, redirectUri });
+
 // Dependency-inject our chosen fetch implementation
-const renderLogin = getRenderLoginWithData({ clientId });
 const reuseSessionToken = getReuseSessionTokenWithDependencies(fetch, { guildId });
 const getNewToken = getNewTokenWithDependencies(fetch, { clientId, clientSecret, guildId, port });
 

@@ -15,17 +15,14 @@
   <article>
     <h1>login</h1>
     <!-- https://discordjs.guide/oauth2/#authorization-code-grant-flow -->
-    <!-- TODO: `redirect_uri` should come from request headers or something -->
     <a
-      href="https://discord.com/api/oauth2/authorize?client_id={{clientId}}&redirect_uri=http%3A%2F%2Flocalhost%3A53134&response_type=code&scope=identify%20guilds"
+      href="https://discord.com/api/oauth2/authorize?client_id={{clientId}}&redirect_uri={{redirectUri}}&response_type=code&scope=identify%20guilds"
       id="login"
       style="display: none;"
     >sign in with discord</a>
   </article>
 
   <script>
-    // TODO: should this string come from the server on the initial request?
-    // is that weird?
     function generateRandomString() {
       let randomString = '';
       const randomNumber = Math.floor(Math.random() * 10);
