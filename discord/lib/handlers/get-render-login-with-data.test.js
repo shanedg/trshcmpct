@@ -3,7 +3,10 @@ import { jest } from '@jest/globals';
 import { getRenderLoginWithData } from './get-render-login-with-data';
 
 describe('getRenderLoginWithData creates a handler that', () => {
-  const renderLogin = getRenderLoginWithData({ clientId: 'my-client-id' });
+  const renderLogin = getRenderLoginWithData({
+    clientId: 'my-client-id',
+    redirectUri: 'http://localhost:8080',
+  });
 
   const logDebugSpy = jest.fn();
   const logErrorSpy = jest.fn();
@@ -32,7 +35,8 @@ describe('getRenderLoginWithData creates a handler that', () => {
     expect(renderSpy.mock.calls.length).toBe(1);
     expect(renderSpy.mock.calls[0].length).toBe(2);
     expect(renderSpy.mock.calls[0][1]).toStrictEqual(expect.objectContaining({
-      clientId: 'my-client-id'
+      clientId: 'my-client-id',
+      redirectUri: 'http%3A%2F%2Flocalhost%3A8080',
     }));
   });
 

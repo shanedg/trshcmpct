@@ -11,7 +11,10 @@ const nextSpy = sinon.spy();
 const responseWithSpies = { render: renderSpy, send: sendSpy };
 
 test.before(t => {
-  const renderLogin = getRenderLoginWithData({ clientId: 'my-client-id' });
+  const renderLogin = getRenderLoginWithData({
+    clientId: 'my-client-id',
+    redirectUri: 'http://localhost:8080',
+  });
   t.context.renderLogin = renderLogin;
   const requestWithSpies = {
     log: { error: errorSpy, debug: debugSpy },
@@ -34,7 +37,8 @@ test('injects client id in the login template', t => {
   t.is(renderCalls.length, 1);
   t.is(renderCalls[0].args.length, 2);
   t.like(renderCalls[0].args[1], {
-    clientId: 'my-client-id'
+    clientId: 'my-client-id',
+    redirectUri: 'http%3A%2F%2Flocalhost%3A8080',
   });
 });
 

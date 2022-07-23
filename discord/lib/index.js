@@ -47,8 +47,10 @@ app.use(cookieSession({
   secret: sessionSecret,
 }));
 
+const redirectUri = `http://localhost:${port}`;
+const renderLogin = getRenderLoginWithData({ clientId, redirectUri });
+
 // Dependency-inject our chosen fetch implementation
-const renderLogin = getRenderLoginWithData({ clientId });
 const reuseSessionToken = getReuseSessionTokenWithDependencies(fetch, { guildId });
 const getNewToken = getNewTokenWithDependencies(fetch, { clientId, clientSecret, guildId, port });
 
