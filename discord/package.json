@@ -32,11 +32,11 @@
     "clean": "rimraf *.build.log *.build.error.log",
     "cy:open": "cypress open --e2e --browser=chrome",
     "cy:run": "cypress run",
-    "debug": "node --experimental-specifier-resolution=node --trace-warnings --inspect-brk lib/index.js",
-    "dev": "nodemon --experimental-specifier-resolution=node --trace-warnings --inspect lib/index.js",
+    "debug": "node --experimental-specifier-resolution=node --experimental-fetch --trace-warnings --inspect-brk lib/index.js",
+    "dev": "nodemon --experimental-specifier-resolution=node --experimental-fetch --trace-warnings --inspect lib/index.js",
     "lint": "eslint --max-warnings=0 .",
     "lint:md": "markdownlint-cli2-config 'node_modules/@trshcmpctr/markdownlint-config/.markdownlint-cli2.jsonc' '**/*.md' '#node_modules'",
-    "start": "node --experimental-specifier-resolution=node lib/index.js",
+    "start": "node --experimental-specifier-resolution=node --experimental-fetch lib/index.js",
     "test": "NODE_OPTIONS=--experimental-vm-modules jest --no-cache --silent",
     "test:cypress": "start-server-and-test start http://localhost:53134 cy:run",
     "test:debug": "NODE_OPTIONS='--experimental-vm-modules --inspect' jest --no-cache --runInBand",
@@ -82,7 +82,6 @@
     "cookie-session": "~2.0.0",
     "express": "~4.18.1",
     "hbs": "~4.2.0",
-    "node-fetch": "~3.2.4",
     "pino-http": "~8.1.1"
   }
 }
