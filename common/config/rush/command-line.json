@@ -69,23 +69,19 @@
       "autoinstallerName": "rush-plop",
       "shellCommand": "plop --plopfile scaffold/lib/index.js"
     },
-    // TODO: can these be global commands instead of bulk?
-    // can we centralize the npm-check-updates commands in a script and
-    // just cd into each project directory instead of cluttering
-    // every package.json?
     {
       "name": "check-minor-updates",
       "summary": "Upgrade dependencies in all projects to the latest minor version not already satisfied by semver range",
-      "commandKind": "bulk",
-      "enableParallelism": false,
-      "allowWarningsInSuccessfulBuild": true
+      "commandKind": "global",
+      "autoinstallerName": "rush-check-updates",
+      "shellCommand": "npm-check-updates --packageFile *{$(common/scripts/get_comma_separated_rush_directories.sh)}/package.json --upgrade --minimal --target minor"
     },
     {
       "name": "check-latest-updates",
       "summary": "Upgrade dependencies in all projects to the latest version not already satisfied by the semver range. This includes major versions and is best to run after `check-minor-updates`.",
-      "commandKind": "bulk",
-      "enableParallelism": false,
-      "allowWarningsInSuccessfulBuild": true
+      "commandKind": "global",
+      "autoinstallerName": "rush-check-updates",
+      "shellCommand": "npm-check-updates --packageFile *{$(common/scripts/get_comma_separated_rush_directories.sh)}/package.json --upgrade --minimal --target latest"
     }
 
     // {

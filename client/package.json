@@ -7,8 +7,6 @@
   "scripts": {
     "build": "webpack --config config/webpack.config.js",
     "build:production": "webpack --config config/webpack.config.js --env production",
-    "check-latest-updates": "npm-check-updates --upgrade --minimal --target latest --packageFile package.json",
-    "check-minor-updates": "npm-check-updates --upgrade --minimal --target minor --packageFile package.json",
     "clean": "rimraf *.build.log *.build.error.log coverage dist",
     "cy:open": "cypress open --e2e --browser=chrome",
     "cy:run": "cypress run",
@@ -79,7 +77,6 @@
     "jest-serializer-path": "~0.1.15",
     "jest": "~28.1.0",
     "markdownlint-cli2": "~0.4.0",
-    "npm-check-updates": "~16.0.0",
     "rimraf": "~3.0.2",
     "start-server-and-test": "~1.14.0",
     "style-loader": "~3.3.1",
