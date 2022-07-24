@@ -1,15 +1,7 @@
-import { jest } from '@jest/globals';
+import test from 'ava';
+import sinon from 'sinon';
 
 import { batchRequests } from './batch-requests';
-
-/**
- * Fake implementation of fetch
- * Always resolves
- * @param {string} url Url to fetch
- * @returns Fake response
- */
-const fetchSucceeds =
- url => Promise.resolve({ json: () => 'response from ' + url });
 
 /**
  * Fake implementation of fetch
@@ -19,62 +11,49 @@ const fetchSucceeds =
 const fetchFails = url => { throw new Error(url); };
 
 /**
+ * Fake implementation of fetch
+ * Always resolves
+ * @param {string} url Url to fetch
+ * @returns Fake response
+ */
+const fetchSucceeds =
+  url => Promise.resolve({ json: () => 'response from ' + url });
+
+/**
   * Fake implementation of fetch
   * Response#json always throws
   * @param {string} url Url to fetch
   * @returns Fake response
   */
 const fetchWithBadResponseJson =
-   url => Promise.resolve({ json: () => { throw new Error('response from ' + url); } });
+  url => Promise.resolve({ json: () => { throw new Error('response from ' + url); } });
 
-describe('batchRequests', () => {
-  const testEndpoints = ['https://some-url.fake/api/1', 'https://some-url.fake/api/2'];
-  let fetch;
+const testEndpoints = ['https://some-url.fake/api/1', 'https://some-url.fake/api/2'];
 
-  beforeEach(async () => {
-    fetch && fetch.mockClear();
-    fetch = jest.fn(fetchSucceeds);
-  });
+const fetchFailsSpy = sinon.spy(fetchFails);
+const fetchSucceedsSpy = sinon.spy(fetchSucceeds);
+const fetchWithBadResponseSpy = sinon.spy(fetchWithBadResponseJson);
 
-  it('calls fetch with the expected endpoints', async () => {
-    await batchRequests(fetch, testEndpoints);
-    expect(fetch.mock.calls.length).toBe(2);
-    expect(fetch.mock.calls[0].length).toBe(1);
-    expect(fetch.mock.calls[0][0]).toBe('https://some-url.fake/api/1');
-    // The actual implementation of fetch has no guarantees
-    // about order of completion but this is fine for a lil test.
-    expect(fetch.mock.calls[1].length).toBe(1);
-    expect(fetch.mock.calls[1][0]).toBe('https://some-url.fake/api/2');
-  });
+test('fetches the expected endpoints', async t => {
+  t.plan(4);
+  await t.truthy(batchRequests(fetchSucceedsSpy, testEndpoints));
+  const fetchCalls = fetchSucceedsSpy.getCalls();
+  t.is(fetchCalls.length, 2);
+  // The actual implementation of fetch has no guarantees
+  // about order of completion but this is fine for a lil test.
+  t.is(fetchCalls[0].args[0], 'https://some-url.fake/api/1');
+  t.is(fetchCalls[1].args[0], 'https://some-url.fake/api/2');
+});
 
-  it('throws if any calls to fetch fail', async () => {
-    fetch
-      .mockImplementationOnce(fetchFails);
-    await expect(batchRequests(fetch, testEndpoints))
-      .rejects.toThrow(new Error('https://some-url.fake/api/1'));
-    expect(fetch.mock.calls.length).toBe(1);
-    fetch.mockClear();
+test('rejects if fetch fails', async t => {
+  t.plan(2);
+  await t.throwsAsync(batchRequests(fetchFailsSpy, testEndpoints));
+  t.is(fetchFailsSpy.callCount, 1);
+});
 
-    fetch
-      .mockImplementationOnce(fetchSucceeds)
-      .mockImplementationOnce(fetchFails);
-    await expect(batchRequests(fetch, testEndpoints))
-      .rejects.toThrow(new Error('https://some-url.fake/api/2'));
-    expect(fetch.mock.calls.length).toBe(2);
-  });
-
-  it('throws if any calls to response#json fail', async () => {
-    fetch
-      .mockImplementationOnce(fetchWithBadResponseJson)
-      .mockImplementationOnce(fetchSucceeds);
-    await expect(batchRequests(fetch, testEndpoints))
-      .rejects.toThrow(new Error('response from https://some-url.fake/api/1'));
-    fetch.mockClear();
-
-    fetch
-      .mockImplementationOnce(fetchSucceeds)
-      .mockImplementationOnce(fetchWithBadResponseJson);
-    await expect(batchRequests(fetch, testEndpoints))
-      .rejects.toThrow(new Error('response from https://some-url.fake/api/2'));
-  });
+test('rejects if response#json fails', async t => {
+  t.plan(2);
+  await t.throwsAsync(batchRequests(fetchWithBadResponseSpy, testEndpoints));
+  // Called once for every url in testEndpoints.
+  t.is(fetchWithBadResponseSpy.callCount, 2);
 });

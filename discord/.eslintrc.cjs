@@ -25,11 +25,6 @@ module.exports = {
 
     {
       files: ['*.test.js'],
-      extends: ['@trshcmpctr/eslint-config-jest'],
-    },
-
-    {
-      files: ['*.ava-test.js'],
       extends: ['plugin:ava/recommended'],
       plugins: ['eslint-plugin-ava'],
       settings: {

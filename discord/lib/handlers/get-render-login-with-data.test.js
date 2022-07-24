@@ -1,76 +1,94 @@
-import { jest } from '@jest/globals';
+import test from 'ava';
+import sinon from 'sinon';
 
 import { getRenderLoginWithData } from './get-render-login-with-data';
 
-describe('getRenderLoginWithData creates a handler that', () => {
+const renderSpy = sinon.spy();
+const sendSpy = sinon.spy();
+const errorSpy = sinon.spy();
+const debugSpy = sinon.spy();
+const nextSpy = sinon.spy();
+const responseWithSpies = { render: renderSpy, send: sendSpy };
+
+test.before(t => {
   const renderLogin = getRenderLoginWithData({
     clientId: 'my-client-id',
     redirectUri: 'http://localhost:8080',
   });
+  t.context.renderLogin = renderLogin;
+  const requestWithSpies = {
+    log: { error: errorSpy, debug: debugSpy },
+    session: { views: 0 },
+    query: {},
+  };
+  renderLogin(requestWithSpies, responseWithSpies, nextSpy);
+});
 
-  const logDebugSpy = jest.fn();
-  const logErrorSpy = jest.fn();
-  const nextSpy = jest.fn();
-  const renderSpy = jest.fn();
-  const sendSpy = jest.fn();
+test('renders login template', t => {
+  t.plan(2);
+  const renderCalls = renderSpy.getCalls();
+  t.is(renderCalls.length, 1);
+  t.is(renderCalls[0].args[0], 'index');
+});
 
-  const goodResponse = { render: renderSpy, send: sendSpy };
-
-  beforeEach(() => {
-    jest.clearAllMocks();
-    const loginRequest = {
-      log: { error: logErrorSpy, debug: logDebugSpy },
-      session: { views: 0 },
-      query: {},
-    };
-    renderLogin(loginRequest, goodResponse, nextSpy);
+test('injects client id in the login template', t => {
+  t.plan(3);
+  const renderCalls = renderSpy.getCalls();
+  t.is(renderCalls.length, 1);
+  t.is(renderCalls[0].args.length, 2);
+  t.like(renderCalls[0].args[1], {
+    clientId: 'my-client-id',
+    redirectUri: 'http%3A%2F%2Flocalhost%3A8080',
   });
+});
 
-  it('renders the login template', () => {
-    expect(renderSpy.mock.calls.length).toBe(1);
-    expect(renderSpy.mock.calls[0][0]).toBe('index');
-  });
+test('logs to debug', t => {
+  t.plan(2);
+  const debugCalls = debugSpy.getCalls();
+  t.is(debugCalls.length, 1);
+  t.is(debugCalls[0].args[0], 'render login page');
+});
 
-  it('injects the client id to the login locals', () => {
-    expect(renderSpy.mock.calls.length).toBe(1);
-    expect(renderSpy.mock.calls[0].length).toBe(2);
-    expect(renderSpy.mock.calls[0][1]).toStrictEqual(expect.objectContaining({
-      clientId: 'my-client-id',
-      redirectUri: 'http%3A%2F%2Flocalhost%3A8080',
-    }));
-  });
+test('calls next if logging in', t => {
+  t.plan(2);
+  const localRenderSpy = sinon.spy();
+  const localSendSpy = sinon.spy();
+  const localNextSpy = sinon.spy();
+  const localDebugSpy = sinon.spy();
+  const localResponseWithSpies = { render: localRenderSpy, send: localSendSpy };
+  const loggingInRequest = {
+    log: { error: errorSpy, debug: localDebugSpy },
+    session: { views: 0 },
+    query: { code: 123 },
+  };
+  t.context.renderLogin(loggingInRequest, localResponseWithSpies, localNextSpy);
 
-  it('logs to debug', () => {
-    expect(logDebugSpy.mock.calls.length).toBe(1);
-    expect(logDebugSpy.mock.calls[0][0]).toBe('render login page');
-  });
+  const renderCalls = localRenderSpy.getCalls();
+  const nextCalls = localNextSpy.getCalls();
+  t.is(renderCalls.length, 0);
+  t.is(nextCalls.length, 1);
+});
 
-  it('calls the next middleware function if logging in', () => {
-    jest.clearAllMocks();
-    const loggedInRequest = {
-      log: { error: logErrorSpy, debug: logDebugSpy },
-      session: { views: 0 },
-      query: { code: 123 },
-    };
-    renderLogin(loggedInRequest, goodResponse, nextSpy);
-    expect(renderSpy.mock.calls.length).toBe(0);
-    expect(nextSpy.mock.calls.length).toBe(1);
-  });
-
-  it('calls the next middleware function if logged in', () => {
-    jest.clearAllMocks();
-    const ninetySecondsFromNow = (Date.now()/1000)+90;
-    const loggedInRequest = {
-      log: { error: logErrorSpy, debug: logDebugSpy },
-      session: {
-        views: 0,
-        oauth: { access_token: 'access-token' },
-        oauthExpires: ninetySecondsFromNow,
-      },
-      query: {},
-    };
-    renderLogin(loggedInRequest, goodResponse, nextSpy);
-    expect(renderSpy.mock.calls.length).toBe(0);
-    expect(nextSpy.mock.calls.length).toBe(1);
-  });
+test('calls next if logged in', t => {
+  const localRenderSpy = sinon.spy();
+  const localSendSpy = sinon.spy();
+  const localNextSpy = sinon.spy();
+  const localResponseWithSpies = { render: localRenderSpy, send: localSendSpy };
+  const ninetySecondsFromNow = (Date.now()/1000)+90;
+  const localErrorSpy = sinon.spy();
+  const localDebugSpy = sinon.spy();
+  const loggedInRequest = {
+    log: { error: localErrorSpy, debug: localDebugSpy },
+    session: {
+      views: 0,
+      oauth: { access_token: 'access-token' },
+      oauthExpires: ninetySecondsFromNow,
+    },
+    query: {},
+  };
+  t.context.renderLogin(loggedInRequest, localResponseWithSpies, localNextSpy);
+  const renderCalls = localRenderSpy.getCalls();
+  const nextCalls = localNextSpy.getCalls();
+  t.is(renderCalls.length, 0);
+  t.is(nextCalls.length, 1);
 });

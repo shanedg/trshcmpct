@@ -1,52 +1,65 @@
-import { jest } from '@jest/globals';
+import test from 'ava';
+import sinon from 'sinon';
 
 import { handleError } from './handle-error';
 
-describe('handleError', () => {
-  const logDebugSpy = jest.fn();
-  const logErrorSpy = jest.fn();
-  const nextSpy = jest.fn();
-  const sendSpy = jest.fn();
+const debugSpy = sinon.spy();
+const errorSpy = sinon.spy();
+const nextSpy = sinon.spy();
+const sendSpy = sinon.spy();
 
-  const goodRequest = {
-    log: { error: logErrorSpy, debug: logDebugSpy },
+const requestWithSpies = {
+  log: { error: errorSpy, debug: debugSpy },
+  session: { views: 0 },
+  query: { code: 'abc456' },
+};
+
+const renderSpy = sinon.spy((template, locals, callback) => {
+  callback(null, '<some-fake-html>');
+});
+const errorResponse = { render: renderSpy, send: sendSpy };
+
+test.before(() => {
+  handleError(new Error('some-error'), requestWithSpies, errorResponse, nextSpy);
+});
+
+test('logs the original error', t => {
+  t.plan(2);
+  const errorCalls = errorSpy.getCalls();
+  t.is(errorCalls.length, 1);
+  t.deepEqual(errorCalls[0].args[0], new Error('some-error'));
+});
+
+test('renders the error template', t => {
+  t.plan(4);
+  const renderCalls = renderSpy.getCalls();
+  t.is(renderCalls.length, 1);
+  t.is(renderCalls[0].args[0], 'error');
+  const sendCalls = sendSpy.getCalls();
+  t.is(sendCalls.length, 1);
+  t.is(sendCalls[0].args[0], '<some-fake-html>');
+});
+
+test('logs any error encountered rendering the template', t => {
+  t.plan(2);
+  const badRenderSpy = sinon.spy((template, locals, callback) => {
+    callback(new Error('render-error'), '<some-fake-html />');
+  });
+  const localSendSpy = sinon.spy();
+  const localDebugSpy = sinon.spy();
+  const localErrorSpy = sinon.spy();
+  const localNextSpy = sinon.spy();
+  const badResponseWithSpies = {
+    render: badRenderSpy,
+    send: localSendSpy,
+  };
+  const localRequestWithSpies = {
+    log: { error: localErrorSpy, debug: localDebugSpy },
     session: { views: 0 },
     query: { code: 'abc456' },
   };
-
-  const errorRenderSpy = jest.fn((template, locals, callback) => {
-    callback(null, '<some-fake-html>');
-  });
-  const goodErrorResponse = { render: errorRenderSpy, send: sendSpy };
-
-  beforeAll(() => {
-    jest.clearAllMocks();
-    handleError(new Error('some-error'), goodRequest, goodErrorResponse, nextSpy);
-  });
-
-  it('logs the original error', () => {
-    expect(logErrorSpy.mock.calls.length).toBe(1);
-    expect(logErrorSpy.mock.calls[0][0]).toStrictEqual(new Error('some-error'));
-  });
-
-  it('renders the error template', () => {
-    expect(errorRenderSpy.mock.calls.length).toBe(1);
-    expect(errorRenderSpy.mock.calls[0][0]).toBe('error');
-    expect(sendSpy.mock.calls.length).toBe(1);
-    expect(sendSpy.mock.calls[0][0]).toBe('<some-fake-html>');
-  });
-
-  it('logs any error encountered rendering error template', () => {
-    jest.clearAllMocks();
-    const badRenderSpy = jest.fn((template, locals, callback) => {
-      callback(new Error('render-error'), '<some-fake-html />');
-    });
-    const badErrorResponseRender = {
-      render: badRenderSpy,
-      send: sendSpy,
-    };
-    handleError(new Error('some-error'), goodRequest, badErrorResponseRender, nextSpy);
-    expect(logErrorSpy.mock.calls.length).toBe(2);
-    expect(logErrorSpy.mock.calls[1][0]).toStrictEqual(new Error('render-error'));
-  });
+  handleError(new Error('some-error'), localRequestWithSpies, badResponseWithSpies, localNextSpy);
+  const errorCalls = localErrorSpy.getCalls();
+  t.is(errorCalls.length, 2);
+  t.deepEqual(errorCalls[1].args[0], new Error('render-error'));
 });

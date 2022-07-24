@@ -1,4 +1,5 @@
-import { jest } from '@jest/globals';
+import test from 'ava';
+import sinon from 'sinon';
 
 import { getFetchWithOauth } from './get-fetch-with-oauth';
 
@@ -8,38 +9,31 @@ import { getFetchWithOauth } from './get-fetch-with-oauth';
  * @param {string} url Url to fetch
  * @returns Fake response
  */
-const fetchSucceeds =
- url => Promise.resolve({ json: () => 'response from ' + url });
+const fetchSucceeds = url => Promise.resolve({ json: () => 'response from ' + url });
 
-describe('getFetchWithOauth', () => {
-  let fetch;
-  let fetchWithOauth;
-
-  beforeAll(() => {
-    fetch = jest.fn(fetchSucceeds);
-    fetchWithOauth = getFetchWithOauth(fetch, {
-      token_type: 'Bearer',
-      access_token: 'accesstoken'
-    });
+test.beforeEach(t => {
+  const fetch = sinon.spy(fetchSucceeds);
+  const fetchWithOauth = getFetchWithOauth(fetch, {
+    token_type: 'Bearer',
+    access_token: 'accesstoken'
   });
+  t.context.fetch = fetch;
+  t.context.fetchWithOauth = fetchWithOauth;
+});
 
-  afterEach(() => {
-    fetch.mockClear();
-  });
+test('calls fetch with url', async t => {
+  t.plan(3);
+  await t.context.fetchWithOauth('https://www.example.com');
+  const fetchCalls = t.context.fetch.getCalls();
+  t.is(fetchCalls.length, 1);
+  t.is(fetchCalls[0].args.length, 2);
+  t.is(fetchCalls[0].args[0], 'https://www.example.com');
+});
 
-  it('calls fetch with url', async () => {
-    await fetchWithOauth('https://www.example.com');
-
-    expect(fetch.mock.calls.length).toBe(1);
-    expect(fetch.mock.calls[0].length).toBe(2);
-    expect(fetch.mock.calls[0][0]).toBe('https://www.example.com');
-  });
-
-  it('calls fetch with authorization header', async () => {
-    await fetchWithOauth('https://www.example.com');
-
-    expect(fetch.mock.calls.length).toBe(1);
-    expect(fetch.mock.calls[0].length).toBe(2);
-    expect(fetch.mock.calls[0][1].headers.authorization).toBe('Bearer accesstoken');
-  });
+test('calls fetch with authorization header', async t => {
+  t.plan(3);
+  await t.context.fetchWithOauth('https://www.example.com');
+  const fetchCalls = t.context.fetch.getCalls();
+  t.is(fetchCalls.length, 1);  t.is(fetchCalls[0].args.length, 2);
+  t.is(fetchCalls[0].args[1].headers.authorization, 'Bearer accesstoken');
 });
