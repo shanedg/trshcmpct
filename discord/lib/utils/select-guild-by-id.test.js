@@ -1,3 +1,5 @@
+import test from 'ava';
+
 import { selectGuildById } from './select-guild-by-id';
 
 const testGuilds = [
@@ -21,14 +23,14 @@ const testGuilds = [
   },
 ];
 
-describe('selectGuildById', () => {
-  it('returns guild if present', () => {
-    const result = selectGuildById(testGuilds, 'someid');
-    expect(result).toBeTruthy();
-    expect(result.id).toBe('someid');
-  });
+test('returns guild if present', t => {
+  t.plan(2);
+  const result = selectGuildById(testGuilds, 'someid');
+  t.truthy(result);
+  t.is(result.id, 'someid');
+});
 
-  it('returns undefined if not present', () => {
-    expect(selectGuildById(testGuilds, 'missingid')).toBeUndefined();
-  });
+test('returns undefined if not present', t => {
+  t.plan(1);
+  t.is(selectGuildById(testGuilds, 'missingid'), undefined);
 });

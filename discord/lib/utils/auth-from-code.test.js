@@ -1,4 +1,5 @@
-import { jest } from '@jest/globals';
+import test from 'ava';
+import sinon from 'sinon';
 
 import { authFromCode } from './auth-from-code';
 
@@ -8,41 +9,39 @@ import { authFromCode } from './auth-from-code';
  * @param {string} url Url to fetch
  * @returns Fake response
  */
-const fetchSucceeds =
- url => Promise.resolve({ json: () => 'response from ' + url });
+const fetchSucceeds = url => Promise.resolve({ json: () => 'response from ' + url });
 
-describe('authFromCode', () => {
-  let fetch;
-
-  beforeAll(async () => {
-    fetch = jest.fn(fetchSucceeds);
-    await authFromCode(fetch, {
-      code: 'mycode',
-      clientId: 'myclientid',
-      clientSecret: 'myclientsecret',
-      port: '12345'
-    });
+test.before(async t => {
+  const fetch = sinon.spy(fetchSucceeds);
+  t.context.fetch = fetch;
+  await authFromCode(fetch, {
+    code: 'mycode',
+    clientId: 'myclientid',
+    clientSecret: 'myclientsecret',
+    port: '12345'
   });
+});
 
-  it('calls fetch with oauth url', () => {
-    expect(fetch.mock.calls.length).toBe(1);
-    expect(fetch.mock.calls[0].length).toBe(2);
-    expect(fetch.mock.calls[0][0]).toBe('https://discord.com/api/oauth2/token');
-  });
+test('calls fetch with oauth url', t => {
+  t.plan(3);
+  const fetchCalls = t.context.fetch.getCalls();
+  t.is(fetchCalls.length, 1);
+  t.is(fetchCalls[0].args.length, 2);
+  t.is(fetchCalls[0].args[0], 'https://discord.com/api/oauth2/token');
+});
 
-  it('calls fetch with oauth body', () => {
-    expect(fetch.mock.calls.length).toBe(1);
-    expect(fetch.mock.calls[0].length).toBe(2);
-
-    const bodyParams = fetch.mock.calls[0][1].body;
-    expect(bodyParams).toBeInstanceOf(URLSearchParams);
-    expect(bodyParams.toString()).toBe([
-      'client_id=myclientid',
-      'client_secret=myclientsecret',
-      'code=mycode',
-      'grant_type=authorization_code',
-      'redirect_uri=http%3A%2F%2Flocalhost%3A12345',
-      'scope=identify'
-    ].join('&'));
-  });
+test('calls fetch with oauth body', t => {
+  t.plan(3);
+  const fetchCalls = t.context.fetch.getCalls();
+  t.is(fetchCalls.length, 1);
+  t.is(fetchCalls[0].args.length, 2);
+  const bodyParams = fetchCalls[0].args[1].body;
+  t.is(bodyParams.toString(), [
+    'client_id=myclientid',
+    'client_secret=myclientsecret',
+    'code=mycode',
+    'grant_type=authorization_code',
+    'redirect_uri=http%3A%2F%2Flocalhost%3A12345',
+    'scope=identify'
+  ].join('&'));
 });

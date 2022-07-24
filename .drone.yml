@@ -49,13 +49,6 @@ steps:
   depends_on:
     - install
 
-- name: test:ava
-  image: node:16.15.1
-  commands:
-    - node common/scripts/install-run-rush.js test:ava
-  depends_on:
-    - install
-
 - name: test:cypress
   # TODO: Replace custom image with next version of cypress/included that ships with node ^16.15.1
   # Custom image published to:
@@ -89,6 +82,5 @@ steps:
     - lint
     - lint:md
     - test
-    - test:ava
     - test:cypress
     - build

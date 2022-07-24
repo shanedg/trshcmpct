@@ -121,11 +121,8 @@ importers:
       '@babel/core': ~7.18.5
       '@babel/eslint-parser': ~7.18.2
       '@babel/plugin-syntax-import-assertions': ~7.18.6
-      '@jest/globals': ~28.1.0
       '@tophat/eslint-import-resolver-require': 0.1.3
       '@trshcmpctr/eslint-config': workspace:*
-      '@trshcmpctr/eslint-config-jest': workspace:*
-      '@trshcmpctr/jest-stdout-reporter': workspace:*
       '@trshcmpctr/markdownlint-config': workspace:*
       ava: ~4.3.0
       cookie-session: ~2.0.0
@@ -139,7 +136,6 @@ importers:
       eslint-plugin-node: ~11.1.0
       express: ~4.18.1
       hbs: ~4.2.0
-      jest: ~28.1.0
       markdownlint-cli2: ~0.4.0
       nodemon: ~2.0.16
       pino-http: ~8.1.1
@@ -156,11 +152,8 @@ importers:
       '@babel/core': 7.18.9
       '@babel/eslint-parser': 7.18.9_454u7sltq2wfyzqnoclqps3oeu
       '@babel/plugin-syntax-import-assertions': 7.18.6_@babel+core@7.18.9
-      '@jest/globals': 28.1.3
       '@tophat/eslint-import-resolver-require': 0.1.3_fkfqfehjtk7sk2efaqbgxsuasa
       '@trshcmpctr/eslint-config': link:../eslint-config
-      '@trshcmpctr/eslint-config-jest': link:../eslint-config-jest
-      '@trshcmpctr/jest-stdout-reporter': link:../jest-stdout-reporter
       '@trshcmpctr/markdownlint-config': link:../markdownlint-config
       ava: 4.3.1
       cypress: 10.3.0
@@ -169,9 +162,8 @@ importers:
       eslint-plugin-cypress: 2.12.1_eslint@8.20.0
       eslint-plugin-eslint-comments: 3.2.0_eslint@8.20.0
       eslint-plugin-import: 2.26.0_eslint@8.20.0
-      eslint-plugin-jest: 26.6.0_hqgs3mivdo7tgnyv226pj3xh7m
+      eslint-plugin-jest: 26.6.0_he2ccbldppg44uulnyq4rwocfa
       eslint-plugin-node: 11.1.0_eslint@8.20.0
-      jest: 28.1.3
       markdownlint-cli2: 0.4.0
       nodemon: 2.0.19
       rimraf: 3.0.2
@@ -4662,6 +4654,26 @@ packages:
       - eslint-import-resolver-typescript
       - eslint-import-resolver-webpack
       - supports-color
+    dev: true
+
+  /eslint-plugin-jest/26.6.0_he2ccbldppg44uulnyq4rwocfa:
+    resolution: {integrity: sha512-f8n46/97ZFdU4KqeQYqO8AEVGIhHWvkpgNBWHH3jrM28/y8llnbf3IjfIKv6p2pZIMinK1PCqbbROxs9Eud02Q==}
+    engines: {node: ^12.22.0 || ^14.17.0 || >=16.0.0}
+    peerDependencies:
+      '@typescript-eslint/eslint-plugin': ^5.0.0
+      eslint: ^6.0.0 || ^7.0.0 || ^8.0.0
+      jest: '*'
+    peerDependenciesMeta:
+      '@typescript-eslint/eslint-plugin':
+        optional: true
+      jest:
+        optional: true
+    dependencies:
+      '@typescript-eslint/utils': 5.30.7_he2ccbldppg44uulnyq4rwocfa
+      eslint: 8.20.0
+    transitivePeerDependencies:
+      - supports-color
+      - typescript
     dev: true
 
   /eslint-plugin-jest/26.6.0_hqgs3mivdo7tgnyv226pj3xh7m:

@@ -1,4 +1,5 @@
-import { jest } from '@jest/globals';
+import test from 'ava';
+import sinon from 'sinon';
 
 import { getReuseSessionTokenWithDependencies } from './get-reuse-session-token-with-dependencies';
 
@@ -11,44 +12,48 @@ import { getReuseSessionTokenWithDependencies } from './get-reuse-session-token-
 const fetchSucceeds =
  url => Promise.resolve({ json: () => 'response from ' + url });
 
-const logDebugSpy = jest.fn();
-const logErrorSpy = jest.fn();
-const nextSpy = jest.fn();
-const renderSpy = jest.fn();
-const sendSpy = jest.fn();
-const spiedResponse = { render: renderSpy, send: sendSpy };
+const debugSpy = sinon.spy();
+const errorSpy = sinon.spy();
+const nextSpy = sinon.spy();
+const renderSpy = sinon.spy();
+const sendSpy = sinon.spy();
+const responseWithSpies = { render: renderSpy, send: sendSpy };
 
-describe('getReuseSessionTokenWithDependencies creates a handler that', () => {
-  beforeAll(async () => {
-    const reuseSessionToken = getReuseSessionTokenWithDependencies(fetchSucceeds, { guildId: '456' });
-    const sessionTokenRequest = {
-      log: { error: logErrorSpy, debug: logDebugSpy },
-      session: {
-        oauth: {
-          access_token: 'some-access-token',
-          expires_in: 90,
-        },
-        views: 10,
+test.before(async () => {
+  const reuseSessionToken = getReuseSessionTokenWithDependencies(fetchSucceeds, { guildId: '456' });
+  const sessionTokenRequest = {
+    log: { error: errorSpy, debug: debugSpy },
+    session: {
+      oauth: {
+        access_token: 'some-access-token',
+        expires_in: 90,
       },
-    };
-    await reuseSessionToken(sessionTokenRequest, spiedResponse, nextSpy);
-  });
+      views: 10,
+    },
+  };
+  await reuseSessionToken(sessionTokenRequest, responseWithSpies, nextSpy);
+});
 
-  it('logs to debug', () => {
-    expect(logDebugSpy.mock.calls.length).toBe(1);
-    expect(logDebugSpy.mock.calls[0][0]).toBe('reuse session token');
-  });
+test('creates a handler that > logs to debug', t => {
+  t.plan(2);
+  const debugCalls = debugSpy.getCalls();
+  t.is(debugCalls.length, 1);
+  t.is(debugCalls[0].args[0], 'reuse session token');
+});
 
-  it('renders the logged in template', () => {
-    expect(renderSpy.mock.calls.length).toBe(1);
-    expect(renderSpy.mock.calls[0][0]).toBe('authenticated');
-  });
+test('creates a handler that > renders the logged in template', t => {
+  t.plan(2);
+  const renderCalls = renderSpy.getCalls();
+  t.is(renderCalls.length, 1);
+  t.is(renderCalls[0].args[0], 'authenticated');
+});
 
-  it('injects new session flag', () => {
-    expect(renderSpy.mock.calls.length).toBe(1);
-    expect(renderSpy.mock.calls[0].length).toBe(2);
-    expect(renderSpy.mock.calls[0][1]).toStrictEqual(expect.objectContaining({
-      newSession: false
-    }));
+test('creates a handler that > injects new session flag', t => {
+  t.plan(3);
+  const renderCalls = renderSpy.getCalls();
+  t.is(renderCalls.length, 1);
+  t.is(renderCalls[0].args.length, 2);
+  t.like(renderCalls[0].args[1], {
+    newSession: false,
   });
 });
