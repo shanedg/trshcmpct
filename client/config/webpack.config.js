@@ -1,9 +1,12 @@
-const path = require('node:path');
+import { dirname, resolve } from 'node:path';
+import { fileURLToPath } from 'node:url';
 
-const ESLintPlugin = require('eslint-webpack-plugin');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
-const TerserPlugin = require('terser-webpack-plugin');
-const webpack = require('webpack');
+import ESLintPlugin from 'eslint-webpack-plugin';
+import HtmlWebpackPlugin from 'html-webpack-plugin';
+import TerserPlugin from 'terser-webpack-plugin';
+import webpack from 'webpack';
+
+const __dirname = dirname(fileURLToPath(import.meta.url));
 
 const getMode = productionFlag => productionFlag ? 'production' : 'development';
 
@@ -11,19 +14,19 @@ const getMode = productionFlag => productionFlag ? 'production' : 'development';
 // https://webpack.js.org/configuration/configuration-types/#exporting-a-function
 // https://webpack.js.org/api/cli/#environment-options
 // https://webpack.js.org/guides/environment-variables/
-module.exports = (env = {}, argv = {}) => {
+export default (env = {}, argv = {}) => {
   const isProduction = getMode(env.production) === 'production';
 
   return {
     mode: getMode(env.production),
 
     entry: {
-      index: path.resolve(__dirname, '../src/index.ts'),
+      index: resolve(__dirname, '../src/index.ts'),
     },
 
     output: {
       filename: '[name].[chunkhash].js',
-      path: path.resolve(__dirname, '../dist'),
+      path: resolve(__dirname, '../dist'),
     },
 
     module: {
@@ -33,7 +36,7 @@ module.exports = (env = {}, argv = {}) => {
           exclude: /node_modules/,
           loader: 'babel-loader',
           options: {
-            configFile: path.resolve(__dirname, './babel.config.js'),
+            configFile: resolve(__dirname, 'babel.config.cjs'),
           },
         },
         {
@@ -87,7 +90,7 @@ module.exports = (env = {}, argv = {}) => {
         __DEV__: JSON.stringify(!isProduction),
       }),
       new HtmlWebpackPlugin({
-        template: path.resolve(__dirname, '../src/index.html'),
+        template: resolve(__dirname, '../src/index.html'),
         title: 'trshcmpctr',
       }),
     ],

@@ -5,9 +5,17 @@ module.exports = {
   overrides: [
     // Node config files
     {
-      files: ['config/**/*.js', '.eslintrc.js'],
+      files: ['config/**/*.js', '.eslintrc.cjs'],
       extends: ['plugin:node/recommended'],
       plugins: ['eslint-plugin-node'],
+    },
+
+    {
+      files: ['config/**/*.js'],
+      parserOptions: {
+        sourceType: 'module',
+        ecmaVersion: 'latest'
+      },
     },
 
     // Typescript files

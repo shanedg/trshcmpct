@@ -1,9 +1,9 @@
-const ESLintWebpackPlugin = require('eslint-webpack-plugin');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
-const serializer = require('jest-serializer-path');
-const webpack = require('webpack');
+import ESLintWebpackPlugin from 'eslint-webpack-plugin';
+import HtmlWebpackPlugin from 'html-webpack-plugin';
+import serializer from 'jest-serializer-path';
+import webpack from 'webpack';
 
-const webpackConfig = require('./webpack.config');
+import webpackConfig from './webpack.config';
 
 // Remove absolute file paths from snapshots.
 expect.addSnapshotSerializer(serializer);

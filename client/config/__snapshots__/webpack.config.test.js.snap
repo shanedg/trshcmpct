@@ -13,7 +13,7 @@ Object {
         "exclude": /node_modules/,
         "loader": "babel-loader",
         "options": Object {
-          "configFile": "<PROJECT_ROOT>/config/babel.config.js",
+          "configFile": "<PROJECT_ROOT>/config/babel.config.cjs",
         },
         "test": /\\\\\\.\\(js\\|jsx\\|ts\\|tsx\\)\\$/,
       },
@@ -119,7 +119,7 @@ Object {
         "exclude": /node_modules/,
         "loader": "babel-loader",
         "options": Object {
-          "configFile": "<PROJECT_ROOT>/config/babel.config.js",
+          "configFile": "<PROJECT_ROOT>/config/babel.config.cjs",
         },
         "test": /\\\\\\.\\(js\\|jsx\\|ts\\|tsx\\)\\$/,
       },

@@ -1,4 +1,9 @@
-module.exports = {
+import { dirname, resolve } from 'node:path';
+import { fileURLToPath } from 'node:url';
+
+const __dirname = dirname(fileURLToPath(import.meta.url));
+
+export default {
   rootDir: '../..',
   roots: [
     '<rootDir>/config',
@@ -15,7 +20,7 @@ module.exports = {
       'babel-jest',
       // Since the babel config isn't in the package root,
       // we need to locate it explicitly for babel-jest here.
-      { configFile: require.resolve('../babel.config.js') }
+      { configFile: resolve(__dirname, '..', 'babel.config.cjs') }
     ],
   },
   collectCoverage: true,
