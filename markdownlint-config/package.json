@@ -20,15 +20,12 @@
   "license": "UNLICENSED",
   "scripts": {
     "build": "echo fake build || true",
-    "check-latest-updates": "npm-check-updates --upgrade --minimal --target latest --packageFile package.json",
-    "check-minor-updates": "npm-check-updates --upgrade --minimal --target minor --packageFile package.json",
     "clean": "rimraf *.build.log *.build.error.log",
     "lint:md": "markdownlint-cli2-config '.markdownlint-config.jsonc' '**/*.md' '#node_modules'",
     "test": "true"
   },
   "devDependencies": {
     "markdownlint-cli2": "~0.4.0",
-    "npm-check-updates": "~16.0.0",
     "rimraf": "~3.0.2"
   },
   "peerDependencies": {

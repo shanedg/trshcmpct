@@ -1,0 +1,8 @@
+{
+  "name": "rush-check-updates",
+  "version": "1.0.0",
+  "private": true,
+  "dependencies": {
+    "npm-check-updates": "~16.0.0"
+  }
+}

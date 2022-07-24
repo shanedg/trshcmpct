@@ -12,19 +12,39 @@
    */
   "commands": [
     {
-      "name": "test",
-      "summary": "Test all projects",
+      "name": "clean",
+      "summary": "Remove generated files in all projects",
       "commandKind": "bulk",
-      "enableParallelism": true,
-      "allowWarningsInSuccessfulBuild": true
+      "enableParallelism": true
     },
     {
-      "name": "test:ava",
-      "summary": "Test all projects",
-      "commandKind": "bulk",
-      "enableParallelism": true,
-      "ignoreMissingScript": true,
-      "allowWarningsInSuccessfulBuild": true
+      "name": "check-latest-updates",
+      "summary": "Upgrade dependencies in all projects to the latest version not already satisfied by the semver range. This includes major versions and is best to run after `check-minor-updates`.",
+      "commandKind": "global",
+      "autoinstallerName": "rush-check-updates",
+      "shellCommand": "npm-check-updates --packageFile *{$(common/scripts/get_comma_separated_rush_directories.sh)}/package.json --upgrade --minimal --target latest"
+    },
+    {
+      "name": "check-minor-updates",
+      "summary": "Upgrade dependencies in all projects to the latest minor version not already satisfied by semver range",
+      "commandKind": "global",
+      "autoinstallerName": "rush-check-updates",
+      "shellCommand": "npm-check-updates --packageFile *{$(common/scripts/get_comma_separated_rush_directories.sh)}/package.json --upgrade --minimal --target minor"
+    },
+    {
+      "name": "commitlint",
+      "summary": "Used by the commit-msg Git hook. This command invokes commitlint to lint commit messages.",
+      "commandKind": "global",
+      "autoinstallerName": "rush-commitlint",
+      // Because I can never remember all the types:
+      // https://github.com/conventional-changelog/commitlint/blob/master/%40commitlint/config-conventional/README.md
+      "shellCommand": "commitlint --extends=@commitlint/config-conventional --cwd=common/autoinstallers/rush-commitlint --edit=$1"
+    },
+    {
+      "name": "get-vscode-eslint-extension-working-directories",
+      "summary": "Print vscode eslint extension working directory settings with paths to all Rush projects. Suitable for pasting into .vscode/settings.json.",
+      "commandKind": "global",
+      "shellCommand": "common/scripts/get_vscode_eslint_extension_working_directories.sh"
     },
     {
       "name": "lint",
@@ -40,50 +60,32 @@
       "enableParallelism": true
     },
     {
-      "name": "commitlint",
-      "summary": "Used by the commit-msg Git hook. This command invokes commitlint to lint commit messages.",
-      "commandKind": "global",
-      "autoinstallerName": "rush-commitlint",
-      // Because I can never remember all the types:
-      // https://github.com/conventional-changelog/commitlint/blob/master/%40commitlint/config-conventional/README.md
-      "shellCommand": "commitlint --extends=@commitlint/config-conventional --cwd=common/autoinstallers/rush-commitlint --edit=$1"
-    },
-    {
-      "name": "clean",
-      "summary": "Remove generated files in all projects",
-      "commandKind": "bulk",
-      "enableParallelism": true
-    },
-    {
-      "name": "test:cypress",
-      "summary": "Run Cypress in all projects",
-      "commandKind": "bulk",
-      "ignoreMissingScript": true,
-      "enableParallelism": false,
-      "allowWarningsInSuccessfulBuild": true
-    },
-    {
       "name": "scaffold",
       "summary": "Add a new project.",
       "commandKind": "global",
       "autoinstallerName": "rush-plop",
       "shellCommand": "plop --plopfile scaffold/lib/index.js"
     },
-    // TODO: can these be global commands instead of bulk?
-    // can we centralize the npm-check-updates commands in a script and
-    // just cd into each project directory instead of cluttering
-    // every package.json?
     {
-      "name": "check-minor-updates",
-      "summary": "Upgrade dependencies in all projects to the latest minor version not already satisfied by semver range",
+      "name": "test",
+      "summary": "Test all projects",
       "commandKind": "bulk",
-      "enableParallelism": false,
+      "enableParallelism": true,
       "allowWarningsInSuccessfulBuild": true
     },
     {
-      "name": "check-latest-updates",
-      "summary": "Upgrade dependencies in all projects to the latest version not already satisfied by the semver range. This includes major versions and is best to run after `check-minor-updates`.",
+      "name": "test:ava",
+      "summary": "Test all projects",
       "commandKind": "bulk",
+      "enableParallelism": true,
+      "ignoreMissingScript": true,
+      "allowWarningsInSuccessfulBuild": true
+    },
+    {
+      "name": "test:cypress",
+      "summary": "Run Cypress in all projects",
+      "commandKind": "bulk",
+      "ignoreMissingScript": true,
       "enableParallelism": false,
       "allowWarningsInSuccessfulBuild": true
     }
