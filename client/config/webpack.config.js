@@ -122,7 +122,7 @@ export default (env = {}, argv = {}) => {
       },
       // `output.module` is an experimental feature
       experiments: { outputModule: true },
-      name: 'library-module',
+      name: 'library',
       output: {
         filename: '[name].js',
         path: resolve(__dirname, '../lib'),

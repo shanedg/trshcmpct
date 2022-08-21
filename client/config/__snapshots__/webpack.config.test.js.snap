@@ -244,7 +244,7 @@ Object {
 }
 `;
 
-exports[`webpack 1 - library-module development config matches snapshot 1`] = `
+exports[`webpack 1 - library development config matches snapshot 1`] = `
 Object {
   "entry": Object {
     "index": "<PROJECT_ROOT>/src/index.ts",
@@ -272,7 +272,7 @@ Object {
       },
     ],
   },
-  "name": "library-module",
+  "name": "library",
   "optimization": Object {
     "minimize": false,
     "minimizer": Array [
@@ -347,7 +347,7 @@ Object {
 }
 `;
 
-exports[`webpack 1 - library-module production config matches snapshot 1`] = `
+exports[`webpack 1 - library production config matches snapshot 1`] = `
 Object {
   "entry": Object {
     "index": "<PROJECT_ROOT>/src/index.ts",
@@ -375,7 +375,7 @@ Object {
       },
     ],
   },
-  "name": "library-module",
+  "name": "library",
   "optimization": Object {
     "minimize": true,
     "minimizer": Array [
