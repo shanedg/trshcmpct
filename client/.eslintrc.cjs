@@ -18,6 +18,15 @@ module.exports = {
       },
     },
 
+    // Browser files
+    {
+      files: ['src/**'],
+      env: {
+        browser: true,
+        node: false,
+      },
+    },
+
     // Typescript files
     {
       files: [
@@ -38,10 +47,6 @@ module.exports = {
             project: './tsconfig.json',
           },
         },
-      },
-      env: {
-        browser: true,
-        node: false,
       },
     },
 
