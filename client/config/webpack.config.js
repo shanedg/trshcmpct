@@ -63,6 +63,10 @@ export default (env = {}, argv = {}) => {
       },
     },
 
+    output: {
+      clean: true,
+    },
+
     plugins: [
       new ESLintPlugin({
         cache: true,
