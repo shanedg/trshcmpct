@@ -52,7 +52,10 @@ module.exports = {
 
     // React
     {
-      files: ['*.tsx'],
+      files: [
+        '*.jsx',
+        '*.tsx',
+      ],
       extends: ['@trshcmpctr/eslint-config-react'],
       settings: {
         react: {
