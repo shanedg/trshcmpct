@@ -42,19 +42,6 @@ export default (env = {}, argv = {}) => {
       clean: true,
     },
 
-    plugins: [
-      new ESLintPlugin({
-        cache: true,
-        cacheLocation: 'node_modules/.cache/eslint-cache/',
-        emitError: isProduction,
-        emitWarning: !isProduction,
-        extensions: ['.js', '.jsx', '.ts', '.tsx'],
-        failOnError: isProduction,
-        lintDirtyModulesOnly: !!argv.watch,
-        reportUnusedDisableDirectives: !isProduction ? 'warn' : null,
-      }),
-    ],
-
     resolve: {
       extensions: ['.js', '.jsx', '.ts', '.tsx'],
     },
@@ -75,6 +62,16 @@ export default (env = {}, argv = {}) => {
         path: resolve(__dirname, '../dist'),
       },
       plugins: [
+        new ESLintPlugin({
+          cache: true,
+          cacheLocation: 'node_modules/.cache/eslint-cache/',
+          emitError: isProduction,
+          emitWarning: !isProduction,
+          extensions: ['.js', '.jsx', '.ts', '.tsx'],
+          failOnError: isProduction,
+          lintDirtyModulesOnly: !!argv.watch,
+          reportUnusedDisableDirectives: !isProduction ? 'warn' : null,
+        }),
         new WebpackManifestPlugin({
           // Issue with `publicPath: 'auto'` prepending manifest URLs with 'auto/':
           // https://github.com/jantimon/html-webpack-plugin/issues/1514

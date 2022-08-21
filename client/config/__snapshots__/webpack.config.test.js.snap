@@ -282,28 +282,6 @@ Object {
     "module": true,
     "path": "<PROJECT_ROOT>/lib",
   },
-  "plugins": Array [
-    ESLintWebpackPlugin {
-      "key": "ESLintWebpackPlugin",
-      "options": Object {
-        "cache": true,
-        "cacheLocation": "node_modules/.cache/eslint-cache/",
-        "emitError": false,
-        "emitWarning": true,
-        "extensions": Array [
-          ".js",
-          ".jsx",
-          ".ts",
-          ".tsx",
-        ],
-        "failOnError": false,
-        "lintDirtyModulesOnly": false,
-        "reportUnusedDisableDirectives": "warn",
-        "resourceQueryExclude": Array [],
-      },
-      "run": [Function],
-    },
-  ],
   "resolve": Object {
     "extensions": Array [
       ".js",
@@ -354,28 +332,6 @@ Object {
     "module": true,
     "path": "<PROJECT_ROOT>/lib",
   },
-  "plugins": Array [
-    ESLintWebpackPlugin {
-      "key": "ESLintWebpackPlugin",
-      "options": Object {
-        "cache": true,
-        "cacheLocation": "node_modules/.cache/eslint-cache/",
-        "emitError": true,
-        "emitWarning": false,
-        "extensions": Array [
-          ".js",
-          ".jsx",
-          ".ts",
-          ".tsx",
-        ],
-        "failOnError": true,
-        "lintDirtyModulesOnly": false,
-        "reportUnusedDisableDirectives": null,
-        "resourceQueryExclude": Array [],
-      },
-      "run": [Function],
-    },
-  ],
   "resolve": Object {
     "extensions": Array [
       ".js",
