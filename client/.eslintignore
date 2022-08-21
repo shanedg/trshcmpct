@@ -1,5 +1,6 @@
 coverage
 dist
+lib
 
 # @FIXME: lint project with @typescript-eslint :)
 config/jest/jest-setup.ts
