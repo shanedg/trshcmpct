@@ -3,11 +3,12 @@
  * https://gist.github.com/danielweck/cd63af8e9a8b3492abacc312af9f28fd
  * See .eslintrc.cjs for more details
  */
+const { builtinModules } = require('node:module');
 const path = require('node:path');
+
 const { resolve: resolveExports } = require('resolve.exports');
 
 // Handle NodeJS built-ins if not handled by another ESLint module resolver in the chain
-const { builtinModules } = require('node:module');
 const builtins = new Set(builtinModules);
 
 /**

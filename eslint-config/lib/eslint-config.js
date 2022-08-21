@@ -53,5 +53,29 @@ module.exports = {
     semi: ['warn', 'always'],
     // Allow double quotes if they avoid escaping single quotes.
     quotes: ['warn', 'single', { avoidEscape: true }],
+    // Enforce import order & grouping
+    'import/order': ['warn', {
+      alphabetize: {
+        order: 'asc',
+        caseInsensitive: true,
+      },
+      groups: [
+        'builtin',
+        'external',
+        'internal',
+        [
+          'parent',
+          'index',
+          'sibling',
+        ],
+        'type',
+      ],
+      'newlines-between': 'always',
+    }],
+  },
+
+  settings: {
+    // Module paths prefixed with @trshcmpctr/ are local monorepo packages
+    'import/internal-regex': '^@trshcmpctr/',
   },
 };

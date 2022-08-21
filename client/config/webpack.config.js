@@ -4,8 +4,8 @@ import { fileURLToPath } from 'node:url';
 import ESLintPlugin from 'eslint-webpack-plugin';
 import HtmlWebpackPlugin from 'html-webpack-plugin';
 import TerserPlugin from 'terser-webpack-plugin';
-import { merge } from 'webpack-merge';
 import { WebpackManifestPlugin } from 'webpack-manifest-plugin';
+import { merge } from 'webpack-merge';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 

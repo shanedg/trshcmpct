@@ -7,7 +7,6 @@ import handlebars from 'hbs';
 import pinoHttp from 'pino-http';
 
 import config from './config.json' assert { type: 'json' };
-
 import {
   getNewTokenWithDependencies,
   getRenderLoginWithData,
