@@ -1,3 +1,5 @@
+const path = require('node:path');
+
 module.exports = {
   extends: [
     '@trshcmpctr/eslint-config',
@@ -21,25 +23,17 @@ module.exports = {
           plugins: ['@babel/plugin-syntax-import-assertions']
         },
       },
-    },
-
-    {
-      files: ['*.test.js'],
-      extends: ['plugin:ava/recommended'],
-      plugins: ['eslint-plugin-ava'],
       settings: {
         'import/resolver': {
-          // This custom resolver supports export maps, used in ava package:
-          // error  Unable to resolve path to module 'ava'  import/no-unresolved
-          // Remove this if/when eslint-plugin-import adds support for export maps:
+          // Default resolver for eslint-plugin-import doesn't support package.json#exports
           // https://github.com/import-js/eslint-plugin-import/issues/1810
-          // https://github.com/import-js/eslint-plugin-import/issues/1868#issuecomment-864575179
-          '@tophat/eslint-import-resolver-require': {},
-          // TODO: wait this one looks more legit: https://www.npmjs.com/package/@jsenv/importmap-eslint-resolver
-          // TODO: this seems nice: https://github.com/lukeed/resolve.exports
-          // TODO: someone else from the original thread published another resolver for this:
-          // https://github.com/import-js/eslint-plugin-import/issues/1810#issuecomment-1188684050
-          // https://www.npmjs.com/package/eslint-import-resolver-exports
+          // but we need that support for at least ava (https://www.npmjs.com/package/ava).
+          // We can use a custom resolver built on the resolve.exports package:
+          // https://github.com/lukeed/resolve.exports
+          // This solution is lifted with modifications from this gist:
+          // https://gist.github.com/danielweck/cd63af8e9a8b3492abacc312af9f28fd
+          // We can remove this if eslint-plugin-import resolves the above issue.
+          [path.resolve('./eslint-plugin-import-resolver.cjs')]: {},
         },
       },
       rules: {
@@ -48,6 +42,12 @@ module.exports = {
         // and node/no-missing-import does not.
         'node/no-missing-import': 'off'
       },
+    },
+
+    {
+      files: ['*.test.js'],
+      extends: ['plugin:ava/recommended'],
+      plugins: ['eslint-plugin-ava'],
     },
 
     {
