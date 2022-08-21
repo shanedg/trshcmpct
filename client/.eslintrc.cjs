@@ -43,9 +43,6 @@ module.exports = {
         browser: true,
         node: false,
       },
-      globals: {
-        __DEV__: true,
-      },
     },
 
     // React

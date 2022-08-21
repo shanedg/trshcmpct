@@ -1,7 +1,6 @@
 import ESLintWebpackPlugin from 'eslint-webpack-plugin';
 import HtmlWebpackPlugin from 'html-webpack-plugin';
 import serializer from 'jest-serializer-path';
-import webpack from 'webpack';
 
 import webpackConfig from './webpack.config';
 
@@ -25,12 +24,10 @@ describe('webpack', () => {
     it('sets plugins', () => {
       expect(developmentConfig.plugins).toMatchObject([
         expect.any(ESLintWebpackPlugin),
-        expect.any(webpack.DefinePlugin),
         expect.any(HtmlWebpackPlugin),
       ]);
       expect(productionConfig.plugins).toMatchObject([
         expect.any(ESLintWebpackPlugin),
-        expect.any(webpack.DefinePlugin),
         expect.any(HtmlWebpackPlugin),
       ]);
     });
@@ -53,11 +50,6 @@ describe('webpack', () => {
     it('turns off minimize optimization', () => {
       expect(developmentConfig.optimization).toHaveProperty('minimize', false);
     });
-
-    it('DefinePlugin sets __DEV__ to "true"', () => {
-      expect(developmentConfig.plugins.find(p => p instanceof webpack.DefinePlugin))
-        .toHaveProperty('definitions.__DEV__', 'true');
-    });
   });
 
   describe('production config', () => {
@@ -76,11 +68,6 @@ describe('webpack', () => {
 
     it('turns on minimize optimization', () => {
       expect(productionConfig.optimization).toHaveProperty('minimize', true);
-    });
-
-    it('DefinePlugin set __DEV__ to "false"', () => {
-      expect(productionConfig.plugins.find(p => p instanceof webpack.DefinePlugin))
-        .toHaveProperty('definitions.__DEV__', 'false');
     });
   });
 });

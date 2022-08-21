@@ -26,7 +26,4 @@ export default {
   collectCoverage: true,
   testEnvironment: 'jsdom',
   setupFilesAfterEnv: ['<rootDir>/config/jest/jest-setup.js'],
-  globals: {
-    __DEV__: true
-  },
 };

@@ -82,11 +82,6 @@ Object {
       },
       "run": [Function],
     },
-    DefinePlugin {
-      "definitions": Object {
-        "__DEV__": "true",
-      },
-    },
     HtmlWebpackPlugin {
       "userOptions": Object {
         "template": "<PROJECT_ROOT>/src/index.html",
@@ -187,11 +182,6 @@ Object {
         "resourceQueryExclude": Array [],
       },
       "run": [Function],
-    },
-    DefinePlugin {
-      "definitions": Object {
-        "__DEV__": "false",
-      },
     },
     HtmlWebpackPlugin {
       "userOptions": Object {

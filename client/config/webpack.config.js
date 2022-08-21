@@ -4,7 +4,6 @@ import { fileURLToPath } from 'node:url';
 import ESLintPlugin from 'eslint-webpack-plugin';
 import HtmlWebpackPlugin from 'html-webpack-plugin';
 import TerserPlugin from 'terser-webpack-plugin';
-import webpack from 'webpack';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 
@@ -85,9 +84,6 @@ export default (env = {}, argv = {}) => {
         failOnError: isProduction,
         lintDirtyModulesOnly: !!argv.watch,
         reportUnusedDisableDirectives: !isProduction ? 'warn' : null,
-      }),
-      new webpack.DefinePlugin({
-        __DEV__: JSON.stringify(!isProduction),
       }),
       new HtmlWebpackPlugin({
         template: resolve(__dirname, '../src/index.html'),
