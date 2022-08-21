@@ -59,6 +59,7 @@ Object {
     },
   },
   "output": Object {
+    "clean": true,
     "filename": "[name].[chunkhash].js",
     "path": "<PROJECT_ROOT>/dist",
   },
@@ -180,6 +181,7 @@ Object {
     },
   },
   "output": Object {
+    "clean": true,
     "filename": "[name].[chunkhash].js",
     "path": "<PROJECT_ROOT>/dist",
   },
@@ -303,6 +305,7 @@ Object {
     },
   },
   "output": Object {
+    "clean": true,
     "filename": "[name].js",
     "library": Object {
       "type": "module",
@@ -405,6 +408,7 @@ Object {
     },
   },
   "output": Object {
+    "clean": true,
     "filename": "[name].js",
     "library": Object {
       "type": "module",
