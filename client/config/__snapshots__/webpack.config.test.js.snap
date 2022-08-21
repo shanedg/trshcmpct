@@ -273,37 +273,6 @@ Object {
     ],
   },
   "name": "library",
-  "optimization": Object {
-    "minimize": false,
-    "minimizer": Array [
-      TerserPlugin {
-        "options": Object {
-          "exclude": undefined,
-          "extractComments": true,
-          "include": undefined,
-          "minimizer": Object {
-            "implementation": [Function],
-            "options": Object {
-              "warnings": false,
-            },
-          },
-          "parallel": true,
-          "test": /\\\\\\.\\[cm\\]\\?js\\(\\\\\\?\\.\\*\\)\\?\\$/i,
-        },
-      },
-    ],
-    "splitChunks": Object {
-      "cacheGroups": Object {
-        "defaultVendors": Object {
-          "priority": -10,
-          "test": /\\[\\\\\\\\/\\]node_modules\\[\\\\\\\\/\\]/,
-        },
-      },
-      "chunks": "async",
-      "minChunks": 1,
-      "minSize": 30000,
-    },
-  },
   "output": Object {
     "clean": true,
     "filename": "[name].js",
@@ -376,37 +345,6 @@ Object {
     ],
   },
   "name": "library",
-  "optimization": Object {
-    "minimize": true,
-    "minimizer": Array [
-      TerserPlugin {
-        "options": Object {
-          "exclude": undefined,
-          "extractComments": true,
-          "include": undefined,
-          "minimizer": Object {
-            "implementation": [Function],
-            "options": Object {
-              "warnings": false,
-            },
-          },
-          "parallel": true,
-          "test": /\\\\\\.\\[cm\\]\\?js\\(\\\\\\?\\.\\*\\)\\?\\$/i,
-        },
-      },
-    ],
-    "splitChunks": Object {
-      "cacheGroups": Object {
-        "defaultVendors": Object {
-          "priority": -10,
-          "test": /\\[\\\\\\\\/\\]node_modules\\[\\\\\\\\/\\]/,
-        },
-      },
-      "chunks": "async",
-      "minChunks": 1,
-      "minSize": 30000,
-    },
-  },
   "output": Object {
     "clean": true,
     "filename": "[name].js",

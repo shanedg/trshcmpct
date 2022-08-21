@@ -38,31 +38,6 @@ export default (env = {}, argv = {}) => {
       ]
     },
 
-    optimization: {
-      minimize: isProduction,
-      minimizer: [
-        // Terser is minimizer by default? but we can customize?
-        new TerserPlugin({
-          // https://webpack.js.org/plugins/terser-webpack-plugin/#terseroptions
-          terserOptions: {
-            warnings: argv.debug ? 'verbose' : false,
-          },
-        })
-      ],
-
-      splitChunks: {
-        cacheGroups: {
-          defaultVendors: {
-            priority: -10,
-            test: /[\\/]node_modules[\\/]/
-          }
-        },
-        chunks: 'async',
-        minChunks: 1,
-        minSize: 30000,
-      },
-    },
-
     output: {
       clean: true,
     },
@@ -111,6 +86,29 @@ export default (env = {}, argv = {}) => {
           title: 'trshcmpctr',
         }),
       ],
+      optimization: {
+        minimize: isProduction,
+        minimizer: [
+          // Terser is minimizer by default? but we can customize?
+          new TerserPlugin({
+            // https://webpack.js.org/plugins/terser-webpack-plugin/#terseroptions
+            terserOptions: {
+              warnings: argv.debug ? 'verbose' : false,
+            },
+          })
+        ],
+        splitChunks: {
+          cacheGroups: {
+            defaultVendors: {
+              priority: -10,
+              test: /[\\/]node_modules[\\/]/
+            }
+          },
+          chunks: 'async',
+          minChunks: 1,
+          minSize: 30000,
+        },
+      },  
     }),
 
     /**
