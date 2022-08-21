@@ -21,9 +21,11 @@ describe('webpack', () => {
         expect(config.mode).toEqual('development');
       });
   
-      it('turns off minimize optimization', () => {
-        expect(config.optimization).toHaveProperty('minimize', false);
-      });
+      if (config.name === 'webapp') {
+        it('turns off minimize optimization', () => {
+          expect(config.optimization).toHaveProperty('minimize', false);
+        });
+      }
     });
   });
 
@@ -40,9 +42,11 @@ describe('webpack', () => {
         expect(config.mode).toEqual('production');
       });
   
-      it('turns on minimize optimization', () => {
-        expect(config.optimization).toHaveProperty('minimize', true);
-      });
+      if (config.name === 'webapp') {
+        it('turns on minimize optimization', () => {
+          expect(config.optimization).toHaveProperty('minimize', true);
+        });
+      }
     });
   });
 });
