@@ -4,6 +4,8 @@ import { fileURLToPath } from 'node:url';
 import ESLintPlugin from 'eslint-webpack-plugin';
 import HtmlWebpackPlugin from 'html-webpack-plugin';
 import TerserPlugin from 'terser-webpack-plugin';
+import { merge } from 'webpack-merge';
+import { WebpackManifestPlugin } from 'webpack-manifest-plugin';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 
@@ -16,17 +18,8 @@ const getMode = productionFlag => productionFlag ? 'production' : 'development';
 export default (env = {}, argv = {}) => {
   const isProduction = getMode(env.production) === 'production';
 
-  return {
+  const common = {
     mode: getMode(env.production),
-
-    entry: {
-      index: resolve(__dirname, '../src/index.ts'),
-    },
-
-    output: {
-      filename: '[name].[chunkhash].js',
-      path: resolve(__dirname, '../dist'),
-    },
 
     module: {
       rules: [
@@ -43,10 +36,6 @@ export default (env = {}, argv = {}) => {
           use: ['style-loader', 'css-loader'],
         },
       ]
-    },
-
-    resolve: {
-      extensions: ['.js', '.jsx', '.ts', '.tsx'],
     },
 
     optimization: {
@@ -85,12 +74,70 @@ export default (env = {}, argv = {}) => {
         lintDirtyModulesOnly: !!argv.watch,
         reportUnusedDisableDirectives: !isProduction ? 'warn' : null,
       }),
-      new HtmlWebpackPlugin({
-        template: resolve(__dirname, '../src/index.html'),
-        title: 'trshcmpctr',
-      }),
     ],
 
-    devtool: isProduction ? 'source-map' : 'eval-source-map',
+    resolve: {
+      extensions: ['.js', '.jsx', '.ts', '.tsx'],
+    },
   };
+
+  return [
+    /**
+     * Webapp
+     */
+    merge(common, {
+      devtool: isProduction ? 'source-map' : 'eval-source-map',
+      entry: {
+        bootstrap: resolve(__dirname, '../src/bootstrap.ts'),
+      },
+      name: 'webapp',
+      output: {
+        filename: '[name].[chunkhash].js',
+        path: resolve(__dirname, '../dist'),
+      },
+      plugins: [
+        new WebpackManifestPlugin({
+          // Issue with `publicPath: 'auto'` prepending manifest URLs with 'auto/':
+          // https://github.com/jantimon/html-webpack-plugin/issues/1514
+          // Supposedly fixed but still needs this workaround
+          publicPath: ''
+        }),
+        new HtmlWebpackPlugin({
+          template: resolve(__dirname, '../src/index.html'),
+          title: 'trshcmpctr',
+        }),
+      ],
+    }),
+
+    /**
+     * Library
+     */
+    merge(common, {
+      entry: {
+        index: resolve(__dirname, '../src/index.ts'),
+      },
+      // `output.module` is an experimental feature
+      experiments: { outputModule: true },
+      name: 'library-module',
+      output: {
+        filename: '[name].js',
+        path: resolve(__dirname, '../lib'),
+        // Output JavaScript files as module type
+        // Not fully supported yet, track progress in this thread:
+        // https://github.com/webpack/webpack/issues/2933#issuecomment-774253975
+        module: true,
+        library: {
+          // Required so entry point can be imported
+          type: 'module'
+        },
+      },
+      // Defaults to 'web' for us because we don't have a browserslist configuration.
+      // We need a node-like environment for access to node built-in packages.
+      // Uses `require` to load chunks.
+      // We can also consider 'async-node16', which uses fs and vm to load chunks asynchronously.
+      // No idea what that might/not help with.
+      target: 'node16',
+    }),
+
+  ];
 };

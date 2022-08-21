@@ -1,10 +1,10 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`webpack development config matches snapshot 1`] = `
+exports[`webpack 0 - webapp development config matches snapshot 1`] = `
 Object {
   "devtool": "eval-source-map",
   "entry": Object {
-    "index": "<PROJECT_ROOT>/src/index.ts",
+    "bootstrap": "<PROJECT_ROOT>/src/bootstrap.ts",
   },
   "mode": "development",
   "module": Object {
@@ -26,6 +26,7 @@ Object {
       },
     ],
   },
+  "name": "webapp",
   "optimization": Object {
     "minimize": false,
     "minimizer": Array [
@@ -82,6 +83,25 @@ Object {
       },
       "run": [Function],
     },
+    WebpackManifestPlugin {
+      "options": Object {
+        "assetHookStage": Infinity,
+        "basePath": "",
+        "fileName": "manifest.json",
+        "filter": null,
+        "generate": undefined,
+        "map": null,
+        "publicPath": "",
+        "removeKeyHash": /\\(\\[a-f0-9\\]\\{16,32\\}\\\\\\.\\?\\)/gi,
+        "seed": undefined,
+        "serialize": [Function],
+        "sort": null,
+        "transformExtensions": /\\^\\(gz\\|map\\)\\$/i,
+        "useEntryKeys": false,
+        "useLegacyEmit": false,
+        "writeToFileEmit": false,
+      },
+    },
     HtmlWebpackPlugin {
       "userOptions": Object {
         "template": "<PROJECT_ROOT>/src/index.html",
@@ -101,11 +121,11 @@ Object {
 }
 `;
 
-exports[`webpack production config matches snapshot 1`] = `
+exports[`webpack 0 - webapp production config matches snapshot 1`] = `
 Object {
   "devtool": "source-map",
   "entry": Object {
-    "index": "<PROJECT_ROOT>/src/index.ts",
+    "bootstrap": "<PROJECT_ROOT>/src/bootstrap.ts",
   },
   "mode": "production",
   "module": Object {
@@ -127,6 +147,7 @@ Object {
       },
     ],
   },
+  "name": "webapp",
   "optimization": Object {
     "minimize": true,
     "minimizer": Array [
@@ -183,6 +204,25 @@ Object {
       },
       "run": [Function],
     },
+    WebpackManifestPlugin {
+      "options": Object {
+        "assetHookStage": Infinity,
+        "basePath": "",
+        "fileName": "manifest.json",
+        "filter": null,
+        "generate": undefined,
+        "map": null,
+        "publicPath": "",
+        "removeKeyHash": /\\(\\[a-f0-9\\]\\{16,32\\}\\\\\\.\\?\\)/gi,
+        "seed": undefined,
+        "serialize": [Function],
+        "sort": null,
+        "transformExtensions": /\\^\\(gz\\|map\\)\\$/i,
+        "useEntryKeys": false,
+        "useLegacyEmit": false,
+        "writeToFileEmit": false,
+      },
+    },
     HtmlWebpackPlugin {
       "userOptions": Object {
         "template": "<PROJECT_ROOT>/src/index.html",
@@ -199,5 +239,209 @@ Object {
       ".tsx",
     ],
   },
+}
+`;
+
+exports[`webpack 1 - library-module development config matches snapshot 1`] = `
+Object {
+  "entry": Object {
+    "index": "<PROJECT_ROOT>/src/index.ts",
+  },
+  "experiments": Object {
+    "outputModule": true,
+  },
+  "mode": "development",
+  "module": Object {
+    "rules": Array [
+      Object {
+        "exclude": /node_modules/,
+        "loader": "babel-loader",
+        "options": Object {
+          "configFile": "<PROJECT_ROOT>/config/babel.config.cjs",
+        },
+        "test": /\\\\\\.\\(js\\|jsx\\|ts\\|tsx\\)\\$/,
+      },
+      Object {
+        "test": /\\\\\\.css\\$/i,
+        "use": Array [
+          "style-loader",
+          "css-loader",
+        ],
+      },
+    ],
+  },
+  "name": "library-module",
+  "optimization": Object {
+    "minimize": false,
+    "minimizer": Array [
+      TerserPlugin {
+        "options": Object {
+          "exclude": undefined,
+          "extractComments": true,
+          "include": undefined,
+          "minimizer": Object {
+            "implementation": [Function],
+            "options": Object {
+              "warnings": false,
+            },
+          },
+          "parallel": true,
+          "test": /\\\\\\.\\[cm\\]\\?js\\(\\\\\\?\\.\\*\\)\\?\\$/i,
+        },
+      },
+    ],
+    "splitChunks": Object {
+      "cacheGroups": Object {
+        "defaultVendors": Object {
+          "priority": -10,
+          "test": /\\[\\\\\\\\/\\]node_modules\\[\\\\\\\\/\\]/,
+        },
+      },
+      "chunks": "async",
+      "minChunks": 1,
+      "minSize": 30000,
+    },
+  },
+  "output": Object {
+    "filename": "[name].js",
+    "library": Object {
+      "type": "module",
+    },
+    "module": true,
+    "path": "<PROJECT_ROOT>/lib",
+  },
+  "plugins": Array [
+    ESLintWebpackPlugin {
+      "key": "ESLintWebpackPlugin",
+      "options": Object {
+        "cache": true,
+        "cacheLocation": "node_modules/.cache/eslint-cache/",
+        "emitError": false,
+        "emitWarning": true,
+        "extensions": Array [
+          ".js",
+          ".jsx",
+          ".ts",
+          ".tsx",
+        ],
+        "failOnError": false,
+        "lintDirtyModulesOnly": false,
+        "reportUnusedDisableDirectives": "warn",
+        "resourceQueryExclude": Array [],
+      },
+      "run": [Function],
+    },
+  ],
+  "resolve": Object {
+    "extensions": Array [
+      ".js",
+      ".jsx",
+      ".ts",
+      ".tsx",
+    ],
+  },
+  "target": "node16",
+}
+`;
+
+exports[`webpack 1 - library-module production config matches snapshot 1`] = `
+Object {
+  "entry": Object {
+    "index": "<PROJECT_ROOT>/src/index.ts",
+  },
+  "experiments": Object {
+    "outputModule": true,
+  },
+  "mode": "production",
+  "module": Object {
+    "rules": Array [
+      Object {
+        "exclude": /node_modules/,
+        "loader": "babel-loader",
+        "options": Object {
+          "configFile": "<PROJECT_ROOT>/config/babel.config.cjs",
+        },
+        "test": /\\\\\\.\\(js\\|jsx\\|ts\\|tsx\\)\\$/,
+      },
+      Object {
+        "test": /\\\\\\.css\\$/i,
+        "use": Array [
+          "style-loader",
+          "css-loader",
+        ],
+      },
+    ],
+  },
+  "name": "library-module",
+  "optimization": Object {
+    "minimize": true,
+    "minimizer": Array [
+      TerserPlugin {
+        "options": Object {
+          "exclude": undefined,
+          "extractComments": true,
+          "include": undefined,
+          "minimizer": Object {
+            "implementation": [Function],
+            "options": Object {
+              "warnings": false,
+            },
+          },
+          "parallel": true,
+          "test": /\\\\\\.\\[cm\\]\\?js\\(\\\\\\?\\.\\*\\)\\?\\$/i,
+        },
+      },
+    ],
+    "splitChunks": Object {
+      "cacheGroups": Object {
+        "defaultVendors": Object {
+          "priority": -10,
+          "test": /\\[\\\\\\\\/\\]node_modules\\[\\\\\\\\/\\]/,
+        },
+      },
+      "chunks": "async",
+      "minChunks": 1,
+      "minSize": 30000,
+    },
+  },
+  "output": Object {
+    "filename": "[name].js",
+    "library": Object {
+      "type": "module",
+    },
+    "module": true,
+    "path": "<PROJECT_ROOT>/lib",
+  },
+  "plugins": Array [
+    ESLintWebpackPlugin {
+      "key": "ESLintWebpackPlugin",
+      "options": Object {
+        "cache": true,
+        "cacheLocation": "node_modules/.cache/eslint-cache/",
+        "emitError": true,
+        "emitWarning": false,
+        "extensions": Array [
+          ".js",
+          ".jsx",
+          ".ts",
+          ".tsx",
+        ],
+        "failOnError": true,
+        "lintDirtyModulesOnly": false,
+        "reportUnusedDisableDirectives": null,
+        "resourceQueryExclude": Array [],
+      },
+      "run": [Function],
+    },
+  ],
+  "resolve": Object {
+    "extensions": Array [
+      ".js",
+      ".jsx",
+      ".ts",
+      ".tsx",
+    ],
+  },
+  "target": "node16",
 }
 `;
