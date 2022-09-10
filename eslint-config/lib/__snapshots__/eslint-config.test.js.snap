@@ -35,6 +35,9 @@ Object {
   "eslint-comments/no-unused-enable": Array [
     "error",
   ],
+  "eslint-comments/require-description": Array [
+    "error",
+  ],
   "for-direction": Array [
     "error",
   ],

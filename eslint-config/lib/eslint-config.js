@@ -46,6 +46,8 @@ module.exports = {
 
   // Only include rules that will make sense in both Node and browser environments
   rules: {
+    // Directives require a description separated by ' -- '
+    'eslint-comments/require-description': ['error'],
     indent: ['warn', 2],
     'linebreak-style': ['error', 'unix'],
     // Warn on unused variables unless underscore-prefixed arguments
