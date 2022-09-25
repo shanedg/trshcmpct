@@ -5,9 +5,26 @@ module.exports = {
   overrides: [
     // Node config files
     {
-      files: ['config/**/*.js', '.eslintrc.js'],
+      files: ['config/**/*.js', '.eslintrc.cjs'],
       extends: ['plugin:node/recommended'],
       plugins: ['eslint-plugin-node'],
+    },
+
+    {
+      files: ['config/**/*.js'],
+      parserOptions: {
+        sourceType: 'module',
+        ecmaVersion: 'latest'
+      },
+    },
+
+    // Browser files
+    {
+      files: ['src/**'],
+      env: {
+        browser: true,
+        node: false,
+      },
     },
 
     // Typescript files
@@ -31,18 +48,14 @@ module.exports = {
           },
         },
       },
-      env: {
-        browser: true,
-        node: false,
-      },
-      globals: {
-        __DEV__: true,
-      },
     },
 
     // React
     {
-      files: ['*.tsx'],
+      files: [
+        '*.jsx',
+        '*.tsx',
+      ],
       extends: ['@trshcmpctr/eslint-config-react'],
       settings: {
         react: {

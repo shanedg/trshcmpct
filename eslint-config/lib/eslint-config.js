@@ -1,5 +1,5 @@
 /**
- * Base ESLint config for JavaScript projects.
+ * Base ESLint config for JavaScript projects
  */
 module.exports = {
   extends: [
@@ -8,7 +8,7 @@ module.exports = {
     // https://mysticatea.github.io/eslint-plugin-eslint-comments/rules/
     'plugin:eslint-comments/recommended',
     // https://www.npmjs.com/package/eslint-plugin-import
-    // Extending this plugin also sets parserOptions.sourceType = 'module'.
+    // Extending this plugin also sets parserOptions.sourceType = 'module'
     'plugin:import/recommended',
   ],
   plugins: [
@@ -44,14 +44,40 @@ module.exports = {
     ecmaVersion: 'latest',
   },
 
-  // Only include rules that will make sense in both Node and browser environments.
+  // Only include rules that will make sense in both Node and browser environments
   rules: {
+    // Directives require a description separated by ' -- '
+    'eslint-comments/require-description': ['error'],
     indent: ['warn', 2],
     'linebreak-style': ['error', 'unix'],
-    // Warn on unused variables unless underscore-prefixed arguments.
+    // Warn on unused variables unless underscore-prefixed arguments
     'no-unused-vars': ['warn', { argsIgnorePattern: '^_' }],
     semi: ['warn', 'always'],
-    // Allow double quotes if they avoid escaping single quotes.
+    // Allow double quotes if they avoid escaping single quotes
     quotes: ['warn', 'single', { avoidEscape: true }],
+    // Enforce import order & grouping
+    'import/order': ['warn', {
+      alphabetize: {
+        order: 'asc',
+        caseInsensitive: true,
+      },
+      groups: [
+        'builtin',
+        'external',
+        'internal',
+        [
+          'parent',
+          'index',
+          'sibling',
+        ],
+        'type',
+      ],
+      'newlines-between': 'always',
+    }],
+  },
+
+  settings: {
+    // Module paths prefixed with @trshcmpctr/ are local monorepo packages
+    'import/internal-regex': '^@trshcmpctr/',
   },
 };

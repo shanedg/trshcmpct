@@ -6,8 +6,9 @@ import express from 'express';
 import handlebars from 'hbs';
 import pinoHttp from 'pino-http';
 
-import config from './config.json' assert { type: 'json' };
+import manifest from '@trshcmpctr/client' assert { type: 'json' };
 
+import config from './config.json' assert { type: 'json' };
 import {
   getNewTokenWithDependencies,
   getRenderLoginWithData,
@@ -55,6 +56,18 @@ const reuseSessionToken = getReuseSessionTokenWithDependencies(fetch, { guildId 
 const getNewToken = getNewTokenWithDependencies(fetch, { clientId, clientSecret, guildId, port });
 
 app.get('/', [renderLogin, reuseSessionToken, getNewToken]);
+
+const clientUrl = new URL(await import.meta.resolve('@trshcmpctr/client'));
+const clientPublic = dirname(clientUrl.pathname);
+app.use(express.static(clientPublic));
+
+app.get('/client', async (_request, response, next) => {
+  response.sendFile(manifest['index.html'], { root: clientPublic }, err => {
+    if (err) {
+      next();
+    }
+  });
+});
 
 app.use(handleError);
 

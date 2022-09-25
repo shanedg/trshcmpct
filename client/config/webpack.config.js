@@ -1,9 +1,12 @@
-const path = require('node:path');
+import { dirname, resolve } from 'node:path';
+import { fileURLToPath } from 'node:url';
 
-const ESLintPlugin = require('eslint-webpack-plugin');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
-const TerserPlugin = require('terser-webpack-plugin');
-const webpack = require('webpack');
+import ESLintPlugin from 'eslint-webpack-plugin';
+import HtmlWebpackPlugin from 'html-webpack-plugin';
+import TerserPlugin from 'terser-webpack-plugin';
+import { WebpackManifestPlugin } from 'webpack-manifest-plugin';
+
+const __dirname = dirname(fileURLToPath(import.meta.url));
 
 const getMode = productionFlag => productionFlag ? 'production' : 'development';
 
@@ -11,20 +14,17 @@ const getMode = productionFlag => productionFlag ? 'production' : 'development';
 // https://webpack.js.org/configuration/configuration-types/#exporting-a-function
 // https://webpack.js.org/api/cli/#environment-options
 // https://webpack.js.org/guides/environment-variables/
-module.exports = (env = {}, argv = {}) => {
+export default (env = {}, argv = {}) => {
   const isProduction = getMode(env.production) === 'production';
 
   return {
-    mode: getMode(env.production),
+    devtool: isProduction ? 'source-map' : 'eval-source-map',
 
     entry: {
-      index: path.resolve(__dirname, '../src/index.ts'),
+      index: resolve(__dirname, '../src/index.ts'),
     },
 
-    output: {
-      filename: '[name].[chunkhash].js',
-      path: path.resolve(__dirname, '../dist'),
-    },
+    mode: getMode(env.production),
 
     module: {
       rules: [
@@ -33,7 +33,7 @@ module.exports = (env = {}, argv = {}) => {
           exclude: /node_modules/,
           loader: 'babel-loader',
           options: {
-            configFile: path.resolve(__dirname, './babel.config.js'),
+            configFile: resolve(__dirname, 'babel.config.cjs'),
           },
         },
         {
@@ -41,10 +41,6 @@ module.exports = (env = {}, argv = {}) => {
           use: ['style-loader', 'css-loader'],
         },
       ]
-    },
-
-    resolve: {
-      extensions: ['.js', '.jsx', '.ts', '.tsx'],
     },
 
     optimization: {
@@ -58,7 +54,6 @@ module.exports = (env = {}, argv = {}) => {
           },
         })
       ],
-
       splitChunks: {
         cacheGroups: {
           defaultVendors: {
@@ -72,6 +67,12 @@ module.exports = (env = {}, argv = {}) => {
       },
     },
 
+    output: {
+      clean: true,
+      filename: '[name].[chunkhash].js',
+      path: resolve(__dirname, '../dist'),
+    },
+
     plugins: [
       new ESLintPlugin({
         cache: true,
@@ -83,15 +84,20 @@ module.exports = (env = {}, argv = {}) => {
         lintDirtyModulesOnly: !!argv.watch,
         reportUnusedDisableDirectives: !isProduction ? 'warn' : null,
       }),
-      new webpack.DefinePlugin({
-        __DEV__: JSON.stringify(!isProduction),
+      new WebpackManifestPlugin({
+        // Issue with `publicPath: 'auto'` prepending manifest URLs with 'auto/':
+        // https://github.com/jantimon/html-webpack-plugin/issues/1514
+        // Supposedly fixed but still needs this workaround
+        publicPath: ''
       }),
       new HtmlWebpackPlugin({
-        template: path.resolve(__dirname, '../src/index.html'),
+        template: resolve(__dirname, '../src/index.html'),
         title: 'trshcmpctr',
       }),
     ],
 
-    devtool: isProduction ? 'source-map' : 'eval-source-map',
+    resolve: {
+      extensions: ['.js', '.jsx', '.ts', '.tsx'],
+    },
   };
 };

@@ -1,22 +1,25 @@
 {
   "name": "@trshcmpctr/client",
   "version": "1.0.0",
-  "description": "All build config, no substance.",
-  "main": "src/index.ts",
+  "description": "Frontend React app",
   "files": ["dist"],
+  "type": "module",
+  "main": "./dist/manifest.json",
+  "module": "./dist/manifest.json",
+  "exports": "./dist/manifest.json",
   "scripts": {
     "build": "webpack --config config/webpack.config.js",
     "build:production": "webpack --config config/webpack.config.js --env production",
     "clean": "rimraf *.build.log *.build.error.log coverage dist",
     "cy:open": "cypress open --e2e --browser=chrome",
     "cy:run": "cypress run",
-    "lint": "eslint --ext .js,.jsx,.ts,.tsx --max-warnings=0 .",
+    "lint": "eslint --report-unused-disable-directives --ext .js,.jsx,.ts,.tsx,.cjs --max-warnings=0 .",
     "lint:md": "markdownlint-cli2-config 'node_modules/@trshcmpctr/markdownlint-config/.markdownlint-cli2.jsonc' '**/*.md' '#node_modules'",
     "serve": "webpack serve --config config/webpack.config.js",
     "start": "npm run serve -- --open",
     "test": "npm run test:jest && npm run type-check",
     "test:cypress": "start-server-and-test serve http://localhost:8080 cy:run",
-    "test:jest": "jest --config=config/jest/jest.config.js --no-cache --reporters=@trshcmpctr/jest-stdout-reporter --silent",
+    "test:jest": "NODE_OPTIONS=--experimental-vm-modules jest --config=config/jest/jest.config.js --no-cache --reporters=@trshcmpctr/jest-stdout-reporter --silent",
     "type-check": "tsc",
     "watch": "webpack --config config/webpack.config.js --watch"
   },
@@ -84,6 +87,7 @@
     "typescript": "~4.7.4",
     "webpack-cli": "~4.10.0",
     "webpack-dev-server": "~4.9.0",
+    "webpack-manifest-plugin": "~5.0.0",
     "webpack": "~5.73.0"
   },
   "dependencies": {

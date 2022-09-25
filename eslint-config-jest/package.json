@@ -21,7 +21,7 @@
   "scripts": {
     "build": "echo fake build || true",
     "clean": "rimraf *.build.log *.build.error.log",
-    "lint": "eslint --max-warnings=0 .",
+    "lint": "eslint --report-unused-disable-directives --max-warnings=0 .",
     "lint:md": "markdownlint-cli2-config 'node_modules/@trshcmpctr/markdownlint-config/.markdownlint-cli2.jsonc' '**/*.md' '#node_modules'",
     "test": "jest --no-cache --reporters=@trshcmpctr/jest-stdout-reporter --silent"
   },

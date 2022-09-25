@@ -13,7 +13,7 @@ Object {
         "exclude": /node_modules/,
         "loader": "babel-loader",
         "options": Object {
-          "configFile": "<PROJECT_ROOT>/config/babel.config.js",
+          "configFile": "<PROJECT_ROOT>/config/babel.config.cjs",
         },
         "test": /\\\\\\.\\(js\\|jsx\\|ts\\|tsx\\)\\$/,
       },
@@ -58,6 +58,7 @@ Object {
     },
   },
   "output": Object {
+    "clean": true,
     "filename": "[name].[chunkhash].js",
     "path": "<PROJECT_ROOT>/dist",
   },
@@ -82,9 +83,23 @@ Object {
       },
       "run": [Function],
     },
-    DefinePlugin {
-      "definitions": Object {
-        "__DEV__": "true",
+    WebpackManifestPlugin {
+      "options": Object {
+        "assetHookStage": Infinity,
+        "basePath": "",
+        "fileName": "manifest.json",
+        "filter": null,
+        "generate": undefined,
+        "map": null,
+        "publicPath": "",
+        "removeKeyHash": /\\(\\[a-f0-9\\]\\{16,32\\}\\\\\\.\\?\\)/gi,
+        "seed": undefined,
+        "serialize": [Function],
+        "sort": null,
+        "transformExtensions": /\\^\\(gz\\|map\\)\\$/i,
+        "useEntryKeys": false,
+        "useLegacyEmit": false,
+        "writeToFileEmit": false,
       },
     },
     HtmlWebpackPlugin {
@@ -119,7 +134,7 @@ Object {
         "exclude": /node_modules/,
         "loader": "babel-loader",
         "options": Object {
-          "configFile": "<PROJECT_ROOT>/config/babel.config.js",
+          "configFile": "<PROJECT_ROOT>/config/babel.config.cjs",
         },
         "test": /\\\\\\.\\(js\\|jsx\\|ts\\|tsx\\)\\$/,
       },
@@ -164,6 +179,7 @@ Object {
     },
   },
   "output": Object {
+    "clean": true,
     "filename": "[name].[chunkhash].js",
     "path": "<PROJECT_ROOT>/dist",
   },
@@ -188,9 +204,23 @@ Object {
       },
       "run": [Function],
     },
-    DefinePlugin {
-      "definitions": Object {
-        "__DEV__": "false",
+    WebpackManifestPlugin {
+      "options": Object {
+        "assetHookStage": Infinity,
+        "basePath": "",
+        "fileName": "manifest.json",
+        "filter": null,
+        "generate": undefined,
+        "map": null,
+        "publicPath": "",
+        "removeKeyHash": /\\(\\[a-f0-9\\]\\{16,32\\}\\\\\\.\\?\\)/gi,
+        "seed": undefined,
+        "serialize": [Function],
+        "sort": null,
+        "transformExtensions": /\\^\\(gz\\|map\\)\\$/i,
+        "useEntryKeys": false,
+        "useLegacyEmit": false,
+        "writeToFileEmit": false,
       },
     },
     HtmlWebpackPlugin {

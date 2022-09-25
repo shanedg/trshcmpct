@@ -1,6 +1,6 @@
 # @trshcmpctr/client
 
-all build config, no substance
+A Single Page Application (SPA) bundled with Webpack.
 
 ## Build
 
