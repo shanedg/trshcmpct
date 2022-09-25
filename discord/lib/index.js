@@ -5,10 +5,8 @@ import cookieSession from 'cookie-session';
 import express from 'express';
 import handlebars from 'hbs';
 import pinoHttp from 'pino-http';
-import React from 'react';
-import ReactDOMServer from 'react-dom/server';
 
-import { App } from '@trshcmpctr/client';
+import manifest from '@trshcmpctr/client' assert { type: 'json' };
 
 import config from './config.json' assert { type: 'json' };
 import {
@@ -59,10 +57,16 @@ const getNewToken = getNewTokenWithDependencies(fetch, { clientId, clientSecret,
 
 app.get('/', [renderLogin, reuseSessionToken, getNewToken]);
 
-app.get('/ssr', (request, response, next) => {
-  const markup = ReactDOMServer.renderToStaticMarkup(React.createElement(App));
-  response.send(markup);
-  next();
+const clientUrl = new URL(await import.meta.resolve('@trshcmpctr/client'));
+const clientPublic = dirname(clientUrl.pathname);
+app.use(express.static(clientPublic));
+
+app.get('/client', async (_request, response, next) => {
+  response.sendFile(manifest['index.html'], { root: clientPublic }, err => {
+    if (err) {
+      next();
+    }
+  });
 });
 
 app.use(handleError);

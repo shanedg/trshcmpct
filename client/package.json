@@ -7,9 +7,9 @@
     "lib"
   ],
   "type": "module",
-  "main": "./lib/index.js",
-  "module": "./lib/index.js",
-  "exports": "./lib/index.js",
+  "main": "./dist/manifest.json",
+  "module": "./dist/manifest.json",
+  "exports": "./dist/manifest.json",
   "scripts": {
     "build": "webpack --config config/webpack.config.js",
     "build:production": "webpack --config config/webpack.config.js --env production",
