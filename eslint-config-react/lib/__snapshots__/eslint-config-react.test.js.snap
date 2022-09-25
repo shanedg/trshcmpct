@@ -1,49 +1,49 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`eslint-config-react calculated config snapshots parserOptions 1`] = `
-Object {
-  "ecmaFeatures": Object {
+{
+  "ecmaFeatures": {
     "jsx": true,
   },
 }
 `;
 
 exports[`eslint-config-react calculated config snapshots rules 1`] = `
-Object {
-  "jsx-a11y/alt-text": Array [
+{
+  "jsx-a11y/alt-text": [
     "error",
   ],
-  "jsx-a11y/anchor-has-content": Array [
+  "jsx-a11y/anchor-has-content": [
     "error",
   ],
-  "jsx-a11y/anchor-is-valid": Array [
+  "jsx-a11y/anchor-is-valid": [
     "error",
   ],
-  "jsx-a11y/aria-activedescendant-has-tabindex": Array [
+  "jsx-a11y/aria-activedescendant-has-tabindex": [
     "error",
   ],
-  "jsx-a11y/aria-props": Array [
+  "jsx-a11y/aria-props": [
     "error",
   ],
-  "jsx-a11y/aria-proptypes": Array [
+  "jsx-a11y/aria-proptypes": [
     "error",
   ],
-  "jsx-a11y/aria-role": Array [
+  "jsx-a11y/aria-role": [
     "error",
   ],
-  "jsx-a11y/aria-unsupported-elements": Array [
+  "jsx-a11y/aria-unsupported-elements": [
     "error",
   ],
-  "jsx-a11y/autocomplete-valid": Array [
+  "jsx-a11y/autocomplete-valid": [
     "error",
   ],
-  "jsx-a11y/click-events-have-key-events": Array [
+  "jsx-a11y/click-events-have-key-events": [
     "error",
   ],
-  "jsx-a11y/control-has-associated-label": Array [
+  "jsx-a11y/control-has-associated-label": [
     "off",
-    Object {
-      "ignoreElements": Array [
+    {
+      "ignoreElements": [
         "audio",
         "canvas",
         "embed",
@@ -52,7 +52,7 @@ Object {
         "tr",
         "video",
       ],
-      "ignoreRoles": Array [
+      "ignoreRoles": [
         "grid",
         "listbox",
         "menu",
@@ -64,28 +64,28 @@ Object {
         "tree",
         "treegrid",
       ],
-      "includeRoles": Array [
+      "includeRoles": [
         "alert",
         "dialog",
       ],
     },
   ],
-  "jsx-a11y/heading-has-content": Array [
+  "jsx-a11y/heading-has-content": [
     "error",
   ],
-  "jsx-a11y/html-has-lang": Array [
+  "jsx-a11y/html-has-lang": [
     "error",
   ],
-  "jsx-a11y/iframe-has-title": Array [
+  "jsx-a11y/iframe-has-title": [
     "error",
   ],
-  "jsx-a11y/img-redundant-alt": Array [
+  "jsx-a11y/img-redundant-alt": [
     "error",
   ],
-  "jsx-a11y/interactive-supports-focus": Array [
+  "jsx-a11y/interactive-supports-focus": [
     "error",
-    Object {
-      "tabbable": Array [
+    {
+      "tabbable": [
         "button",
         "checkbox",
         "link",
@@ -96,57 +96,57 @@ Object {
       ],
     },
   ],
-  "jsx-a11y/label-has-associated-control": Array [
+  "jsx-a11y/label-has-associated-control": [
     "error",
   ],
-  "jsx-a11y/label-has-for": Array [
+  "jsx-a11y/label-has-for": [
     "off",
   ],
-  "jsx-a11y/media-has-caption": Array [
+  "jsx-a11y/media-has-caption": [
     "error",
   ],
-  "jsx-a11y/mouse-events-have-key-events": Array [
+  "jsx-a11y/mouse-events-have-key-events": [
     "error",
   ],
-  "jsx-a11y/no-access-key": Array [
+  "jsx-a11y/no-access-key": [
     "error",
   ],
-  "jsx-a11y/no-autofocus": Array [
+  "jsx-a11y/no-autofocus": [
     "error",
   ],
-  "jsx-a11y/no-distracting-elements": Array [
+  "jsx-a11y/no-distracting-elements": [
     "error",
   ],
-  "jsx-a11y/no-interactive-element-to-noninteractive-role": Array [
+  "jsx-a11y/no-interactive-element-to-noninteractive-role": [
     "error",
-    Object {
-      "canvas": Array [
+    {
+      "canvas": [
         "img",
       ],
-      "tr": Array [
+      "tr": [
         "none",
         "presentation",
       ],
     },
   ],
-  "jsx-a11y/no-noninteractive-element-interactions": Array [
+  "jsx-a11y/no-noninteractive-element-interactions": [
     "error",
-    Object {
-      "alert": Array [
+    {
+      "alert": [
         "onKeyUp",
         "onKeyDown",
         "onKeyPress",
       ],
-      "body": Array [
+      "body": [
         "onError",
         "onLoad",
       ],
-      "dialog": Array [
+      "dialog": [
         "onKeyUp",
         "onKeyDown",
         "onKeyPress",
       ],
-      "handlers": Array [
+      "handlers": [
         "onClick",
         "onError",
         "onLoad",
@@ -156,31 +156,31 @@ Object {
         "onKeyDown",
         "onKeyUp",
       ],
-      "iframe": Array [
+      "iframe": [
         "onError",
         "onLoad",
       ],
-      "img": Array [
+      "img": [
         "onError",
         "onLoad",
       ],
     },
   ],
-  "jsx-a11y/no-noninteractive-element-to-interactive-role": Array [
+  "jsx-a11y/no-noninteractive-element-to-interactive-role": [
     "error",
-    Object {
-      "fieldset": Array [
+    {
+      "fieldset": [
         "radiogroup",
         "presentation",
       ],
-      "li": Array [
+      "li": [
         "menuitem",
         "option",
         "row",
         "tab",
         "treeitem",
       ],
-      "ol": Array [
+      "ol": [
         "listbox",
         "menu",
         "menubar",
@@ -189,13 +189,13 @@ Object {
         "tree",
         "treegrid",
       ],
-      "table": Array [
+      "table": [
         "grid",
       ],
-      "td": Array [
+      "td": [
         "gridcell",
       ],
-      "ul": Array [
+      "ul": [
         "listbox",
         "menu",
         "menubar",
@@ -206,24 +206,24 @@ Object {
       ],
     },
   ],
-  "jsx-a11y/no-noninteractive-tabindex": Array [
+  "jsx-a11y/no-noninteractive-tabindex": [
     "error",
-    Object {
+    {
       "allowExpressionValues": true,
-      "roles": Array [
+      "roles": [
         "tabpanel",
       ],
-      "tags": Array [],
+      "tags": [],
     },
   ],
-  "jsx-a11y/no-redundant-roles": Array [
+  "jsx-a11y/no-redundant-roles": [
     "error",
   ],
-  "jsx-a11y/no-static-element-interactions": Array [
+  "jsx-a11y/no-static-element-interactions": [
     "error",
-    Object {
+    {
       "allowExpressionValues": true,
-      "handlers": Array [
+      "handlers": [
         "onClick",
         "onMouseDown",
         "onMouseUp",
@@ -233,88 +233,88 @@ Object {
       ],
     },
   ],
-  "jsx-a11y/role-has-required-aria-props": Array [
+  "jsx-a11y/role-has-required-aria-props": [
     "error",
   ],
-  "jsx-a11y/role-supports-aria-props": Array [
+  "jsx-a11y/role-supports-aria-props": [
     "error",
   ],
-  "jsx-a11y/scope": Array [
+  "jsx-a11y/scope": [
     "error",
   ],
-  "jsx-a11y/tabindex-no-positive": Array [
+  "jsx-a11y/tabindex-no-positive": [
     "error",
   ],
-  "react-hooks/exhaustive-deps": Array [
+  "react-hooks/exhaustive-deps": [
     "warn",
   ],
-  "react-hooks/rules-of-hooks": Array [
+  "react-hooks/rules-of-hooks": [
     "error",
   ],
-  "react/display-name": Array [
+  "react/display-name": [
     2,
   ],
-  "react/jsx-key": Array [
+  "react/jsx-key": [
     2,
   ],
-  "react/jsx-no-comment-textnodes": Array [
+  "react/jsx-no-comment-textnodes": [
     2,
   ],
-  "react/jsx-no-duplicate-props": Array [
+  "react/jsx-no-duplicate-props": [
     2,
   ],
-  "react/jsx-no-target-blank": Array [
+  "react/jsx-no-target-blank": [
     2,
   ],
-  "react/jsx-no-undef": Array [
+  "react/jsx-no-undef": [
     2,
   ],
-  "react/jsx-uses-react": Array [
+  "react/jsx-uses-react": [
     2,
   ],
-  "react/jsx-uses-vars": Array [
+  "react/jsx-uses-vars": [
     2,
   ],
-  "react/no-children-prop": Array [
+  "react/no-children-prop": [
     2,
   ],
-  "react/no-danger-with-children": Array [
+  "react/no-danger-with-children": [
     2,
   ],
-  "react/no-deprecated": Array [
+  "react/no-deprecated": [
     2,
   ],
-  "react/no-direct-mutation-state": Array [
+  "react/no-direct-mutation-state": [
     2,
   ],
-  "react/no-find-dom-node": Array [
+  "react/no-find-dom-node": [
     2,
   ],
-  "react/no-is-mounted": Array [
+  "react/no-is-mounted": [
     2,
   ],
-  "react/no-render-return-value": Array [
+  "react/no-render-return-value": [
     2,
   ],
-  "react/no-string-refs": Array [
+  "react/no-string-refs": [
     2,
   ],
-  "react/no-unescaped-entities": Array [
+  "react/no-unescaped-entities": [
     2,
   ],
-  "react/no-unknown-property": Array [
+  "react/no-unknown-property": [
     2,
   ],
-  "react/no-unsafe": Array [
+  "react/no-unsafe": [
     0,
   ],
-  "react/prop-types": Array [
+  "react/prop-types": [
     2,
   ],
-  "react/react-in-jsx-scope": Array [
+  "react/react-in-jsx-scope": [
     2,
   ],
-  "react/require-render-return": Array [
+  "react/require-render-return": [
     2,
   ],
 }

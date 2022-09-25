@@ -1,42 +1,42 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`webpack development config matches snapshot 1`] = `
-Object {
+{
   "devtool": "eval-source-map",
-  "entry": Object {
+  "entry": {
     "index": "<PROJECT_ROOT>/src/index.ts",
   },
   "mode": "development",
-  "module": Object {
-    "rules": Array [
-      Object {
+  "module": {
+    "rules": [
+      {
         "exclude": /node_modules/,
         "loader": "babel-loader",
-        "options": Object {
+        "options": {
           "configFile": "<PROJECT_ROOT>/config/babel.config.cjs",
         },
         "test": /\\\\\\.\\(js\\|jsx\\|ts\\|tsx\\)\\$/,
       },
-      Object {
+      {
         "test": /\\\\\\.css\\$/i,
-        "use": Array [
+        "use": [
           "style-loader",
           "css-loader",
         ],
       },
     ],
   },
-  "optimization": Object {
+  "optimization": {
     "minimize": false,
-    "minimizer": Array [
+    "minimizer": [
       TerserPlugin {
-        "options": Object {
+        "options": {
           "exclude": undefined,
           "extractComments": true,
           "include": undefined,
-          "minimizer": Object {
+          "minimizer": {
             "implementation": [Function],
-            "options": Object {
+            "options": {
               "warnings": false,
             },
           },
@@ -45,9 +45,9 @@ Object {
         },
       },
     ],
-    "splitChunks": Object {
-      "cacheGroups": Object {
-        "defaultVendors": Object {
+    "splitChunks": {
+      "cacheGroups": {
+        "defaultVendors": {
           "priority": -10,
           "test": /\\[\\\\\\\\/\\]node_modules\\[\\\\\\\\/\\]/,
         },
@@ -57,20 +57,20 @@ Object {
       "minSize": 30000,
     },
   },
-  "output": Object {
+  "output": {
     "clean": true,
     "filename": "[name].[chunkhash].js",
     "path": "<PROJECT_ROOT>/dist",
   },
-  "plugins": Array [
+  "plugins": [
     ESLintWebpackPlugin {
       "key": "ESLintWebpackPlugin",
-      "options": Object {
+      "options": {
         "cache": true,
         "cacheLocation": "node_modules/.cache/eslint-cache/",
         "emitError": false,
         "emitWarning": true,
-        "extensions": Array [
+        "extensions": [
           ".js",
           ".jsx",
           ".ts",
@@ -79,12 +79,12 @@ Object {
         "failOnError": false,
         "lintDirtyModulesOnly": false,
         "reportUnusedDisableDirectives": "warn",
-        "resourceQueryExclude": Array [],
+        "resourceQueryExclude": [],
       },
       "run": [Function],
     },
     WebpackManifestPlugin {
-      "options": Object {
+      "options": {
         "assetHookStage": Infinity,
         "basePath": "",
         "fileName": "manifest.json",
@@ -103,15 +103,15 @@ Object {
       },
     },
     HtmlWebpackPlugin {
-      "userOptions": Object {
+      "userOptions": {
         "template": "<PROJECT_ROOT>/src/index.html",
         "title": "trshcmpctr",
       },
       "version": 5,
     },
   ],
-  "resolve": Object {
-    "extensions": Array [
+  "resolve": {
+    "extensions": [
       ".js",
       ".jsx",
       ".ts",
@@ -122,42 +122,42 @@ Object {
 `;
 
 exports[`webpack production config matches snapshot 1`] = `
-Object {
+{
   "devtool": "source-map",
-  "entry": Object {
+  "entry": {
     "index": "<PROJECT_ROOT>/src/index.ts",
   },
   "mode": "production",
-  "module": Object {
-    "rules": Array [
-      Object {
+  "module": {
+    "rules": [
+      {
         "exclude": /node_modules/,
         "loader": "babel-loader",
-        "options": Object {
+        "options": {
           "configFile": "<PROJECT_ROOT>/config/babel.config.cjs",
         },
         "test": /\\\\\\.\\(js\\|jsx\\|ts\\|tsx\\)\\$/,
       },
-      Object {
+      {
         "test": /\\\\\\.css\\$/i,
-        "use": Array [
+        "use": [
           "style-loader",
           "css-loader",
         ],
       },
     ],
   },
-  "optimization": Object {
+  "optimization": {
     "minimize": true,
-    "minimizer": Array [
+    "minimizer": [
       TerserPlugin {
-        "options": Object {
+        "options": {
           "exclude": undefined,
           "extractComments": true,
           "include": undefined,
-          "minimizer": Object {
+          "minimizer": {
             "implementation": [Function],
-            "options": Object {
+            "options": {
               "warnings": false,
             },
           },
@@ -166,9 +166,9 @@ Object {
         },
       },
     ],
-    "splitChunks": Object {
-      "cacheGroups": Object {
-        "defaultVendors": Object {
+    "splitChunks": {
+      "cacheGroups": {
+        "defaultVendors": {
           "priority": -10,
           "test": /\\[\\\\\\\\/\\]node_modules\\[\\\\\\\\/\\]/,
         },
@@ -178,20 +178,20 @@ Object {
       "minSize": 30000,
     },
   },
-  "output": Object {
+  "output": {
     "clean": true,
     "filename": "[name].[chunkhash].js",
     "path": "<PROJECT_ROOT>/dist",
   },
-  "plugins": Array [
+  "plugins": [
     ESLintWebpackPlugin {
       "key": "ESLintWebpackPlugin",
-      "options": Object {
+      "options": {
         "cache": true,
         "cacheLocation": "node_modules/.cache/eslint-cache/",
         "emitError": true,
         "emitWarning": false,
-        "extensions": Array [
+        "extensions": [
           ".js",
           ".jsx",
           ".ts",
@@ -200,12 +200,12 @@ Object {
         "failOnError": true,
         "lintDirtyModulesOnly": false,
         "reportUnusedDisableDirectives": null,
-        "resourceQueryExclude": Array [],
+        "resourceQueryExclude": [],
       },
       "run": [Function],
     },
     WebpackManifestPlugin {
-      "options": Object {
+      "options": {
         "assetHookStage": Infinity,
         "basePath": "",
         "fileName": "manifest.json",
@@ -224,15 +224,15 @@ Object {
       },
     },
     HtmlWebpackPlugin {
-      "userOptions": Object {
+      "userOptions": {
         "template": "<PROJECT_ROOT>/src/index.html",
         "title": "trshcmpctr",
       },
       "version": 5,
     },
   ],
-  "resolve": Object {
-    "extensions": Array [
+  "resolve": {
+    "extensions": [
       ".js",
       ".jsx",
       ".ts",
