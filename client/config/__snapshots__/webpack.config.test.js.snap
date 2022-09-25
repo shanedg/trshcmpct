@@ -1,10 +1,10 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`webpack 0 - webapp development config matches snapshot 1`] = `
+exports[`webpack development config matches snapshot 1`] = `
 Object {
   "devtool": "eval-source-map",
   "entry": Object {
-    "bootstrap": "<PROJECT_ROOT>/src/bootstrap.ts",
+    "index": "<PROJECT_ROOT>/src/index.ts",
   },
   "mode": "development",
   "module": Object {
@@ -26,7 +26,6 @@ Object {
       },
     ],
   },
-  "name": "webapp",
   "optimization": Object {
     "minimize": false,
     "minimizer": Array [
@@ -122,11 +121,11 @@ Object {
 }
 `;
 
-exports[`webpack 0 - webapp production config matches snapshot 1`] = `
+exports[`webpack production config matches snapshot 1`] = `
 Object {
   "devtool": "source-map",
   "entry": Object {
-    "bootstrap": "<PROJECT_ROOT>/src/bootstrap.ts",
+    "index": "<PROJECT_ROOT>/src/index.ts",
   },
   "mode": "production",
   "module": Object {
@@ -148,7 +147,6 @@ Object {
       },
     ],
   },
-  "name": "webapp",
   "optimization": Object {
     "minimize": true,
     "minimizer": Array [
@@ -241,105 +239,5 @@ Object {
       ".tsx",
     ],
   },
-}
-`;
-
-exports[`webpack 1 - library development config matches snapshot 1`] = `
-Object {
-  "entry": Object {
-    "index": "<PROJECT_ROOT>/src/index.ts",
-  },
-  "experiments": Object {
-    "outputModule": true,
-  },
-  "mode": "development",
-  "module": Object {
-    "rules": Array [
-      Object {
-        "exclude": /node_modules/,
-        "loader": "babel-loader",
-        "options": Object {
-          "configFile": "<PROJECT_ROOT>/config/babel.config.cjs",
-        },
-        "test": /\\\\\\.\\(js\\|jsx\\|ts\\|tsx\\)\\$/,
-      },
-      Object {
-        "test": /\\\\\\.css\\$/i,
-        "use": Array [
-          "style-loader",
-          "css-loader",
-        ],
-      },
-    ],
-  },
-  "name": "library",
-  "output": Object {
-    "clean": true,
-    "filename": "[name].js",
-    "library": Object {
-      "type": "module",
-    },
-    "module": true,
-    "path": "<PROJECT_ROOT>/lib",
-  },
-  "resolve": Object {
-    "extensions": Array [
-      ".js",
-      ".jsx",
-      ".ts",
-      ".tsx",
-    ],
-  },
-  "target": "node16",
-}
-`;
-
-exports[`webpack 1 - library production config matches snapshot 1`] = `
-Object {
-  "entry": Object {
-    "index": "<PROJECT_ROOT>/src/index.ts",
-  },
-  "experiments": Object {
-    "outputModule": true,
-  },
-  "mode": "production",
-  "module": Object {
-    "rules": Array [
-      Object {
-        "exclude": /node_modules/,
-        "loader": "babel-loader",
-        "options": Object {
-          "configFile": "<PROJECT_ROOT>/config/babel.config.cjs",
-        },
-        "test": /\\\\\\.\\(js\\|jsx\\|ts\\|tsx\\)\\$/,
-      },
-      Object {
-        "test": /\\\\\\.css\\$/i,
-        "use": Array [
-          "style-loader",
-          "css-loader",
-        ],
-      },
-    ],
-  },
-  "name": "library",
-  "output": Object {
-    "clean": true,
-    "filename": "[name].js",
-    "library": Object {
-      "type": "module",
-    },
-    "module": true,
-    "path": "<PROJECT_ROOT>/lib",
-  },
-  "resolve": Object {
-    "extensions": Array [
-      ".js",
-      ".jsx",
-      ".ts",
-      ".tsx",
-    ],
-  },
-  "target": "node16",
 }
 `;

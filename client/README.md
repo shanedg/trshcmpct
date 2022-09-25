@@ -1,7 +1,6 @@
 # @trshcmpctr/client
 
 A Single Page Application (SPA) bundled with Webpack.
-Includes an optional, experimental library build that exports the application as an Ecmascript module (see /lib).
 
 ## Build
 

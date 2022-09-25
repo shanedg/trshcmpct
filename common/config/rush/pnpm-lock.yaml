@@ -61,7 +61,6 @@ importers:
       webpack-cli: ~4.10.0
       webpack-dev-server: ~4.9.0
       webpack-manifest-plugin: ~5.0.0
-      webpack-merge: ~5.8.0
     dependencies:
       core-js: 3.23.5
       react: 18.2.0
@@ -118,7 +117,6 @@ importers:
       webpack-cli: 4.10.0_6rc575xxn4hngez2jk2zkyfdoi
       webpack-dev-server: 4.9.3_77l47gmqkrqiei5z7sbwz5iaj4
       webpack-manifest-plugin: 5.0.0_webpack@5.73.0
-      webpack-merge: 5.8.0
 
   ../../discord:
     specifiers:
@@ -3110,7 +3108,7 @@ packages:
   /axios/0.21.4_debug@4.3.2:
     resolution: {integrity: sha512-ut5vewkiu8jjGBdqpM44XxjuCjq9LAKeHVmoVfHVzy8eHgxxq8SbAVQNovDA8mVi05kP0Ea/n/UzcSHcTJQfNg==}
     dependencies:
-      follow-redirects: 1.15.1_debug@4.3.2
+      follow-redirects: 1.15.1
     transitivePeerDependencies:
       - debug
     dev: true
@@ -5318,7 +5316,7 @@ packages:
     resolution: {integrity: sha512-0sQoMh9s0BYsm+12Huy/rkKxVu4R1+r96YX5cG44rHV0pQ6iC3Q+mkoMFaGWObMFYQxCVT+ssG1ksneA2MI9KQ==}
     dev: true
 
-  /follow-redirects/1.15.1_debug@4.3.2:
+  /follow-redirects/1.15.1:
     resolution: {integrity: sha512-yLAMQs+k0b2m7cVxpS1VKJVvoz7SS9Td1zss3XRwXj+ZDH00RJgnuLx7E44wx02kQLrdM3aOOy+FpzS7+8OizA==}
     engines: {node: '>=4.0'}
     peerDependencies:
@@ -5326,8 +5324,6 @@ packages:
     peerDependenciesMeta:
       debug:
         optional: true
-    dependencies:
-      debug: 4.3.2
     dev: true
 
   /for-in/1.0.2:
@@ -5793,7 +5789,7 @@ packages:
     engines: {node: '>=8.0.0'}
     dependencies:
       eventemitter3: 4.0.7
-      follow-redirects: 1.15.1_debug@4.3.2
+      follow-redirects: 1.15.1
       requires-port: 1.0.0
     transitivePeerDependencies:
       - debug

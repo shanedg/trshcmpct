@@ -1,52 +1,44 @@
 import serializer from 'jest-serializer-path';
 
-// Note, we export an array of configuration objects
 import webpackConfig from './webpack.config';
 
 // Remove absolute file paths from snapshots.
 expect.addSnapshotSerializer(serializer);
 
 describe('webpack', () => {
-  const developmentEnvironment = {};
+  describe('development config', () => {
+    const developmentEnvironment = {};
+    const developmentConfig = webpackConfig(developmentEnvironment);
+    Object.freeze(developmentConfig);
 
-  webpackConfig(developmentEnvironment).forEach((config, index) => {
-    Object.freeze(config);
+    it('matches snapshot', () => {
+      expect(developmentConfig).toMatchSnapshot();
+    });
 
-    describe(`${index} - ${config.name} development config`, () => {
-      it('matches snapshot', () => {
-        expect(config).toMatchSnapshot();
-      });
-  
-      it('sets development mode', () => {
-        expect(config.mode).toEqual('development');
-      });
-  
-      if (config.name === 'webapp') {
-        it('turns off minimize optimization', () => {
-          expect(config.optimization).toHaveProperty('minimize', false);
-        });
-      }
+    it('sets development mode', () => {
+      expect(developmentConfig.mode).toEqual('development');
+    });
+
+    it('turns off minimize optimization', () => {
+      expect(developmentConfig.optimization).toHaveProperty('minimize', false);
     });
   });
 
-  const productionEnvironment = { production: true };
-  webpackConfig(productionEnvironment).forEach((config, index) => {
-    Object.freeze(config);
+  describe('production config', () => {
+    const productionEnvironment = { production: true };
+    const productionConfig = webpackConfig(productionEnvironment);
+    Object.freeze(productionConfig);
 
-    describe(`${index} - ${config.name} production config`, () => {
-      it('matches snapshot', () => {
-        expect(config).toMatchSnapshot();
-      });
-  
-      it('sets production mode', () => {
-        expect(config.mode).toEqual('production');
-      });
-  
-      if (config.name === 'webapp') {
-        it('turns on minimize optimization', () => {
-          expect(config.optimization).toHaveProperty('minimize', true);
-        });
-      }
+    it('matches snapshot', () => {
+      expect(productionConfig).toMatchSnapshot();
+    });
+
+    it('sets production mode', () => {
+      expect(productionConfig.mode).toEqual('production');
+    });
+
+    it('turns on minimize optimization', () => {
+      expect(productionConfig.optimization).toHaveProperty('minimize', true);
     });
   });
 });
