@@ -128,6 +128,7 @@ importers:
       '@trshcmpctr/client': workspace:*
       '@trshcmpctr/eslint-config': workspace:*
       '@trshcmpctr/markdownlint-config': workspace:*
+      '@types/express': ~4.17.13
       '@types/react': ~18.0.14
       '@types/react-dom': ~18.0.5
       ava: ~4.3.0
@@ -166,6 +167,7 @@ importers:
       '@babel/plugin-syntax-import-assertions': 7.18.6_@babel+core@7.18.9
       '@trshcmpctr/eslint-config': link:../eslint-config
       '@trshcmpctr/markdownlint-config': link:../markdownlint-config
+      '@types/express': 4.17.13
       '@types/react': 18.0.15
       '@types/react-dom': 18.0.6
       ava: 4.3.1
