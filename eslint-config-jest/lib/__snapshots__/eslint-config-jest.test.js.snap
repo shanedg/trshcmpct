@@ -1,77 +1,77 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`eslint-config-jest calculated config snapshots env 1`] = `
-Object {
+{
   "jest/globals": true,
 }
 `;
 
 exports[`eslint-config-jest calculated config snapshots rules 1`] = `
-Object {
-  "jest/consistent-test-it": Array [
+{
+  "jest/consistent-test-it": [
     "error",
   ],
-  "jest/expect-expect": Array [
+  "jest/expect-expect": [
     "warn",
   ],
-  "jest/no-commented-out-tests": Array [
+  "jest/no-alias-methods": [
+    "error",
+  ],
+  "jest/no-commented-out-tests": [
     "warn",
   ],
-  "jest/no-conditional-expect": Array [
+  "jest/no-conditional-expect": [
     "error",
   ],
-  "jest/no-deprecated-functions": Array [
+  "jest/no-deprecated-functions": [
     "error",
   ],
-  "jest/no-disabled-tests": Array [
+  "jest/no-disabled-tests": [
     "warn",
   ],
-  "jest/no-done-callback": Array [
+  "jest/no-done-callback": [
     "error",
   ],
-  "jest/no-export": Array [
+  "jest/no-export": [
     "error",
   ],
-  "jest/no-focused-tests": Array [
+  "jest/no-focused-tests": [
     "error",
   ],
-  "jest/no-identical-title": Array [
+  "jest/no-identical-title": [
     "error",
   ],
-  "jest/no-interpolation-in-snapshots": Array [
+  "jest/no-interpolation-in-snapshots": [
     "error",
   ],
-  "jest/no-jasmine-globals": Array [
+  "jest/no-jasmine-globals": [
     "error",
   ],
-  "jest/no-jest-import": Array [
+  "jest/no-mocks-import": [
     "error",
   ],
-  "jest/no-mocks-import": Array [
+  "jest/no-standalone-expect": [
     "error",
   ],
-  "jest/no-standalone-expect": Array [
+  "jest/no-test-prefixes": [
     "error",
   ],
-  "jest/no-test-prefixes": Array [
+  "jest/valid-describe-callback": [
     "error",
   ],
-  "jest/valid-describe-callback": Array [
+  "jest/valid-expect": [
     "error",
   ],
-  "jest/valid-expect": Array [
+  "jest/valid-expect-in-promise": [
     "error",
   ],
-  "jest/valid-expect-in-promise": Array [
+  "jest/valid-title": [
     "error",
   ],
-  "jest/valid-title": Array [
-    "error",
-  ],
-  "quotes": Array [
+  "quotes": [
     "warn",
     "single",
-    Object {
+    {
       "allowTemplateLiterals": true,
       "avoidEscape": true,
     },

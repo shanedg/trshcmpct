@@ -1,254 +1,254 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`eslint-config-typescript calculated config snapshots parserOptions 1`] = `
-Object {
+{
   "sourceType": "module",
 }
 `;
 
 exports[`eslint-config-typescript calculated config snapshots rules 1`] = `
-Object {
-  "@typescript-eslint/adjacent-overload-signatures": Array [
+{
+  "@typescript-eslint/adjacent-overload-signatures": [
     "error",
   ],
-  "@typescript-eslint/await-thenable": Array [
+  "@typescript-eslint/await-thenable": [
     "error",
   ],
-  "@typescript-eslint/ban-ts-comment": Array [
+  "@typescript-eslint/ban-ts-comment": [
     "error",
   ],
-  "@typescript-eslint/ban-types": Array [
+  "@typescript-eslint/ban-types": [
     "error",
   ],
-  "@typescript-eslint/no-array-constructor": Array [
+  "@typescript-eslint/no-array-constructor": [
     "error",
   ],
-  "@typescript-eslint/no-empty-function": Array [
+  "@typescript-eslint/no-empty-function": [
     "error",
   ],
-  "@typescript-eslint/no-empty-interface": Array [
+  "@typescript-eslint/no-empty-interface": [
     "error",
   ],
-  "@typescript-eslint/no-explicit-any": Array [
+  "@typescript-eslint/no-explicit-any": [
     "warn",
   ],
-  "@typescript-eslint/no-extra-non-null-assertion": Array [
+  "@typescript-eslint/no-extra-non-null-assertion": [
     "error",
   ],
-  "@typescript-eslint/no-extra-semi": Array [
+  "@typescript-eslint/no-extra-semi": [
     "error",
   ],
-  "@typescript-eslint/no-floating-promises": Array [
+  "@typescript-eslint/no-floating-promises": [
     "error",
   ],
-  "@typescript-eslint/no-for-in-array": Array [
+  "@typescript-eslint/no-for-in-array": [
     "error",
   ],
-  "@typescript-eslint/no-implied-eval": Array [
+  "@typescript-eslint/no-implied-eval": [
     "error",
   ],
-  "@typescript-eslint/no-inferrable-types": Array [
+  "@typescript-eslint/no-inferrable-types": [
     "error",
   ],
-  "@typescript-eslint/no-loss-of-precision": Array [
+  "@typescript-eslint/no-loss-of-precision": [
     "error",
   ],
-  "@typescript-eslint/no-misused-new": Array [
+  "@typescript-eslint/no-misused-new": [
     "error",
   ],
-  "@typescript-eslint/no-misused-promises": Array [
+  "@typescript-eslint/no-misused-promises": [
     "error",
   ],
-  "@typescript-eslint/no-namespace": Array [
+  "@typescript-eslint/no-namespace": [
     "error",
   ],
-  "@typescript-eslint/no-non-null-asserted-optional-chain": Array [
+  "@typescript-eslint/no-non-null-asserted-optional-chain": [
     "error",
   ],
-  "@typescript-eslint/no-non-null-assertion": Array [
+  "@typescript-eslint/no-non-null-assertion": [
     "warn",
   ],
-  "@typescript-eslint/no-this-alias": Array [
+  "@typescript-eslint/no-this-alias": [
     "error",
   ],
-  "@typescript-eslint/no-unnecessary-type-assertion": Array [
+  "@typescript-eslint/no-unnecessary-type-assertion": [
     "error",
   ],
-  "@typescript-eslint/no-unnecessary-type-constraint": Array [
+  "@typescript-eslint/no-unnecessary-type-constraint": [
     "error",
   ],
-  "@typescript-eslint/no-unsafe-argument": Array [
+  "@typescript-eslint/no-unsafe-argument": [
     "error",
   ],
-  "@typescript-eslint/no-unsafe-assignment": Array [
+  "@typescript-eslint/no-unsafe-assignment": [
     "error",
   ],
-  "@typescript-eslint/no-unsafe-call": Array [
+  "@typescript-eslint/no-unsafe-call": [
     "error",
   ],
-  "@typescript-eslint/no-unsafe-member-access": Array [
+  "@typescript-eslint/no-unsafe-member-access": [
     "error",
   ],
-  "@typescript-eslint/no-unsafe-return": Array [
+  "@typescript-eslint/no-unsafe-return": [
     "error",
   ],
-  "@typescript-eslint/no-unused-vars": Array [
+  "@typescript-eslint/no-unused-vars": [
     "warn",
-    Object {
+    {
       "argsIgnorePattern": "^_",
     },
   ],
-  "@typescript-eslint/no-var-requires": Array [
+  "@typescript-eslint/no-var-requires": [
     "error",
   ],
-  "@typescript-eslint/prefer-as-const": Array [
+  "@typescript-eslint/prefer-as-const": [
     "error",
   ],
-  "@typescript-eslint/prefer-namespace-keyword": Array [
+  "@typescript-eslint/prefer-namespace-keyword": [
     "error",
   ],
-  "@typescript-eslint/require-await": Array [
+  "@typescript-eslint/require-await": [
     "error",
   ],
-  "@typescript-eslint/restrict-plus-operands": Array [
+  "@typescript-eslint/restrict-plus-operands": [
     "error",
   ],
-  "@typescript-eslint/restrict-template-expressions": Array [
+  "@typescript-eslint/restrict-template-expressions": [
     "error",
   ],
-  "@typescript-eslint/triple-slash-reference": Array [
+  "@typescript-eslint/triple-slash-reference": [
     "error",
   ],
-  "@typescript-eslint/unbound-method": Array [
+  "@typescript-eslint/unbound-method": [
     "error",
   ],
-  "constructor-super": Array [
+  "constructor-super": [
     "off",
   ],
-  "getter-return": Array [
+  "getter-return": [
     "off",
   ],
-  "import/default": Array [
+  "import/default": [
     "off",
   ],
-  "import/named": Array [
+  "import/named": [
     "off",
   ],
-  "import/namespace": Array [
+  "import/namespace": [
     "off",
   ],
-  "import/no-named-as-default-member": Array [
+  "import/no-named-as-default-member": [
     "off",
   ],
-  "no-array-constructor": Array [
+  "no-array-constructor": [
     "off",
   ],
-  "no-const-assign": Array [
+  "no-const-assign": [
     "off",
   ],
-  "no-dupe-args": Array [
+  "no-dupe-args": [
     "off",
   ],
-  "no-dupe-class-members": Array [
+  "no-dupe-class-members": [
     "off",
   ],
-  "no-dupe-keys": Array [
+  "no-dupe-keys": [
     "off",
   ],
-  "no-empty-function": Array [
+  "no-empty-function": [
     "off",
   ],
-  "no-extra-semi": Array [
+  "no-extra-semi": [
     "off",
   ],
-  "no-func-assign": Array [
+  "no-func-assign": [
     "off",
   ],
-  "no-implied-eval": Array [
+  "no-implied-eval": [
     "off",
   ],
-  "no-import-assign": Array [
+  "no-import-assign": [
     "off",
   ],
-  "no-loss-of-precision": Array [
+  "no-loss-of-precision": [
     "off",
   ],
-  "no-new-symbol": Array [
+  "no-new-symbol": [
     "off",
   ],
-  "no-obj-calls": Array [
+  "no-obj-calls": [
     "off",
   ],
-  "no-redeclare": Array [
+  "no-redeclare": [
     "off",
   ],
-  "no-setter-return": Array [
+  "no-setter-return": [
     "off",
   ],
-  "no-this-before-super": Array [
+  "no-this-before-super": [
     "off",
   ],
-  "no-undef": Array [
+  "no-undef": [
     "off",
   ],
-  "no-unreachable": Array [
+  "no-unreachable": [
     "off",
   ],
-  "no-unsafe-negation": Array [
+  "no-unsafe-negation": [
     "off",
   ],
-  "no-unused-vars": Array [
+  "no-unused-vars": [
     "off",
   ],
-  "no-var": Array [
+  "no-var": [
     "error",
   ],
-  "prefer-const": Array [
+  "prefer-const": [
     "error",
   ],
-  "prefer-rest-params": Array [
+  "prefer-rest-params": [
     "error",
   ],
-  "prefer-spread": Array [
+  "prefer-spread": [
     "error",
   ],
-  "require-await": Array [
+  "require-await": [
     "off",
   ],
-  "valid-typeof": Array [
+  "valid-typeof": [
     "off",
   ],
 }
 `;
 
 exports[`eslint-config-typescript calculated config snapshots settings 1`] = `
-Object {
-  "import/extensions": Array [
+{
+  "import/extensions": [
     ".ts",
     ".tsx",
     ".js",
     ".jsx",
   ],
-  "import/external-module-folders": Array [
+  "import/external-module-folders": [
     "node_modules",
     "node_modules/@types",
   ],
-  "import/parsers": Object {
-    "@typescript-eslint/parser": Array [
+  "import/parsers": {
+    "@typescript-eslint/parser": [
       ".ts",
       ".tsx",
     ],
   },
-  "import/resolver": Object {
-    "node": Object {
-      "extensions": Array [
+  "import/resolver": {
+    "node": {
+      "extensions": [
         ".ts",
         ".tsx",
         ".js",
         ".jsx",
       ],
     },
-    "typescript": Object {
+    "typescript": {
       "project": "tsconfig.json",
     },
   },
