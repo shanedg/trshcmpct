@@ -1,25 +1,12 @@
-// This config supports type checking but all transpilation
-// is left to Webpack and Babel.
 {
+  "extends": "./tsconfig.base.json",
+
   "compilerOptions": {
-    // Treat `import x from 'y'` as `import * as x from 'y'`
-    // when y has no default export
-    "esModuleInterop": true,
-
-    // Apply stricter rules around properties which have a ? prefix
-    "exactOptionalPropertyTypes": true,
-
-    // Enforce file case sensitivity
-    "forceConsistentCasingInFileNames": true,
-
     // Leave JSX transformation to Babel
     "jsx": "preserve",
 
-    // Include latest supported JS features
+    // Latest supported APIs + DOM definitions
     "lib": ["ESNext", "DOM"],
-
-    // ES6/ES2015 (default) -> ES2020 adds support for dynamic imports, and import.meta
-    "module": "ES2020",
 
     // Node.js' CommonJS implementation
     "moduleResolution": "node",
@@ -34,14 +21,9 @@
     // Leave transpilation to Babel
     "noEmit": true,
 
-    // Ignore inconsistent global definitions from Jest and Cypress
-    "skipLibCheck": true,
-
-    // Turn on all strict mode family options for
-    // "stronger guarantees of program correctness"
-    "strict": true,
-
     // Ensure module is set to at least "ES6/ES2015"
     "target": "ESNext",
-  }
+  },
+
+  "include": ["src"]
 }
