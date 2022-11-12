@@ -35,8 +35,7 @@ module.exports = {
       ],
       extends: ['@trshcmpctr/eslint-config-typescript'],
       parserOptions: {
-        tsconfigRootDir: __dirname,
-        project: ['./tsconfig.json'],
+        project: './tsconfig.json'
       },
       settings: {
         'import/parsers': {
@@ -91,7 +90,17 @@ module.exports = {
     {
       files: ['cypress/**'],
       extends: ['plugin:eslint-plugin-cypress/recommended'],
+      parserOptions: {
+        project: './cypress/tsconfig.json'
+      },
       plugins: ['eslint-plugin-cypress'],
+      settings: {
+        'import/resolver': {
+          typescript: {
+            project: './cypress/tsconfig.json',
+          },
+        },
+      },
     },
   ],
 };

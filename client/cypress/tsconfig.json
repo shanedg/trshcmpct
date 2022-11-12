@@ -1,0 +1,20 @@
+{
+  "extends": "../tsconfig.base.json",
+
+  "compilerOptions": {
+    // Core definitions + DOM definitions
+    "lib": [
+      "es5",
+      "dom"
+    ],
+
+    // Downlevel for Cypress test runner (?)
+    "target": "es5",
+
+    // Only include some visible @types in compilation
+    "types": [
+      "node",
+      "cypress"
+    ]
+  }
+}
