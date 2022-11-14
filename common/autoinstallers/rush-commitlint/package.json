@@ -3,8 +3,8 @@
   "version": "1.0.0",
   "private": true,
   "dependencies": {
-    "@commitlint/cli": "~17.1.2",
-    "@commitlint/config-conventional": "~17.1.0",
-    "@types/node": "~16.11.60"
+    "@commitlint/cli": "~17.2.0",
+    "@commitlint/config-conventional": "~17.2.0",
+    "@types/node": "~16.18.3"
   }
 }
