@@ -9,12 +9,15 @@ workspace:
 
 steps:
 - name: install
-  image: node:16.15.1
+  image: node:16.16.0
+  environment:
+    # Skip installing Cypress binary, already included in test:cypress image
+    CYPRESS_INSTALL_BINARY: 0
   commands:
     - node common/scripts/install-run-rush.js install --purge
 
 - name: inject_secrets
-  image: node:16.15.1
+  image: node:16.16.0
   environment:
     DISCORD_CLIENT_ID:
       from_secret: discord_client_id
@@ -28,7 +31,7 @@ steps:
     - (cd discord && ./client_config_ci.sh)
 
 - name: lint
-  image: node:16.15.1
+  image: node:16.16.0
   commands:
     - node common/scripts/install-run-rush.js lint
   depends_on:
@@ -36,24 +39,21 @@ steps:
     - inject_secrets
 
 - name: lint:md
-  image: node:16.15.1
+  image: node:16.16.0
   commands:
     - node common/scripts/install-run-rush.js lint:md
   depends_on:
     - install
 
 - name: test
-  image: node:16.15.1
+  image: node:16.16.0
   commands:
     - node common/scripts/install-run-rush.js test
   depends_on:
     - install
 
 - name: test:cypress
-  # TODO: Replace custom image with next version of cypress/included that ships with node ^16.15.1
-  # Custom image published to:
-  # https://hub.docker.com/r/shanedg/cypress
-  image: shanedg/cypress:10.3.0-0
+  image: cypress/included:11.0.1
   commands:
     - node common/scripts/install-run-rush.js test:cypress --verbose
   depends_on:
@@ -61,7 +61,7 @@ steps:
     - inject_secrets
 
 - name: build
-  image: node:16.15.1
+  image: node:16.16.0
   commands:
     - node common/scripts/install-run-rush.js build
   depends_on:

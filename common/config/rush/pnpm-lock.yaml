@@ -33,7 +33,7 @@ importers:
       babel-plugin-syntax-dynamic-import: ~6.18.0
       core-js: ~3.26.0
       css-loader: ~6.7.1
-      cypress: 10.3.0
+      cypress: 11.0.1
       eslint: ~8.27.0
       eslint-import-resolver-typescript: ~3.5.1
       eslint-plugin-cypress: ~2.12.1
@@ -92,7 +92,7 @@ importers:
       babel-loader: 9.1.0_npabyccmuonwo2rku4k53xo3hi
       babel-plugin-syntax-dynamic-import: 6.18.0
       css-loader: 6.7.1_webpack@5.75.0
-      cypress: 10.3.0
+      cypress: 11.0.1
       eslint: 8.27.0
       eslint-import-resolver-typescript: 3.5.2_dcpv4nbdr5ks2h5677xdltrk6e
       eslint-plugin-cypress: 2.12.1_eslint@8.27.0
@@ -131,7 +131,7 @@ importers:
       '@types/express': ~4.17.13
       ava: ~5.0.1
       cookie-session: ~2.0.0
-      cypress: 10.3.0
+      cypress: 11.0.1
       eslint: ~8.27.0
       eslint-plugin-ava: ~13.2.0
       eslint-plugin-cypress: ~2.12.1
@@ -163,7 +163,7 @@ importers:
       '@trshcmpctr/markdownlint-config': link:../markdownlint-config
       '@types/express': 4.17.14
       ava: 5.0.1
-      cypress: 10.3.0
+      cypress: 11.0.1
       eslint: 8.27.0
       eslint-plugin-ava: 13.2.0_eslint@8.27.0
       eslint-plugin-cypress: 2.12.1_eslint@8.27.0
@@ -3914,8 +3914,8 @@ packages:
       array-find-index: 1.0.2
     dev: true
 
-  /cypress/10.3.0:
-    resolution: {integrity: sha512-txkQWKzvBVnWdCuKs5Xc08gjpO89W2Dom2wpZgT9zWZT5jXxqPIxqP/NC1YArtkpmp3fN5HW8aDjYBizHLUFvg==}
+  /cypress/11.0.1:
+    resolution: {integrity: sha512-NuEfd0Vim492RJ3m/+bbTZ3OZrqXgfAfuLaZfIQ9D5lKocS3EDr2tyAarZdAhKwLyoh7OJ33jwMeMFIDbzYqog==}
     engines: {node: '>=12.0.0'}
     hasBin: true
     requiresBuild: true
@@ -3939,7 +3939,7 @@ packages:
       dayjs: 1.11.6
       debug: 4.3.4_supports-color@8.1.1
       enquirer: 2.3.6
-      eventemitter2: 6.4.9
+      eventemitter2: 6.4.7
       execa: 4.1.0
       executable: 4.1.1
       extract-zip: 2.0.1_supports-color@8.1.1
@@ -4889,8 +4889,8 @@ packages:
     engines: {node: '>=6'}
     dev: false
 
-  /eventemitter2/6.4.9:
-    resolution: {integrity: sha512-JEPTiaOt9f04oa6NOkc4aH+nVp5I3wEjpHbIPqfgCdD5v5bUzy7xQqwcVO2aDQgOWhI28da57HksMrzK9HlRxg==}
+  /eventemitter2/6.4.7:
+    resolution: {integrity: sha512-tYUSVOGeQPKt/eC1ABfhHy5Xd96N3oIijJvN3O9+TsC28T5V9yX9oEfEK5faP0EFSNVOG97qtAS68GBrQB2hDg==}
     dev: true
 
   /eventemitter3/4.0.7:
