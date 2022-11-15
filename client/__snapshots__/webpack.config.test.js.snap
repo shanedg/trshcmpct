@@ -13,7 +13,7 @@ exports[`webpack development config matches snapshot 1`] = `
         "exclude": /node_modules/,
         "loader": "babel-loader",
         "options": {
-          "configFile": "<PROJECT_ROOT>/config/babel.config.cjs",
+          "configFile": "<PROJECT_ROOT>/babel.config.cjs",
         },
         "test": /\\\\\\.\\(js\\|jsx\\|ts\\|tsx\\)\\$/,
       },
@@ -134,7 +134,7 @@ exports[`webpack production config matches snapshot 1`] = `
         "exclude": /node_modules/,
         "loader": "babel-loader",
         "options": {
-          "configFile": "<PROJECT_ROOT>/config/babel.config.cjs",
+          "configFile": "<PROJECT_ROOT>/babel.config.cjs",
         },
         "test": /\\\\\\.\\(js\\|jsx\\|ts\\|tsx\\)\\$/,
       },

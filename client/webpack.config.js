@@ -21,7 +21,7 @@ export default (env = {}, argv = {}) => {
     devtool: isProduction ? 'source-map' : 'eval-source-map',
 
     entry: {
-      index: resolve(__dirname, '../src/index.ts'),
+      index: resolve(__dirname, './src/index.ts'),
     },
 
     mode: getMode(env.production),
@@ -70,7 +70,7 @@ export default (env = {}, argv = {}) => {
     output: {
       clean: true,
       filename: '[name].[chunkhash].js',
-      path: resolve(__dirname, '../dist'),
+      path: resolve(__dirname, './dist'),
     },
 
     plugins: [
@@ -91,7 +91,7 @@ export default (env = {}, argv = {}) => {
         publicPath: ''
       }),
       new HtmlWebpackPlugin({
-        template: resolve(__dirname, '../src/index.html'),
+        template: resolve(__dirname, './src/index.html'),
         title: 'trshcmpctr',
       }),
     ],

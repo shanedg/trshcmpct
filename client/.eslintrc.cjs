@@ -1,17 +1,29 @@
+const cjsConfigFiles = [
+  '.eslintrc.cjs',
+  'babel.config.cjs',
+];
+
+const esmConfigFiles = [
+  'jest-setup.js',
+  'jest.config.js',
+  'webpack.config.js',
+];
+
 module.exports = {
   extends: ['@trshcmpctr/eslint-config'],
   root: true,
 
   overrides: [
-    // Node config files
+    // All config files
     {
-      files: ['config/**/*.js', '.eslintrc.cjs'],
+      files: [...cjsConfigFiles, ...esmConfigFiles],
       extends: ['plugin:node/recommended'],
       plugins: ['eslint-plugin-node'],
     },
 
+    // ESM config files
     {
-      files: ['config/**/*.js'],
+      files: [...esmConfigFiles],
       parserOptions: {
         sourceType: 'module',
         ecmaVersion: 'latest'
@@ -35,8 +47,7 @@ module.exports = {
       ],
       extends: ['@trshcmpctr/eslint-config-typescript'],
       parserOptions: {
-        tsconfigRootDir: __dirname,
-        project: ['./tsconfig.json'],
+        project: './tsconfig.json'
       },
       settings: {
         'import/parsers': {
@@ -91,7 +102,17 @@ module.exports = {
     {
       files: ['cypress/**'],
       extends: ['plugin:eslint-plugin-cypress/recommended'],
+      parserOptions: {
+        project: './cypress/tsconfig.json'
+      },
       plugins: ['eslint-plugin-cypress'],
+      settings: {
+        'import/resolver': {
+          typescript: {
+            project: './cypress/tsconfig.json',
+          },
+        },
+      },
     },
   ],
 };

@@ -1,0 +1,23 @@
+{
+  "compilerOptions": {
+    // Treat `import x from 'y'` as `import * as x from 'y'`
+    // when y has no default export
+    "esModuleInterop": true,
+
+    // Apply stricter rules around properties which have a ? prefix
+    "exactOptionalPropertyTypes": true,
+
+    // Enforce file case sensitivity
+    "forceConsistentCasingInFileNames": true,
+
+    // Support dynamic imports and import.meta
+    "module": "ES2020",
+
+    // Ignore inconsistent global definitions from Jest and Cypress
+    "skipLibCheck": true,
+
+    // Turn on all strict mode family options for
+    // "stronger guarantees of program correctness"
+    "strict": true,
+  }
+}
