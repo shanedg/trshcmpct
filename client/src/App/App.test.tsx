@@ -7,10 +7,8 @@ import React from 'react';
 import App from './App';
 
 describe('App', () => {
-  it('renders', async () => {
+  it('renders a heading', () => {
     render(<App />);
-
-    await screen.findByRole('heading');
     expect(screen.getByRole('heading')).toHaveTextContent('trshcmpctr');
   });
 });
