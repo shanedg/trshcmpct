@@ -8,20 +8,20 @@
   "module": "./dist/manifest.json",
   "exports": "./dist/manifest.json",
   "scripts": {
-    "build": "webpack --config config/webpack.config.js",
-    "build:production": "webpack --config config/webpack.config.js --env production",
+    "build": "webpack",
+    "build:production": "webpack --env production",
     "clean": "rimraf *.build.log *.build.error.log coverage dist",
     "cy:open": "cypress open --e2e --browser=chrome --config-file=cypress/cypress.config.ts",
     "cy:run": "cypress run --config-file=cypress/cypress.config.ts",
     "lint": "eslint --report-unused-disable-directives --ext .js,.jsx,.ts,.tsx,.cjs --max-warnings=0 .",
     "lint:md": "markdownlint-cli2-config 'node_modules/@trshcmpctr/markdownlint-config/.markdownlint-cli2.jsonc' '**/*.md' '#node_modules'",
-    "serve": "webpack serve --config config/webpack.config.js",
+    "serve": "webpack serve",
     "start": "npm run serve -- --open",
     "test": "npm run test:jest && npm run type-check",
     "test:cypress": "start-server-and-test serve http://localhost:8080 cy:run",
-    "test:jest": "NODE_OPTIONS=--experimental-vm-modules jest --config=config/jest/jest.config.js --no-cache --reporters=@trshcmpctr/jest-stdout-reporter --silent",
+    "test:jest": "NODE_OPTIONS=--experimental-vm-modules jest --no-cache --reporters=@trshcmpctr/jest-stdout-reporter --silent",
     "type-check": "tsc",
-    "watch": "webpack --config config/webpack.config.js --watch"
+    "watch": "webpack --watch"
   },
   "contributors": [
     {

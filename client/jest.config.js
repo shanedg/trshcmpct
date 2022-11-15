@@ -4,11 +4,7 @@ import { fileURLToPath } from 'node:url';
 const __dirname = dirname(fileURLToPath(import.meta.url));
 
 export default {
-  rootDir: '../..',
-  roots: [
-    '<rootDir>/config',
-    '<rootDir>/src',
-  ],
+  rootDir: './',
   transform: {
     // Only files in src/ are built & transpiled by Babel, so only these should be transformed.
     // Note that the transform pattern is matched against the full path.
@@ -20,10 +16,10 @@ export default {
       'babel-jest',
       // Since the babel config isn't in the package root,
       // we need to locate it explicitly for babel-jest here.
-      { configFile: resolve(__dirname, '..', 'babel.config.cjs') }
+      { configFile: resolve(__dirname, 'babel.config.cjs') }
     ],
   },
   collectCoverage: true,
   testEnvironment: 'jsdom',
-  setupFilesAfterEnv: ['<rootDir>/config/jest/jest-setup.js'],
+  setupFilesAfterEnv: ['<rootDir>/jest-setup.js'],
 };
