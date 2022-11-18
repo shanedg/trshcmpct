@@ -12,12 +12,6 @@
    */
   "commands": [
     {
-      "name": "clean",
-      "summary": "Remove generated files in all projects",
-      "commandKind": "bulk",
-      "enableParallelism": true
-    },
-    {
       "name": "check-latest-updates",
       "summary": "Upgrade dependencies in all projects to the latest version not already satisfied by the semver range. This includes major versions and is best to run after `check-minor-updates`. You must run `rush update` after.",
       "commandKind": "global",
