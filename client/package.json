@@ -10,8 +10,8 @@
   "scripts": {
     "build": "webpack",
     "build:production": "webpack --env production",
-    "clean": "rimraf *.build.log *.build.error.log coverage dist",
-    "cy:open": "cypress open --e2e --browser=chrome --config-file=cypress/cypress.config.ts",
+    "clean": "rm -rf dist",
+    "cy:open": "cypress open --config-file=cypress/cypress.config.ts --e2e --browser=chrome",
     "cy:run": "cypress run --config-file=cypress/cypress.config.ts",
     "lint": "eslint --report-unused-disable-directives --ext .js,.jsx,.ts,.tsx,.cjs --max-warnings=0 .",
     "lint:md": "markdownlint-cli2-config 'node_modules/@trshcmpctr/markdownlint-config/.markdownlint-cli2.jsonc' '**/*.md' '#node_modules'",
@@ -81,7 +81,6 @@
     "jest-serializer-path": "~0.1.15",
     "jest": "~29.3.1",
     "markdownlint-cli2": "~0.5.1",
-    "rimraf": "~3.0.2",
     "start-server-and-test": "~1.14.0",
     "style-loader": "~3.3.1",
     "terser-webpack-plugin": "~5.3.1",

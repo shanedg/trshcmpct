@@ -22,7 +22,6 @@
   "scripts": {
     "asdf": "plop --plopfile lib/index.js project -- --name asdf --path asdf",
     "build": "echo fake build || true",
-    "clean": "rimraf *.build.log *.build.error.log",
     "lint:md": "markdownlint-cli2-config 'node_modules/@trshcmpctr/markdownlint-config/.markdownlint-cli2.jsonc' '**/*.md' '#node_modules'",
     "lint": "eslint --report-unused-disable-directives --ext .cjs,.js --max-warnings=0 .",
     "test": "true"
@@ -35,8 +34,7 @@
     "eslint-plugin-node": "~11.1.0",
     "eslint": "~8.27.0",
     "markdownlint-cli2": "~0.5.1",
-    "plop": "~3.1.1",
-    "rimraf": "~3.0.2"
+    "plop": "~3.1.1"
   },
   "peerDependencies": {
     "plop": "~3.1.1"
