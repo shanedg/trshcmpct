@@ -16,7 +16,7 @@
     <h1>login</h1>
     <!-- https://discordjs.guide/oauth2/#authorization-code-grant-flow -->
     <a
-      href="https://discord.com/api/oauth2/authorize?client_id={{clientId}}&redirect_uri={{redirectUri}}&response_type=code&scope=identify%20guilds"
+      href="https://discord.com/api/oauth2/authorize?client_id={{clientId}}&redirect_uri={{redirectUri}}&response_type=code&scope=identify"
       id="login"
       style="display: none;"
     >sign in with discord</a>
@@ -34,8 +34,8 @@
       return randomString;
     }
 
+    // FIXME: clickjack defense incomplete!
     window.onload = () => {
-      window.history.replaceState(null, null, '/');
       const randomString = generateRandomString();
       localStorage.setItem('oauth-state', randomString);
 

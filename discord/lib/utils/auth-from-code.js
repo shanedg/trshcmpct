@@ -4,7 +4,7 @@
  * @param {Object} options Authorization code from Discord redirect
  * @returns Oauth result
  */
-const authFromCode = async (fetch, { clientId, clientSecret, code, port }) => {
+export const authFromCode = async (fetch, { clientId, clientSecret, code, redirectUri }) => {
   return await fetch('https://discord.com/api/oauth2/token', {
     method: 'POST',
     body: new URLSearchParams({
@@ -12,11 +12,9 @@ const authFromCode = async (fetch, { clientId, clientSecret, code, port }) => {
       client_secret: clientSecret,
       code,
       grant_type: 'authorization_code',
-      redirect_uri: `http://localhost:${port}`,
+      redirect_uri: redirectUri,
       scope: 'identify',
     }),
     headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
   });
 };
-
-export { authFromCode };

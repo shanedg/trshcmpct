@@ -18,7 +18,7 @@ test.before(async t => {
     code: 'mycode',
     clientId: 'myclientid',
     clientSecret: 'myclientsecret',
-    port: '12345'
+    redirectUri: 'http://localhost:12345'
   });
 });
 

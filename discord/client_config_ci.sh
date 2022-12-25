@@ -26,6 +26,11 @@ if [ -z "$DISCORD_GUILD_ID" ]; then
   exit 1
 fi
 
+if [ -z "$DISCORD_REDIRECT_URI" ]; then
+  echo 'missing DISCORD_REDIRECT_URI'
+  exit 1
+fi
+
 if [ -z "$DISCORD_SESSION_SECRET" ]; then
   echo 'missing DISCORD_SESSION_SECRET'
   exit 1
@@ -36,5 +41,6 @@ echo "{
   \"clientSecret\": \"$DISCORD_CLIENT_SECRET\",
   \"guildId\": \"$DISCORD_GUILD_ID\",
   \"port\": 53134,
+  \"redirectUri\": \"$DISCORD_REDIRECT_URI\",
   \"sessionSecret\": \"$DISCORD_SESSION_SECRET\"
 }" > $client_config_file
