@@ -10,7 +10,6 @@ const sendSpy = sinon.spy();
 
 const requestWithSpies = {
   log: { error: errorSpy, debug: debugSpy },
-  session: { views: 0 },
   query: { code: 'abc456' },
 };
 
@@ -55,7 +54,6 @@ test('logs any error encountered rendering the template', t => {
   };
   const localRequestWithSpies = {
     log: { error: localErrorSpy, debug: localDebugSpy },
-    session: { views: 0 },
     query: { code: 'abc456' },
   };
   handleError(new Error('some-error'), localRequestWithSpies, badResponseWithSpies, localNextSpy);

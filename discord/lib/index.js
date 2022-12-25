@@ -10,9 +10,9 @@ import manifest from '@trshcmpctr/client' assert { type: 'json' };
 
 import config from './config.json' assert { type: 'json' };
 import {
-  getNewTokenWithDependencies,
-  getRenderLoginWithData,
-  getReuseSessionTokenWithDependencies,
+  createAuthenticatedRenderHandler,
+  createAuthorizationCodeGrantHandler,
+  createLoginRenderHandler,
   handleError,
 } from './handlers';
 
@@ -21,6 +21,7 @@ const {
   clientSecret,
   guildId,
   port,
+  redirectUri,
   sessionSecret,
 } = config;
 
@@ -48,26 +49,48 @@ app.use(cookieSession({
   secret: sessionSecret,
 }));
 
-const redirectUri = `http://localhost:${port}`;
-const renderLogin = getRenderLoginWithData({ clientId, redirectUri });
+/**
+ * Create a handler that redirects to the provided destination
+ * @param {string} redirectTo Path that the handler should redirect to
+ * @returns Handler that redirects to the provided destination
+ */
+const createRedirectHandler = redirectTo => {
+  return (_request, response, _next) => {
+    response.redirect(redirectTo);
+  };
+};
 
-// Dependency-inject our chosen fetch implementation
-const reuseSessionToken = getReuseSessionTokenWithDependencies(fetch, { guildId });
-const getNewToken = getNewTokenWithDependencies(fetch, { clientId, clientSecret, guildId, port });
-
-app.get('/', [renderLogin, reuseSessionToken, getNewToken]);
+const renderLogin = createLoginRenderHandler({ clientId, redirectUri });
 
 const clientUrl = new URL(await import.meta.resolve('@trshcmpctr/client'));
 const clientPublic = dirname(clientUrl.pathname);
-app.use(express.static(clientPublic));
 
-app.get('/client', async (_request, response, next) => {
-  response.sendFile(manifest['index.html'], { root: clientPublic }, err => {
-    if (err) {
-      next();
-    }
-  });
+const renderAuthenticated = createAuthenticatedRenderHandler({
+  htmlDirectory: clientPublic,
+  htmlFilename: manifest['index.html'],
 });
+const handleAuthorizationCodeGrant = createAuthorizationCodeGrantHandler(fetch, { clientId, clientSecret, guildId, redirectUri });
+
+app.get('/login', [
+  renderLogin,
+  // Redirect to app if already authenticated
+  createRedirectHandler('/'),
+]);
+
+app.get('/auth', [
+  handleAuthorizationCodeGrant,
+  // Redirect to app once authenticated
+  createRedirectHandler('/'),
+]);
+
+app.get('/', [
+  renderAuthenticated,
+  // Redirect to login if not authenticated
+  createRedirectHandler('/login'),
+]);
+
+// Always serve application static assets
+app.use(express.static(clientPublic));
 
 app.use(handleError);
 
