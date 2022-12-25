@@ -42,6 +42,6 @@ test('calls fetch with oauth body', t => {
     'code=mycode',
     'grant_type=authorization_code',
     'redirect_uri=http%3A%2F%2Flocalhost%3A12345',
-    'scope=identify'
+    'scope=guilds.members.read'
   ].join('&'));
 });

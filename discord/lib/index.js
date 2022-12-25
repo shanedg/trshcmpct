@@ -8,6 +8,7 @@ import pinoHttp from 'pino-http';
 
 import manifest from '@trshcmpctr/client' assert { type: 'json' };
 
+import { authenticatedApiRouter } from './authenticated-api/router';
 import config from './config.json' assert { type: 'json' };
 import {
   createAuthenticatedRenderHandler,
@@ -70,6 +71,9 @@ const renderAuthenticated = createAuthenticatedRenderHandler({
   htmlFilename: manifest['index.html'],
 });
 const handleAuthorizationCodeGrant = createAuthorizationCodeGrantHandler(fetch, { clientId, clientSecret, guildId, redirectUri });
+
+// Dedicated router for API requests that the application will make
+app.use('/api/v1', authenticatedApiRouter);
 
 app.get('/login', [
   renderLogin,

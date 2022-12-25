@@ -13,7 +13,7 @@ export const authFromCode = async (fetch, { clientId, clientSecret, code, redire
       code,
       grant_type: 'authorization_code',
       redirect_uri: redirectUri,
-      scope: 'identify',
+      scope: 'guilds.members.read',
     }),
     headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
   });
