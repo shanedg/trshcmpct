@@ -1,0 +1,26 @@
+import express from 'express';
+
+// TODO: add tests for handlers
+import { getGuildMembership } from './get-guild-membership';
+import { handleApiError } from './handle-api-error';
+import { handleEndpointNotFound } from './handle-endpoint-not-found';
+import { requireAuthentication } from './require-authentication';
+
+/**
+ * Dedicated router for our authenticated endpoints
+ */
+const authenticatedApiRouter = express.Router();
+
+// All requests to these resources must be authenticated
+authenticatedApiRouter.use(requireAuthentication);
+
+// After authentication, check authorization aka membership in target guild
+authenticatedApiRouter.get('/authorized', [
+  getGuildMembership,
+  handleApiError,
+]);
+
+// Any unhandled requests at this point must be 404s
+authenticatedApiRouter.use(handleEndpointNotFound);
+
+export { authenticatedApiRouter };
