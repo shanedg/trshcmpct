@@ -41,6 +41,9 @@ app.set('view engine', 'html');
 app.engine('html', handlebarsForExpress);
 
 app.use(pinoLogger);
+// FIXME: 
+// > TIP: To maintain security, store the access token server-side
+// > but associate it with a session ID that you generate for the user.
 app.use(cookieSession({
   // keys: [sessionSecret1, sessionSecret2],
   // maxAge: 7 * 24 * 60 * 60 * 1000 // 1 week (how long tokens are valid)
