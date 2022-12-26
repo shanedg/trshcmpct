@@ -2,6 +2,8 @@ import { authFromCode } from '../utils';
 
 /**
  * Create handler for getting a fresh token
+ * with the authorization code grant flow:
+ * https://discordjs.guide/oauth2/#authorization-code-grant-flow
  * Injects a method for network requests as well as auth config
  * @param {Function} fetch Fetch implementation
  * @param {Object} config Required auth data
