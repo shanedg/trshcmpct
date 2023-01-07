@@ -1,10 +1,11 @@
 import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
-import cookieSession from 'cookie-session';
 import express from 'express';
+import expressSesssion from 'express-session';
 import handlebars from 'hbs';
 import pinoHttp from 'pino-http';
+import nedbStorage from 'tch-nedb-session';
 
 import manifest from '@trshcmpctr/client' assert { type: 'json' };
 
@@ -41,16 +42,26 @@ app.set('view engine', 'html');
 app.engine('html', handlebarsForExpress);
 
 app.use(pinoLogger);
-// FIXME: 
-// > TIP: To maintain security, store the access token server-side
-// > but associate it with a session ID that you generate for the user.
-app.use(cookieSession({
-  // keys: [sessionSecret1, sessionSecret2],
-  // maxAge: 7 * 24 * 60 * 60 * 1000 // 1 week (how long tokens are valid)
-  // maxAge: 24 * 60 * 60 * 1000 // 24 hours
-  // maxAge: 10 * 60 * 1000 // 10 minutes
-  maxAge: 60 * 1000, // 1 minute
+
+// 1 minute
+const sessionLength = 60 * 1000;
+// 7 * 24 * 60 * 60 * 1000 // 1 week (how long tokens are valid)
+
+const sessionStore = nedbStorage(expressSesssion);
+const nedbStorageWithExpressSession = new sessionStore({
+  expiration: sessionLength,
+});
+
+app.use(expressSesssion({
+  cookie: {
+    maxAge: sessionLength
+  },
+  // resave is deprecated
+  resave: false,
+  // saveUninitialized is deprecated
+  saveUninitialized: false,
   secret: sessionSecret,
+  store: nedbStorageWithExpressSession,
 }));
 
 /**
