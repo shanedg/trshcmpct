@@ -14,7 +14,6 @@ export const createAuthenticatedRenderHandler = ({
    * Handler for rendering an authenticated html view
    */
   return async (request, response, next) => {
-    // TODO: Determine if this check is really sufficient for determining authorization
     if (request.session.oauth && request.session.oauth.access_token) {
       request.log.debug('render authenticated client');
       response.sendFile(htmlFilename, {
