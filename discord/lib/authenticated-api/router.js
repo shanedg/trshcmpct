@@ -1,6 +1,5 @@
 import express from 'express';
 
-// TODO: add tests for handlers
 import config from '../config.json' assert { type: 'json' };
 import { createGetGuildMembership } from './create-get-guild-membership';
 import { handleApiError } from './handle-api-error';
