@@ -103,3 +103,23 @@ test('creates a handler that throws an error if auth fails', async t => {
   t.is(logSpyErrorCalls[0].args[0], 'bad authorization');
   t.deepEqual(error, new Error('bad authorization: {\n  "error": "bad auth!"\n}'));
 });
+
+test('creates a handler that fails authorization requests gracefully', async t => {
+  t.plan(2);
+  const request = {
+    log: {
+      debug: sinon.spy(),
+      error: sinon.spy(),
+    },
+    session: {},
+    query: { code: 'abc456' },
+  };
+  const authFailsNextSpy = sinon.spy();
+  const fetchRejects = () => Promise.reject('async-auth-request-error');
+  const handleCodeGrantFetchRejects = createAuthorizationCodeGrantHandler(fetchRejects, {});
+  // Auth options (2nd param) are only referenced in arguments to fetch function
+  await handleCodeGrantFetchRejects(request, {}, authFailsNextSpy);
+  const nextCalls = authFailsNextSpy.getCalls();
+  t.is(nextCalls.length, 1);
+  t.is(nextCalls[0].args[0], 'async-auth-request-error');
+});

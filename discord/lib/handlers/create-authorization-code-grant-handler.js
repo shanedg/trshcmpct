@@ -27,10 +27,20 @@ export const createAuthorizationCodeGrantHandler = (fetch, {
       return;
     }
 
-    const oauthResult = await authFromCode(fetch, { code, clientId, clientSecret, redirectUri });
-    const oauthFinal = await oauthResult.json();
+    let oauthFinal;
+    try {
+      const oauthResult = await authFromCode(fetch, { code, clientId, clientSecret, redirectUri });
+      oauthFinal = await oauthResult.json();
+    } catch (e) {
+      request.log.error(`problem authorizing code: ${e}`);
+      // explicitly pass async errors to next function for handling
+      next(e);
+      return;
+    }
+
     if (oauthFinal.error) {
-      request.log.error('bad authorization');
+      request.log.error(`bad authorization: ${oauthFinal}`);
+      // express catches synchronous errors in handlers automatically
       throw new Error(`bad authorization: ${JSON.stringify(oauthFinal, null, 2)}`);
     }
 
