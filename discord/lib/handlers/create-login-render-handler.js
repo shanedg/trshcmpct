@@ -12,7 +12,7 @@ export const createLoginRenderHandler = ({ clientId, redirectUri }) => {
 
   // Render login screen for un-auth'd sessions
   return (request, response, next) => {
-    const nowInSeconds = Date.now()/1000;
+    const nowInSeconds = Date.now() / 1000;
 
     const sessionHasToken = request.session.oauth && request.session.oauth.access_token;
     const tokenIsNotExpired = request.session.oauthExpires > nowInSeconds;
