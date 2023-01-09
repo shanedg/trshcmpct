@@ -1,10 +1,15 @@
 import express from 'express';
 
 // TODO: add tests for handlers
-import { getGuildMembership } from './get-guild-membership';
+import config from '../config.json' assert { type: 'json' };
+import { createGetGuildMembership } from './create-get-guild-membership';
 import { handleApiError } from './handle-api-error';
 import { handleEndpointNotFound } from './handle-endpoint-not-found';
 import { requireAuthentication } from './require-authentication';
+
+const { guildId } = config;
+
+const getGuildMembership = createGetGuildMembership(fetch, guildId);
 
 /**
  * Dedicated router for our authenticated endpoints
