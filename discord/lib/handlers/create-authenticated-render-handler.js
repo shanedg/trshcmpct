@@ -27,6 +27,7 @@ export const createAuthenticatedRenderHandler = ({
       });
       return;
     }
+    request.log.error(`missing authentication: ${JSON.stringify(request.session)}`);
     next();
   };
 };

@@ -40,7 +40,7 @@ export const createGetGuildMembership = (fetch, guildId) => {
       return;
     }
 
-    request.log.error('missing authentication');
+    request.log.error(`missing authentication: ${JSON.stringify(request.session)}`);
     next();
   };
 };
