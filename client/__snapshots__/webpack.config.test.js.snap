@@ -4,7 +4,11 @@ exports[`webpack development config matches snapshot 1`] = `
 {
   "devtool": "eval-source-map",
   "entry": {
-    "index": "<PROJECT_ROOT>/src/index.ts",
+    "development": "<PROJECT_ROOT>/src/development.ts",
+    "index": {
+      "dependOn": "development",
+      "import": "<PROJECT_ROOT>/src/index.ts",
+    },
   },
   "mode": "development",
   "module": {
@@ -104,6 +108,7 @@ exports[`webpack development config matches snapshot 1`] = `
     },
     HtmlWebpackPlugin {
       "userOptions": {
+        "chunksSortMode": [Function],
         "template": "<PROJECT_ROOT>/src/index.html",
         "title": "trshcmpctr",
       },
@@ -125,7 +130,9 @@ exports[`webpack production config matches snapshot 1`] = `
 {
   "devtool": "source-map",
   "entry": {
-    "index": "<PROJECT_ROOT>/src/index.ts",
+    "index": {
+      "import": "<PROJECT_ROOT>/src/index.ts",
+    },
   },
   "mode": "production",
   "module": {
@@ -225,6 +232,7 @@ exports[`webpack production config matches snapshot 1`] = `
     },
     HtmlWebpackPlugin {
       "userOptions": {
+        "chunksSortMode": [Function],
         "template": "<PROJECT_ROOT>/src/index.html",
         "title": "trshcmpctr",
       },

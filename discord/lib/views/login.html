@@ -26,21 +26,17 @@
     function generateRandomString() {
       let randomString = '';
       const randomNumber = Math.floor(Math.random() * 10);
-
       for (let i = 0; i < 20 + randomNumber; i++) {
         randomString += String.fromCharCode(33 + Math.floor(Math.random() * 94));
       }
-
       return randomString;
     }
 
-    // FIXME: clickjack defense incomplete!
     window.onload = () => {
       const randomString = generateRandomString();
       localStorage.setItem('oauth-state', randomString);
-
       const loginElement = document.getElementById('login');
-      loginElement.href += `&state=${btoa(randomString)}`;
+      loginElement.href += `&state=${encodeURIComponent(btoa(randomString))}`;
       return loginElement.style.display = 'block';
     };
   </script>

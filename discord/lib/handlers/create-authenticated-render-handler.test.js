@@ -4,25 +4,62 @@ import sinon from 'sinon';
 import { createAuthenticatedRenderHandler } from './create-authenticated-render-handler';
 
 test('creates a handler that renders the authenticated view', async t => {
-  const sendFileSpy = sinon.spy(() => Promise.resolve());
-  const response = { sendFile: sendFileSpy };
-  const reuseSessionToken = createAuthenticatedRenderHandler({
+  const renderSpy = sinon.spy(() => Promise.resolve());
+  const response = { render: renderSpy };
+  const authenticatedRenderHandler = createAuthenticatedRenderHandler({
     htmlDirectory: '/absolute/path/to/html/directory',
     htmlFilename: 'index.html',
   });
-  const sessionTokenRequest = {
+  const authenticatedRequest = {
     log: { error: sinon.spy(), debug: sinon.spy() },
     session: {
       oauth: {
         access_token: 'some-access-token',
         expires_in: 90,
       },
+      state: 'some-encoded-state',
     },
   };
-  await reuseSessionToken(sessionTokenRequest, response, sinon.spy());
-  const sendFileCalls = sendFileSpy.getCalls();
-  t.plan(3);
-  t.is(sendFileCalls.length, 1);
-  t.is(sendFileCalls[0].args[0], 'index.html');
-  t.is(sendFileCalls[0].args[1].root, '/absolute/path/to/html/directory');
+  await authenticatedRenderHandler(authenticatedRequest, response, sinon.spy());
+  const renderCalls = renderSpy.getCalls();
+  t.plan(2);
+  t.is(renderCalls.length, 1);
+  t.is(renderCalls[0].args[0], '/absolute/path/to/html/directory/index.html');
+});
+
+test('creates a handler that calls next if missing authentication', async t => {
+  const nextSpy = sinon.spy();
+  const unauthenticatedRequest = {
+    log: { error: sinon.spy() },
+    session: {}
+  };
+  const authenticatedRenderHandler = createAuthenticatedRenderHandler({
+    htmlDirectory: '/absolute/path/to/html/directory',
+    htmlFilename: 'index.html',
+  });
+  await authenticatedRenderHandler(unauthenticatedRequest, {}, nextSpy);
+  const nextCalls = nextSpy.getCalls();
+  t.plan(1);
+  t.is(nextCalls.length, 1);
+});
+
+test('creates a handler that calls next if missing state', async t => {
+  const nextSpy = sinon.spy();
+  const unauthenticatedRequest = {
+    log: { error: sinon.spy() },
+    session: {
+      oauth: {
+        access_token: 'some-access-token',
+        expires_in: 90,
+      },
+    }
+  };
+  const authenticatedRenderHandler = createAuthenticatedRenderHandler({
+    htmlDirectory: '/absolute/path/to/html/directory',
+    htmlFilename: 'index.html',
+  });
+  await authenticatedRenderHandler(unauthenticatedRequest, {}, nextSpy);
+  const nextCalls = nextSpy.getCalls();
+  t.plan(1);
+  t.is(nextCalls.length, 1);
 });

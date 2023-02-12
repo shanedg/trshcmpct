@@ -20,12 +20,22 @@ export const createAuthorizationCodeGrantHandler = (fetch, {
   // Handler to get a new token for authentication
   return async (request, _response, next) => {
     request.log.debug('get new token');
-    const { code } = request.query;
+    const { code, state } = request.query;
+
     if (!code) {
       request.log.debug('no code found');
       next();
       return;
     }
+
+    if (!state) {
+      request.log.debug('no state found');
+      next();
+      return;
+    }
+
+    // don't decode to avoid unintended character escaping during html render
+    request.session.state = state;
 
     let oauthFinal;
     try {
