@@ -14,20 +14,20 @@ export const createAuthenticatedRenderHandler = ({
    * Handler for rendering an authenticated html view
    */
   return async (request, response, next) => {
-    if (request.session.oauth && request.session.oauth.access_token) {
+    const { oauth, state } = request.session;
+    if (oauth && oauth.access_token && state) {
       request.log.debug('render authenticated client');
-      response.sendFile(htmlFilename, {
-        // No reason to send the Last-Modified header with the actual last modified date
-        lastModified: false,
-        root: htmlDirectory,
-      }, err => {
+      response.render(`${htmlDirectory}/${htmlFilename}`, (err, html) => {
         if (err) {
-          next(err);
+          throw new Error('problem rendering authenticated view', { cause: err });
         }
+        const newHtml = html.replace('<head>', `<head>
+    <script>window.__trshcmpctr__ = { state: '${request.session.state}' };</script>`);
+        response.send(newHtml);
       });
       return;
     }
-    request.log.error(`missing authentication: ${JSON.stringify(request.session)}`);
+    request.log.error(`missing session data: ${JSON.stringify(request.session)}`);
     next();
   };
 };

@@ -35,7 +35,7 @@ test.before(async () => {
   const newTokenRequest = {
     log: { error: sinon.spy(), debug: sinon.spy() },
     session: fakeSession,
-    query: { code: 'abc456' },
+    query: { code: 'abc456', state: 'some-encoded-state' },
   };
   // The handler response param (2nd) is unused
   await handleCodeGrant(newTokenRequest, {}, nextSpy);
@@ -49,6 +49,28 @@ test('creates a handler that adds oauth result and expiry time to session if aut
   });
   // OAuth should expire in the future
   t.assert(fakeSession.oauthExpires > Date.now() / 1000);
+});
+
+test('creates a handler that adds state param value to session', async t => {
+  const request = {
+    log: {
+      debug: sinon.spy(),
+      error: sinon.spy(),
+    },
+    session: {},
+    query: {
+      code: 'abc456',
+      state: 'some-encoded-state'
+    },
+  };
+  const handleCodeGrant = createAuthorizationCodeGrantHandler(fetchSucceeds, {
+    clientId: 'my-client-id',
+    clientSecret: 'my-client-secret',
+    redirectUri: 'http://localhost:53134/auth'
+  });
+  await handleCodeGrant(request, {}, sinon.spy());
+  t.plan(1);
+  t.is(request.session.state, 'some-encoded-state');
 });
 
 test('creates a handler that expects a code query param and calls next if none present', async t => {
@@ -67,6 +89,20 @@ test('creates a handler that expects a code query param and calls next if none p
   t.is(nextSpyCalls.length, 1);
 });
 
+test('creates a handler that expects a state query param and calls next if none present', async t => {
+  t.plan(1);
+  const localNextSpy = sinon.spy();
+  const handleCodeGrant = createAuthorizationCodeGrantHandler(sinon.spy(), {});
+  const noCodeNewTokenRequest = {
+    log: { error: sinon.spy(), debug: sinon.spy() },
+    session: {},
+    query: { code: 'abc456' },
+  };
+  await handleCodeGrant(noCodeNewTokenRequest, {}, localNextSpy);
+  const nextSpyCalls = localNextSpy.getCalls();
+  t.is(nextSpyCalls.length, 1);
+});
+
 test('creates a handler that throws an error if authorization is bad', async t => {
   t.plan(2);
   const localNextSpy = sinon.spy();
@@ -78,11 +114,11 @@ test('creates a handler that throws an error if authorization is bad', async t =
   const newTokenRequest = {
     log: { error: sinon.spy(), debug: sinon.spy() },
     session: {},
-    query: { code: 'abc456' },
+    query: { code: 'abc456', state: 'some-encoded-state' },
   };
   // The handler response param (2nd param) is unused
   const error = await t.throwsAsync(handleCodeGrant(newTokenRequest, {}, localNextSpy));
-  t.deepEqual(error, new Error('bad authorization: {\n  "error": "bad auth!"\n}'));
+  t.deepEqual(error, new Error('bad authorization'));
 });
 
 test('creates a handler that fails authorization requests gracefully', async t => {
@@ -93,7 +129,7 @@ test('creates a handler that fails authorization requests gracefully', async t =
       error: sinon.spy(),
     },
     session: {},
-    query: { code: 'abc456' },
+    query: { code: 'abc456', state: 'some-encoded-state' },
   };
   const authFailsNextSpy = sinon.spy();
   const fetchRejects = () => Promise.reject('async-auth-request-error');
