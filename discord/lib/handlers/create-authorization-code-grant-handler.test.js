@@ -20,10 +20,10 @@ const fetchSucceeds =
  */
 const fetchSucceedsWithOauthError =
   () => Promise.resolve({ json: () => ({
-    error: 'bad auth!'
+    error: 'bad auth on purpose!'
   })});
 
-const fakeSession = {};
+const fakeSession = { state: 'some-nonce' };
 const nextSpy = sinon.spy();
 
 test.before(async () => {
@@ -35,7 +35,7 @@ test.before(async () => {
   const newTokenRequest = {
     log: { error: sinon.spy(), debug: sinon.spy() },
     session: fakeSession,
-    query: { code: 'abc456', state: 'some-encoded-state' },
+    query: { code: 'abc456', state: encodeURIComponent('some-nonce') },
   };
   // The handler response param (2nd) is unused
   await handleCodeGrant(newTokenRequest, {}, nextSpy);
@@ -51,39 +51,17 @@ test('creates a handler that adds oauth result and expiry time to session if aut
   t.assert(fakeSession.oauthExpires > Date.now() / 1000);
 });
 
-test('creates a handler that adds state param value to session', async t => {
-  const request = {
-    log: {
-      debug: sinon.spy(),
-      error: sinon.spy(),
-    },
-    session: {},
-    query: {
-      code: 'abc456',
-      state: 'some-encoded-state'
-    },
-  };
-  const handleCodeGrant = createAuthorizationCodeGrantHandler(fetchSucceeds, {
-    clientId: 'my-client-id',
-    clientSecret: 'my-client-secret',
-    redirectUri: 'http://localhost:53134/auth'
-  });
-  await handleCodeGrant(request, {}, sinon.spy());
-  t.plan(1);
-  t.is(request.session.state, 'some-encoded-state');
-});
-
 test('creates a handler that expects a code query param and calls next if none present', async t => {
   t.plan(1);
   const localNextSpy = sinon.spy();
-  // Fetch and auth options never get a chance to be referenced so we can avoid mocking them out at all
+
   const handleCodeGrant = createAuthorizationCodeGrantHandler(sinon.spy(), {});
   const noCodeNewTokenRequest = {
     log: { error: sinon.spy(), debug: sinon.spy() },
     session: {},
     query: {},
   };
-  // The handler response param (2nd) is unused
+
   await handleCodeGrant(noCodeNewTokenRequest, {}, localNextSpy);
   const nextSpyCalls = localNextSpy.getCalls();
   t.is(nextSpyCalls.length, 1);
@@ -103,7 +81,7 @@ test('creates a handler that expects a state query param and calls next if none 
   t.is(nextSpyCalls.length, 1);
 });
 
-test('creates a handler that throws an error if authorization is bad', async t => {
+test('creates a handler that calls next if possible clickjacking attempt detected', async t => {
   t.plan(2);
   const localNextSpy = sinon.spy();
   const handleCodeGrant = createAuthorizationCodeGrantHandler(fetchSucceedsWithOauthError, {
@@ -113,12 +91,18 @@ test('creates a handler that throws an error if authorization is bad', async t =
   });
   const newTokenRequest = {
     log: { error: sinon.spy(), debug: sinon.spy() },
-    session: {},
-    query: { code: 'abc456', state: 'some-encoded-state' },
+    session: {
+      state: 'some-nonce'
+    },
+    query: { code: 'abc456', state: encodeURIComponent('a-different-nonce') },
   };
-  // The handler response param (2nd param) is unused
-  const error = await t.throwsAsync(handleCodeGrant(newTokenRequest, {}, localNextSpy));
-  t.deepEqual(error, new Error('bad authorization'));
+
+  await handleCodeGrant(newTokenRequest, {}, localNextSpy);
+  const nextCalls = localNextSpy.getCalls();
+  t.is(nextCalls.length, 1);
+  t.is(nextCalls[0].args[0], `detected possible clickjacking attempt
+  session state: some-nonce
+  oauth state: a-different-nonce`);
 });
 
 test('creates a handler that fails authorization requests gracefully', async t => {
@@ -128,13 +112,15 @@ test('creates a handler that fails authorization requests gracefully', async t =
       debug: sinon.spy(),
       error: sinon.spy(),
     },
-    session: {},
-    query: { code: 'abc456', state: 'some-encoded-state' },
+    session: {
+      state: 'some-nonce',
+    },
+    query: { code: 'abc456', state: encodeURIComponent('some-nonce') },
   };
   const authFailsNextSpy = sinon.spy();
   const fetchRejects = () => Promise.reject('async-auth-request-error');
   const handleCodeGrantFetchRejects = createAuthorizationCodeGrantHandler(fetchRejects, {});
-  // Auth options (2nd param) are only referenced in arguments to fetch function
+
   await handleCodeGrantFetchRejects(request, {}, authFailsNextSpy);
   const nextCalls = authFailsNextSpy.getCalls();
   t.is(nextCalls.length, 1);

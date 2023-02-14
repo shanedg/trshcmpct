@@ -1,15 +1,9 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`webpack development config matches snapshot 1`] = `
+exports[`webpackConfig development mode matches snapshot 1`] = `
 {
   "devtool": "eval-source-map",
-  "entry": {
-    "development": "<PROJECT_ROOT>/src/development.ts",
-    "index": {
-      "dependOn": "development",
-      "import": "<PROJECT_ROOT>/src/index.ts",
-    },
-  },
+  "entry": "<PROJECT_ROOT>/src/index.ts",
   "mode": "development",
   "module": {
     "rules": [
@@ -108,7 +102,6 @@ exports[`webpack development config matches snapshot 1`] = `
     },
     HtmlWebpackPlugin {
       "userOptions": {
-        "chunksSortMode": [Function],
         "template": "<PROJECT_ROOT>/src/index.html",
         "title": "trshcmpctr",
       },
@@ -126,14 +119,10 @@ exports[`webpack development config matches snapshot 1`] = `
 }
 `;
 
-exports[`webpack production config matches snapshot 1`] = `
+exports[`webpackConfig production mode matches snapshot 1`] = `
 {
   "devtool": "source-map",
-  "entry": {
-    "index": {
-      "import": "<PROJECT_ROOT>/src/index.ts",
-    },
-  },
+  "entry": "<PROJECT_ROOT>/src/index.ts",
   "mode": "production",
   "module": {
     "rules": [
@@ -232,7 +221,6 @@ exports[`webpack production config matches snapshot 1`] = `
     },
     HtmlWebpackPlugin {
       "userOptions": {
-        "chunksSortMode": [Function],
         "template": "<PROJECT_ROOT>/src/index.html",
         "title": "trshcmpctr",
       },

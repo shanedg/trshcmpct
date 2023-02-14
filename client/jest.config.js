@@ -20,11 +20,6 @@ export default {
     ],
   },
   collectCoverage: true,
-  coveragePathIgnorePatterns: [
-    'node_modules',
-    // test-only utility that shouldn't count towards coverage
-    'set-clickjack-state-for-test-environment.ts',
-  ],
   testEnvironment: 'jsdom',
   setupFilesAfterEnv: ['<rootDir>/jest-setup.js'],
 };

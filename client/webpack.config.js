@@ -9,43 +9,6 @@ import { WebpackManifestPlugin } from 'webpack-manifest-plugin';
 const __dirname = dirname(fileURLToPath(import.meta.url));
 
 /**
- * Helper for configuring build entries
- * @param {boolean} isProduction 
- * @returns Build entries
- */
-const getEntries = (isProduction) => {
-  const entries = {
-    index: {
-      import: resolve(__dirname, './src/index.ts'),
-    },
-  };
-
-  // in development, we load an additional entry point to bypass clickjack defenses
-  if (!isProduction) {
-    entries.development = resolve(__dirname, './src/development.ts');
-    entries.index.dependOn = 'development';
-  }
-
-  return entries;
-};
-
-/**
- * Custom sort function that always orders the development entry first (if present)
- * @param {string} chunkA
- * @param {string} chunkB 
- * @returns {-1 | 1 | 0} Relative sorting value
- */
-export const sortDevelopmentEntryFirst = (chunkA, chunkB) => {
-  if (chunkA === 'development') {
-    return -1;
-  }
-  if (chunkB === 'development') {
-    return 1;
-  }
-  return 0;
-};
-
-/**
  * Helper for setting the build mode
  * @param {boolean} productionFlag 
  * @returns {'production' | 'development'} Build mode
@@ -62,7 +25,7 @@ export default (env = {}, argv = {}) => {
   return {
     devtool: isProduction ? 'source-map' : 'eval-source-map',
 
-    entry: getEntries(isProduction),
+    entry: resolve(__dirname, './src/index.ts'),
 
     mode: getMode(env.production),
 
@@ -133,8 +96,6 @@ export default (env = {}, argv = {}) => {
       new HtmlWebpackPlugin({
         template: resolve(__dirname, './src/index.html'),
         title: 'trshcmpctr',
-        // ensure that development entry is always injected first
-        chunksSortMode: sortDevelopmentEntryFirst,
       }),
     ],
 

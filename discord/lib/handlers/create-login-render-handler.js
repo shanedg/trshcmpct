@@ -1,3 +1,5 @@
+import { randomBytes } from 'node:crypto';
+
 /**
  * Create handler for rendering the login view
  * @param {Object} data Required options
@@ -14,8 +16,15 @@ export const createLoginRenderHandler = ({ clientId, redirectUri }) => {
     const hasSession = sessionHasToken && tokenIsNotExpired;
 
     if (!hasSession) {
+      const nonce = randomBytes(16).toString('base64');
+      request.session.state = nonce;
+
       request.log.debug('render login page');
-      response.render('login', { clientId, redirectUri: encodeURIComponent(redirectUri) });
+      response.render('login', {
+        clientId,
+        state: encodeURIComponent(nonce),
+        redirectUri: encodeURIComponent(redirectUri),
+      });
       return;
     }
     next();

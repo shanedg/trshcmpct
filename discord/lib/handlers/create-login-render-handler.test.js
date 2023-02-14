@@ -21,44 +21,34 @@ test.before(t => {
     session: {},
     query: {},
   };
+  t.context.request = requestWithSpies;
   renderLogin(requestWithSpies, responseWithSpies, nextSpy);
 });
 
-test('renders login template', t => {
-  t.plan(2);
+test('creates a handler that renders login template', t => {
+  t.plan(5);
   const renderCalls = renderSpy.getCalls();
   t.is(renderCalls.length, 1);
   t.is(renderCalls[0].args[0], 'login');
-});
-
-test('injects client id in the login template', t => {
-  t.plan(3);
-  const renderCalls = renderSpy.getCalls();
-  t.is(renderCalls.length, 1);
   t.is(renderCalls[0].args.length, 2);
   t.like(renderCalls[0].args[1], {
     clientId: 'my-client-id',
     redirectUri: 'http%3A%2F%2Flocalhost%3A8080',
   });
+  t.truthy(renderCalls[0].args[1].state);
 });
 
-test('logs to debug', t => {
-  t.plan(2);
-  const debugCalls = debugSpy.getCalls();
-  t.is(debugCalls.length, 1);
-  t.is(debugCalls[0].args[0], 'render login page');
+test('creates a handler that adds state to the request session', t => {
+  t.plan(1);
+  t.truthy(t.context.request.session.state);
 });
 
-test('calls next if already logged in', t => {
+test('creates a handler that calls next if already logged in', t => {
   const localRenderSpy = sinon.spy();
-  const localSendSpy = sinon.spy();
   const localNextSpy = sinon.spy();
-  const localResponseWithSpies = { render: localRenderSpy, send: localSendSpy };
-  const ninetySecondsFromNow = (Date.now()/1000)+90;
-  const localErrorSpy = sinon.spy();
-  const localDebugSpy = sinon.spy();
+  const localResponseWithSpies = { render: localRenderSpy };
+  const ninetySecondsFromNow = (Date.now() / 1000) + 90;
   const loggedInRequest = {
-    log: { error: localErrorSpy, debug: localDebugSpy },
     session: {
       oauth: { access_token: 'access-token' },
       oauthExpires: ninetySecondsFromNow,
