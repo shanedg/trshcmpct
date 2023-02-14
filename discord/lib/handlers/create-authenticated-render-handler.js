@@ -4,15 +4,12 @@
  * @param {Object} options Required options
  * @param {string} options.htmlDirectory Absolute path to html directory
  * @param {string} options.htmlFilename Html filename
- * @returns Handler that renders the authenticated view
+ * @returns Handler function for rendering the authenticated view
  */
 export const createAuthenticatedRenderHandler = ({
   htmlDirectory,
   htmlFilename,
 }) => {
-  /**
-   * Handler for rendering an authenticated html view
-   */
   return async (request, response, next) => {
     const { oauth, state } = request.session;
     if (oauth && oauth.access_token && state) {
