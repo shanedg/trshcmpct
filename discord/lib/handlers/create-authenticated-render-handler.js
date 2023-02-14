@@ -16,7 +16,8 @@ export const createAuthenticatedRenderHandler = ({
       request.log.debug('render authenticated client');
       response.render(`${htmlDirectory}/${htmlFilename}`, (err, html) => {
         if (err) {
-          throw new Error('problem rendering authenticated view', { cause: err });
+          next(`problem rendering authenticated view: ${err}`);
+          return;
         }
         const newHtml = html.replace('<head>', `<head>
     <script>window.__trshcmpctr__ = { state: '${request.session.state}' };</script>`);
