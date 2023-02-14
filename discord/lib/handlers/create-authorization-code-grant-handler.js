@@ -47,7 +47,6 @@ export const createAuthorizationCodeGrantHandler = (fetch, {
     }
 
     if (oauthFinal.error) {
-      request.log.error(`bad authorization: ${oauthFinal}`);
       next(`bad authorization: ${oauthFinal.error}`);
       return;
     }
