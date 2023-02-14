@@ -3,14 +3,9 @@
  * @param {Object} data Required options
  * @param {string} data.clientId Discord application id
  * @param {string} data.redirectUri Application path to redirect to with authorization code
- * @returns Handler that renders the login view with the provided data
+ * @returns Handler function for rendering the login view
  */
 export const createLoginRenderHandler = ({ clientId, redirectUri }) => {
-  // TODO: do we need to pass in clientId and redirectUri?
-  // we could just get them from config.json and then this can just be a simple handler
-  // instead of a handler factory lol
-
-  // Render login screen for un-auth'd sessions
   return (request, response, next) => {
     const nowInSeconds = Date.now() / 1000;
 

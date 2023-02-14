@@ -10,14 +10,13 @@ import { authFromCode } from '../utils';
  * @param {string} config.clientId
  * @param {string} config.clientSecret
  * @param {string} config.redirectUri
- * @returns Handler that authenticates a new session
+ * @returns Handler function for authenticating a new session
  */
 export const createAuthorizationCodeGrantHandler = (fetch, {
   clientId,
   clientSecret,
   redirectUri
 }) => {
-  // Handler to get a new token for authentication
   return async (request, _response, next) => {
     request.log.debug('get new token');
     const { code, state } = request.query;
