@@ -33,8 +33,13 @@ export const createAuthorizationCodeGrantHandler = (fetch, {
       return;
     }
 
-    // don't decode to avoid unintended character escaping during html render
-    request.session.state = state;
+    const decodedState = decodeURIComponent(state);
+    if (decodedState !== request.session.state) {
+      next(`detected possible clickjacking attempt
+  session state: ${request.session.state}
+  oauth state: ${decodedState}`);
+      return;
+    }
 
     let oauthFinal;
     try {

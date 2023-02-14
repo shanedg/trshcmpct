@@ -19,9 +19,7 @@ export const createAuthenticatedRenderHandler = ({
           next(`problem rendering authenticated view: ${err}`);
           return;
         }
-        const newHtml = html.replace('<head>', `<head>
-    <script>window.__trshcmpctr__ = { state: '${request.session.state}' };</script>`);
-        response.send(newHtml);
+        response.send(html);
       });
       return;
     }
