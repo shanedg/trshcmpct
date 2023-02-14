@@ -11,6 +11,6 @@ export const handleError = (error, request, response, _next) => {
     if (err) {
       request.log.error(err);
     }
-    response.send(html);
+    response.status(500).send(html);
   });
 };

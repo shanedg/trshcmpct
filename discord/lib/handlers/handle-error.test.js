@@ -7,6 +7,8 @@ const debugSpy = sinon.spy();
 const errorSpy = sinon.spy();
 const nextSpy = sinon.spy();
 const sendSpy = sinon.spy();
+// chain status and send
+const statusSpy = sinon.spy(() => ({ send: sendSpy }));
 
 const requestWithSpies = {
   log: { error: errorSpy, debug: debugSpy },
@@ -16,7 +18,7 @@ const requestWithSpies = {
 const renderSpy = sinon.spy((template, locals, callback) => {
   callback(null, '<some-fake-html>');
 });
-const errorResponse = { render: renderSpy, send: sendSpy };
+const errorResponse = { render: renderSpy, send: sendSpy, status: statusSpy };
 
 test.before(() => {
   handleError(new Error('some-error'), requestWithSpies, errorResponse, nextSpy);
@@ -27,6 +29,13 @@ test('logs the original error', t => {
   const errorCalls = errorSpy.getCalls();
   t.is(errorCalls.length, 1);
   t.deepEqual(errorCalls[0].args[0], new Error('some-error'));
+});
+
+test('sets http status to 500', t => {
+  t.plan(2);
+  const statusCalls = statusSpy.getCalls();
+  t.is(statusCalls.length, 1);
+  t.is(statusCalls[0].args[0], 500);
 });
 
 test('renders the error template', t => {
@@ -48,9 +57,12 @@ test('logs any error encountered rendering the template', t => {
   const localDebugSpy = sinon.spy();
   const localErrorSpy = sinon.spy();
   const localNextSpy = sinon.spy();
+  // chain status and send
+  const localStatusSpy = sinon.spy(() => ({ send: localSendSpy }));
   const badResponseWithSpies = {
     render: badRenderSpy,
     send: localSendSpy,
+    status: localStatusSpy,
   };
   const localRequestWithSpies = {
     log: { error: localErrorSpy, debug: localDebugSpy },
