@@ -65,14 +65,14 @@ app.use(expressSesssion({
 }));
 
 /**
- * Create a handler that redirects to the provided destination
- * @param {string} redirectTo Path that the handler should redirect to
- * @returns Handler that redirects to the provided destination
+ * Handler function for redirecting to the provided path
+ * @param {string} redirectTo Path to redirect to
+ * @param {Object} _request
+ * @param {Object} response
+ * @param {Function} next
  */
-const createRedirectHandler = redirectTo => {
-  return (_request, response, _next) => {
-    response.redirect(redirectTo);
-  };
+const createRedirectHandler = (redirectTo, _request, response, _next) => {
+  response.redirect(redirectTo);
 };
 
 const renderLogin = createLoginRenderHandler({ clientId, redirectUri });
@@ -92,19 +92,19 @@ app.use('/api/v1', authenticatedApiRouter);
 app.get('/login', [
   renderLogin,
   // Redirect to app if already authenticated
-  createRedirectHandler('/'),
+  createRedirectHandler.bind(null, '/'),
 ]);
 
 app.get('/auth', [
   handleAuthorizationCodeGrant,
   // Redirect to app once authenticated
-  createRedirectHandler('/'),
+  createRedirectHandler.bind(null, '/'),
 ]);
 
 app.get('/', [
   renderAuthenticated,
   // Redirect to login if not authenticated
-  createRedirectHandler('/login'),
+  createRedirectHandler.bind(null, '/login'),
 ]);
 
 // Always serve application static assets
