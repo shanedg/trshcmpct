@@ -1,7 +1,7 @@
 import test from 'ava';
 import sinon from 'sinon';
 
-import { createLoginRenderHandler } from './create-login-render-handler';
+import { handleRenderLogin } from './handle-render-login';
 
 const renderSpy = sinon.spy();
 const sendSpy = sinon.spy();
@@ -11,23 +11,19 @@ const nextSpy = sinon.spy();
 const responseWithSpies = { render: renderSpy, send: sendSpy };
 
 test.before(t => {
-  const renderLogin = createLoginRenderHandler({
-    clientId: 'my-client-id',
-    redirectUri: 'http://localhost:8080',
-  });
-  t.context.renderLogin = renderLogin;
   const requestWithSpies = {
     log: { error: errorSpy, debug: debugSpy },
     session: {},
     query: {},
   };
+  t.context.renderLogin = handleRenderLogin;
   t.context.request = requestWithSpies;
-  renderLogin(requestWithSpies, responseWithSpies, nextSpy);
+  handleRenderLogin('my-client-id', 'http://localhost:8080', requestWithSpies, responseWithSpies, nextSpy);
 });
 
-test('creates a handler that renders login template', t => {
-  t.plan(5);
+test('renders login template', t => {
   const renderCalls = renderSpy.getCalls();
+  t.plan(5);
   t.is(renderCalls.length, 1);
   t.is(renderCalls[0].args[0], 'login');
   t.is(renderCalls[0].args.length, 2);
@@ -38,12 +34,12 @@ test('creates a handler that renders login template', t => {
   t.truthy(renderCalls[0].args[1].state);
 });
 
-test('creates a handler that adds state to the request session', t => {
+test('adds state to the request session', t => {
   t.plan(1);
   t.truthy(t.context.request.session.state);
 });
 
-test('creates a handler that calls next if already logged in', t => {
+test('calls next middleware if already logged in', t => {
   const localRenderSpy = sinon.spy();
   const localNextSpy = sinon.spy();
   const localResponseWithSpies = { render: localRenderSpy };
@@ -55,9 +51,12 @@ test('creates a handler that calls next if already logged in', t => {
     },
     query: {},
   };
-  t.context.renderLogin(loggedInRequest, localResponseWithSpies, localNextSpy);
+
+  t.context.renderLogin('my-client-id', 'http://localhost:8080', loggedInRequest, localResponseWithSpies, localNextSpy);
+
   const renderCalls = localRenderSpy.getCalls();
   const nextCalls = localNextSpy.getCalls();
+  t.plan(2);
   t.is(renderCalls.length, 0);
   t.is(nextCalls.length, 1);
 });
