@@ -7,8 +7,7 @@
 export const requireAuthentication = async (request, response, next) => {
   if (!request.session.oauth || !request.session.oauth.access_token) {
     // Unauthorized aka unauthenticated
-    response.sendStatus(401);
-    return;
+    return response.sendStatus(401);
   }
   next();
 };
