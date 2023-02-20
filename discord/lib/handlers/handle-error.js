@@ -1,9 +1,9 @@
 /**
- * Handle an application error
- * @param {Error} error Error object
- * @param {Object} request Request object
- * @param {Object} response Response object
- * @param {Function} next Middleware callback
+ * Custom error handler for unexpected application exceptions
+ * @param {Error} error
+ * @param {express.Request} request
+ * @param {express.Response} response
+ * @param {express.NextFunction} _next
  */
 export const handleError = (error, request, response, _next) => {
   request.log.error(error);
