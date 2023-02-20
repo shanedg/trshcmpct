@@ -10,7 +10,9 @@ test('sends 404', t => {
     log: { debug: sinon.spy() },
   };
   const fakeResponse = { sendStatus: sendSpy };
+
   handleEndpointNotFound(fakeRequest, fakeResponse);
+
   const sendCalls = sendSpy.getCalls();
   t.plan(2);
   t.is(sendCalls.length, 1);

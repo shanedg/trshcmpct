@@ -23,16 +23,16 @@ test.before(async t => {
 });
 
 test('calls fetch with oauth url', t => {
-  t.plan(3);
   const fetchCalls = t.context.fetch.getCalls();
+  t.plan(3);
   t.is(fetchCalls.length, 1);
   t.is(fetchCalls[0].args.length, 2);
   t.is(fetchCalls[0].args[0], 'https://discord.com/api/oauth2/token');
 });
 
 test('calls fetch with oauth body', t => {
-  t.plan(3);
   const fetchCalls = t.context.fetch.getCalls();
+  t.plan(3);
   t.is(fetchCalls.length, 1);
   t.is(fetchCalls[0].args.length, 2);
   const bodyParams = fetchCalls[0].args[1].body;
