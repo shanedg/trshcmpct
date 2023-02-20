@@ -17,6 +17,7 @@ import {
   createLoginRenderHandler,
   handleError,
 } from './handlers';
+import { handleRedirect } from './handlers/handle-redirect';
 
 const {
   clientId,
@@ -64,17 +65,6 @@ app.use(expressSesssion({
   store: nedbStorageWithExpressSession,
 }));
 
-/**
- * Handler function for redirecting to the provided path
- * @param {string} redirectTo Path to redirect to
- * @param {Object} _request
- * @param {Object} response
- * @param {Function} next
- */
-const createRedirectHandler = (redirectTo, _request, response, _next) => {
-  response.redirect(redirectTo);
-};
-
 const renderLogin = createLoginRenderHandler({ clientId, redirectUri });
 
 const clientUrl = new URL(await import.meta.resolve('@trshcmpctr/client'));
@@ -92,19 +82,19 @@ app.use('/api/v1', authenticatedApiRouter);
 app.get('/login', [
   renderLogin,
   // Redirect to app if already authenticated
-  createRedirectHandler.bind(null, '/'),
+  handleRedirect.bind(null, '/'),
 ]);
 
 app.get('/auth', [
   handleAuthorizationCodeGrant,
   // Redirect to app once authenticated
-  createRedirectHandler.bind(null, '/'),
+  handleRedirect.bind(null, '/'),
 ]);
 
 app.get('/', [
   renderAuthenticated,
   // Redirect to login if not authenticated
-  createRedirectHandler.bind(null, '/login'),
+  handleRedirect.bind(null, '/login'),
 ]);
 
 // Always serve application static assets
