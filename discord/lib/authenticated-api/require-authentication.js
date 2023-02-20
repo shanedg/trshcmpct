@@ -1,8 +1,8 @@
 /**
- * Ensure that the incoming request is for an authenticated session
- * @param {Object} request
- * @param {Object} response
- * @param {Function} next
+ * Handler function for responding to unauthenticated requests
+ * @param {express.Request} request
+ * @param {express.Response} response
+ * @param {express.NextFunction} next
  */
 export const requireAuthentication = async (request, response, next) => {
   if (!request.session.oauth || !request.session.oauth.access_token) {
