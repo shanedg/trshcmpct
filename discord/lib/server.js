@@ -11,18 +11,15 @@ import manifest from '@trshcmpctr/client' assert { type: 'json' };
 
 import { authenticatedApiRouter } from './authenticated-api/router';
 import config from './config.json' assert { type: 'json' };
-import {
-  createAuthenticatedRenderHandler,
-  createAuthorizationCodeGrantHandler,
-  createLoginRenderHandler,
-  handleError,
-} from './handlers';
+import { handleAuthorizationCodeGrant } from './handlers/handle-authorization-code-grant';
+import { handleError } from './handlers/handle-error';
 import { handleRedirect } from './handlers/handle-redirect';
+import { handleRenderAuthenticated } from './handlers/handle-render-authenticated';
+import { handleRenderLogin } from './handlers/handle-render-login';
 
 const {
   clientId,
   clientSecret,
-  guildId,
   port,
   redirectUri,
   sessionSecret,
@@ -65,34 +62,26 @@ app.use(expressSesssion({
   store: nedbStorageWithExpressSession,
 }));
 
-const renderLogin = createLoginRenderHandler({ clientId, redirectUri });
-
 const clientUrl = new URL(await import.meta.resolve('@trshcmpctr/client'));
 const clientPublic = dirname(clientUrl.pathname);
-
-const renderAuthenticated = createAuthenticatedRenderHandler({
-  htmlDirectory: clientPublic,
-  htmlFilename: manifest['index.html'],
-});
-const handleAuthorizationCodeGrant = createAuthorizationCodeGrantHandler(fetch, { clientId, clientSecret, guildId, redirectUri });
 
 // Dedicated router for API requests that the application will make
 app.use('/api/v1', authenticatedApiRouter);
 
 app.get('/login', [
-  renderLogin,
+  handleRenderLogin.bind(null, clientId, redirectUri),
   // Redirect to app if already authenticated
   handleRedirect.bind(null, '/'),
 ]);
 
 app.get('/auth', [
-  handleAuthorizationCodeGrant,
+  handleAuthorizationCodeGrant.bind(null, fetch, { clientId, clientSecret, redirectUri }),
   // Redirect to app once authenticated
   handleRedirect.bind(null, '/'),
 ]);
 
 app.get('/', [
-  renderAuthenticated,
+  handleRenderAuthenticated.bind(null, clientPublic, manifest['index.html']),
   // Redirect to login if not authenticated
   handleRedirect.bind(null, '/login'),
 ]);
