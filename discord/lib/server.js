@@ -7,21 +7,13 @@ import handlebars from 'hbs';
 import pinoHttp from 'pino-http';
 import nedbStorage from 'tch-nedb-session';
 
-import manifest from '@trshcmpctr/client' assert { type: 'json' };
-
 import { authenticatedApiRouter } from './authenticated-api/router';
 import config from './config.json' assert { type: 'json' };
-import { handleAuthorizationCodeGrant } from './handlers/handle-authorization-code-grant';
-import { handleError } from './handlers/handle-error';
-import { handleRedirect } from './handlers/handle-redirect';
-import { handleRenderAuthenticated } from './handlers/handle-render-authenticated';
-import { handleRenderLogin } from './handlers/handle-render-login';
+import { loginRouter } from './login-router';
+import { trshcmpctrClientRouter } from './trshcmpctr-client-router';
 
 const {
-  clientId,
-  clientSecret,
   port,
-  redirectUri,
   sessionSecret,
 } = config;
 
@@ -62,33 +54,8 @@ app.use(expressSesssion({
   store: nedbStorageWithExpressSession,
 }));
 
-const clientUrl = new URL(await import.meta.resolve('@trshcmpctr/client'));
-const clientPublic = dirname(clientUrl.pathname);
-
-// Dedicated router for API requests that the application will make
+app.use(loginRouter);
+app.use(trshcmpctrClientRouter);
 app.use('/api/v1', authenticatedApiRouter);
-
-app.get('/login', [
-  handleRenderLogin.bind(null, clientId, redirectUri),
-  // Redirect to app if already authenticated
-  handleRedirect.bind(null, '/'),
-]);
-
-app.get('/auth', [
-  handleAuthorizationCodeGrant.bind(null, fetch, { clientId, clientSecret, redirectUri }),
-  // Redirect to app once authenticated
-  handleRedirect.bind(null, '/'),
-]);
-
-app.get('/', [
-  handleRenderAuthenticated.bind(null, clientPublic, manifest['index.html']),
-  // Redirect to login if not authenticated
-  handleRedirect.bind(null, '/login'),
-]);
-
-// Always serve application static assets
-app.use(express.static(clientPublic));
-
-app.use(handleError);
 
 app.listen(port, () => pinoLogger.logger.info(`App listening at http://localhost:${port}`));
