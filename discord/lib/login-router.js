@@ -15,7 +15,7 @@ export class LoginRouter {
    * @param {string} configuration.clientId
    * @param {string} configuration.clientSecret
    * @param {Function} configuration.fetch
-   * @param {string} configuration.loginRedirect Where to redirect after successful authentication
+   * @param {string} configuration.loginRedirect Where in the app to redirect after successful login
    * @param {string} configuration.redirectUri
    */
   constructor(configuration) {
@@ -37,6 +37,8 @@ export class LoginRouter {
 
     // Never modify configuration values after construction
     Object.freeze(this.configuration);
+
+    this.initializeMiddleware();
   }
 
   /**
@@ -73,17 +75,12 @@ export class LoginRouter {
     loginRouter.use(handleError);
 
     this.loginRouter = loginRouter;
-
-    // Return self for chaining
-    // e.g. new LoginRouter(config).initializeMiddleware().middleware
-    return this;
   }
 
   /**
    * The login middleware
    */
   get middleware() {
-    if (!this.hasInitialized) throw new Error('login middleware not initialized');
     return this.loginRouter;
   }
 }
