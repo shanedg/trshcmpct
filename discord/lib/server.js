@@ -9,11 +9,14 @@ import nedbStorage from 'tch-nedb-session';
 
 import { authenticatedApiRouter } from './authenticated-api/router';
 import config from './config.json' assert { type: 'json' };
-import { loginRouter } from './login-router';
+import { LoginRouter } from './login-router';
 import { trshcmpctrClientRouter } from './trshcmpctr-client-router';
 
 const {
+  clientId,
+  clientSecret,
   port,
+  redirectUri,
   sessionSecret,
 } = config;
 
@@ -54,7 +57,16 @@ app.use(expressSesssion({
   store: nedbStorageWithExpressSession,
 }));
 
-app.use(loginRouter);
+const loginRouter = new LoginRouter({
+  clientId,
+  clientSecret,
+  fetch,
+  // Redirect to home once authenticated
+  loginRedirect: '/',
+  redirectUri,
+});
+app.use(loginRouter.initializeMiddleware().middleware);
+
 app.use(trshcmpctrClientRouter);
 app.use('/api/v1', authenticatedApiRouter);
 
