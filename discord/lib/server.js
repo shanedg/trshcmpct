@@ -65,7 +65,7 @@ const loginRouter = new LoginRouter({
   loginRedirect: '/',
   redirectUri,
 });
-app.use(loginRouter.initializeMiddleware().middleware);
+app.use(loginRouter.middleware);
 
 app.use(trshcmpctrClientRouter);
 app.use('/api/v1', authenticatedApiRouter);

@@ -4,7 +4,7 @@ import { LoginRouter } from './login-router';
 
 /**
  * For the purposes of these tests
- * we *really* only care whether configuration options are truthy
+ * we *really* only care if configuration options are truthy
  */
 const testConfiguration = {
   clientId: 'some-client-id',
@@ -49,16 +49,7 @@ test('throws if missing redirect uri', t => {
   );
 });
 
-test('throws if middleware is accessed before it is initialized', t => {
-  const router = new LoginRouter(testConfiguration);
-
-  t.throws(
-    () => router.middleware,
-    { message: 'login middleware not initialized' }
-  );
-});
-
-test('throws if internal configuration is modified after construction', t => {
+test('throws if configuration is modified after construction', t => {
   const router = new LoginRouter(testConfiguration);
 
   t.throws(
@@ -69,14 +60,9 @@ test('throws if internal configuration is modified after construction', t => {
 
 test('throws if middleware is reinitialized', t => {
   const router = new LoginRouter(testConfiguration);
-  router.initializeMiddleware();
 
   t.throws(
     () => router.initializeMiddleware(),
     { message: 'login middleware already initialized' }
   );
-});
-
-test('#initializeMiddleware returns self for chaining', t => {
-  t.assert(new LoginRouter(testConfiguration).initializeMiddleware() instanceof LoginRouter);
 });
