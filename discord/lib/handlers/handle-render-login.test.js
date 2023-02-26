@@ -21,17 +21,27 @@ test.before(t => {
   handleRenderLogin('my-client-id', 'http://localhost:8080', requestWithSpies, responseWithSpies, nextSpy);
 });
 
-test('renders login template', t => {
+test('renders login template with login link', t => {
   const renderCalls = renderSpy.getCalls();
-  t.plan(5);
+  t.plan(11);
   t.is(renderCalls.length, 1);
   t.is(renderCalls[0].args[0], 'login');
   t.is(renderCalls[0].args.length, 2);
-  t.like(renderCalls[0].args[1], {
-    clientId: 'my-client-id',
-    redirectUri: 'http%3A%2F%2Flocalhost%3A8080',
-  });
-  t.truthy(renderCalls[0].args[1].state);
+
+  const { login_link }  = renderCalls[0].args[1];
+  t.assert(login_link);
+
+  const url = new URL(login_link);
+  t.is(url.origin, 'https://discord.com');
+  t.is(url.pathname, '/api/oauth2/authorize');
+
+  const params = url.searchParams;
+  t.is(params.get('client_id'), 'my-client-id');
+  t.is(params.get('redirect_uri'), 'http://localhost:8080');
+  // We don't know the state in advance
+  t.assert(params.get('state'));
+  t.is(params.get('response_type'), 'code');
+  t.is(params.get('scope'), 'guilds.members.read');
 });
 
 test('adds state to the request session', t => {
