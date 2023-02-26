@@ -44,7 +44,7 @@ export class AuthenticatedAPIRouter {
 
     // After authentication, check authorization aka membership in target guild
     authenticatedApiRouter.get('/authorized', [
-      handleGetGuildMembership.bind(null, this.fetch, this.guildId),
+      handleGetGuildMembership.bind(null, this.configuration.fetch, this.configuration.guildId),
       handleApiError,
     ]);
 
