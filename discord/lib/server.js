@@ -7,10 +7,12 @@ import handlebars from 'hbs';
 import pinoHttp from 'pino-http';
 import nedbStorage from 'tch-nedb-session';
 
+import manifest from '@trshcmpctr/client' assert { type: 'json' };
+
 import { authenticatedApiRouter } from './authenticated-api/router';
+import { AuthenticatedHTMLRouter } from './authenticated-html-router';
 import config from './config.json' assert { type: 'json' };
 import { LoginRouter } from './login-router';
-import { trshcmpctrClientRouter } from './trshcmpctr-client-router';
 
 const {
   clientId,
@@ -67,7 +69,15 @@ const loginRouter = new LoginRouter({
 });
 app.use(loginRouter.middleware);
 
-app.use(trshcmpctrClientRouter);
+const clientUrl = new URL(await import.meta.resolve('@trshcmpctr/client'));
+const clientDirectory = dirname(clientUrl.pathname);
+
+const authenticatedViewRouter = new AuthenticatedHTMLRouter({
+  htmlDirectory: clientDirectory,
+  htmlFilename: manifest['index.html'],
+});
+app.use(authenticatedViewRouter.middleware);
+
 app.use('/api/v1', authenticatedApiRouter);
 
 app.listen(port, () => pinoLogger.logger.info(`App listening at http://localhost:${port}`));
