@@ -9,7 +9,7 @@ import nedbStorage from 'tch-nedb-session';
 
 import manifest from '@trshcmpctr/client' assert { type: 'json' };
 
-import { authenticatedApiRouter } from './authenticated-api/router';
+import { AuthenticatedAPIRouter } from './authenticated-api/router';
 import { AuthenticatedHTMLRouter } from './authenticated-html-router';
 import config from './config.json' assert { type: 'json' };
 import { LoginRouter } from './login-router';
@@ -17,6 +17,7 @@ import { LoginRouter } from './login-router';
 const {
   clientId,
   clientSecret,
+  guildId,
   port,
   redirectUri,
   sessionSecret,
@@ -78,6 +79,10 @@ const authenticatedViewRouter = new AuthenticatedHTMLRouter({
 });
 app.use(authenticatedViewRouter.middleware);
 
-app.use('/api/v1', authenticatedApiRouter);
+const authenticatedApiRouter = new AuthenticatedAPIRouter({
+  fetch,
+  guildId,
+});
+app.use('/api/v1', authenticatedApiRouter.middleware);
 
 app.listen(port, () => pinoLogger.logger.info(`App listening at http://localhost:${port}`));
