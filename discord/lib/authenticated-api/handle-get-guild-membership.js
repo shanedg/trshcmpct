@@ -26,7 +26,7 @@ export const handleGetGuildMembership = async (fetch, guildId, request, response
   let guildMembershipData;
   try {
     // https://discord.com/developers/docs/resources/user#get-current-user-guild-member
-    const guildMembershipRequest = await fetchWithOauth(fetch, request.session.oauth, `https://discord.com/api/users/@me/guilds/${guildId}/member`);
+    const guildMembershipRequest = await fetchWithOauth(fetch, request.session.oauth, `https://discord.com/api/v10/users/@me/guilds/${guildId}/member`);
     guildMembershipData = await guildMembershipRequest.json();
   } catch (guildMembershipFetchError) {
     request.log.error(guildMembershipFetchError);
