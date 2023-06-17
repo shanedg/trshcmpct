@@ -39,8 +39,9 @@ app.engine('html', handlebarsForExpress);
 
 app.use(pinoLogger);
 
-// 1 minute
-const sessionLength = 60 * 1000;
+// TODO: control session length with env variable
+// 10 minutes
+const sessionLength = 10 * 60 * 1000;
 // 7 * 24 * 60 * 60 * 1000 // 1 week (how long tokens are valid)
 
 const sessionStore = nedbStorage(expressSesssion);
