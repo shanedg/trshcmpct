@@ -14,9 +14,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v3
-    - name: install node with nvm
-      uses: dcodeIO/setup-node-nvm@master
     - run: node common/scripts/install-run-rush.js install
+    - uses: docker://node:16.16.0
     - run: node common/scripts/install-run-rush.js build
     - run: (cd discord && ./client_config_ci.sh)
       env:
