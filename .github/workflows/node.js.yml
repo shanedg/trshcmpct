@@ -38,6 +38,4 @@ jobs:
     - run: node common/scripts/install-run-rush.js test
     - name: Cypress.io
       uses: cypress-io/github-action@v5.8.2
-      with:
-        install: false
     - run: node common/scripts/install-run-rush.js test:cypress --verbose
