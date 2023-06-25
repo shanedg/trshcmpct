@@ -1,6 +1,6 @@
 # trshcmpctr
 
-[![Build Status](https://cloud.drone.io/api/badges/shanedg/trshcmpctr/status.svg)](https://cloud.drone.io/shanedg/trshcmpctr)
+[![GitHub Actions CI (Branch)](https://github.com/shanedg/trshcmpctr/actions/workflows/branch.yml/badge.svg)](https://github.com/shanedg/trshcmpctr/actions/workflows/branch.yml)
 
 all build config, no substance
 
