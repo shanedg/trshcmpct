@@ -27,6 +27,5 @@ jobs:
         node-version: ${{ matrix.node-version }}
         cache: 'npm'
     - run: npm -v
-    - run: node common/scripts/install-run-rush.js
     - run: node common/scripts/install-run-rush.js install
     - run: node common/scripts/install-run-rush.js build
