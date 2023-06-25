@@ -29,4 +29,7 @@ jobs:
         CYPRESS_INSTALL_BINARY: 0
     - run: node common/scripts/install-run-rush.js install
     - run: node common/scripts/install-run-rush.js build
+    - run: node common/scripts/install-run-rush.js lint
+    - run: node common/scripts/install-run-rush.js lint:md
     - run: node common/scripts/install-run-rush.js test
+    # - run: node common/scripts/install-run-rush.js test:cypress
