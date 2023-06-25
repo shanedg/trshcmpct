@@ -11,9 +11,8 @@ on:
 
 jobs:
   build:
-
     runs-on: ubuntu-latest
-
+    environment: staging
     strategy:
       matrix:
         node-version: [16.x, 18.x]
@@ -27,9 +26,21 @@ jobs:
         cache: 'npm'
       env:
         CYPRESS_INSTALL_BINARY: 0
+        DISCORD_CLIENT_ID: ${{ secrets.DISCORD_CLIENT_ID }}
+        DISCORD_CLIENT_SECRET: ${{ secrets.DISCORD_CLIENT_SECRET }}
+        DISCORD_GUILD_ID: ${{ secrets.DISCORD_GUILD_ID }}
+        DISCORD_SESSION_SECRET: ${{ secrets.DISCORD_SESSION_SECRET }}
+        DISCORD_REDIRECT_URI: ${{ secrets.DISCORD_REDIRECT_URI }}
     - run: node common/scripts/install-run-rush.js install
     - run: node common/scripts/install-run-rush.js build
+    - run: (cd discord && ./client_config_ci.sh)
     - run: node common/scripts/install-run-rush.js lint
     - run: node common/scripts/install-run-rush.js lint:md
     - run: node common/scripts/install-run-rush.js test
-    # - run: node common/scripts/install-run-rush.js test:cypress
+
+    # # TODO: cypress
+    # - name: Cypress.io
+    #   uses: cypress-io/github-action@v5.8.2
+    #   with:
+    #     install: false
+    # - run: node common/scripts/install-run-rush.js test:cypress --verbose
