@@ -12,16 +12,10 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        node-version: [16.x, 18.x]
-
     steps:
     - uses: actions/checkout@v3
-    - name: nvm use ${{ matrix.node-version }}
+    - name: install node with nvm
       uses: dcodeIO/setup-node-nvm@master
-      with:
-        node-version: ${{ matrix.node-version }}
     - run: node common/scripts/install-run-rush.js install
     - run: node common/scripts/install-run-rush.js build
     - run: (cd discord && ./client_config_ci.sh)
