@@ -18,7 +18,7 @@ test('throws if missing fetch', t => {
   );
 });
 
-test('throws imissing guild id', t => {
+test('throws if missing guild id', t => {
   t.throws(
     () => new AuthenticatedAPIRouter({ ...testConfiguration, guildId: undefined })
   );
