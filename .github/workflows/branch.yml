@@ -1,0 +1,27 @@
+name: GitHub Actions CI (Branch)
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+    - run: node common/scripts/install-run-rush.js install
+    - uses: docker://node:16.16.0
+    - run: node common/scripts/install-run-rush.js build
+    - run: (cd discord && ./client_config_ci.sh)
+      env:
+        DISCORD_CLIENT_ID: ${{ secrets.DISCORD_CLIENT_ID }}
+        DISCORD_CLIENT_SECRET: ${{ secrets.DISCORD_CLIENT_SECRET }}
+        DISCORD_GUILD_ID: ${{ secrets.DISCORD_GUILD_ID }}
+        DISCORD_SESSION_SECRET: ${{ secrets.DISCORD_SESSION_SECRET }}
+        DISCORD_REDIRECT_URI: ${{ secrets.DISCORD_REDIRECT_URI }}
+    - run: node common/scripts/install-run-rush.js lint
+    - run: node common/scripts/install-run-rush.js lint:md
+    - run: node common/scripts/install-run-rush.js test
+    - run: node common/scripts/install-run-rush.js test:cypress --verbose
