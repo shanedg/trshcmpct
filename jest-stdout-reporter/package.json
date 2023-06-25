@@ -25,15 +25,15 @@
     "test": "true"
   },
   "dependencies": {
-    "@jest/reporters": "~29.3.1"
+    "@jest/reporters": "~29.5.0"
   },
   "devDependencies": {
     "@trshcmpctr/eslint-config": "workspace:*",
     "@trshcmpctr/markdownlint-config": "workspace:*",
     "eslint-plugin-eslint-comments": "~3.2.0",
-    "eslint-plugin-import": "~2.26.0",
+    "eslint-plugin-import": "~2.27.5",
     "eslint-plugin-node": "~11.1.0",
-    "eslint": "~8.27.0",
-    "markdownlint-cli2": "~0.5.1"
+    "eslint": "~8.43.0",
+    "markdownlint-cli2": "~0.8.1"
   }
 }

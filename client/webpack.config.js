@@ -8,6 +8,11 @@ import { WebpackManifestPlugin } from 'webpack-manifest-plugin';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 
+/**
+ * Helper for setting the build mode
+ * @param {boolean} productionFlag 
+ * @returns {'production' | 'development'} Build mode
+ */
 const getMode = productionFlag => productionFlag ? 'production' : 'development';
 
 // Config env and argv:
@@ -20,9 +25,7 @@ export default (env = {}, argv = {}) => {
   return {
     devtool: isProduction ? 'source-map' : 'eval-source-map',
 
-    entry: {
-      index: resolve(__dirname, './src/index.ts'),
-    },
+    entry: resolve(__dirname, './src/index.ts'),
 
     mode: getMode(env.production),
 

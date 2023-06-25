@@ -3,5 +3,6 @@
   "clientSecret": "",
   "guildId": "",
   "port": 53134,
+  "redirectUri": "http://localhost:53134/auth",
   "sessionSecret": ""
 }

@@ -5,8 +5,8 @@ import webpackConfig from './webpack.config';
 // Remove absolute file paths from snapshots.
 expect.addSnapshotSerializer(serializer);
 
-describe('webpack', () => {
-  describe('development config', () => {
+describe('webpackConfig', () => {
+  describe('development mode', () => {
     const developmentEnvironment = {};
     const developmentConfig = webpackConfig(developmentEnvironment);
     Object.freeze(developmentConfig);
@@ -24,7 +24,7 @@ describe('webpack', () => {
     });
   });
 
-  describe('production config', () => {
+  describe('production mode', () => {
     const productionEnvironment = { production: true };
     const productionConfig = webpackConfig(productionEnvironment);
     Object.freeze(productionConfig);

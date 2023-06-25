@@ -1,1 +1,4 @@
 lib/config.json
+
+# nedb filesystem storage via tch-nedb-session
+var/nedb/sessions.db

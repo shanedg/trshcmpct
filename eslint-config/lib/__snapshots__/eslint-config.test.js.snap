@@ -74,7 +74,9 @@ exports[`eslint-config calculated config snapshots rules 1`] = `
       "alphabetize": {
         "caseInsensitive": true,
         "order": "asc",
+        "orderImportKind": "ignore",
       },
+      "distinctGroup": true,
       "groups": [
         "builtin",
         "external",

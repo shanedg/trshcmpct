@@ -1,16 +1,25 @@
 /**
- * Handle an application error
- * @param {Error} error Error object
- * @param {Object} request Request object
- * @param {Object} response Response object
- * @param {Function} next Middleware callback
+ * Custom error handler for unexpected application exceptions
+ * @param {Error} error
+ * @param {express.Request} request
+ * @param {express.Response} response
+ * @param {express.NextFunction} next
  */
-export const handleError = (error, request, response, _next) => {
+export const handleError = (error, request, response, next) => {
   request.log.error(error);
-  response.render('error', null, (err, html) => {
-    if (err) {
-      request.log.error(err);
+
+  // must delegate to the default express error handler
+  // when headers have already been sent to the client
+  if (response.headersSent) {
+    request.log.error('headers already sent');
+    return next(error);
+  }
+
+  response.render('error', null, (renderError, html) => {
+    if (renderError) {
+      request.log.error(renderError);
+      return next(new Error('problem rendering error template', { cause: renderError }));
     }
-    response.send(html);
+    response.status(500).send(html);
   });
 };
