@@ -23,6 +23,29 @@ export default (env = {}, argv = {}) => {
   const isProduction = getMode(env.production) === 'production';
 
   return {
+    devServer: {
+      setupMiddlewares: (middlewares, devServer) => {
+        if (!devServer) {
+          throw new Error('missing webpack-dev-server');
+        }
+
+        // Mock successful request for authorized user data
+        middlewares.push({
+          name: 'mock-api-authorized',
+          path: '/api/v1/authorized',
+          middleware: (_request, response) => {
+            response.send({
+              user: {
+                username: '<mocked_user_name>',
+              },
+            });
+          }
+        });
+  
+        return middlewares;
+      },
+    },
+
     devtool: isProduction ? 'source-map' : 'eval-source-map',
 
     entry: resolve(__dirname, './src/index.ts'),
@@ -32,8 +55,9 @@ export default (env = {}, argv = {}) => {
     module: {
       rules: [
         {
-          test: /\.(js|jsx|ts|tsx)$/,
+          test: /\.(ts|tsx)$/,
           exclude: /node_modules/,
+          // TODO: consider replacing babel with swc
           loader: 'babel-loader',
           options: {
             configFile: resolve(__dirname, 'babel.config.cjs'),
@@ -82,7 +106,7 @@ export default (env = {}, argv = {}) => {
         cacheLocation: 'node_modules/.cache/eslint-cache/',
         emitError: isProduction,
         emitWarning: !isProduction,
-        extensions: ['.js', '.jsx', '.ts', '.tsx'],
+        extensions: ['.ts', '.tsx'],
         failOnError: isProduction,
         lintDirtyModulesOnly: !!argv.watch,
         reportUnusedDisableDirectives: !isProduction ? 'warn' : null,

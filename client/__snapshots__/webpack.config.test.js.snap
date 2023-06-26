@@ -2,6 +2,9 @@
 
 exports[`webpackConfig development mode matches snapshot 1`] = `
 {
+  "devServer": {
+    "setupMiddlewares": [Function],
+  },
   "devtool": "eval-source-map",
   "entry": "<PROJECT_ROOT>/src/index.ts",
   "mode": "development",
@@ -13,7 +16,7 @@ exports[`webpackConfig development mode matches snapshot 1`] = `
         "options": {
           "configFile": "<PROJECT_ROOT>/babel.config.cjs",
         },
-        "test": /\\\\\\.\\(js\\|jsx\\|ts\\|tsx\\)\\$/,
+        "test": /\\\\\\.\\(ts\\|tsx\\)\\$/,
       },
       {
         "test": /\\\\\\.css\\$/i,
@@ -69,8 +72,6 @@ exports[`webpackConfig development mode matches snapshot 1`] = `
         "emitError": false,
         "emitWarning": true,
         "extensions": [
-          ".js",
-          ".jsx",
           ".ts",
           ".tsx",
         ],
@@ -121,6 +122,9 @@ exports[`webpackConfig development mode matches snapshot 1`] = `
 
 exports[`webpackConfig production mode matches snapshot 1`] = `
 {
+  "devServer": {
+    "setupMiddlewares": [Function],
+  },
   "devtool": "source-map",
   "entry": "<PROJECT_ROOT>/src/index.ts",
   "mode": "production",
@@ -132,7 +136,7 @@ exports[`webpackConfig production mode matches snapshot 1`] = `
         "options": {
           "configFile": "<PROJECT_ROOT>/babel.config.cjs",
         },
-        "test": /\\\\\\.\\(js\\|jsx\\|ts\\|tsx\\)\\$/,
+        "test": /\\\\\\.\\(ts\\|tsx\\)\\$/,
       },
       {
         "test": /\\\\\\.css\\$/i,
@@ -188,8 +192,6 @@ exports[`webpackConfig production mode matches snapshot 1`] = `
         "emitError": true,
         "emitWarning": false,
         "extensions": [
-          ".js",
-          ".jsx",
           ".ts",
           ".tsx",
         ],
