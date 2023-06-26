@@ -23,6 +23,29 @@ export default (env = {}, argv = {}) => {
   const isProduction = getMode(env.production) === 'production';
 
   return {
+    devServer: {
+      setupMiddlewares: (middlewares, devServer) => {
+        if (!devServer) {
+          throw new Error('missing webpack-dev-server');
+        }
+
+        // Mock successful request for authorized user data
+        middlewares.push({
+          name: 'mock-api-authorized',
+          path: '/api/v1/authorized',
+          middleware: (_request, response) => {
+            response.send({
+              user: {
+                username: '<mocked_user_name>',
+              },
+            });
+          }
+        });
+  
+        return middlewares;
+      },
+    },
+
     devtool: isProduction ? 'source-map' : 'eval-source-map',
 
     entry: resolve(__dirname, './src/index.ts'),

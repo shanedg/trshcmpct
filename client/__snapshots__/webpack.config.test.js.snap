@@ -2,6 +2,9 @@
 
 exports[`webpackConfig development mode matches snapshot 1`] = `
 {
+  "devServer": {
+    "setupMiddlewares": [Function],
+  },
   "devtool": "eval-source-map",
   "entry": "<PROJECT_ROOT>/src/index.ts",
   "mode": "development",
@@ -121,6 +124,9 @@ exports[`webpackConfig development mode matches snapshot 1`] = `
 
 exports[`webpackConfig production mode matches snapshot 1`] = `
 {
+  "devServer": {
+    "setupMiddlewares": [Function],
+  },
   "devtool": "source-map",
   "entry": "<PROJECT_ROOT>/src/index.ts",
   "mode": "production",
