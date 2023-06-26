@@ -55,8 +55,9 @@ export default (env = {}, argv = {}) => {
     module: {
       rules: [
         {
-          test: /\.(js|jsx|ts|tsx)$/,
+          test: /\.(ts|tsx)$/,
           exclude: /node_modules/,
+          // TODO: consider replacing babel with swc
           loader: 'babel-loader',
           options: {
             configFile: resolve(__dirname, 'babel.config.cjs'),
@@ -105,7 +106,7 @@ export default (env = {}, argv = {}) => {
         cacheLocation: 'node_modules/.cache/eslint-cache/',
         emitError: isProduction,
         emitWarning: !isProduction,
-        extensions: ['.js', '.jsx', '.ts', '.tsx'],
+        extensions: ['.ts', '.tsx'],
         failOnError: isProduction,
         lintDirtyModulesOnly: !!argv.watch,
         reportUnusedDisableDirectives: !isProduction ? 'warn' : null,

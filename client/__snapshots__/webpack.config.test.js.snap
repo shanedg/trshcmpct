@@ -16,7 +16,7 @@ exports[`webpackConfig development mode matches snapshot 1`] = `
         "options": {
           "configFile": "<PROJECT_ROOT>/babel.config.cjs",
         },
-        "test": /\\\\\\.\\(js\\|jsx\\|ts\\|tsx\\)\\$/,
+        "test": /\\\\\\.\\(ts\\|tsx\\)\\$/,
       },
       {
         "test": /\\\\\\.css\\$/i,
@@ -72,8 +72,6 @@ exports[`webpackConfig development mode matches snapshot 1`] = `
         "emitError": false,
         "emitWarning": true,
         "extensions": [
-          ".js",
-          ".jsx",
           ".ts",
           ".tsx",
         ],
@@ -138,7 +136,7 @@ exports[`webpackConfig production mode matches snapshot 1`] = `
         "options": {
           "configFile": "<PROJECT_ROOT>/babel.config.cjs",
         },
-        "test": /\\\\\\.\\(js\\|jsx\\|ts\\|tsx\\)\\$/,
+        "test": /\\\\\\.\\(ts\\|tsx\\)\\$/,
       },
       {
         "test": /\\\\\\.css\\$/i,
@@ -194,8 +192,6 @@ exports[`webpackConfig production mode matches snapshot 1`] = `
         "emitError": true,
         "emitWarning": false,
         "extensions": [
-          ".js",
-          ".jsx",
           ".ts",
           ".tsx",
         ],
