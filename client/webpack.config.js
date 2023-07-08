@@ -44,6 +44,8 @@ export default (env = {}, argv = {}) => {
   
         return middlewares;
       },
+
+      historyApiFallback: true
     },
 
     devtool: isProduction ? 'source-map' : 'eval-source-map',

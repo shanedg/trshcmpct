@@ -3,6 +3,7 @@
 exports[`webpackConfig development mode matches snapshot 1`] = `
 {
   "devServer": {
+    "historyApiFallback": true,
     "setupMiddlewares": [Function],
   },
   "devtool": "eval-source-map",
@@ -123,6 +124,7 @@ exports[`webpackConfig development mode matches snapshot 1`] = `
 exports[`webpackConfig production mode matches snapshot 1`] = `
 {
   "devServer": {
+    "historyApiFallback": true,
     "setupMiddlewares": [Function],
   },
   "devtool": "source-map",
