@@ -1,4 +1,4 @@
-import React, { StrictMode } from 'react';
+import React, { StrictMode, useEffect, useState } from 'react';
 import { createBrowserRouter, RouterProvider, Link, useParams, Outlet } from 'react-router-dom';
 
 import './App.css';
@@ -15,6 +15,23 @@ const getWelcomeMessage = (guildUser: GuildUserData) => {
   }
 
   return `${welcome}, <unknown>`;
+};
+
+const DelayedLoadingMessage = () => {
+  const [showLoading, setShowLoading] = useState(false);
+
+  useEffect(() => {
+    // Showing a loading message right away contributes to worse perceived performance
+    const timeout = setTimeout(() => setShowLoading(true), 500);
+
+    return () => clearTimeout(timeout);
+  });
+
+  if (showLoading) {
+    return (<p>loading...</p>);
+  }
+
+  return null;
 };
 
 const Home = () => {
@@ -36,7 +53,7 @@ const Home = () => {
     );
   }
 
-  return (<p>loading...</p>);
+  return (<DelayedLoadingMessage />);
 };
 
 const WorldsList = () => {
