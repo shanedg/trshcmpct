@@ -22,4 +22,8 @@ export default {
   collectCoverage: true,
   testEnvironment: 'jsdom',
   setupFilesAfterEnv: ['<rootDir>/jest-setup.js'],
+  moduleNameMapper: {
+    // See https://jestjs.io/docs/webpack#handling-static-assets
+    '\\.(css|less)$': '<rootDir>/__mocks__/styleMock.cjs',
+  },
 };

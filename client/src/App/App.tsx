@@ -1,6 +1,7 @@
 import React, { StrictMode } from 'react';
 import { createBrowserRouter, RouterProvider, Link, useParams, Outlet } from 'react-router-dom';
 
+import './App.css';
 import { useGuildMemberData } from './use-guild-member-data';
 import { Welcome } from './Welcome';
 
@@ -22,7 +23,14 @@ const Home = () => {
   if (guildUser) {
     return (
       <>
-        <Link to="/worlds">worlds</Link>
+        <ul className="navigation-list">
+          <li>
+            <Link to="/new">new</Link>
+          </li>
+          <li>
+            <Link to="/worlds">worlds</Link>
+          </li>
+        </ul>
         <Welcome message={getWelcomeMessage(guildUser)} />
       </>
     );
@@ -61,7 +69,11 @@ const WorldsList = () => {
 
   return (
     <>
-      <Link to="/">back</Link>
+      <ul className="navigation-list">
+        <li>
+          <Link to="/">back</Link>
+        </li>
+      </ul>
       <table>
         <thead>
           <tr>
@@ -100,6 +112,27 @@ const WorldDetail = () => {
   );
 };
 
+const NewWorld = () => {
+  return (
+    <>
+      <ul className="navigation-list">
+        <li>
+          <Link to="/">back</Link>
+        </li>
+      </ul>
+      <form>
+        <label htmlFor="version">version</label>
+        <select name="version">
+          <option>1.20.1</option>
+        </select>
+        <label htmlFor="name">name</label>
+        <input name="name" />
+        <button>create</button>
+      </form>
+    </>
+  );
+};
+
 const router = createBrowserRouter([
   {
     path: '/',
@@ -111,9 +144,13 @@ const router = createBrowserRouter([
     children: [
       {
         path: ':worldId',
-        element: <WorldDetail />
+        element: <WorldDetail />,
       },
     ],
+  },
+  {
+    path: '/new',
+    element: <NewWorld />,
   },
 ]);
 
