@@ -1,7 +1,7 @@
-name: GitHub Actions CI (Branch)
+name: GitHub Actions CI (Main)
 
 on:
-  pull_request:
+  push:
     branches: [ "main" ]
 
 jobs:
@@ -24,8 +24,8 @@ jobs:
     - run: node common/scripts/install-run-rush.js test
     - run: node common/scripts/install-run-rush.js test:cypress --verbose
 
-  deploy-staging:
+  deploy-production:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v3
-    - run: echo fake stage deploy
+    - run: echo fake prod deploy
