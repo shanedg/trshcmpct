@@ -17,6 +17,12 @@ Populate `clientId` and `clientSecret` with the values from the Discord app's OA
 npm start
 ```
 
+## Dependency Quirks
+
+Dependency `extend` is an unspecified, transitive dependency of [tch-nedb-session](https://github.com/tomaschyly/NeDBSession/blob/9bab383f5c7caf6fb63e3cdd528fe92f6cbb223f/index.js#L2)
+
+As an aside, not sure that this express session library was ever intended for production use
+
 ## Cypress Troubleshooting
 
 > Reverse chronological order of appearance

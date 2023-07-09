@@ -197,6 +197,9 @@ importers:
       express-session:
         specifier: ~1.17.3
         version: 1.17.3
+      extend:
+        specifier: ~3.0.2
+        version: 3.0.2
       hbs:
         specifier: ~4.2.0
         version: 4.2.0
@@ -5638,7 +5641,6 @@ packages:
 
   /extend@3.0.2:
     resolution: {integrity: sha512-fjquC59cD7CyW6urNXK0FBufkZcoiGG80wTuPujX590cB5Ttln20E2UB4S/WARVqhXffZl2LNgS+gQdPIIim/g==}
-    dev: true
 
   /external-editor@3.1.0:
     resolution: {integrity: sha512-hMQ4CX1p1izmuLYyZqLMO/qGNw10wSv9QDCPfzXfyFrOaCSSoRfqE1Kf1s5an66J5JZC62NewG+mK49jOCtQew==}

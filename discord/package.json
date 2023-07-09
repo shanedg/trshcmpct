@@ -69,6 +69,7 @@
     "@trshcmpctr/client": "workspace:*",
     "express-session": "~1.17.3",
     "express": "~4.18.1",
+    "extend": "~3.0.2",
     "hbs": "~4.2.0",
     "pino-http": "~8.3.3",
     "tch-nedb-session": "~1.0.3"
