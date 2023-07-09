@@ -16,7 +16,7 @@
       "summary": "Upgrade dependencies in all projects to the latest version not already satisfied by the semver range. This includes major versions and is best to run after `check-minor-updates`. You must run `rush update` after.",
       "commandKind": "global",
       "autoinstallerName": "rush-check-updates",
-      "shellCommand": "npm-check-updates --packageFile *{$(common/scripts/get_comma_separated_rush_directories.sh)}/package.json --upgrade --minimal --target latest --reject '@types/node,cypress'"
+      "shellCommand": "npm-check-updates --packageFile *{$(common/scripts/get_comma_separated_rush_directories.sh)}/package.json --upgrade --minimal --target latest --reject '@types/node'"
     },
     {
       "name": "check-minor-updates",
