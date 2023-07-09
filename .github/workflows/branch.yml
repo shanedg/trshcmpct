@@ -19,14 +19,10 @@ jobs:
         DISCORD_GUILD_ID: ${{ secrets.DISCORD_GUILD_ID }}
         DISCORD_SESSION_SECRET: ${{ secrets.DISCORD_SESSION_SECRET }}
         DISCORD_REDIRECT_URI: ${{ secrets.DISCORD_REDIRECT_URI }}
+    # TODO: separate jobs to parallelize these tasks?
     - run: node common/scripts/install-run-rush.js lint
     - run: node common/scripts/install-run-rush.js lint:md
     - run: node common/scripts/install-run-rush.js test
     - run: node common/scripts/install-run-rush.js test:cypress --verbose
-
-  deploy-staging:
-    needs: build-and-test
-    runs-on: ubuntu-latest
-    steps:
-    - uses: actions/checkout@v3
-    - run: echo fake stage deploy
+    # TODO: use github environments?
+    - run: node common/scripts/install-run-rush.js deploy

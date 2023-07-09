@@ -5,6 +5,7 @@ on:
     branches: [ "main" ]
 
 jobs:
+  # TODO: dedupe build-and-test from branch.yml workflow?
   build-and-test:
     runs-on: ubuntu-latest
     steps:
@@ -23,10 +24,5 @@ jobs:
     - run: node common/scripts/install-run-rush.js lint:md
     - run: node common/scripts/install-run-rush.js test
     - run: node common/scripts/install-run-rush.js test:cypress --verbose
-
-  deploy-production:
-    needs: build-and-test
-    runs-on: ubuntu-latest
-    steps:
-    - uses: actions/checkout@v3
-    - run: echo fake prod deploy
+    # TODO: use github environments?
+    - run: node common/scripts/install-run-rush.js deploy
