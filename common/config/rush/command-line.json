@@ -55,8 +55,7 @@
       "name": "scaffold",
       "summary": "Add a new project.",
       "commandKind": "global",
-      "autoinstallerName": "rush-plop",
-      "shellCommand": "plop --plopfile scaffold/lib/index.js"
+      "shellCommand": "node common/scripts/install-run.js plop@3.1.2 plop --plopfile scaffold/lib/index.js"
     },
     {
       "name": "test",
