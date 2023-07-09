@@ -53,7 +53,7 @@
     "@trshcmpctr/jest-stdout-reporter": "workspace:*",
     "@trshcmpctr/markdownlint-config": "workspace:*",
     "@types/jest": "~29.5.2",
-    "@types/node": "~16.18.3",
+    "@types/node": "~18.16.19",
     "@types/react-dom": "~18.2.6",
     "@types/react-router-dom": "~5.3.3",
     "@types/react": "~18.2.14",
