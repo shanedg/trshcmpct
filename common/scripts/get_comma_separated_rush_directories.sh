@@ -7,6 +7,7 @@
 
 set -eou pipefail
 
+# TODO: extend this to include autoinstaller/s and scaffold/lib/templates/package.json.hbs
 rush list --json | jq '.projects | map(.path)' | node --eval '
 const fs = require("node:fs");
 // STDIN_FILENO = 0
