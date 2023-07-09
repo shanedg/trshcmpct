@@ -16,8 +16,14 @@ export default function (plop) {
     prompts: [
       {
         type: 'input',
+        name: 'scope',
+        message: 'project scope please (omit @-prefix, <enter> for "trshcmpctr")',
+        default: 'trshcmpctr'
+      },
+      {
+        type: 'input',
         name: 'name',
-        message: 'project name please (omit @scope)',
+        message: 'project name please',
       },
       {
         type: 'input',
@@ -29,9 +35,6 @@ export default function (plop) {
     actions: [
       {
         type: 'addMany',
-        data: {
-          scope: '@trshcmpctr',
-        },
         destination: `${relativePathToRepoRoot}{{path}}/`,
         base: 'templates',
         templateFiles: '**/*.hbs',
@@ -46,11 +49,8 @@ export default function (plop) {
         // This regular expression matches the start of the projects list.
         // The template is appended immediately after this line.
         pattern: /"projects": \[/,
-        data: {
-          scope: '@trshcmpctr',
-        },
         template: `    {
-      "packageName": "@trshcmpctr/{{name}}",
+      "packageName": "@{{scope}}/{{name}}",
       "projectFolder": "{{path}}"
     },`
       },
