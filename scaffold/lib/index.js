@@ -53,7 +53,15 @@ export default function (plop) {
       "packageName": "@trshcmpctr/{{name}}",
       "projectFolder": "{{path}}"
     },`
-      }
+      },
+
+      // Update vscode eslint plugin working directories
+      {
+        type: 'append',
+        path: join(relativePathToRepoRoot, '.vscode', 'settings.json'),
+        pattern: /"eslint.workingDirectories": \[/,
+        template: '    "{{path}}",',
+      },
     ]
   });
 }
