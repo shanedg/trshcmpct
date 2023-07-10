@@ -48,9 +48,6 @@ rush scaffold
 
 ## TODO
 
-* eslint plugins missing from scaffolded package.json dev deps
-(never mind that they work anyway,
-that's gotta just be a weird module resolution quirk of eslint)
 * add tests for:
   * @trshcmpctr/jest-stdout-reporter (meh, maybe deleting this)
   * @trshcmpctr/markdownlint-config (nah; this is a config, maybe a snapshot?)

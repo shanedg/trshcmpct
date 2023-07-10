@@ -27,6 +27,7 @@
   },
   "devDependencies": {
     "@babel/eslint-parser": "~7.22.5",
+    "@babel/plugin-syntax-import-assertions": "~7.22.5",
     "@trshcmpctr/eslint-config": "workspace:*",
     "@trshcmpctr/markdownlint-config": "workspace:*",
     "eslint-plugin-eslint-comments": "~3.2.0",
