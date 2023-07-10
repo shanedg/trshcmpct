@@ -2,10 +2,10 @@
   "eslint.workingDirectories": [
     "client",
     "discord",
-    "eslint-config",
     "eslint-config-jest",
     "eslint-config-react",
     "eslint-config-typescript",
+    "eslint-config",
     "eslint-ignored",
     "jest-stdout-reporter",
     "markdownlint-config",
