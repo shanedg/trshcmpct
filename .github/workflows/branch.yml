@@ -19,10 +19,12 @@ jobs:
         DISCORD_GUILD_ID: ${{ secrets.DISCORD_GUILD_ID }}
         DISCORD_SESSION_SECRET: ${{ secrets.DISCORD_SESSION_SECRET }}
         DISCORD_REDIRECT_URI: ${{ secrets.DISCORD_REDIRECT_URI }}
-    # TODO: separate jobs to parallelize these tasks?
+    - run: (cd deploy && ./client_config_ci.sh)
+      env:
+        AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+        AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
     - run: node common/scripts/install-run-rush.js lint
     - run: node common/scripts/install-run-rush.js lint:md
     - run: node common/scripts/install-run-rush.js test
     - run: node common/scripts/install-run-rush.js test:cypress --verbose
-    # TODO: use github environments?
     - run: node common/scripts/install-run-rush.js deploy

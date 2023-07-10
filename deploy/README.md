@@ -1,0 +1,3 @@
+# @trshcmpctr/deploy
+
+deploy
