@@ -28,4 +28,6 @@ jobs:
     - run: node common/scripts/install-run-rush.js test
     - run: node common/scripts/install-run-rush.js test:cypress --verbose
     - run: node common/scripts/install-run-rush.js deploy
+    - run: (cd common/deploy && zip -r ./deploy.zip ./*)
+    - run: node deploy/lib/aws-s3-upload-artifacts.js
     - run: node deploy/lib/index.js
