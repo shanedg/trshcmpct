@@ -16,13 +16,8 @@ sudo chown -R ec2-user:ec2-user /trshcmpctr/node/node-v18.16.1-linux-x64
 # We want this to output $PATH without expansion
 # shellcheck disable=SC2016
 echo PATH="/trshcmpctr/node/node-v18.16.1-linux-x64/bin":'$PATH' >> /home/ec2-user/.bashrc
-# shellcheck source=/dev/null
-. /home/ec2-user/.bashrc
-
-node -v
 
 mkdir /trshcmpctr/build
-# TODO: fetch and unzip build artifact
 time aws s3 cp s3://trshcmpctr.com/build-artifacts/deploy.zip /trshcmpctr/build/deploy.zip
 time unzip -o /trshcmpctr/build/deploy.zip -d /trshcmpctr/
 
