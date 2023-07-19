@@ -99,6 +99,10 @@ const nextInstanceTagSpecifications = [
  * Run a new instance
  */
 export const ec2Run = async () => await ec2Client.send(new RunInstancesCommand({
+  IamInstanceProfile: {
+    Arn: 'arn:aws:iam::239081625002:user/aws-deploy',
+    // Name: 'aws-deploy'
+  },
   InstanceType: ec2InstanceType,
   ImageId: amiImageId,
   MaxCount: 1,
