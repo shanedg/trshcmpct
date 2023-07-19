@@ -21,9 +21,10 @@ echo PATH="/trshcmpctr/node/node-v18.16.1-linux-x64/bin":'$PATH' >> /home/ec2-us
 
 node -v
 
+mkdir /trshcmpctr/build
 # TODO: fetch and unzip build artifact
-# time aws s3 cp "$bucket_folder$backup_name" $mc_user_home/latest-backup.zip
-# time unzip -o $mc_user_home/latest-backup.zip -d $mc_directory/
+time aws s3 cp s3://trshcmpctr.com/build-artifacts/deploy.zip /trshcmpctr/build/deploy.zip
+time unzip -o /trshcmpctr/build/deploy.zip -d /trshcmpctr/
 
 echo "end user data"
 
