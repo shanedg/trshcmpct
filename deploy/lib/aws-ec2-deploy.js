@@ -17,6 +17,7 @@ const {
   accessKeyId,
   amiImageId = 'ami-06ca3ca175f37dd66',
   ec2InstanceType = 't2.nano',
+  // https://docs.aws.amazon.com/sdk-for-javascript/v2/developer-guide/locking-api-versions.html
   ec2ApiVersion = '2016-11-15',
   ec2Region = 'us-east-1',
   keyPairName = 'discord-service',
@@ -24,8 +25,6 @@ const {
 } = config;
 
 const ec2Client = new EC2Client({
-  // https://docs.aws.amazon.com/sdk-for-javascript/v2/developer-guide/locking-api-versions.html
-  // https://docs.aws.amazon.com/AWSJavaScriptSDK/latest/AWS/EC2.html
   apiVersion: ec2ApiVersion,
   region: ec2Region,
   credentials: {
