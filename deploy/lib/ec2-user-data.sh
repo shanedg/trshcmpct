@@ -96,8 +96,7 @@ if [ "$letsencrypt_zip_inflate" != 0 ]; then
     -m shanedgarrity@gmail.com\
     --agree-tos\
     --cert-name $server_name\
-    --hsts\
-    --test-cert
+    --hsts
 
 else
   echo "installing existing certificate"
@@ -106,8 +105,7 @@ else
     --nginx\
     -n\
     --cert-name $server_name\
-    --hsts\
-    --test-cert
+    --hsts
 
   # Allow deploys to trigger renewals
   # Renewal will usually be a no-op, safe to run often
