@@ -11,7 +11,7 @@ import config from './config.json' assert { type: 'json' };
 
 const {
   accessKeyId,
-  amiImageId = 'ami-06ca3ca175f37dd66',
+  amiImageId = 'ami-08a52ddb321b32a8c',
   ec2InstanceType = 't2.nano',
   ec2ApiVersion = '2016-11-15',
   ec2Region = 'us-east-1',
