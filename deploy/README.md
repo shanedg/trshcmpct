@@ -1,5 +1,7 @@
 # @trshcmpctr/deploy
 
+Deployment utilities for @trshcmcptr projects
+
 ## Deploy to AWS EC2
 
 ### AWS Console Resources
