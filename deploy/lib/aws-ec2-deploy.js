@@ -99,18 +99,32 @@ const getNextInstanceTagSpecifications = environment => {
 };
 
 /**
- * Get environment server name for ec2 user data
+ * Get environment nginx server name or names
+ * @param {'staging'|'production'} environment
+ */
+const getUserDataNginxServerName = environment => {
+  if (environment === 'staging') {
+    return 'nginx_server_name=www-stage.trshcmpctr.com';
+  }
+
+  if (environment === 'production') {
+    return 'nginx_server_name="trshcmpctr.com www.trshcmpctr.com"';
+  }
+
+  throw new Error(`Unexpected environment: ${environment}`);
+};
+
+/**
+ * Get environment letsencrypt certificate name for ec2 user data
  * @param {'staging'|'production'} environment
  */
 const getUserDataServerName = environment => {
   if (environment === 'staging') {
-    return 'server_name=www-stage.trshcmpctr.com';
+    return 'cert_name=www-stage.trshcmpctr.com';
   }
 
   if (environment === 'production') {
-    // TODO: also register domain root trshcmpctr.com?
-    // return 'server_name=trshcmpctr.com';
-    return 'server_name=www.trshcmpctr.com';
+    return 'cert_name=trshcmpctr.com';
   }
 
   throw new Error(`Unexpected environment: ${environment}`);
@@ -126,9 +140,7 @@ const getUserDataDomains = environment => {
   }
 
   if (environment === 'production') {
-    // TODO: also register domain root trshcmpctr.com?
-    // return 'domains=trshcmpctr.com,www.trshcmpctr.com';
-    return 'domains=www.trshcmpctr.com';
+    return 'domains=trshcmpctr.com,www.trshcmpctr.com';
   }
 
   throw new Error(`Unexpected environment: ${environment}`);
@@ -166,7 +178,8 @@ export const ec2Run = async environment => await ec2Client.send(new RunInstances
   UserData: Buffer.from(
     readFileSync(new URL(join(dirname(import.meta.url), 'ec2-user-data.sh')))
       .toString()
-      .replace('server_name=www-stage.trshcmpctr.com', getUserDataServerName(environment))
+      .replace('nginx_server_name=www-stage.trshcmpctr.com', getUserDataNginxServerName(environment))
+      .replace('cert_name=www-stage.trshcmpctr.com', getUserDataServerName(environment))
       .replace('domains=www-stage.trshcmpctr.com', getUserDataDomains(environment))
       .replace('bucket_prefix=www-stage', getUserDataBucketPrefix(environment))
   ).toString('base64'),

@@ -34,7 +34,8 @@ chown -R ec2-user:ec2-user /home/ec2-user/bin
 mkdir /home/ec2-user/dist
 
 # These values are replaced during a production deploy
-server_name=www-stage.trshcmpctr.com
+nginx_server_name=www-stage.trshcmpctr.com
+cert_name=www-stage.trshcmpctr.com
 domains=www-stage.trshcmpctr.com
 bucket_prefix=www-stage
 
@@ -52,7 +53,7 @@ yum install nginx -y
 # * certbot modifies the server block that contains a matching server_name directive
 #   see https://www.nginx.com/blog/using-free-ssltls-certificates-from-lets-encrypt-with-nginx/#2.-Set-Up-NGINX
 # * Reverse proxy all requests to @trshcmpctr/discord
-echo "server_name $server_name;
+echo "server_name $nginx_server_name;
 location / {
   proxy_pass http://localhost:53134;
 }
@@ -87,7 +88,7 @@ if [ "$letsencrypt_zip_inflate" != 0 ]; then
   # If running as ec2-user, pass $PATH to root for access to certbot-env binaries
   # e.g. `sudo -E env PATH="$PATH" certbot <...>`
   # See https://askubuntu.com/a/1342154
-  # Use --test-cert to avoid certbot rate limits when testing installation or renewal
+  # Use `--test-cert` to avoid certbot rate limits when testing installation or renewal
   # See https://letsencrypt.org/docs/staging-environment/
   certbot\
     -d $domains\
@@ -95,7 +96,7 @@ if [ "$letsencrypt_zip_inflate" != 0 ]; then
     -n\
     -m shanedgarrity@gmail.com\
     --agree-tos\
-    --cert-name $server_name\
+    --cert-name $cert_name\
     --hsts
 
 else
@@ -104,7 +105,7 @@ else
     -d $domains\
     --nginx\
     -n\
-    --cert-name $server_name\
+    --cert-name $cert_name\
     --hsts
 
   # Allow deploys to trigger renewals
