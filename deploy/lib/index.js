@@ -107,7 +107,6 @@ const checkInstanceStatusWithDelay = () => new Promise((resolve, reject) => {
     } catch (e) {
       console.error(e);
       await attemptCleanup(nextInstanceId);
-      // TODO: is this an unhandled rejection? or does the rejected error mean it just throws?
       reject(new Error('problem checking instance status', { cause: e }));
     }
   }, attemptDelay);
