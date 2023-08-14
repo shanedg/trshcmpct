@@ -21,7 +21,13 @@ if [ -z "$AWS_SECRET_ACCESS_KEY" ]; then
   exit 1
 fi
 
+if [ -z "$ENVIRONMENT" ]; then
+  echo 'missing ENVIRONMENT'
+  exit 1
+fi
+
 echo "{
   \"accessKeyId\": \"$AWS_ACCESS_KEY_ID\",
+  \"environment\": \"${ENVIRONMENT}\",
   \"secretAccessKey\": \"$AWS_SECRET_ACCESS_KEY\"
 }" > $client_config_file
