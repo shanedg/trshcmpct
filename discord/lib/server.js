@@ -14,6 +14,9 @@ import { AuthenticatedHTMLRouter } from './authenticated-html-router';
 import config from './config.json' assert { type: 'json' };
 import { LoginRouter } from './login-router';
 
+// Support overriding redirectUri from environment for cypress testing
+const optionalArgumentOverrideRedirectUri = process.argv.length > 2 ? process.argv[2] : null;
+
 const {
   clientId,
   clientSecret,
@@ -66,7 +69,7 @@ const loginRouter = new LoginRouter({
   fetch,
   // Redirect to home once authenticated
   loginRedirect: '/',
-  redirectUri,
+  redirectUri: optionalArgumentOverrideRedirectUri ?? redirectUri,
 });
 app.use(loginRouter.middleware);
 

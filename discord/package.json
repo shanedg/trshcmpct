@@ -34,8 +34,9 @@
     "lint": "eslint --report-unused-disable-directives --max-warnings=0 .",
     "lint:md": "markdownlint-cli2-config 'node_modules/@trshcmpctr/markdownlint-config/.markdownlint-cli2.jsonc' '**/*.md' '#node_modules'",
     "start": "NODE_ENV=production node --experimental-specifier-resolution=node --experimental-fetch --experimental-import-meta-resolve lib/server.js",
+    "start:test": "NODE_ENV=production node --experimental-specifier-resolution=node --experimental-fetch --experimental-import-meta-resolve lib/server.js http://localhost:53134/auth",
     "test": "NODE_OPTIONS=--experimental-specifier-resolution=node ava",
-    "test:cypress": "start-server-and-test start http://localhost:53134 cy:run",
+    "test:cypress": "start-server-and-test start:test http://localhost:53134 cy:run",
     "test:debug": "NODE_OPTIONS='--experimental-specifier-resolution=node' ava debug --break"
   },
   "ava": {
