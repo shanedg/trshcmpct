@@ -60,6 +60,7 @@ app.use(expressSesssion({
   // saveUninitialized is deprecated
   saveUninitialized: false,
   secret: sessionSecret,
+  // FIXME: replace
   store: nedbStorageWithExpressSession,
 }));
 
