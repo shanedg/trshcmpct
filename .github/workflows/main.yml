@@ -1,15 +1,15 @@
-name: GitHub Actions CI (Branch)
+name: GitHub Actions CI (Main)
 
 on:
-  pull_request:
+  push:
     branches: [ "main" ]
 
 jobs:
   build-and-test:
     runs-on: ubuntu-latest
     environment: 
-      name: staging
-      url: https://www-stage.trshcmpctr.com
+      name: production
+      url: https://www.trshcmpctr.com
     steps:
     - uses: actions/checkout@v3
     - run: node common/scripts/install-run-rush.js install

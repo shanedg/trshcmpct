@@ -5,7 +5,7 @@ import express from 'express';
 import expressSesssion from 'express-session';
 import handlebars from 'hbs';
 import pinoHttp from 'pino-http';
-import nedbStorage from 'tch-nedb-session';
+import store from 'session-file-store';
 
 import manifest from '@trshcmpctr/client' assert { type: 'json' };
 
@@ -13,6 +13,9 @@ import { AuthenticatedAPIRouter } from './authenticated-api/router';
 import { AuthenticatedHTMLRouter } from './authenticated-html-router';
 import config from './config.json' assert { type: 'json' };
 import { LoginRouter } from './login-router';
+
+// Support overriding redirectUri from environment for cypress testing
+const optionalArgumentOverrideRedirectUri = process.argv.length > 2 ? process.argv[2] : null;
 
 const {
   clientId,
@@ -40,24 +43,26 @@ app.engine('html', handlebarsForExpress);
 app.use(pinoLogger);
 
 // TODO: control session length with env variable
-const sessionLength = 10 * 60 * 1000; // 10 minutes
-// 7 * 24 * 60 * 60 * 1000 // 1 week (how long tokens are valid)
+const sessionLength = 10 * 60; // 10 minutes in seconds
+// 7 * 24 * 60 * 60 // 1 week in seconds (how long tokens are valid)
 
-const sessionStore = nedbStorage(expressSesssion);
-const nedbStorageWithExpressSession = new sessionStore({
-  expiration: sessionLength,
-});
+const SessionFileStore = store(expressSesssion);
 
 app.use(expressSesssion({
   cookie: {
-    maxAge: sessionLength
+    // maxAge is in milliseconds
+    maxAge: sessionLength * 1000,
   },
   // resave is deprecated
   resave: false,
   // saveUninitialized is deprecated
   saveUninitialized: false,
   secret: sessionSecret,
-  store: nedbStorageWithExpressSession,
+  store: new SessionFileStore({
+    // https://www.npmjs.com/package/session-file-store#options
+    // ttl is seconds
+    ttl: sessionLength,
+  }),
 }));
 
 const loginRouter = new LoginRouter({
@@ -66,7 +71,7 @@ const loginRouter = new LoginRouter({
   fetch,
   // Redirect to home once authenticated
   loginRedirect: '/',
-  redirectUri,
+  redirectUri: optionalArgumentOverrideRedirectUri ?? redirectUri,
 });
 app.use(loginRouter.middleware);
 

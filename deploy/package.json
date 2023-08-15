@@ -1,9 +1,10 @@
 {
-  "name": "@{{scope}}/{{name}}",
+  "name": "@trshcmpctr/deploy",
   "version": "1.0.0",
-  "description": "{{name}}",
+  "description": "Deployment utilities for @trshcmpctr projects",
   "main": "lib/index.js",
   "files": ["lib"],
+  "type": "module",
   "contributors": [
     {
       "email": "shanedgarrity@gmail.com",
@@ -13,23 +14,32 @@
   "repository": {
     "type": "git",
     "url": "https://github.com/shanedg/trshcmpctr.git",
-    "directory": "{{path}}"
+    "directory": "deploy"
   },
-  "homepage": "https://github.com/shanedg/trshcmpctr/tree/main/{{path}}#readme",
+  "homepage": "https://github.com/shanedg/trshcmpctr/tree/main/deploy#readme",
   "private": true,
   "license": "UNLICENSED",
   "scripts": {
     "build": "echo fake build || true",
     "lint": "eslint --report-unused-disable-directives --max-warnings=0 .",
     "lint:md": "markdownlint-cli2-config 'node_modules/@trshcmpctr/markdownlint-config/.markdownlint-cli2.jsonc' '**/*.md' '#node_modules'",
+    "start": "node lib/index.js",
+    "upload": "node lib/aws-s3-upload-artifacts.js",
     "test": "true"
   },
   "devDependencies": {
+    "@babel/eslint-parser": "~7.22.5",
+    "@babel/plugin-syntax-import-assertions": "~7.22.5",
     "@trshcmpctr/eslint-config": "workspace:*",
     "@trshcmpctr/markdownlint-config": "workspace:*",
     "eslint-plugin-eslint-comments": "~3.2.0",
     "eslint-plugin-import": "~2.27.5",
+    "eslint-plugin-node": "~11.1.0",
     "eslint": "~8.44.0",
     "markdownlint-cli2": "~0.8.1"
+  },
+  "dependencies": {
+    "@aws-sdk/client-ec2": "~3.367.0",
+    "@aws-sdk/client-s3": "~3.370.0"
   }
 }

@@ -1,0 +1,15 @@
+# Run @trshcmpctr/discord as a systemd service
+# Copied to /etc/systemd/system/ by @trshcmpctr/deploy
+# See deploy/lib/ec2-user-data.sh
+
+[Unit]
+Description=@trshcmpctr/discord
+
+[Service]
+Type=simple
+User=ec2-user
+WorkingDirectory=/home/ec2-user/dist/discord
+# Include default $PATH and user private binaries (/home/ec2-user/bin:/home/ec2-user/.local/bin)
+# See https://www.freedesktop.org/software/systemd/man/systemd.exec.html#ExecSearchPath=
+ExecSearchPath=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/home/ec2-user/bin:/home/ec2-user/.local/bin
+ExecStart=npm start
