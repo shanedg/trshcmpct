@@ -1,4 +1,4 @@
 lib/config.json
 
-# nedb filesystem storage via tch-nedb-session
-var/nedb/sessions.db
+# https://www.npmjs.com/package/session-file-store#options
+sessions

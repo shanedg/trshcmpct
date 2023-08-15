@@ -30,7 +30,7 @@
     "cy:open": "cypress open --config-file=cypress/cypress.config.js --e2e --browser=chrome",
     "cy:run": "cypress run --config-file=cypress/cypress.config.js",
     "debug": "DISCORD_LOG_LEVEL=debug node --experimental-specifier-resolution=node --experimental-fetch --experimental-import-meta-resolve --trace-warnings --inspect-brk lib/server.js",
-    "dev": "DISCORD_LOG_LEVEL=debug nodemon --experimental-specifier-resolution=node --experimental-fetch --experimental-import-meta-resolve --inspect lib/server.js",
+    "dev": "DISCORD_LOG_LEVEL=debug nodemon --ignore sessions --experimental-specifier-resolution=node --experimental-fetch --experimental-import-meta-resolve --inspect lib/server.js",
     "lint": "eslint --report-unused-disable-directives --max-warnings=0 .",
     "lint:md": "markdownlint-cli2-config 'node_modules/@trshcmpctr/markdownlint-config/.markdownlint-cli2.jsonc' '**/*.md' '#node_modules'",
     "start": "NODE_ENV=production node --experimental-specifier-resolution=node --experimental-fetch --experimental-import-meta-resolve lib/server.js",
@@ -70,9 +70,8 @@
     "@trshcmpctr/client": "workspace:*",
     "express-session": "~1.17.3",
     "express": "~4.18.1",
-    "extend": "~3.0.2",
     "hbs": "~4.2.0",
     "pino-http": "~8.3.3",
-    "tch-nedb-session": "~1.0.3"
+    "session-file-store": "~1.5.0"
   }
 }
