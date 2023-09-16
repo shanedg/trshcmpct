@@ -2,10 +2,6 @@ import test from 'ava';
 
 import { AuthenticatedAPIRouter } from './router';
 
-/**
- * For the purposes of these tests
- * we *really* only care if configuration options are truthy
- */
 const testConfiguration = {
   fetch: () => { /* noop */ },
   guildId: 'some-guild-id',
@@ -38,6 +34,6 @@ test('throws if middleware reinitialized', t => {
 
   t.throws(
     () => router.initializeMiddleware(),
-    { message: 'auhenticated api middleware already initialized' }
+    { message: 'authenticated API middleware already initialized' }
   );
 });
