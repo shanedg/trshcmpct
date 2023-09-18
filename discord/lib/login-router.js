@@ -11,12 +11,12 @@ import { handleRenderLogin } from './handlers/handle-render-login';
 export class LoginRouter {
   /**
    * Create a new LoginRouter
-   * @param {Object} configuration Configuration options
-   * @param {string} configuration.clientId
-   * @param {string} configuration.clientSecret
+   * @param {Object} configuration
+   * @param {string} configuration.clientId Discord application id
+   * @param {string} configuration.clientSecret Discord application secret
    * @param {Function} configuration.fetch
    * @param {string} configuration.loginRedirect Where in the app to redirect after successful login
-   * @param {string} configuration.redirectUri
+   * @param {string} configuration.redirectUri Application authorization url
    */
   constructor(configuration) {
     const {
@@ -33,10 +33,7 @@ export class LoginRouter {
     if (!loginRedirect) throw new Error('missing login redirect');
     if (!redirectUri) throw new Error('missing redirect uri');
 
-    this.configuration = configuration;
-
-    // Never modify configuration values after construction
-    Object.freeze(this.configuration);
+    this.configuration = Object.freeze(configuration);
 
     this.initializeMiddleware();
   }

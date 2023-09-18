@@ -10,7 +10,7 @@ import { handleRenderAuthenticated } from './handlers/handle-render-authenticate
 export class AuthenticatedHTMLRouter {
   /**
    * Create a new AuthenticatedHTMLRouter
-   * @param {Object} configuration Configuration options
+   * @param {Object} configuration
    * @param {string} configuration.htmlDirectory
    * @param {string} configuration.htmlFilename
    */
@@ -23,10 +23,7 @@ export class AuthenticatedHTMLRouter {
     if (!htmlDirectory) throw new Error('missing html directory');
     if (!htmlFilename) throw new Error('missing html filename');
 
-    this.configuration = configuration;
-
-    // Never modify configuration values after construction
-    Object.freeze(this.configuration);
+    this.configuration = Object.freeze(configuration);
 
     this.initializeMiddleware();
   }
