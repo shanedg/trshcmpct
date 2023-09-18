@@ -11,7 +11,7 @@ export const handleError = (error, request, response, next) => {
   // must delegate to the default express error handler
   // when headers have already been sent to the client
   if (response.headersSent) {
-    request.log.error('headers already sent');
+    request.log.debug('response headers already sent');
     return next(error);
   }
 
