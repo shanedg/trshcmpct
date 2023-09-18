@@ -1,11 +1,11 @@
 /**
  * Get token with authorization code
  * @param {Function} fetch Fetch implementation
- * @param {Object} config Authorization configuration
- * @param {string} config.clientId Discord application id
- * @param {string} config.clientSecret Discord client secret
- * @param {string} config.code Authorization code from Discord Oauth redirect
- * @param {string} config.redirectUri Application authorization url
+ * @param {Object} configuration
+ * @param {string} configuration.clientId Discord application id
+ * @param {string} configuration.clientSecret Discord client secret
+ * @param {string} configuration.code Authorization code from Discord Oauth redirect
+ * @param {string} configuration.redirectUri Application authorization url
  * @returns {Object} Oauth result
  */
 export const authFromCode = async (fetch, { clientId, clientSecret, code, redirectUri }) => {

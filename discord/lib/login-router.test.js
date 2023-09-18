@@ -2,10 +2,6 @@ import test from 'ava';
 
 import { LoginRouter } from './login-router';
 
-/**
- * For the purposes of these tests
- * we *really* only care if configuration options are truthy
- */
 const testConfiguration = {
   clientId: 'some-client-id',
   clientSecret: 'some-client-secret',

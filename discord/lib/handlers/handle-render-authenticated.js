@@ -1,14 +1,12 @@
 /**
- * Handler function for rendering an authenticated view
+ * Middleware handler for rendering an authenticated view
  *
- * Express expects handler function signatures with only three parameters
- * where the first parameter is the request object (request, response, next).
+ * Express expects handler function signatures have (at most) three parameters: request, response, next.
  * It's useful to do *partial application* with Function.prototype.bind()
  * to prefill the first two arguments and support the expected signature.
  * e.g.
  * ```
- * // the returned function no longer expects the first two arguments because they are prefilled
- * const boundHandler = handleRenderAuthenticated.prototype.bind(null, '/app', 'index.html')
+ * app.use(handleRenderAuthenticated.prototype.bind(null, '/app', 'index.html'))
  * ```
  * @param {string} htmlDirectory Absolute path to html directory
  * @param {string} htmlFilename Html filename
