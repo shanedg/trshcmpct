@@ -3,18 +3,10 @@ import sinon from 'sinon';
 
 import { authFromCode } from './auth-from-code';
 
-/**
- * Fake implementation of fetch
- * Always resolves
- * @param {string} url Url to fetch
- * @returns Fake response
- */
-const fetchSucceeds = url => Promise.resolve({ json: () => 'response from ' + url });
-
 test.before(async t => {
-  const fetch = sinon.spy(fetchSucceeds);
-  t.context.fetch = fetch;
-  await authFromCode(fetch, {
+  // Mock fetch resolves
+  t.context.fetch = sinon.spy(url => Promise.resolve({ json: () => 'response from ' + url }));
+  await authFromCode(t.context.fetch, {
     code: 'mycode',
     clientId: 'myclientid',
     clientSecret: 'myclientsecret',

@@ -4,115 +4,93 @@ import sinon from 'sinon';
 import { handleAuthorizationCodeGrant } from './handle-authorization-code-grant';
 
 /**
- * Fake implementation of fetch
- * Always resolves
- * @returns Empty fake response
+ * Helper to create requests for testing
+ * @param {Object} query Extra data to add to the request query
+ * @param {Object} session Extra data to add to the request session
+ * @returns A minimal mock request object
  */
-const fetchSucceeds =
-  () => Promise.resolve({ json: () => ({
-    access_token: 'asdf12345',
-    expires_in: 5000
-  })});
+const getRequest = (query = {}, session = {}) => ({
+  log: {
+    debug: sinon.spy(),
+    error: sinon.spy(),
+  },
+  query: { ...query },
+  session: { ...session },
+});
 
-/**
- * Fake fetch that succeeds but with an oauth error
- * @returns Fake oauth error response
- */
-const fetchSucceedsWithOauthError =
-  () => Promise.resolve({ json: () => ({
-    error: 'bad auth on purpose!'
-  })});
-
-const fakeSession = { state: 'some-nonce' };
-const nextSpy = sinon.spy();
-
-test.before(async () => {
-  const newTokenRequest = {
-    log: { debug: sinon.spy(), error: sinon.spy() },
-    session: fakeSession,
-    query: { code: 'abc456', state: encodeURIComponent('some-nonce') },
-  };
+test.before(async t => {
+  t.context.request = getRequest(
+    { code: 'abc456', state: encodeURIComponent('some-nonce')},
+    { state: 'some-nonce' }
+  );
   await handleAuthorizationCodeGrant(
-    fetchSucceeds,
+    // Mock fetch resolves with a fake token
+    () => Promise.resolve({ json: () => ({
+      access_token: 'asdf12345',
+      expires_in: 5000
+    })}),
     {
       clientId: 'my-client-id',
       clientSecret: 'my-client-secret',
       redirectUri: 'http://localhost:53134/auth',
     },
-    newTokenRequest,
+    t.context.request,
     {},
-    nextSpy
+    sinon.spy()
   );
 });
 
 test('adds oauth result and expiry time to session if auth succeeds', t => {
   t.plan(2);
-  t.deepEqual(fakeSession.oauth, {
+  t.deepEqual(t.context.request.session.oauth, {
     access_token: 'asdf12345',
     expires_in: 5000,
   });
-  // Oauth should expire in the future
-  t.assert(fakeSession.oauthExpires > Date.now() / 1000);
+  // OAuth should expire in the future
+  t.assert(t.context.request.session.oauthExpires > Date.now() / 1000);
 });
 
 test('expects a code query param and calls next middleware if none present', async t => {
-  const localNextSpy = sinon.spy();
-  const noCodeNewTokenRequest = {
-    log: { error: sinon.spy(), debug: sinon.spy() },
-    session: {},
-    query: {},
-  };
+  const nextSpy = sinon.spy();
 
-  await handleAuthorizationCodeGrant(sinon.spy(), {}, noCodeNewTokenRequest, {}, localNextSpy);
+  await handleAuthorizationCodeGrant(sinon.spy(), {}, getRequest(), {}, nextSpy);
 
-  const nextSpyCalls = localNextSpy.getCalls();
+  const nextSpyCalls = nextSpy.getCalls();
   t.plan(2);
   t.is(nextSpyCalls.length, 1);
   t.deepEqual(nextSpyCalls[0].args[0], new Error('no code found in query for grant authorization'));
 });
 
 test('expects a state query param and calls next middleware if none present', async t => {
-  const localNextSpy = sinon.spy();
-  const noCodeNewTokenRequest = {
-    log: { error: sinon.spy(), debug: sinon.spy() },
-    session: {},
-    query: { code: 'abc456' },
-  };
+  const nextSpy = sinon.spy();
 
-  await handleAuthorizationCodeGrant(sinon.spy(), {}, noCodeNewTokenRequest, {}, localNextSpy);
+  await handleAuthorizationCodeGrant(sinon.spy(), {}, getRequest({ code: 'abc456' }), {}, nextSpy);
 
-  const nextSpyCalls = localNextSpy.getCalls();
+  const nextSpyCalls = nextSpy.getCalls();
   t.plan(2);
   t.is(nextSpyCalls.length, 1);
   t.deepEqual(nextSpyCalls[0].args[0], new Error('no state found in query for grant authorization'));
 });
 
 test('calls error middleware if possible clickjacking attempt detected', async t => {
-  const localNextSpy = sinon.spy();
-  const newTokenRequest = {
-    log: { error: sinon.spy(), debug: sinon.spy() },
-    session: {
-      state: 'some-nonce'
-    },
-    query: {
-      code: 'abc456',
-      state: encodeURIComponent('a-different-nonce')
-    },
-  };
+  const nextSpy = sinon.spy();
 
   await handleAuthorizationCodeGrant(
-    fetchSucceedsWithOauthError,
+    sinon.spy(),
     {
       clientId: 'my-client-id',
       clientSecret: 'my-client-secret',
       redirectUri: 'http://localhost:53134/auth'
     },
-    newTokenRequest,
+    getRequest(
+      { code: 'abc456', state: encodeURIComponent('a-different-nonce') },
+      { state: 'some-nonce' }
+    ),
     {},
-    localNextSpy
+    nextSpy
   );
 
-  const nextCalls = localNextSpy.getCalls();
+  const nextCalls = nextSpy.getCalls();
   t.plan(2);
   t.is(nextCalls.length, 1);
   t.deepEqual(nextCalls[0].args[0], new Error(`detected possible clickjacking attempt:
@@ -120,19 +98,20 @@ session state: some-nonce does not match oauth query: a-different-nonce`));
 });
 
 test('calls error middleware with caught fetch errors', async t => {
-  const authorizationRequest = {
-    log: { debug: sinon.spy(), error: sinon.spy() },
-    session: { state: 'some-nonce' },
-    query: { code: 'abc456', state: encodeURIComponent('some-nonce') },
-  };
-  const authFailsNextSpy = sinon.spy();
-  const fetchThrows = () => {
-    throw new Error('some-error-in-fetch');
-  };
+  const nextSpy = sinon.spy();
 
-  await handleAuthorizationCodeGrant(fetchThrows, {}, authorizationRequest, {}, authFailsNextSpy);
+  await handleAuthorizationCodeGrant(
+    () => { throw new Error('some-error-in-fetch'); },
+    {},
+    getRequest(
+      { code: 'abc456', state: encodeURIComponent('some-nonce') },
+      { state: 'some-nonce' }
+    ),
+    {},
+    nextSpy
+  );
 
-  const nextCalls = authFailsNextSpy.getCalls();
+  const nextCalls = nextSpy.getCalls();
   t.plan(3);
   t.is(nextCalls.length, 1);
   t.deepEqual(nextCalls[0].args[0], new Error('problem authorizing code'));
@@ -140,17 +119,20 @@ test('calls error middleware with caught fetch errors', async t => {
 });
 
 test('calls error middleware with caught fetch rejections', async t => {
-  const authorizationRequest = {
-    log: { debug: sinon.spy(), error: sinon.spy() },
-    session: { state: 'some-nonce' },
-    query: { code: 'abc456', state: encodeURIComponent('some-nonce') },
-  };
-  const authFailsNextSpy = sinon.spy();
-  const fetchRejects = () => Promise.reject('async-auth-request-error');
+  const nextSpy = sinon.spy();
 
-  await handleAuthorizationCodeGrant(fetchRejects, {}, authorizationRequest, {}, authFailsNextSpy);
+  await handleAuthorizationCodeGrant(
+    () => Promise.reject('async-auth-request-error'),
+    {},
+    getRequest(
+      { code: 'abc456', state: encodeURIComponent('some-nonce') },
+      { state: 'some-nonce' }
+    ),
+    {},
+    nextSpy
+  );
 
-  const nextCalls = authFailsNextSpy.getCalls();
+  const nextCalls = nextSpy.getCalls();
   t.plan(3);
   t.is(nextCalls.length, 1);
   t.deepEqual(nextCalls[0].args[0], new Error('problem authorizing code'));

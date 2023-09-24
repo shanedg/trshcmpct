@@ -4,16 +4,15 @@ import sinon from 'sinon';
 import { handleEndpointNotFound } from './handle-endpoint-not-found';
 
 test('sends 404', t => {
-  const sendSpy = sinon.spy();
-  const fakeRequest = {
+  const request = {
     session: {},
     log: { debug: sinon.spy() },
   };
-  const fakeResponse = { sendStatus: sendSpy };
+  const response = { sendStatus: sinon.spy() };
 
-  handleEndpointNotFound(fakeRequest, fakeResponse);
+  handleEndpointNotFound(request, response);
 
-  const sendCalls = sendSpy.getCalls();
+  const sendCalls = response.sendStatus.getCalls();
   t.plan(2);
   t.is(sendCalls.length, 1);
   t.is(sendCalls[0].args[0], 404);
