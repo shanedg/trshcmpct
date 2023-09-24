@@ -37,6 +37,7 @@ const DelayedLoadingMessage = () => {
 const Home = () => {
   const guildUser = useGuildMemberData();
 
+  // FIXME: if not a guild member, user just sees 'loading...' forever
   if (guildUser) {
     return (
       <>
