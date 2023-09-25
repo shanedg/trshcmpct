@@ -1,16 +1,14 @@
 import { randomBytes } from 'node:crypto';
 
 /**
- * Handler function for rendering the login view
+ * Middleware handler for rendering the login view
  *
- * Express expects handler function signatures with only three parameters
- * where the first parameter is the request object (request, response, next).
+ * Express expects handler function signatures have (at most) three parameters: request, response, next.
  * It's useful to do *partial application* with Function.prototype.bind()
  * to prefill the first argument and support the expected signature.
  * e.g.
  * ```
- * // the returned function no longer expects the first two arguments because they are prefilled
- * const boundHandler = handleRenderLogin.prototype.bind(null, 'app-id', 'http://localhost:53134/auth')
+ * app.use(handleRenderLogin.prototype.bind(null, 'app-id', 'http://localhost:53134/auth'))
  * ```
  * @param {string} clientId Discord application id
  * @param {string} redirectUri Where to redirect with authorization code
@@ -40,9 +38,9 @@ export const handleRenderLogin = (clientId, redirectUri, request, response, next
 
 /**
  * Construct Oauth url for Discord login
- * @param {*} clientId Discord application id
- * @param {*} nonce Unique authorization request state
- * @param {*} redirectUri Where to redirect with authorization code
+ * @param {string} clientId Discord application id
+ * @param {string} nonce Unique authorization request state
+ * @param {string} redirectUri Where to redirect with authorization code
  * @returns Login link
  */
 const buildDiscordLoginLink = (clientId, nonce, redirectUri) => {

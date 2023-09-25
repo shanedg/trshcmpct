@@ -2,10 +2,6 @@ import test from 'ava';
 
 import { AuthenticatedHTMLRouter } from './authenticated-html-router';
 
-/**
- * For the purposes of these tests
- * we *really* only care if configuration options are truthy
- */
 const testConfiguration = {
   htmlDirectory: '/some/absolute/path',
   htmlFilename: 'index.html',

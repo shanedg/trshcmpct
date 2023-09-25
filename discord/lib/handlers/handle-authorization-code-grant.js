@@ -1,24 +1,22 @@
 import { authFromCode } from '../utils/auth-from-code';
 
 /**
- * Handler function for authenticating a new session
+ * Middleware handler for authenticating a new session
  * with the authorization code grant flow:
  * https://discordjs.guide/oauth2/#authorization-code-grant-flow
  *
- * Express expects handler function signatures with only three parameters
- * where the first parameter is the request object (request, response, next).
+ * Express expects handler function signatures have (at most) three parameters: request, response, next.
  * It's useful to do *partial application* with Function.prototype.bind()
  * to prefill the first two arguments and support the expected signature.
  * e.g.
  * ```
- * // the returned function no longer expects the first two arguments because they are prefilled
- * const boundHandler = handleAuthorizationCodeGrant.prototype.bind(null, fetch, configData)
+ * app.use(handleAuthorizationCodeGrant.prototype.bind(null, fetch, configuration))
  * ```
- * @param {Function} fetch Fetch implementation
- * @param {Object} config Required auth data
- * @param {string} config.clientId Discord application id
- * @param {string} config.clientSecret Discord client secret
- * @param {string} config.redirectUri Application authorization url
+ * @param {Function} fetch
+ * @param {Object} configuration
+ * @param {string} configuration.clientId Discord application id
+ * @param {string} configuration.clientSecret Discord client secret
+ * @param {string} configuration.redirectUri Application authorization url
  * @param {express.Request} request
  * @param {express.Response} _response
  * @param {express.NextFunction} next

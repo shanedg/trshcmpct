@@ -3,26 +3,19 @@ import sinon from 'sinon';
 
 import { handleRenderLogin } from './handle-render-login';
 
-const renderSpy = sinon.spy();
-const sendSpy = sinon.spy();
-const errorSpy = sinon.spy();
-const debugSpy = sinon.spy();
-const nextSpy = sinon.spy();
-const responseWithSpies = { render: renderSpy, send: sendSpy };
-
 test.before(t => {
-  const requestWithSpies = {
-    log: { error: errorSpy, debug: debugSpy },
+  t.context.request = {
+    log: { error: sinon.spy(), debug: sinon.spy() },
     session: {},
     query: {},
   };
-  t.context.renderLogin = handleRenderLogin;
-  t.context.request = requestWithSpies;
-  handleRenderLogin('my-client-id', 'http://localhost:8080', requestWithSpies, responseWithSpies, nextSpy);
+  t.context.response = { render: sinon.spy(), send: sinon.spy() };
+  t.context.next = sinon.spy();
+  handleRenderLogin('my-client-id', 'http://localhost:8080', t.context.request, t.context.response, t.context.next);
 });
 
 test('renders login template with login link', t => {
-  const renderCalls = renderSpy.getCalls();
+  const renderCalls = t.context.response.render.getCalls();
   t.plan(11);
   t.is(renderCalls.length, 1);
   t.is(renderCalls[0].args[0], 'login');
@@ -50,9 +43,8 @@ test('adds state to the request session', t => {
 });
 
 test('calls next middleware if already logged in', t => {
-  const localRenderSpy = sinon.spy();
-  const localNextSpy = sinon.spy();
-  const localResponseWithSpies = { render: localRenderSpy };
+  const nextSpy = sinon.spy();
+  const response = { render: sinon.spy() };
   const ninetySecondsFromNow = (Date.now() / 1000) + 90;
   const loggedInRequest = {
     session: {
@@ -62,10 +54,10 @@ test('calls next middleware if already logged in', t => {
     query: {},
   };
 
-  t.context.renderLogin('my-client-id', 'http://localhost:8080', loggedInRequest, localResponseWithSpies, localNextSpy);
+  handleRenderLogin('my-client-id', 'http://localhost:8080', loggedInRequest, response, nextSpy);
 
-  const renderCalls = localRenderSpy.getCalls();
-  const nextCalls = localNextSpy.getCalls();
+  const renderCalls = response.render.getCalls();
+  const nextCalls = nextSpy.getCalls();
   t.plan(2);
   t.is(renderCalls.length, 0);
   t.is(nextCalls.length, 1);

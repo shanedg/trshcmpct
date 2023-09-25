@@ -3,15 +3,27 @@ import sinon from 'sinon';
 
 import { requireAuthentication } from './require-authentication';
 
+/**
+ * Helper to create requests for testing
+ * @param {Object | undefined} session Extra data to add to the request session
+ * @returns A minimal mock request object
+ */
+const getRequest = (session = {}) => ({
+  log: {
+    debug: sinon.spy(),
+  },
+  session: {
+    ...session,
+  },
+});
+
 test('sends 401 if not authenticated', async t => {
-  const sendStatusSpy = sinon.spy();
   const nextSpy = sinon.spy();
-  const fakeRequestWithEmptySession = { session: {} };
-  const fakeResponse = { sendStatus: sendStatusSpy };
+  const response = { sendStatus: sinon.spy() };
 
-  await requireAuthentication(fakeRequestWithEmptySession, fakeResponse, nextSpy);
+  await requireAuthentication(getRequest(), response, nextSpy);
 
-  const sendCalls = sendStatusSpy.getCalls();
+  const sendCalls = response.sendStatus.getCalls();
   t.plan(2);
   t.is(sendCalls.length, 1);
   t.is(sendCalls[0].args[0], 401);
@@ -19,13 +31,11 @@ test('sends 401 if not authenticated', async t => {
 
 test('calls next middleware if authenticated', async t => {
   const nextSpy = sinon.spy();
-  const fakeRequestWithAuthenticatedSession = {
-    session: {
-      oauth: { access_token: 'some-access-token' }
-    },
-  };
+  const authenticatedRequest = getRequest({
+    oauth: { access_token: 'some-access-token' }
+  });
 
-  await requireAuthentication(fakeRequestWithAuthenticatedSession, {}, nextSpy);
+  await requireAuthentication(authenticatedRequest, {}, nextSpy);
 
   const nextCalls = nextSpy.getCalls();
   t.plan(1);

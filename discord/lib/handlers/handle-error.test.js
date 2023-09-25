@@ -3,85 +3,73 @@ import sinon from 'sinon';
 
 import { handleError } from './handle-error';
 
-const debugSpy = sinon.spy();
-const errorSpy = sinon.spy();
-const nextSpy = sinon.spy();
-const sendSpy = sinon.spy();
-
-const statusSpy = sinon.spy(() => ({
-  // return send for chaining
-  send: sendSpy
-}));
-
-const requestWithSpies = {
+/**
+ * Helper to create requests for testing
+ * @returns A minimal request object
+ */
+const getRequest = () => ({
   log: {
-    error: errorSpy,
-    debug: debugSpy,
+    debug: sinon.spy(),
+    error: sinon.spy(),
   },
-};
-
-const renderSpy = sinon.spy((template, locals, callback) => {
-  callback(null, '<some-fake-html>');
 });
 
-const errorResponse = {
-  render: renderSpy,
-  send: sendSpy,
-  status: statusSpy,
-};
-
-test.before(() => {
-  handleError(new Error('caught-error'), requestWithSpies, errorResponse, nextSpy);
+test.before(t => {
+  const sendSpy = sinon.spy();
+  t.context.response = {
+    render: sinon.spy((_template, _locals, callback) => {
+      callback(null, '<some-fake-html>');
+    }),
+    send: sendSpy,
+    status: sinon.spy(() => ({
+      // return with send for chaining
+      send: sendSpy
+    })),
+  };
+  t.context.request = getRequest();
+  handleError(new Error('caught-error'), t.context.request, t.context.response, sinon.spy());
 });
 
 test('logs the original error', t => {
-  const errorCalls = errorSpy.getCalls();
+  const errorCalls = t.context.request.log.error.getCalls();
   t.plan(2);
   t.is(errorCalls.length, 1);
   t.deepEqual(errorCalls[0].args[0], new Error('caught-error'));
 });
 
 test('sets http status to 500', t => {
-  const statusCalls = statusSpy.getCalls();
+  const statusCalls = t.context.response.status.getCalls();
   t.plan(2);
   t.is(statusCalls.length, 1);
   t.is(statusCalls[0].args[0], 500);
 });
 
 test('renders the error template', t => {
-  const renderCalls = renderSpy.getCalls();
+  const renderCalls = t.context.response.render.getCalls();
   t.plan(4);
   t.is(renderCalls.length, 1);
   t.is(renderCalls[0].args[0], 'error');
 
-  const sendCalls = sendSpy.getCalls();
+  const sendCalls = t.context.response.send.getCalls();
   t.is(sendCalls.length, 1);
   t.is(sendCalls[0].args[0], '<some-fake-html>');
 });
 
 test('defers to default error handler for any error encountered rendering the template', t => {
-  const caughtError = new Error('caught-error');
-  const renderError = new Error('render-error');
-  const badRenderSpy = sinon.spy((template, locals, callback) => {
-    callback(renderError, null);
-  });
-  const badResponseWithSpies = {
-    render: badRenderSpy,
-    send: sinon.spy(),
+  const sendSpy = sinon.spy();
+  const response = {
+    render: sinon.spy((_template, _locals, callback) => {
+      callback(new Error('render-error'), null);
+    }),
+    send: sendSpy,
     status: sinon.spy(() => ({
-      // return send for chaining
-      send: sinon.spy()
+      // return with send for chaining
+      send: sendSpy
     })),
-  };
-  const requestWithErrorSpy = {
-    log: {
-      error: sinon.spy(),
-      debug: sinon.spy(),
-    },
   };
   const nextSpy = sinon.spy();
 
-  handleError(caughtError, requestWithErrorSpy, badResponseWithSpies, nextSpy);
+  handleError(new Error('caught-error'), getRequest(), response, nextSpy);
 
   const nextCalls = nextSpy.getCalls();
   t.plan(3);
@@ -91,14 +79,7 @@ test('defers to default error handler for any error encountered rendering the te
 });
 
 test('defers to default error handler if headers have already been sent by the time an error is caught', t => {
-  const errorCaughtAfterHeadersSent = new Error('error-caught-after-headers-sent');
-  const mockRequest = {
-    log: {
-      error: sinon.spy(),
-      debug: sinon.spy(),
-    },
-  };
-  const mockResponseWithHeadersSent = {
+  const responseWithHeadersSent = {
     headersSent: true,
     render: sinon.spy(),
     send: sinon.spy(),
@@ -106,7 +87,7 @@ test('defers to default error handler if headers have already been sent by the t
   };
   const nextSpy = sinon.spy();
 
-  handleError(errorCaughtAfterHeadersSent, mockRequest, mockResponseWithHeadersSent, nextSpy);
+  handleError(new Error('error-caught-after-headers-sent'), getRequest(), responseWithHeadersSent, nextSpy);
 
   const nextCalls = nextSpy.getCalls();
   t.plan(2);
