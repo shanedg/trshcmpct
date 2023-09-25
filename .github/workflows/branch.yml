@@ -26,11 +26,11 @@ jobs:
       env:
         AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
         AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-        ENVIRONMENT: ${{ secrets.ENVIRONMENT }}
+        ENVIRONMENT: ${{ vars.ENVIRONMENT }}
     - run: node common/scripts/install-run-rush.js lint
     - run: node common/scripts/install-run-rush.js lint:md
     - run: node common/scripts/install-run-rush.js test
     - run: node common/scripts/install-run-rush.js test:cypress --verbose
     - run: node common/scripts/install-run-rush.js deploy --create-archive deploy.zip
-    - run: (cd deploy && npm run upload ${{ secrets.ENVIRONMENT }})
-    - run: (cd deploy && npm start ${{ secrets.ENVIRONMENT }})
+    - run: (cd deploy && npm run upload ${{ vars.ENVIRONMENT }})
+    - run: (cd deploy && npm start ${{ vars.ENVIRONMENT }})
