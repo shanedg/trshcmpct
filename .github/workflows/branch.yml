@@ -1,36 +1,274 @@
 name: GitHub Actions CI (Branch)
-
 on:
   pull_request:
     branches: [ "main" ]
+  push:
+    branches: [ "dev-pipeline" ]
+
+# TODO: what version of node are we getting and why? rush.json? actions default?
 
 jobs:
-  build-and-test:
+  install:
     runs-on: ubuntu-latest
-    environment: 
-      name: staging
-      url: https://www-stage.trshcmpctr.com
     steps:
-    - uses: actions/checkout@v3
-    - run: node common/scripts/install-run-rush.js install
-    - uses: docker://node:18.16.1
-    - run: node common/scripts/install-run-rush.js build
-    - run: (cd discord && ./client_config_ci.sh)
+    - uses: actions/checkout@v4
+
+    - name: Restore Cache
+      id: restore-cache
+      uses: actions/cache/restore@v4
+      with:
+        path: |
+          ~/.cache/Cypress
+          common/temp
+          */.rush/temp
+          */node_modules
+        key: ${{ runner.os }}-${{ hashFiles('common/config/rush/repo-state.json') }}
+        # Only need a cache hit or miss,
+        # cached dependencies aren't used until following jobs
+        lookup-only: true
+
+    - name: Install
+      if: steps.restore-cache.outputs.cache-hit != 'true'
+      run: node common/scripts/install-run-rush.js install
+
+    - name: Save Cache
+      id: save-cache
+      uses: actions/cache/save@v4
+      if: steps.restore-cache.outputs.cache-hit != 'true'
+      with:
+        path: |
+          ~/.cache/Cypress
+          common/temp
+          */.rush/temp
+          */node_modules
+        key: ${{ steps.restore-cache.outputs.cache-primary-key }}
+
+  build:
+    runs-on: ubuntu-latest
+    needs: install
+    steps:
+    - uses: actions/checkout@v4
+
+    - name: Restore Build Cache
+      id: restore-build-cache
+      uses: actions/cache/restore@v4
+      with:
+        path: |
+          ~/.cache/Cypress
+          common/temp
+          */.rush/temp
+          */node_modules
+          */dist
+        key: ${{ runner.os }}-${{ hashFiles('common/config/rush/repo-state.json') }}-build
+        # Only need a cache hit or miss,
+        # cached dependencies aren't used until following jobs
+        lookup-only: true
+
+    - name: Restore Dependencies From Cache
+      id: restore-cache
+      uses: actions/cache/restore@v4
+      if: steps.restore-build-cache.outputs.cache-hit != 'true'
+      with:
+        path: |
+          ~/.cache/Cypress
+          common/temp
+          */.rush/temp
+          */node_modules
+        key: ${{ runner.os }}-${{ hashFiles('common/config/rush/repo-state.json') }}
+        fail-on-cache-miss: true
+
+    - name: Build
+      if: steps.restore-build-cache.outputs.cache-hit != 'true'
+      run: node common/scripts/install-run-rush.js build
+
+    - name: Save Build Cache
+      id: save-cache
+      uses: actions/cache/save@v4
+      if: steps.restore-build-cache.outputs.cache-hit != 'true'
+      with:
+        path: |
+          ~/.cache/Cypress
+          common/temp
+          */.rush/temp
+          */node_modules
+          */dist
+        key: ${{ steps.restore-build-cache.outputs.cache-primary-key }}
+
+  lint:
+    runs-on: ubuntu-latest
+    environment:
+      name: staging
+    needs: [install, build]
+    steps:
+    - uses: actions/checkout@v4
+
+    - name: Restore Build Cache
+      id: restore-build-cache
+      uses: actions/cache/restore@v4
+      with:
+        path: |
+          ~/.cache/Cypress
+          common/temp
+          */.rush/temp
+          */node_modules
+          */dist
+        key: ${{ runner.os }}-${{ hashFiles('common/config/rush/repo-state.json') }}-build
+        fail-on-cache-miss: true
+
+    # TODO: dedupe 1
+    - name: Configure Discord Secrets
+      run: (cd discord && ./client_config_ci.sh)
       env:
         DISCORD_CLIENT_ID: ${{ secrets.DISCORD_CLIENT_ID }}
         DISCORD_CLIENT_SECRET: ${{ secrets.DISCORD_CLIENT_SECRET }}
         DISCORD_GUILD_ID: ${{ secrets.DISCORD_GUILD_ID }}
         DISCORD_SESSION_SECRET: ${{ secrets.DISCORD_SESSION_SECRET }}
         DISCORD_REDIRECT_URI: ${{ secrets.DISCORD_REDIRECT_URI }}
-    - run: (cd deploy && ./client_config_ci.sh)
+
+    # TODO: dedupe 2
+    - name: Configure Deploy Secrets
+      run: (cd deploy && ./client_config_ci.sh)
       env:
         AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
         AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
         ENVIRONMENT: ${{ vars.ENVIRONMENT }}
-    - run: node common/scripts/install-run-rush.js lint
-    - run: node common/scripts/install-run-rush.js lint:md
-    - run: node common/scripts/install-run-rush.js test
-    - run: node common/scripts/install-run-rush.js test:cypress --verbose
-    - run: node common/scripts/install-run-rush.js deploy --create-archive deploy.zip
-    - run: (cd deploy && npm run upload ${{ vars.ENVIRONMENT }})
-    - run: (cd deploy && npm start ${{ vars.ENVIRONMENT }})
+
+    - name: Lint JavaScript
+      run: node common/scripts/install-run-rush.js lint
+
+    - name: Lint Markdown
+      run: node common/scripts/install-run-rush.js lint:md
+
+  unit-test:
+    runs-on: ubuntu-latest
+    environment:
+      name: staging
+    needs: [install, build]
+    steps:
+    - uses: actions/checkout@v4
+
+    - name: Restore Build Cache
+      id: restore-build-cache
+      uses: actions/cache/restore@v4
+      with:
+        path: |
+          ~/.cache/Cypress
+          common/temp
+          */.rush/temp
+          */node_modules
+          */dist
+        key: ${{ runner.os }}-${{ hashFiles('common/config/rush/repo-state.json') }}-build
+        fail-on-cache-miss: true
+
+    # TODO: dedupe 1
+    - name: Configure Discord Secrets
+      run: (cd discord && ./client_config_ci.sh)
+      env:
+        DISCORD_CLIENT_ID: ${{ secrets.DISCORD_CLIENT_ID }}
+        DISCORD_CLIENT_SECRET: ${{ secrets.DISCORD_CLIENT_SECRET }}
+        DISCORD_GUILD_ID: ${{ secrets.DISCORD_GUILD_ID }}
+        DISCORD_SESSION_SECRET: ${{ secrets.DISCORD_SESSION_SECRET }}
+        DISCORD_REDIRECT_URI: ${{ secrets.DISCORD_REDIRECT_URI }}
+
+    # TODO: dedupe 2
+    - name: Configure Deploy Secrets
+      run: (cd deploy && ./client_config_ci.sh)
+      env:
+        AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+        AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        ENVIRONMENT: ${{ vars.ENVIRONMENT }}
+
+    - name: Unit Tests
+      run: node common/scripts/install-run-rush.js test
+  
+  e2e-test:
+    runs-on: ubuntu-latest
+    environment:
+      name: staging
+    needs: [install, build]
+    steps:
+    - uses: actions/checkout@v4
+
+    - name: Restore Build Cache
+      id: restore-build-cache
+      uses: actions/cache/restore@v4
+      with:
+        path: |
+          ~/.cache/Cypress
+          common/temp
+          */.rush/temp
+          */node_modules
+          */dist
+        key: ${{ runner.os }}-${{ hashFiles('common/config/rush/repo-state.json') }}-build
+        fail-on-cache-miss: true
+
+    # TODO: dedupe 1
+    - name: Configure Discord Secrets
+      run: (cd discord && ./client_config_ci.sh)
+      env:
+        DISCORD_CLIENT_ID: ${{ secrets.DISCORD_CLIENT_ID }}
+        DISCORD_CLIENT_SECRET: ${{ secrets.DISCORD_CLIENT_SECRET }}
+        DISCORD_GUILD_ID: ${{ secrets.DISCORD_GUILD_ID }}
+        DISCORD_SESSION_SECRET: ${{ secrets.DISCORD_SESSION_SECRET }}
+        DISCORD_REDIRECT_URI: ${{ secrets.DISCORD_REDIRECT_URI }}
+
+    # TODO: dedupe 2
+    - name: Configure Deploy Secrets
+      run: (cd deploy && ./client_config_ci.sh)
+      env:
+        AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+        AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        ENVIRONMENT: ${{ vars.ENVIRONMENT }}
+
+    - name: E2E Tests
+      run: node common/scripts/install-run-rush.js test:cypress --verbose
+
+  deploy:
+    runs-on: ubuntu-latest
+    environment:
+      name: staging
+      url: https://www-stage.trshcmpctr.com
+    needs: [install, build, unit-test, e2e-test, lint]
+    steps:
+    - uses: actions/checkout@v4
+
+    - name: Restore Build Cache
+      id: restore-build-cache
+      uses: actions/cache/restore@v4
+      with:
+        path: |
+          ~/.cache/Cypress
+          common/temp
+          */.rush/temp
+          */node_modules
+          */dist
+        key: ${{ runner.os }}-${{ hashFiles('common/config/rush/repo-state.json') }}-build
+        fail-on-cache-miss: true
+
+    # TODO: dedupe 1
+    - name: Configure Discord Secrets
+      run: (cd discord && ./client_config_ci.sh)
+      env:
+        DISCORD_CLIENT_ID: ${{ secrets.DISCORD_CLIENT_ID }}
+        DISCORD_CLIENT_SECRET: ${{ secrets.DISCORD_CLIENT_SECRET }}
+        DISCORD_GUILD_ID: ${{ secrets.DISCORD_GUILD_ID }}
+        DISCORD_SESSION_SECRET: ${{ secrets.DISCORD_SESSION_SECRET }}
+        DISCORD_REDIRECT_URI: ${{ secrets.DISCORD_REDIRECT_URI }}
+
+    # TODO: dedupe 2
+    - name: Configure Deploy Secrets
+      run: (cd deploy && ./client_config_ci.sh)
+      env:
+        AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+        AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        ENVIRONMENT: ${{ vars.ENVIRONMENT }}
+
+    - name: Create Deployment Artifacts
+      run: node common/scripts/install-run-rush.js deploy --create-archive deploy.zip
+
+    - name: Upload Deployment Artifacts
+      run: (cd deploy && npm run upload ${{ vars.ENVIRONMENT }})
+      # TODO: any utility in uploading deploy.zip with actions/upload-artifact? https://github.com/actions/upload-artifact
+
+    - name: Deploy
+      run: (cd deploy && npm start ${{ vars.ENVIRONMENT }})
