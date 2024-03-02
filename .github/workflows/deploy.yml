@@ -1,0 +1,57 @@
+name: Deploy
+
+on:
+  workflow_call:
+    inputs:
+      ENVIRONMENT:
+        required: true
+        type: string
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    environment:
+      name: staging
+      url: https://www-stage.trshcmpctr.com
+    steps:
+    - uses: actions/checkout@v4
+
+    - name: Restore Build Cache
+      id: restore-build-cache
+      uses: actions/cache/restore@v4
+      with:
+        path: |
+          ~/.cache/Cypress
+          common/temp
+          */.rush/temp
+          */node_modules
+          */dist
+        key: ${{ runner.os }}-${{ hashFiles('common/config/rush/repo-state.json') }}-build
+        fail-on-cache-miss: true
+
+    - name: Configure Discord Secrets
+      run: (cd discord && ./client_config_ci.sh)
+      env:
+        DISCORD_CLIENT_ID: ${{ secrets.DISCORD_CLIENT_ID }}
+        DISCORD_CLIENT_SECRET: ${{ secrets.DISCORD_CLIENT_SECRET }}
+        DISCORD_GUILD_ID: ${{ secrets.DISCORD_GUILD_ID }}
+        DISCORD_SESSION_SECRET: ${{ secrets.DISCORD_SESSION_SECRET }}
+        DISCORD_REDIRECT_URI: ${{ secrets.DISCORD_REDIRECT_URI }}
+
+    - name: Configure Deploy Secrets
+      run: (cd deploy && ./client_config_ci.sh)
+      env:
+        AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+        AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        ENVIRONMENT: ${{ vars.ENVIRONMENT }}
+
+    - name: Create Deployment Artifacts
+      run: node common/scripts/install-run-rush.js deploy --create-archive deploy.zip
+
+    - name: Upload Deployment Artifacts
+      # Artifacts are uploaded via aws s3 but could also be done with https://github.com/actions/upload-artifact
+      # Downloading artifacts to new instances is already convenient via aws credentials and cli
+      run: (cd deploy && npm run upload ${{ vars.ENVIRONMENT }})
+
+    - name: Deploy
+      run: (cd deploy && npm start ${{ vars.ENVIRONMENT }})

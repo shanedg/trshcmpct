@@ -1,53 +1,57 @@
-name: GitHub Actions CI (Main)
+name: GitHub Actions CI (Staging Deploy)
 
 on:
-  push:
+  pull_request:
     branches:
     - main
+    types:
+    - ready_for_review
+  push:
+    branches:
+    - 'stage/**'
 
 jobs:
-  main-install:
+  stage-install:
     uses: ./.github/workflows/install.yml
 
-  main-build:
-    needs:
-    - main-install
+  stage-build:
+    needs: stage-install
     uses: ./.github/workflows/build.yml
 
-  main-lint:
+  stage-lint:
     needs:
-    - main-install
-    - main-build
+    - stage-install
+    - stage-build
     uses: ./.github/workflows/lint.yml
     with:
       ENVIRONMENT: ${{ vars.ENVIRONMENT }}
     secrets: inherit
 
-  main-unit-test:
+  stage-unit-test:
     needs:
-    - main-install
-    - main-build
+    - stage-install
+    - stage-build
     uses: ./.github/workflows/unit-test.yml
     with:
       ENVIRONMENT: ${{ vars.ENVIRONMENT }}
     secrets: inherit
 
-  main-e2e-test:
+  stage-e2e-test:
     needs:
-    - main-install
-    - main-build
+    - stage-install
+    - stage-build
     uses: ./.github/workflows/e2e-test.yml
     with:
       ENVIRONMENT: ${{ vars.ENVIRONMENT }}
     secrets: inherit
 
-  main-deploy:
+  stage-deploy:
     needs:
-    - main-install
-    - main-build
-    - main-unit-test
-    - main-e2e-test
-    - main-lint
+    - stage-install
+    - stage-build
+    - stage-unit-test
+    - stage-e2e-test
+    - stage-lint
     uses: ./.github/workflows/deploy.yml
     with:
       ENVIRONMENT: ${{ vars.ENVIRONMENT }}
