@@ -2,10 +2,14 @@ name: GitHub Actions CI (Branch)
 on:
   pull_request:
     branches: [ "main" ]
+  # TODO: FIXME: how to trigger on push to all branches?
   push:
     branches: [ "dev-pipeline" ]
 
 # TODO: what version of node are we getting and why? rush.json? actions default?
+
+# TODO: what jobs should be broken out into reusiable workflows?
+# https://docs.github.com/en/actions/using-workflows/reusing-workflows#calling-a-reusable-workflow
 
 jobs:
   install:
@@ -223,6 +227,7 @@ jobs:
     - name: E2E Tests
       run: node common/scripts/install-run-rush.js test:cypress --verbose
 
+  # TODO: FIXME: deploy should only run on merge to main or push to stage/** branches
   deploy:
     runs-on: ubuntu-latest
     environment:
