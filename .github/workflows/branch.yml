@@ -17,55 +17,8 @@ jobs:
     uses: ./.github/workflows/install.yml
 
   build:
-    runs-on: ubuntu-latest
     needs: install
-    steps:
-    - uses: actions/checkout@v4
-
-    - name: Restore Build Cache
-      id: restore-build-cache
-      uses: actions/cache/restore@v4
-      with:
-        path: |
-          ~/.cache/Cypress
-          common/temp
-          */.rush/temp
-          */node_modules
-          */dist
-        key: ${{ runner.os }}-${{ hashFiles('common/config/rush/repo-state.json') }}-build
-        # Only need a cache hit or miss,
-        # cached dependencies aren't used until following jobs
-        lookup-only: true
-
-    - name: Restore Dependencies From Cache
-      id: restore-cache
-      uses: actions/cache/restore@v4
-      if: steps.restore-build-cache.outputs.cache-hit != 'true'
-      with:
-        path: |
-          ~/.cache/Cypress
-          common/temp
-          */.rush/temp
-          */node_modules
-        key: ${{ runner.os }}-${{ hashFiles('common/config/rush/repo-state.json') }}
-        fail-on-cache-miss: true
-
-    - name: Build
-      if: steps.restore-build-cache.outputs.cache-hit != 'true'
-      run: node common/scripts/install-run-rush.js build
-
-    - name: Save Build Cache
-      id: save-cache
-      uses: actions/cache/save@v4
-      if: steps.restore-build-cache.outputs.cache-hit != 'true'
-      with:
-        path: |
-          ~/.cache/Cypress
-          common/temp
-          */.rush/temp
-          */node_modules
-          */dist
-        key: ${{ steps.restore-build-cache.outputs.cache-primary-key }}
+    uses: ./.github/workflows/build.yml
 
   lint:
     runs-on: ubuntu-latest
