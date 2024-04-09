@@ -1,4 +1,5 @@
 name: GitHub Actions CI (Branch)
+
 on:
   pull_request:
     branches: [ "main" ]
@@ -13,39 +14,7 @@ on:
 
 jobs:
   install:
-    runs-on: ubuntu-latest
-    steps:
-    - uses: actions/checkout@v4
-
-    - name: Restore Cache
-      id: restore-cache
-      uses: actions/cache/restore@v4
-      with:
-        path: |
-          ~/.cache/Cypress
-          common/temp
-          */.rush/temp
-          */node_modules
-        key: ${{ runner.os }}-${{ hashFiles('common/config/rush/repo-state.json') }}
-        # Only need a cache hit or miss,
-        # cached dependencies aren't used until following jobs
-        lookup-only: true
-
-    - name: Install
-      if: steps.restore-cache.outputs.cache-hit != 'true'
-      run: node common/scripts/install-run-rush.js install
-
-    - name: Save Cache
-      id: save-cache
-      uses: actions/cache/save@v4
-      if: steps.restore-cache.outputs.cache-hit != 'true'
-      with:
-        path: |
-          ~/.cache/Cypress
-          common/temp
-          */.rush/temp
-          */node_modules
-        key: ${{ steps.restore-cache.outputs.cache-primary-key }}
+    uses: ./.github/workflows/install.yml
 
   build:
     runs-on: ubuntu-latest
