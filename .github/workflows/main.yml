@@ -11,8 +11,6 @@ on:
 jobs:
   main-branch:
     uses: ./.github/workflows/branch.yml
-    with:
-      ENVIRONMENT: ${{ vars.ENVIRONMENT }}
     secrets: inherit
 
   main-deploy:
@@ -20,5 +18,6 @@ jobs:
     - main-branch
     uses: ./.github/workflows/deploy.yml
     with:
-      ENVIRONMENT: ${{ vars.ENVIRONMENT }}
+      environment: production
+      url: https://www.trshcmpctr.com
     secrets: inherit

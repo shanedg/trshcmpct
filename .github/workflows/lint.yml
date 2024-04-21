@@ -2,16 +2,10 @@ name: Lint
 
 on:
   workflow_call:
-    inputs:
-      ENVIRONMENT:
-        required: true
-        type: string
 
 jobs:
   lint:
     runs-on: ubuntu-latest
-    environment:
-      name: staging
     steps:
     - uses: actions/checkout@v4
 
@@ -31,18 +25,20 @@ jobs:
     - name: Configure Discord Secrets
       run: (cd discord && ./client_config_ci.sh)
       env:
-        DISCORD_CLIENT_ID: ${{ secrets.DISCORD_CLIENT_ID }}
-        DISCORD_CLIENT_SECRET: ${{ secrets.DISCORD_CLIENT_SECRET }}
-        DISCORD_GUILD_ID: ${{ secrets.DISCORD_GUILD_ID }}
-        DISCORD_SESSION_SECRET: ${{ secrets.DISCORD_SESSION_SECRET }}
-        DISCORD_REDIRECT_URI: ${{ secrets.DISCORD_REDIRECT_URI }}
+        # Any values will do, discord application does not run during this job
+        DISCORD_CLIENT_ID: fake_discord_client_id
+        DISCORD_CLIENT_SECRET: fake_discord_client_secret
+        DISCORD_GUILD_ID: fake_guild_id
+        DISCORD_SESSION_SECRET: fake_discord_session_secret
+        DISCORD_REDIRECT_URI: fake_discord_redirect_uri
 
     - name: Configure Deploy Secrets
       run: (cd deploy && ./client_config_ci.sh)
       env:
-        AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-        AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-        ENVIRONMENT: ${{ vars.ENVIRONMENT }}
+        # Any values will do, deploy application does not run during this job
+        AWS_ACCESS_KEY_ID: fake_aws_access_key_id
+        AWS_SECRET_ACCESS_KEY: fake_aws_secret_access_key
+        ENVIRONMENT: fake_environment
 
     - name: Lint JavaScript
       run: node common/scripts/install-run-rush.js lint
