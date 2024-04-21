@@ -1,11 +1,12 @@
 name: GitHub Actions CI (Branch)
 
+# TODO: FIXME: can we run on all pushes except those associated with a pull request to main (staging.yml)?
+
 on:
-  pull_request:
-    branches: [ "main" ]
-  # TODO: FIXME: how to trigger on push to all branches?
   push:
-    branches: [ "dev-pipeline" ]
+    branches-ignore:
+    - main
+    - 'stage/**'
 
 # TODO: what version of node are we getting and why? rush.json? actions default?
 
@@ -37,14 +38,6 @@ jobs:
   e2e-test:
     needs: [install, build]
     uses: ./.github/workflows/e2e-test.yml
-    with:
-      ENVIRONMENT: ${{ vars.ENVIRONMENT }}
-    secrets: inherit
-
-  # TODO: FIXME: deploy should only run on merge to main or push to stage/** branches
-  deploy:
-    needs: [install, build, unit-test, e2e-test, lint]
-    uses: ./.github/workflows/deploy.yml
     with:
       ENVIRONMENT: ${{ vars.ENVIRONMENT }}
     secrets: inherit
