@@ -5,32 +5,37 @@ on:
     branches: [ "main" ]
 
 jobs:
-  build-and-test:
-    runs-on: ubuntu-latest
-    environment: 
-      name: production
-      url: https://www.trshcmpctr.com
-    steps:
-    - uses: actions/checkout@v3
-    - run: node common/scripts/install-run-rush.js install
-    - uses: docker://node:18.16.1
-    - run: node common/scripts/install-run-rush.js build
-    - run: (cd discord && ./client_config_ci.sh)
-      env:
-        DISCORD_CLIENT_ID: ${{ secrets.DISCORD_CLIENT_ID }}
-        DISCORD_CLIENT_SECRET: ${{ secrets.DISCORD_CLIENT_SECRET }}
-        DISCORD_GUILD_ID: ${{ secrets.DISCORD_GUILD_ID }}
-        DISCORD_SESSION_SECRET: ${{ secrets.DISCORD_SESSION_SECRET }}
-        DISCORD_REDIRECT_URI: ${{ secrets.DISCORD_REDIRECT_URI }}
-    - run: (cd deploy && ./client_config_ci.sh)
-      env:
-        AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-        AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-        ENVIRONMENT: ${{ vars.ENVIRONMENT }}
-    - run: node common/scripts/install-run-rush.js lint
-    - run: node common/scripts/install-run-rush.js lint:md
-    - run: node common/scripts/install-run-rush.js test
-    - run: node common/scripts/install-run-rush.js test:cypress --verbose
-    - run: node common/scripts/install-run-rush.js deploy --create-archive deploy.zip
-    - run: (cd deploy && npm run upload ${{ vars.ENVIRONMENT }})
-    - run: (cd deploy && npm start ${{ vars.ENVIRONMENT }})
+  main-install:
+    uses: ./.github/workflows/install.yml
+
+  main-build:
+    needs: main-install
+    uses: ./.github/workflows/build.yml
+
+  main-lint:
+    needs: [main-install, main-build]
+    uses: ./.github/workflows/lint.yml
+    with:
+      ENVIRONMENT: ${{ vars.ENVIRONMENT }}
+    secrets: inherit
+
+  main-unit-test:
+    needs: [main-install, main-build]
+    uses: ./.github/workflows/unit-test.yml
+    with:
+      ENVIRONMENT: ${{ vars.ENVIRONMENT }}
+    secrets: inherit
+
+  main-e2e-test:
+    needs: [main-install, main-build]
+    uses: ./.github/workflows/e2e-test.yml
+    with:
+      ENVIRONMENT: ${{ vars.ENVIRONMENT }}
+    secrets: inherit
+
+  main-deploy:
+    needs: [main-install, main-build, main-unit-test, main-e2e-test, main-lint]
+    uses: ./.github/workflows/deploy.yml
+    with:
+      ENVIRONMENT: ${{ vars.ENVIRONMENT }}
+    secrets: inherit

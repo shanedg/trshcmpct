@@ -6,19 +6,37 @@ on:
     - 'stage/**'
 
 jobs:
-  build-and-deploy:
-    runs-on: ubuntu-latest
-    environment:
-      name: staging
-      url: https://www-stage.trshcmpctr.com
-    steps:
-    - uses: actions/checkout@v3
-    - run: node common/scripts/install-run-rush.js install
-    - uses: docker://node:18.16.1
-    - run: node common/scripts/install-run-rush.js build --to=@trshcmpctr/deploy
-    - run: (cd deploy && ./client_config_ci.sh)
-      env:
-        AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-        AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-        ENVIRONMENT: ${{ vars.ENVIRONMENT }}
-    - run: (cd deploy && npm start ${{ vars.ENVIRONMENT }})
+  stage-install:
+    uses: ./.github/workflows/install.yml
+
+  stage-build:
+    needs: stage-install
+    uses: ./.github/workflows/build.yml
+
+  stage-lint:
+    needs: [stage-install, stage-build]
+    uses: ./.github/workflows/lint.yml
+    with:
+      ENVIRONMENT: ${{ vars.ENVIRONMENT }}
+    secrets: inherit
+
+  stage-unit-test:
+    needs: [stage-install, stage-build]
+    uses: ./.github/workflows/unit-test.yml
+    with:
+      ENVIRONMENT: ${{ vars.ENVIRONMENT }}
+    secrets: inherit
+
+  stage-e2e-test:
+    needs: [stage-install, stage-build]
+    uses: ./.github/workflows/e2e-test.yml
+    with:
+      ENVIRONMENT: ${{ vars.ENVIRONMENT }}
+    secrets: inherit
+
+  stage-deploy:
+    needs: [stage-install, stage-build, stage-unit-test, stage-e2e-test, stage-lint]
+    uses: ./.github/workflows/deploy.yml
+    with:
+      ENVIRONMENT: ${{ vars.ENVIRONMENT }}
+    secrets: inherit
