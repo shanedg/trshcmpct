@@ -1,7 +1,5 @@
 name: GitHub Actions CI (Branch)
 
-# TODO: FIXME: can we run on all pushes except those associated with a pull request to main (staging.yml)?
-
 on:
   push:
     branches-ignore:
