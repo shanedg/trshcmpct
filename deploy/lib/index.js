@@ -112,7 +112,7 @@ const checkInstanceStatusWithDelay = () => new Promise((resolve, reject) => {
   }, attemptDelay);
 });
 
-const maxAttempts = 20;
+const maxAttempts = 100;
 let isReady = false;
 let attempts = 0;
 do {
