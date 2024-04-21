@@ -19,28 +19,39 @@ jobs:
     uses: ./.github/workflows/build.yml
 
   stage-lint:
-    needs: [stage-install, stage-build]
+    needs:
+    - stage-install
+    - stage-build
     uses: ./.github/workflows/lint.yml
     with:
       ENVIRONMENT: ${{ vars.ENVIRONMENT }}
     secrets: inherit
 
   stage-unit-test:
-    needs: [stage-install, stage-build]
+    needs:
+    - stage-install
+    - stage-build
     uses: ./.github/workflows/unit-test.yml
     with:
       ENVIRONMENT: ${{ vars.ENVIRONMENT }}
     secrets: inherit
 
   stage-e2e-test:
-    needs: [stage-install, stage-build]
+    needs:
+    - stage-install
+    - stage-build
     uses: ./.github/workflows/e2e-test.yml
     with:
       ENVIRONMENT: ${{ vars.ENVIRONMENT }}
     secrets: inherit
 
   stage-deploy:
-    needs: [stage-install, stage-build, stage-unit-test, stage-e2e-test, stage-lint]
+    needs:
+    - stage-install
+    - stage-build
+    - stage-unit-test
+    - stage-e2e-test
+    - stage-lint
     uses: ./.github/workflows/deploy.yml
     with:
       ENVIRONMENT: ${{ vars.ENVIRONMENT }}
