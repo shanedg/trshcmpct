@@ -5,6 +5,11 @@ on:
     branches-ignore:
     - main
     - 'stage/**'
+  workflow_call:
+    inputs:
+      ENVIRONMENT:
+        required: true
+        type: string
 
 # TODO: what version of node are we getting and why? rush.json? actions default?
 
