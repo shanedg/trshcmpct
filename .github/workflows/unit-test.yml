@@ -25,7 +25,7 @@ jobs:
           */.rush/temp
           */node_modules
           */dist
-        key: ${{ runner.os }}-${{ hashFiles('common/config/rush/repo-state.json') }}-build
+        key: ${{ runner.os }}-build-${{ hashFiles('common/config/rush/repo-state.json') }}
         fail-on-cache-miss: true
 
     - name: Configure Discord Secrets
