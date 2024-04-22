@@ -15,7 +15,7 @@ import config from './config.json' assert { type: 'json' };
 
 const {
   accessKeyId,
-  amiImageId = 'ami-08a52ddb321b32a8c',
+  amiImageId = 'ami-04e5276ebb8451442',
   ec2InstanceType = 't2.nano',
   // https://docs.aws.amazon.com/sdk-for-javascript/v2/developer-guide/locking-api-versions.html
   ec2ApiVersion = '2016-11-15',
