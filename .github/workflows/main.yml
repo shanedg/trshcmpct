@@ -1,5 +1,8 @@
 name: GitHub Actions CI (Main)
 
+# Run only one deploy to production at a time
+concurrency: production-deploy-gate
+
 on:
   push:
     branches:
