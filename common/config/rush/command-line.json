@@ -15,7 +15,7 @@
       "name": "check-latest-updates",
       "summary": "Upgrade dependencies in all projects to the latest version not already satisfied by the semver range. This includes major versions and is best to run after `check-minor-updates`. You must run `rush update` after.",
       "commandKind": "global",
-      "shellCommand": "node common/scripts/install-run.js npm-check-updates@16.10.15 npm-check-updates --packageFile *{$(common/scripts/get_comma_separated_rush_directories.sh)}/package.json --upgrade --minimal --target latest --reject '@types/node'"
+      "shellCommand": "node common/scripts/install-run.js npm-check-updates@16.10.15 npm-check-updates --packageFile *{$(common/scripts/get_comma_separated_rush_directories.sh)}/package.json --upgrade --minimal --target latest --reject '@types/node,eslint'"
     },
     {
       "name": "check-minor-updates",
