@@ -140,6 +140,8 @@ const getUserDataDomains = environment => {
   }
 
   if (environment === 'production') {
+    // Both hosts must resolve in order for production cert renewal to succeed
+    // TODO: support redirects from apex to www that are compatible with production cert renewal
     return 'domains=trshcmpctr.com,www.trshcmpctr.com';
   }
 
