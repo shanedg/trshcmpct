@@ -7,8 +7,6 @@ on:
     - 'stage/**'
   workflow_call:
 
-# TODO: what version of node are we getting and why? rush.json? actions default?
-
 jobs:
   install:
     uses: ./.github/workflows/install.yml
