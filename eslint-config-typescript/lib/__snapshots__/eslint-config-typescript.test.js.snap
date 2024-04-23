@@ -225,6 +225,8 @@ exports[`eslint-config-typescript calculated config snapshots settings 1`] = `
 {
   "import/extensions": [
     ".ts",
+    ".cts",
+    ".mts",
     ".tsx",
     ".js",
     ".jsx",
@@ -236,6 +238,8 @@ exports[`eslint-config-typescript calculated config snapshots settings 1`] = `
   "import/parsers": {
     "@typescript-eslint/parser": [
       ".ts",
+      ".cts",
+      ".mts",
       ".tsx",
     ],
   },
@@ -243,6 +247,8 @@ exports[`eslint-config-typescript calculated config snapshots settings 1`] = `
     "node": {
       "extensions": [
         ".ts",
+        ".cts",
+        ".mts",
         ".tsx",
         ".js",
         ".jsx",

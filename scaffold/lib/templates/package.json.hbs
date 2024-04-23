@@ -21,15 +21,15 @@
   "scripts": {
     "build": "echo fake build || true",
     "lint": "eslint --report-unused-disable-directives --max-warnings=0 .",
-    "lint:md": "markdownlint-cli2-config 'node_modules/@trshcmpctr/markdownlint-config/.markdownlint-cli2.jsonc' '**/*.md' '#node_modules'",
+    "lint:md": "markdownlint-cli2 --config 'node_modules/@trshcmpctr/markdownlint-config/.markdownlint-cli2.jsonc' '**/*.md' '#node_modules'",
     "test": "true"
   },
   "devDependencies": {
     "@trshcmpctr/eslint-config": "workspace:*",
     "@trshcmpctr/markdownlint-config": "workspace:*",
     "eslint-plugin-eslint-comments": "~3.2.0",
-    "eslint-plugin-import": "~2.27.5",
-    "eslint": "~8.44.0",
-    "markdownlint-cli2": "~0.8.1"
+    "eslint-plugin-import": "~2.29.1",
+    "eslint": "~8.57.0",
+    "markdownlint-cli2": "~0.13.0"
   }
 }
