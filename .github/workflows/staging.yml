@@ -1,0 +1,23 @@
+name: GitHub Actions CI (Staging Deploy)
+
+# Run only one deploy to staging at a time
+concurrency: staging-deploy-gate
+
+on:
+  push:
+    branches:
+    - 'stage/**'
+
+jobs:
+  stage-branch:
+    uses: ./.github/workflows/branch.yml
+    secrets: inherit
+
+  stage-deploy:
+    needs:
+    - stage-branch
+    uses: ./.github/workflows/deploy.yml
+    with:
+      environment: staging
+      url: https://www-stage.trshcmpctr.com
+    secrets: inherit

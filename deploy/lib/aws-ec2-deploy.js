@@ -15,8 +15,8 @@ import config from './config.json' assert { type: 'json' };
 
 const {
   accessKeyId,
-  amiImageId = 'ami-08a52ddb321b32a8c',
-  ec2InstanceType = 't2.nano',
+  amiImageId = 'ami-04e5276ebb8451442',
+  ec2InstanceType = 't2.medium',
   // https://docs.aws.amazon.com/sdk-for-javascript/v2/developer-guide/locking-api-versions.html
   ec2ApiVersion = '2016-11-15',
   ec2Region = 'us-east-1',
@@ -140,6 +140,8 @@ const getUserDataDomains = environment => {
   }
 
   if (environment === 'production') {
+    // Both hosts must resolve in order for production cert renewal to succeed
+    // TODO: support redirects from apex to www that are compatible with production cert renewal
     return 'domains=trshcmpctr.com,www.trshcmpctr.com';
   }
 

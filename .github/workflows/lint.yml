@@ -1,0 +1,47 @@
+name: Lint
+
+on:
+  workflow_call:
+
+jobs:
+  lint:
+    runs-on: ubuntu-22.04
+    steps:
+    - uses: actions/checkout@v4
+
+    - name: Restore Build Cache
+      id: restore-build-cache
+      uses: actions/cache/restore@v4
+      with:
+        path: |
+          ~/.cache/Cypress
+          common/temp
+          */.rush/temp
+          */node_modules
+          */dist
+        key: ${{ runner.os }}-build-${{ hashFiles('common/config/rush/repo-state.json') }}
+        fail-on-cache-miss: true
+
+    - name: Configure Discord Secrets
+      run: (cd discord && ./client_config_ci.sh)
+      env:
+        # Any values will do, discord application does not run during this job
+        DISCORD_CLIENT_ID: fake_discord_client_id
+        DISCORD_CLIENT_SECRET: fake_discord_client_secret
+        DISCORD_GUILD_ID: fake_guild_id
+        DISCORD_SESSION_SECRET: fake_discord_session_secret
+        DISCORD_REDIRECT_URI: fake_discord_redirect_uri
+
+    - name: Configure Deploy Secrets
+      run: (cd deploy && ./client_config_ci.sh)
+      env:
+        # Any values will do, deploy application does not run during this job
+        AWS_ACCESS_KEY_ID: fake_aws_access_key_id
+        AWS_SECRET_ACCESS_KEY: fake_aws_secret_access_key
+        ENVIRONMENT: fake_environment
+
+    - name: Lint JavaScript
+      run: node common/scripts/install-run-rush.js lint
+
+    - name: Lint Markdown
+      run: node common/scripts/install-run-rush.js lint:md
