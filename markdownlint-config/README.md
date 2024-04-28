@@ -29,6 +29,6 @@ Instead, we can point the CLI to the config in this package.
 ```json
 // Example package.json scripts
 "scripts": {
-  "lint:md": "markdownlint-cli2-config 'node_modules/@trshcmpctr/markdownlint-config/.markdownlint-cli2.jsonc' '**/*.md' '#node_modules'",
+  "lint:md": "markdownlint-cli2 --config 'node_modules/@trshcmpctr/markdownlint-config/.markdownlint-cli2.jsonc' '**/*.md' '#node_modules'",
 }
 ```

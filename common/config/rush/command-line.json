@@ -15,13 +15,13 @@
       "name": "check-latest-updates",
       "summary": "Upgrade dependencies in all projects to the latest version not already satisfied by the semver range. This includes major versions and is best to run after `check-minor-updates`. You must run `rush update` after.",
       "commandKind": "global",
-      "shellCommand": "node common/scripts/install-run.js npm-check-updates@16.10.15 npm-check-updates --packageFile *{$(common/scripts/get_comma_separated_rush_directories.sh)}/package.json --upgrade --minimal --target latest --reject '@types/node'"
+      "shellCommand": "node common/scripts/install-run.js npm-check-updates@16.14.18 npm-check-updates --packageFile *{$(common/scripts/get_comma_separated_rush_directories.sh)}/package.json --upgrade --minimal --dep 'prod','dev','optional','packageManager','peer' --target latest --reject '@types/node,eslint'"
     },
     {
       "name": "check-minor-updates",
       "summary": "Upgrade dependencies in all projects to the latest minor version not already satisfied by semver range. It's best to run after `rush update --full`. You must run `rush update` after.",
       "commandKind": "global",
-      "shellCommand": "node common/scripts/install-run.js npm-check-updates@16.10.15 npm-check-updates --packageFile *{$(common/scripts/get_comma_separated_rush_directories.sh)}/package.json --upgrade --minimal --target minor"
+      "shellCommand": "node common/scripts/install-run.js npm-check-updates@16.14.18 npm-check-updates --packageFile *{$(common/scripts/get_comma_separated_rush_directories.sh)}/package.json --upgrade --minimal --dep 'prod','dev','optional','packageManager','peer' --target minor"
     },
     {
       "name": "commitlint",
@@ -55,7 +55,7 @@
       "name": "scaffold",
       "summary": "Add a new project.",
       "commandKind": "global",
-      "shellCommand": "node common/scripts/install-run.js plop@3.1.2 plop --plopfile scaffold/lib/index.js"
+      "shellCommand": "node common/scripts/install-run.js plop@4.0.1 plop --plopfile scaffold/lib/index.js"
     },
     {
       "name": "test",
