@@ -20,7 +20,7 @@
   "license": "UNLICENSED",
   "scripts": {
     "build": "echo fake build || true",
-    "lint:md": "markdownlint-cli2 --config '.markdownlint-cli2.jsonc' '**/*.md' '#node_modules'",
+    "lint:md": "markdownlint-cli2 --config .markdownlint-cli2.jsonc",
     "test": "true"
   },
   "devDependencies": {

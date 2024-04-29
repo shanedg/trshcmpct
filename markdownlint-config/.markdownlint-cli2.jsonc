@@ -3,5 +3,11 @@
   "config": {
     // Make rule consistent with defaults for the VSCode Extension.
     "line-length": false
-  }
+  },
+  "globs": [
+    "**/*.md"
+  ],
+  "ignores": [
+    "node_modules"
+  ]
 }

@@ -35,7 +35,7 @@
     },
     {
       "name": "lint:md",
-      "summary": "Lint Markdown in all projects",
+      "summary": "Lint markdown in all projects",
       "commandKind": "bulk",
       "enableParallelism": true
     },
