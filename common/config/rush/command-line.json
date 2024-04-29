@@ -13,16 +13,14 @@
   "commands": [
     {
       "name": "commitlint",
-      "summary": "Used by the commit-msg Git hook. This command invokes commitlint to lint commit messages.",
+      "summary": "Used by the commit-msg Git hook. This command invokes @commitlint/cli to lint commit messages.",
       "commandKind": "global",
       "autoinstallerName": "rush-commitlint",
-      // Because I can never remember all the types:
-      // https://github.com/conventional-changelog/commitlint/blob/master/%40commitlint/config-conventional/README.md
       "shellCommand": "commitlint --extends=@commitlint/config-conventional --cwd=common/autoinstallers/rush-commitlint --edit=$1"
     },
     {
       "name": "lint",
-      "summary": "Lint all projects",
+      "summary": "Lint code in all projects",
       "commandKind": "bulk",
       "enableParallelism": true,
       "ignoreMissingScript": true
@@ -35,7 +33,7 @@
     },
     {
       "name": "scaffold",
-      "summary": "Add a new project.",
+      "summary": "Generate a new project from a template",
       "commandKind": "global",
       "shellCommand": "node common/scripts/install-run.js plop@4.0.1 plop --plopfile scaffold/lib/index.js"
     },
@@ -48,7 +46,7 @@
     },
     {
       "name": "test:cypress",
-      "summary": "Run Cypress in all projects",
+      "summary": "Run Cypress tests in all projects",
       "commandKind": "bulk",
       "ignoreMissingScript": true,
       "enableParallelism": false,
