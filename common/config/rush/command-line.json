@@ -21,12 +21,6 @@
       "shellCommand": "commitlint --extends=@commitlint/config-conventional --cwd=common/autoinstallers/rush-commitlint --edit=$1"
     },
     {
-      "name": "get-vscode-eslint-extension-working-directories",
-      "summary": "Print vscode eslint extension working directory settings with paths to all Rush projects. Suitable for pasting into .vscode/settings.json.",
-      "commandKind": "global",
-      "shellCommand": "common/scripts/get_vscode_eslint_extension_working_directories.sh"
-    },
-    {
       "name": "lint",
       "summary": "Lint all projects",
       "commandKind": "bulk",
