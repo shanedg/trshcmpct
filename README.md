@@ -1,6 +1,6 @@
 # trshcmpctr
 
-[![GitHub Actions CI (Branch)](https://github.com/shanedg/trshcmpctr/actions/workflows/branch.yml/badge.svg)](https://github.com/shanedg/trshcmpctr/actions/workflows/branch.yml)
+[![GitHub Actions CI (Main)](https://github.com/shanedg/trshcmpctr/actions/workflows/main.yml/badge.svg?branch=main)](https://github.com/shanedg/trshcmpctr/actions/workflows/main.yml)
 
 all build config, no substance
 
