@@ -1,60 +1,40 @@
 # trshcmpctr
 
-[![GitHub Actions CI (Branch)](https://github.com/shanedg/trshcmpctr/actions/workflows/branch.yml/badge.svg)](https://github.com/shanedg/trshcmpctr/actions/workflows/branch.yml)
+[![GitHub Actions CI (Main)](https://github.com/shanedg/trshcmpctr/actions/workflows/main.yml/badge.svg?branch=main)](https://github.com/shanedg/trshcmpctr/actions/workflows/main.yml)
 
-all build config, no substance
+> all build config, no substance
 
-This repository is managed by [Rush](https://rushjs.io/pages/developer/new_developer/).
+This [monorepo] (mono-repository) is managed with [@microsoft/rush]
+
+## Quick Start
+
+Install rush globally
 
 ```sh
-npm i -g @microsoft/rush
+npm install --location=global @microsoft/rush
 ```
 
-Install all project dependencies.
+Install all project dependencies
 
 ```sh
 rush install
 ```
 
-Build all projects.
+Build all projects
 
 ```sh
 rush build
 ```
 
-Lint JS in all projects.
-
-```sh
-rush lint
-```
-
-Lint Markdown in all projects.
-
-```sh
-rush lint:md
-```
-
-Run all project tests.
+Test all projects
 
 ```sh
 rush test
 ```
 
-Scaffold a new JS project.
+## Contributing
 
-```sh
-rush scaffold
-```
+See [CONTRIBUTING.md](./CONTRIBUTING.md)
 
-## TODO
-
-* add tests for:
-  * @trshcmpctr/jest-stdout-reporter (meh, maybe deleting this)
-  * @trshcmpctr/markdownlint-config (nah; this is a config, maybe a snapshot?)
-  * @trshcmpctr/scaffold (ehh, this will be hard)
-* build cache things
-* frontend ui for discord service
-* q: what is the interface/api for discord service authing a particular frontend?
-* esm-ify more packages
-* publish
-* generate changelogs
+[@microsoft/rush]: https://rushjs.io/pages/intro/get_started/
+[monorepo]: https://rushjs.io/pages/intro/why_mono/

@@ -2,7 +2,7 @@
 
 This exists because the [Markdownlint VSCode extension](https://marketplace.visualstudio.com/items?itemName=DavidAnson.vscode-markdownlint)
 and the [CLI](https://www.npmjs.com/package/markdownlint-cli2)
-have a different default for the `line-length` rule.
+have different defaults for the `line-length` rule.
 
 Below is the default for the extension.
 It makes sense,
@@ -29,6 +29,6 @@ Instead, we can point the CLI to the config in this package.
 ```json
 // Example package.json scripts
 "scripts": {
-  "lint:md": "markdownlint-cli2 --config 'node_modules/@trshcmpctr/markdownlint-config/.markdownlint-cli2.jsonc' '**/*.md' '#node_modules'",
+  "lint:md": "markdownlint-cli2 --config node_modules/@trshcmpctr/markdownlint-config/.markdownlint-cli2.jsonc",
 }
 ```

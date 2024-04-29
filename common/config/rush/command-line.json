@@ -12,48 +12,28 @@
    */
   "commands": [
     {
-      "name": "check-latest-updates",
-      "summary": "Upgrade dependencies in all projects to the latest version not already satisfied by the semver range. This includes major versions and is best to run after `check-minor-updates`. You must run `rush update` after.",
-      "commandKind": "global",
-      "shellCommand": "node common/scripts/install-run.js npm-check-updates@16.14.18 npm-check-updates --packageFile *{$(common/scripts/get_comma_separated_rush_directories.sh)}/package.json --upgrade --minimal --dep 'prod','dev','optional','packageManager','peer' --target latest --reject '@types/node,eslint'"
-    },
-    {
-      "name": "check-minor-updates",
-      "summary": "Upgrade dependencies in all projects to the latest minor version not already satisfied by semver range. It's best to run after `rush update --full`. You must run `rush update` after.",
-      "commandKind": "global",
-      "shellCommand": "node common/scripts/install-run.js npm-check-updates@16.14.18 npm-check-updates --packageFile *{$(common/scripts/get_comma_separated_rush_directories.sh)}/package.json --upgrade --minimal --dep 'prod','dev','optional','packageManager','peer' --target minor"
-    },
-    {
       "name": "commitlint",
-      "summary": "Used by the commit-msg Git hook. This command invokes commitlint to lint commit messages.",
+      "summary": "Used by the commit-msg Git hook. This command invokes @commitlint/cli to lint commit messages.",
       "commandKind": "global",
       "autoinstallerName": "rush-commitlint",
-      // Because I can never remember all the types:
-      // https://github.com/conventional-changelog/commitlint/blob/master/%40commitlint/config-conventional/README.md
       "shellCommand": "commitlint --extends=@commitlint/config-conventional --cwd=common/autoinstallers/rush-commitlint --edit=$1"
     },
     {
-      "name": "get-vscode-eslint-extension-working-directories",
-      "summary": "Print vscode eslint extension working directory settings with paths to all Rush projects. Suitable for pasting into .vscode/settings.json.",
-      "commandKind": "global",
-      "shellCommand": "common/scripts/get_vscode_eslint_extension_working_directories.sh"
-    },
-    {
       "name": "lint",
-      "summary": "Lint all projects",
+      "summary": "Lint code in all projects",
       "commandKind": "bulk",
       "enableParallelism": true,
       "ignoreMissingScript": true
     },
     {
       "name": "lint:md",
-      "summary": "Lint Markdown in all projects",
+      "summary": "Lint markdown in all projects",
       "commandKind": "bulk",
       "enableParallelism": true
     },
     {
       "name": "scaffold",
-      "summary": "Add a new project.",
+      "summary": "Generate a new project from a template",
       "commandKind": "global",
       "shellCommand": "node common/scripts/install-run.js plop@4.0.1 plop --plopfile scaffold/lib/index.js"
     },
@@ -66,11 +46,58 @@
     },
     {
       "name": "test:cypress",
-      "summary": "Run Cypress in all projects",
+      "summary": "Run Cypress tests in all projects",
       "commandKind": "bulk",
       "ignoreMissingScript": true,
       "enableParallelism": false,
       "allowWarningsInSuccessfulBuild": true
+    },
+    {
+      "name": "update-major",
+      "summary": "Upgrade dependencies in all projects to the latest version not already satisfied by the semver range. \
+        This includes major versions except for @types/node and eslint. \
+        Run after `update-minor`. \
+        You must run `rush update` after.",
+      "commandKind": "global",
+      "shellCommand": "node common/scripts/install-run.js npm-check-updates@16.14.18 \
+        npm-check-updates \
+        --packageFile {$(common/scripts/get_comma_separated_rush_directories.sh)}/package.json \
+        --upgrade \
+        --minimal \
+        --dep 'prod','dev','optional','packageManager','peer' \
+        --target latest \
+        --reject '@types/node,eslint' \
+        && \
+        node common/scripts/install-run.js npm-check-updates@16.14.18 \
+        npm-check-updates \
+        --packageFile scaffold/lib/templates/package.json.hbs \
+        --upgrade \
+        --minimal \
+        --dep 'prod','dev','optional','packageManager','peer' \
+        --target latest \
+        --reject '@types/node,eslint'"
+    },
+    {
+      "name": "update-minor",
+      "summary": "Upgrade dependencies in all projects to the latest minor version not already satisfied by semver range. \
+        Run after `rush update --full`. \
+        You must run `rush update` after.",
+      "commandKind": "global",
+      "shellCommand": "node common/scripts/install-run.js npm-check-updates@16.14.18 \
+        npm-check-updates \
+        --packageFile {$(common/scripts/get_comma_separated_rush_directories.sh)}/package.json \
+        --upgrade \
+        --minimal \
+        --dep 'prod','dev','optional','packageManager','peer' \
+        --target minor \
+        && \
+        node common/scripts/install-run.js npm-check-updates@16.14.18 \
+        npm-check-updates \
+        --packageFile scaffold/lib/templates/package.json.hbs \
+        --upgrade \
+        --minimal \
+        --dep 'prod','dev','optional','packageManager','peer' \
+        --target minor"
     }
 
     // {

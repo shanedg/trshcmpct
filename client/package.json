@@ -14,7 +14,7 @@
     "cy:open": "cypress open --config-file=cypress/cypress.config.ts --e2e --browser=chrome",
     "cy:run": "cypress run --config-file=cypress/cypress.config.ts",
     "lint": "eslint --report-unused-disable-directives --ext .js,.jsx,.ts,.tsx,.cjs --max-warnings=0 .",
-    "lint:md": "markdownlint-cli2 --config 'node_modules/@trshcmpctr/markdownlint-config/.markdownlint-cli2.jsonc' '**/*.md' '#node_modules'",
+    "lint:md": "markdownlint-cli2 --config node_modules/@trshcmpctr/markdownlint-config/.markdownlint-cli2.jsonc",
     "serve": "webpack serve",
     "start": "npm run serve -- --open",
     "test": "npm run test:jest && npm run type-check",
