@@ -172,7 +172,7 @@ const router = createBrowserRouter([
   },
 ]);
 
-const App = () => {
+export const App = () => {
   return (
     <StrictMode>
       <h1>trshcmpctr</h1>
@@ -180,5 +180,3 @@ const App = () => {
     </StrictMode>
   );
 };
-
-export default App;

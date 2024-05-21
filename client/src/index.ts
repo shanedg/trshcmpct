@@ -1,7 +1,7 @@
 import { createElement } from 'react';
 import { createRoot } from 'react-dom/client';
 
-import App from './App/App';
+import { App } from './App/App';
 
 import './reset.css';
 import './style.css';
