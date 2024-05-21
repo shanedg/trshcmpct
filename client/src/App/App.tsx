@@ -3,7 +3,7 @@ import { createBrowserRouter, RouterProvider, Link, useParams, Outlet } from 're
 
 import './App.css';
 import { useGuildMemberData } from './use-guild-member-data';
-import { Welcome } from './Welcome';
+import { Welcome } from '../components/Welcome';
 
 type GuildUserData = ReturnType<typeof useGuildMemberData>;
 
