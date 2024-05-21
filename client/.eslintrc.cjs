@@ -87,6 +87,21 @@ module.exports = {
       extends: ['@trshcmpctr/eslint-config-jest'],
     },
 
+    // Typescript Tests
+    {
+      files: [
+        '*.test.ts',
+        '*.test.tsx',
+      ],
+      rules: {
+        // Add support for understanding when it's ok to pass an
+        // unbound method to jest expect calls:
+        // https://github.com/jest-community/eslint-plugin-jest/blob/c5819965e3e8c8dd8c938d2921b1e9629981bdb7/docs/rules/unbound-method.md
+        '@typescript-eslint/unbound-method': 'off',
+        'jest/unbound-method': 'error',
+      },
+    },
+
     // React tests using @testing-library/react.
     {
       files: [
