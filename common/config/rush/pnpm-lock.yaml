@@ -160,6 +160,9 @@ importers:
       markdownlint-cli2:
         specifier: ~0.13.0
         version: 0.13.0
+      nodemon:
+        specifier: ~3.1.0
+        version: 3.1.0
       start-server-and-test:
         specifier: ~2.0.0
         version: 2.0.0
