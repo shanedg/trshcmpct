@@ -38,6 +38,18 @@ module.exports = (env = {}, argv = {}) => {
               });
             }
           },
+          // Mock requests to launch a new world
+          {
+            name: 'mock-api-launch',
+            path: '/api/v1/launch',
+            middleware: (_request, response) => {
+              response.send({
+                instance: {
+                  id: '<mocked_instance_id>',
+                },
+              });
+            }
+          },
           // Mock requests for the world list
           {
             name: 'mock-api-worlds',

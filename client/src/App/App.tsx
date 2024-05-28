@@ -7,7 +7,7 @@ import { ErrorCard } from './components/ErrorCard';
 import { Footer } from './components/Footer';
 import { Header } from './components/Header';
 import { Home } from './components/Home';
-import { NewWorld } from './components/NewWorld';
+import { NewWorld } from './components/Launch';
 import { WorldDetail } from './components/WorldDetail';
 import { Worlds } from './components/Worlds';
 
