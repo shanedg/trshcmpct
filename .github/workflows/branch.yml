@@ -28,6 +28,12 @@ jobs:
     - build
     uses: ./.github/workflows/unit-test.yml
 
+  type-check:
+    needs:
+    - install
+    - build
+    uses: ./.github/workflows/type-check.yml
+
   e2e-test:
     needs:
     - install

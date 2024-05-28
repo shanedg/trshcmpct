@@ -18,10 +18,9 @@
     "serve": "webpack serve",
     "start": "npm run serve -- --open",
     "start:production": "npm run serve -- --open --env production",
-    "test": "npm run test:jest && npm run type-check",
+    "test": "NODE_OPTIONS=--experimental-vm-modules jest --reporters=@trshcmpctr/jest-stdout-reporter --silent",
+    "test:debug": "NODE_OPTIONS=\"--experimental-vm-modules --inspect\" jest --runInBand --no-cache",
     "test:cypress": "start-server-and-test serve http://localhost:8080 cy:run",
-    "test:jest": "NODE_OPTIONS=--experimental-vm-modules jest --no-cache --reporters=@trshcmpctr/jest-stdout-reporter --silent",
-    "test:jest:debug": "NODE_OPTIONS=\"--experimental-vm-modules --inspect\" jest --runInBand --no-cache",
     "type-check": "tsc",
     "watch": "webpack --watch"
   },

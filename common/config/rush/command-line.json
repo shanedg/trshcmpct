@@ -53,6 +53,14 @@
       "allowWarningsInSuccessfulBuild": true
     },
     {
+      "name": "type-check",
+      "summary": "Check types in typed projects",
+      "commandKind": "bulk",
+      "ignoreMissingScript": true,
+      "enableParallelism": true,
+      "allowWarningsInSuccessfulBuild": true
+    },
+    {
       "name": "update-major",
       "summary": "Upgrade dependencies in all projects to the latest version not already satisfied by the semver range. \
         This includes major versions except for @types/node and eslint. \
