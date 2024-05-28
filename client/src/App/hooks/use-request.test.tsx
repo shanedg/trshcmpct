@@ -1,5 +1,5 @@
 import { act, renderHook } from '@testing-library/react';
-import axios from 'axios';
+import axios, { CanceledError } from 'axios';
 
 jest.mock('axios');
 
@@ -65,8 +65,11 @@ describe('useRequest', () => {
   it('wraps canceled requests', async () => {
     // Canceling a request throws an error
     (axios as jest.Mocked<typeof axios>).request.mockRejectedValue(
-      Error('AbortError')
+      // axios throws CanceledError but other implementations use or
+      // rethrow AbortError from AbortController (i.e. built-in fetch)
+      CanceledError
     );
+    (axios as jest.Mocked<typeof axios>).isCancel.mockReturnValue(true);
 
     const useCanceledRequest = useRequest<string>('/api/v1/canceled');
     const { result } = renderHook(useCanceledRequest);
@@ -77,6 +80,8 @@ describe('useRequest', () => {
     expect(result.current.data).toBeNull();
     // Canceled request errors should be ignored
     expect(result.current.error).toBeNull();
+
+    (axios as jest.Mocked<typeof axios>).isCancel.mockReset();
   });
 
   it('wraps pending requests', async () => {

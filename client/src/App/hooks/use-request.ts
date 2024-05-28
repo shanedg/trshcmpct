@@ -20,7 +20,6 @@ export const useRequest = <T, D = never>(url: string, config?: AxiosRequestConfi
     const [isLoading, setIsLoading] = useState<boolean>(false);
 
     useEffect(() => {
-      // https://axios-http.com/docs/cancellation
       const controller = new AbortController();
 
       if (data === null && error === null) {
@@ -36,11 +35,12 @@ export const useRequest = <T, D = never>(url: string, config?: AxiosRequestConfi
           })
           .catch((error: Error) => {
             // Aborting a request throws an error that should be ignored
+            // https://axios-http.com/docs/cancellation
             // Canceled, stale requests do not change the loading state
             // because either:
             // 1. the hook was unmounted before the request completed; or
             // 2. a more recent request is now in-flight
-            if (error.message !== 'AbortError') {
+            if (!axios.isCancel(error)) {
               setError(error);
               setIsLoading(false);
             }
