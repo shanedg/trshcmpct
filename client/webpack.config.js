@@ -28,21 +28,20 @@ export default (env = {}, argv = {}) => {
         if (!devServer) {
           throw new Error('missing webpack-dev-server');
         }
-
-        // Mock successful request for authorized user data
-        middlewares.push({
-          name: 'mock-api-authorized',
-          path: '/api/v1/authorized',
-          middleware: (_request, response) => {
-            response.send({
-              user: {
-                username: '<mocked_user_name>',
-              },
-            });
-          }
-        });
-  
-        return middlewares;
+        return middlewares.concat([
+          // Mock successful requests for authorized user data
+          {
+            name: 'mock-api-authorized',
+            path: '/api/v1/authorized',
+            middleware: (_request, response) => {
+              response.send({
+                user: {
+                  username: '<mocked_user_name>',
+                },
+              });
+            }
+          },
+        ]);
       },
 
       historyApiFallback: true
