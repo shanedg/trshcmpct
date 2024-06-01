@@ -3,6 +3,7 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 
 import './App.css';
 
+import { ErrorCard } from './components/ErrorCard';
 import { Footer } from './components/Footer';
 import { Header } from './components/Header';
 import { Home } from './components/Home';
@@ -14,6 +15,7 @@ const router = createBrowserRouter([
   {
     path: '/',
     element: <Home />,
+    errorElement: <ErrorCard error={Error('Problem rendering the route')} />,
   },
   {
     path: '/worlds',

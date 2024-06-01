@@ -2,6 +2,7 @@ import { type APIGuildMember } from 'discord-api-types/v10';
 import React from 'react';
 import { Link } from 'react-router-dom';
 
+import { ErrorCard } from './ErrorCard';
 import { LoadingContent } from './LoadingContent';
 import { Welcome } from './Welcome';
 import { useRequest } from '../hooks/use-request';
@@ -21,7 +22,7 @@ const getWelcomeMessage = (guildUser: APIGuildMember) => {
  */
 export const Home = () => {
   const useAuthorizedGuildMemberData = useRequest<APIGuildMember>('/api/v1/authorized');
-  const { data: guildUser } = useAuthorizedGuildMemberData();
+  const { data: guildUser, error } = useAuthorizedGuildMemberData();
 
   if (guildUser) {
     return (
@@ -42,6 +43,10 @@ export const Home = () => {
         </article>
       </>
     );
+  }
+
+  if (error) {
+    return <ErrorCard error={error} />;
   }
 
   return (<LoadingContent />);
