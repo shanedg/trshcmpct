@@ -41,6 +41,39 @@ export default (env = {}, argv = {}) => {
               });
             }
           },
+          // Mock requests for the world list
+          {
+            name: 'mock-api-worlds',
+            path: '/api/v1/worlds',
+            middleware: (_request, response) => {
+              response.send([
+                {
+                  id: 1,
+                  label: 'world one',
+                  version: '1.16.5',
+                  createdAt: '2023/06/28',
+                  lastOnline: '2023/06/28',
+                  createdBy: '@shaned.gg'
+                },
+                {
+                  id: 2,
+                  label: 'world two',
+                  version: '1.19.0',
+                  createdAt: '2023/06/28',
+                  lastOnline: '2023/06/28',
+                  createdBy: '@shaned.gg'
+                },
+                {
+                  id: 3,
+                  label: 'world three',
+                  version: '1.20.1',
+                  createdAt: '2023/06/28',
+                  lastOnline: '2023/06/28',
+                  createdBy: '@shaned.gg'
+                },
+              ]);
+            }
+          },
         ]);
       },
 
