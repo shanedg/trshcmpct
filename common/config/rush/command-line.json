@@ -74,7 +74,7 @@
         --minimal \
         --dep 'prod','dev','optional','packageManager','peer' \
         --target latest \
-        --reject '@types/node,eslint' \
+        --reject '@types/node,eslint,@testing-library/react,eslint-plugin-ava' \
         && \
         node common/scripts/install-run.js npm-check-updates@16.14.18 \
         npm-check-updates \
@@ -83,7 +83,7 @@
         --minimal \
         --dep 'prod','dev','optional','packageManager','peer' \
         --target latest \
-        --reject '@types/node,eslint'"
+        --reject '@types/node,eslint,@testing-library/react,eslint-plugin-ava'"
     },
     {
       "name": "update-minor",

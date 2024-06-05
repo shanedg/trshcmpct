@@ -240,8 +240,8 @@ importers:
         specifier: ~4.2.0
         version: 4.2.0
       pino-http:
-        specifier: ~9.0.0
-        version: 9.0.0
+        specifier: ~10.1.0
+        version: 10.1.0
       session-file-store:
         specifier: ~1.5.0
         version: 1.5.0
@@ -301,8 +301,8 @@ importers:
         specifier: ~2.0.2
         version: 2.0.2
       sinon:
-        specifier: ~17.0.1
-        version: 17.0.2
+        specifier: ~18.0.0
+        version: 18.0.0
       start-server-and-test:
         specifier: ~2.0.0
         version: 2.0.4
@@ -4935,8 +4935,8 @@ packages:
   neo-async@2.6.2:
     resolution: {integrity: sha512-Yd3UES5mWCSqR+qNT93S3UoYUkqAZ9lLg8a7g9rimsWmYGK8cVToA4/sF3RrshdyV3sAGMXVUmpMYOw+dLpOuw==}
 
-  nise@5.1.9:
-    resolution: {integrity: sha512-qOnoujW4SV6e40dYxJOb3uvuoPHtmLzIk4TFo+j0jPJoC+5Z9xja5qH5JZobEPsa8+YYphMrOSwnrshEhG2qww==}
+  nise@6.0.0:
+    resolution: {integrity: sha512-K8ePqo9BFvN31HXwEtTNGzgrPpmvgciDsFz8aztFjt4LqKO/JeFD8tBOeuDiCMXrIl/m1YvfH8auSpxfaD09wg==}
 
   no-case@3.0.4:
     resolution: {integrity: sha512-fgAN3jGAh+RoxUGZHTSOLJIqUc2wmoBwGR4tbpNAKmmovFoWq0OdRkb0VkldReO2a2iBT/OEulG9XSUc10r3zg==}
@@ -5265,14 +5265,14 @@ packages:
   pino-abstract-transport@1.2.0:
     resolution: {integrity: sha512-Guhh8EZfPCfH+PMXAb6rKOjGQEoy0xlAIn+irODG5kgfYV+BQ0rGYYWTIel3P5mmyXqkYkPmdIkywsn6QKUR1Q==}
 
-  pino-http@9.0.0:
-    resolution: {integrity: sha512-Q9QDNEz0vQmbJtMFjOVr2c9yL92vHudjmr3s3m6J1hbw3DBGFZJm3TIj9TWyynZ4GEsEA9SOtni4heRUr6lNOg==}
+  pino-http@10.1.0:
+    resolution: {integrity: sha512-rQgRaVfmZnDcOZXvZUUkiG3wDYVTSyYWAhxkGUgw3py3Y1nFXucRSLYPB5HKgG64oy9gLiDARiQxxWXnI1u3zA==}
 
-  pino-std-serializers@6.2.2:
-    resolution: {integrity: sha512-cHjPPsE+vhj/tnhCy/wiMh3M3z3h/j15zHQX+S9GkTBgqJuTuJzYJ4gUyACLhDaJ7kk9ba9iRDmbH2tJU03OiA==}
+  pino-std-serializers@7.0.0:
+    resolution: {integrity: sha512-e906FRY0+tV27iq4juKzSYPbUj2do2X2JX4EzSca1631EB2QJQUqGbDuERal7LCtOpxl6x3+nvo9NPZcmjkiFA==}
 
-  pino@8.21.0:
-    resolution: {integrity: sha512-ip4qdzjkAyDDZklUaZkcRFb2iA118H9SgRh8yzTkSQK8HilsOJF7rSY8HoW5+I0M46AZgX/pxbprf2vvzQCE0Q==}
+  pino@9.1.0:
+    resolution: {integrity: sha512-qUcgfrlyOtjwhNLdbhoL7NR4NkHjzykAPw0V2QLFbvu/zss29h4NkRnibyFzBrNCbzCOY3WZ9hhKSwfOkNggYA==}
     hasBin: true
 
   pirates@4.0.6:
@@ -5761,9 +5761,8 @@ packages:
     resolution: {integrity: sha512-a2B9Y0KlNXl9u/vsW6sTIu9vGEpfKu2wRV6l1H3XEas/0gUIzGzBoP/IouTcUQbm9JWZLH3COxyn03TYlFax6w==}
     engines: {node: '>=10'}
 
-  sinon@17.0.2:
-    resolution: {integrity: sha512-uihLiaB9FhzesElPDFZA7hDcNABzsVHwr3YfmM9sBllVwab3l0ltGlRV1XhpNfIacNDLGD1QRZNLs5nU5+hTuA==}
-    deprecated: There
+  sinon@18.0.0:
+    resolution: {integrity: sha512-+dXDXzD1sBO6HlmZDd7mXZCR/y5ECiEiGCBSGuFD/kZ0bDTofPYc6JaeGmPSF+1j1MejGUWkORbYOLDyvqCWpA==}
 
   sisteransi@1.0.5:
     resolution: {integrity: sha512-bLGGlR1QxBcynn2d5YmDX4MGjlZvy2MRBDRNHLJ8VI6l6+9FUiyTFNJ0IveOSP0bcXgVDPRcfGqA0pjaqUpfVg==}
@@ -5806,8 +5805,8 @@ packages:
   sockjs@0.3.24:
     resolution: {integrity: sha512-GJgLTZ7vYb/JtPSSZ10hsOYIvEYsjbNU+zPdIHcUaWVNUEPivzxku31865sSSud0Da0W4lEeOPlmw93zLQchuQ==}
 
-  sonic-boom@3.8.1:
-    resolution: {integrity: sha512-y4Z8LCDBuum+PBP3lSV7RHrXscqksve/bi0as7mhwVnBW+/wUqKT/2Kb7um8yqcFy0duYbbPxzt89Zy2nOCaxg==}
+  sonic-boom@4.0.1:
+    resolution: {integrity: sha512-hTSD/6JMLyT4r9zeof6UtuBDpjJ9sO08/nmS5djaA9eozT9oOlNdpXSnzcgj4FTqpk3nkLrs61l4gip9r1HCrQ==}
 
   sonic-forest@1.0.3:
     resolution: {integrity: sha512-dtwajos6IWMEWXdEbW1IkEkyL2gztCAgDplRIX+OT5aRKnEd5e7r7YCxRgXZdhRP1FBdOBf8axeTPhzDv8T4wQ==}
@@ -6029,8 +6028,8 @@ packages:
     peerDependencies:
       tslib: ^2
 
-  thread-stream@2.7.0:
-    resolution: {integrity: sha512-qQiRWsU/wvNolI6tbbCKd9iKaTnCXsTwVxhhKM6nctPdujTyztjlbUkUTUymidWcMnZ5pWR0ej4a0tjsW021vw==}
+  thread-stream@3.0.2:
+    resolution: {integrity: sha512-cBL4xF2A3lSINV4rD5tyqnKH4z/TgWPvT+NaVhJDSwK962oo/Ye7cHSMbDzwcu7tAE1SfU6Q4XtV6Hucmi6Hlw==}
 
   throttleit@1.0.1:
     resolution: {integrity: sha512-vDZpf9Chs9mAdfY046mcPt8fg5QSZr37hEH4TXYBnDF+izxgrbRGUAAaBvIk/fJm9aOFCGFd1EsNg5AZCbnQCQ==}
@@ -12397,7 +12396,7 @@ snapshots:
 
   neo-async@2.6.2: {}
 
-  nise@5.1.9:
+  nise@6.0.0:
     dependencies:
       '@sinonjs/commons': 3.0.1
       '@sinonjs/fake-timers': 11.2.2
@@ -12749,28 +12748,28 @@ snapshots:
       readable-stream: 4.5.2
       split2: 4.2.0
 
-  pino-http@9.0.0:
+  pino-http@10.1.0:
     dependencies:
       get-caller-file: 2.0.5
-      pino: 8.21.0
-      pino-std-serializers: 6.2.2
+      pino: 9.1.0
+      pino-std-serializers: 7.0.0
       process-warning: 3.0.0
 
-  pino-std-serializers@6.2.2: {}
+  pino-std-serializers@7.0.0: {}
 
-  pino@8.21.0:
+  pino@9.1.0:
     dependencies:
       atomic-sleep: 1.0.0
       fast-redact: 3.5.0
       on-exit-leak-free: 2.1.2
       pino-abstract-transport: 1.2.0
-      pino-std-serializers: 6.2.2
+      pino-std-serializers: 7.0.0
       process-warning: 3.0.0
       quick-format-unescaped: 4.0.4
       real-require: 0.2.0
       safe-stable-stringify: 2.4.3
-      sonic-boom: 3.8.1
-      thread-stream: 2.7.0
+      sonic-boom: 4.0.1
+      thread-stream: 3.0.2
 
   pirates@4.0.6: {}
 
@@ -13292,13 +13291,13 @@ snapshots:
     dependencies:
       semver: 7.6.2
 
-  sinon@17.0.2:
+  sinon@18.0.0:
     dependencies:
       '@sinonjs/commons': 3.0.1
       '@sinonjs/fake-timers': 11.2.2
       '@sinonjs/samsam': 8.0.0
       diff: 5.2.0
-      nise: 5.1.9
+      nise: 6.0.0
       supports-color: 7.2.0
 
   sisteransi@1.0.5: {}
@@ -13344,7 +13343,7 @@ snapshots:
       uuid: 8.3.2
       websocket-driver: 0.7.4
 
-  sonic-boom@3.8.1:
+  sonic-boom@4.0.1:
     dependencies:
       atomic-sleep: 1.0.0
 
@@ -13596,7 +13595,7 @@ snapshots:
     dependencies:
       tslib: 2.6.3
 
-  thread-stream@2.7.0:
+  thread-stream@3.0.2:
     dependencies:
       real-require: 0.2.0
 
