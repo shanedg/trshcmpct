@@ -4,7 +4,10 @@ Notes specifically for repository maintainers
 
 ## TODOs
 
+* upload cypress screenshots, videos, and/or
+rush *.log artifacts to github build artifacts for debugging
 * auth fails when switching discord accounts at login
+* auth fails on first couple renders, refresh resolves
 * upgrade to eslint v9
 * docs: updating/upgrading node
 * lint js/md on precommit?
