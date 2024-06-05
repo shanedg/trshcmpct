@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 
 import { ErrorCard } from './ErrorCard';
 import { LoadingContent } from './LoadingContent';
+import { Unauthorized } from './Unauthorized';
 import { Welcome } from './Welcome';
 import { useRequest } from '../hooks/use-request';
 
@@ -43,6 +44,10 @@ export const Home = () => {
         </article>
       </>
     );
+  }
+
+  if (error?.message.includes('403')) {
+    return <Unauthorized />;
   }
 
   if (error) {
