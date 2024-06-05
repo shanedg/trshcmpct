@@ -39,7 +39,7 @@
     "markdownlint-cli2": "~0.13.0"
   },
   "dependencies": {
-    "@aws-sdk/client-ec2": "~3.557.0",
-    "@aws-sdk/client-s3": "~3.556.0"
+    "@aws-sdk/client-ec2": "~3.590.0",
+    "@aws-sdk/client-s3": "~3.590.0"
   }
 }
