@@ -154,6 +154,7 @@ export default (env = {}, argv = {}) => {
       new HtmlWebpackPlugin({
         template: resolve(__dirname, './src/index.html'),
         title: 'trshcmpctr',
+        favicon: resolve(__dirname, './src/favicon.ico'),
       }),
     ],
 
