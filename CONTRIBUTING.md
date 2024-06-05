@@ -50,7 +50,7 @@ git commit -m 'build(deps): rush update --full'
 
 ### 2. Minor Updates
 
-Use a custom rush command (see [command-line.json]) that calls
+Use a custom rush command[^1] (see [command-line.json]) that calls
 [npm-check-updates] to bump all packages to the latest minor version.
 
 ```sh
@@ -62,7 +62,7 @@ git commit -m 'build(deps): rush update-minor'
 
 ### 3. Major Upgrades
 
-Use a custom rush command (see [command-line.json]) that calls
+Use a custom rush command[^1] (see [command-line.json]) that calls
 [npm-check-updates] to bump all packages to the latest major version.
 
 ```sh
@@ -108,6 +108,11 @@ rush update
 git add rush.json common/scripts
 git commit -m 'build(deps): update rush from x to y'
 ```
+
+---
+
+[^1]: `update-minor` and `update-major` depend on [jq](https://stedolan.github.io/jq/)
+(with Homebrew: `brew install jq`)
 
 [--reject]: https://www.npmjs.com/package/npm-check-updates#reject
 [@trshcmpctr/scaffold]: ./scaffold

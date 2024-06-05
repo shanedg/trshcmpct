@@ -69,7 +69,7 @@
       "commandKind": "global",
       "shellCommand": "node common/scripts/install-run.js npm-check-updates@16.14.18 \
         npm-check-updates \
-        --packageFile {$(common/scripts/get_comma_separated_rush_directories.sh)}/package.json \
+        --packageFile {$(rush list --json | jq --raw-output '.projects | map(.path) | join(\",\")')}/package.json \
         --upgrade \
         --minimal \
         --dep 'prod','dev','optional','packageManager','peer' \
@@ -93,7 +93,7 @@
       "commandKind": "global",
       "shellCommand": "node common/scripts/install-run.js npm-check-updates@16.14.18 \
         npm-check-updates \
-        --packageFile {$(common/scripts/get_comma_separated_rush_directories.sh)}/package.json \
+        --packageFile {$(rush list --json | jq --raw-output '.projects | map(.path) | join(\",\")')}/package.json \
         --upgrade \
         --minimal \
         --dep 'prod','dev','optional','packageManager','peer' \
