@@ -20,12 +20,11 @@
   "private": true,
   "license": "UNLICENSED",
   "scripts": {
-    "build": "echo fake build || true",
-    "lint": "eslint --report-unused-disable-directives --max-warnings=0 .",
+    "build": "",
+    "lint": "eslint --report-unused-disable-directives --max-warnings=0 --cache .",
     "lint:md": "markdownlint-cli2 --config node_modules/@trshcmpctr/markdownlint-config/.markdownlint-cli2.jsonc",
     "start": "node lib/index.js",
-    "upload": "node lib/aws-s3-upload-artifacts.js",
-    "test": "true"
+    "upload": "node lib/aws-s3-upload-artifacts.js"
   },
   "devDependencies": {
     "@babel/eslint-parser": "~7.24.1",
@@ -39,7 +38,7 @@
     "markdownlint-cli2": "~0.13.0"
   },
   "dependencies": {
-    "@aws-sdk/client-ec2": "~3.557.0",
-    "@aws-sdk/client-s3": "~3.556.0"
+    "@aws-sdk/client-ec2": "~3.590.0",
+    "@aws-sdk/client-s3": "~3.590.0"
   }
 }

@@ -19,8 +19,8 @@
   "private": true,
   "license": "UNLICENSED",
   "scripts": {
-    "build": "echo fake build || true",
-    "lint": "eslint --report-unused-disable-directives --max-warnings=0 .",
+    "build": "",
+    "lint": "eslint --report-unused-disable-directives --max-warnings=0 --cache .",
     "lint:md": "markdownlint-cli2 --config node_modules/@trshcmpctr/markdownlint-config/.markdownlint-cli2.jsonc",
     "test": "jest --no-cache --reporters=@trshcmpctr/jest-stdout-reporter --silent"
   },
@@ -31,7 +31,7 @@
     "@trshcmpctr/markdownlint-config": "workspace:*",
     "eslint-plugin-eslint-comments": "~3.2.0",
     "eslint-plugin-import": "~2.29.1",
-    "eslint-plugin-jest": "~28.2.0",
+    "eslint-plugin-jest": "~28.5.0",
     "eslint-plugin-node": "~11.1.0",
     "eslint": "~8.57.0",
     "jest": "~29.7.0",
@@ -40,6 +40,6 @@
     "typescript": "~5.4.5"
   },
   "peerDependencies": {
-    "eslint": "~8.44.0"
+    "eslint": "~8.57.0"
   }
 }

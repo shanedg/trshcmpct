@@ -42,7 +42,8 @@
       "summary": "Test all projects",
       "commandKind": "bulk",
       "enableParallelism": true,
-      "allowWarningsInSuccessfulBuild": true
+      "allowWarningsInSuccessfulBuild": true,
+      "ignoreMissingScript": true
     },
     {
       "name": "test:cypress",
@@ -50,6 +51,14 @@
       "commandKind": "bulk",
       "ignoreMissingScript": true,
       "enableParallelism": false,
+      "allowWarningsInSuccessfulBuild": true
+    },
+    {
+      "name": "type-check",
+      "summary": "Check types in typed projects",
+      "commandKind": "bulk",
+      "ignoreMissingScript": true,
+      "enableParallelism": true,
       "allowWarningsInSuccessfulBuild": true
     },
     {
@@ -61,12 +70,12 @@
       "commandKind": "global",
       "shellCommand": "node common/scripts/install-run.js npm-check-updates@16.14.18 \
         npm-check-updates \
-        --packageFile {$(common/scripts/get_comma_separated_rush_directories.sh)}/package.json \
+        --packageFile {$(rush list --json | jq --raw-output '.projects | map(.path) | join(\",\")')}/package.json \
         --upgrade \
         --minimal \
         --dep 'prod','dev','optional','packageManager','peer' \
         --target latest \
-        --reject '@types/node,eslint' \
+        --reject '@types/node,eslint,@testing-library/react,eslint-plugin-ava' \
         && \
         node common/scripts/install-run.js npm-check-updates@16.14.18 \
         npm-check-updates \
@@ -75,7 +84,7 @@
         --minimal \
         --dep 'prod','dev','optional','packageManager','peer' \
         --target latest \
-        --reject '@types/node,eslint'"
+        --reject '@types/node,eslint,@testing-library/react,eslint-plugin-ava'"
     },
     {
       "name": "update-minor",
@@ -85,7 +94,7 @@
       "commandKind": "global",
       "shellCommand": "node common/scripts/install-run.js npm-check-updates@16.14.18 \
         npm-check-updates \
-        --packageFile {$(common/scripts/get_comma_separated_rush_directories.sh)}/package.json \
+        --packageFile {$(rush list --json | jq --raw-output '.projects | map(.path) | join(\",\")')}/package.json \
         --upgrade \
         --minimal \
         --dep 'prod','dev','optional','packageManager','peer' \

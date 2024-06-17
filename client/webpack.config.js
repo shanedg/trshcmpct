@@ -28,21 +28,53 @@ export default (env = {}, argv = {}) => {
         if (!devServer) {
           throw new Error('missing webpack-dev-server');
         }
-
-        // Mock successful request for authorized user data
-        middlewares.push({
-          name: 'mock-api-authorized',
-          path: '/api/v1/authorized',
-          middleware: (_request, response) => {
-            response.send({
-              user: {
-                username: '<mocked_user_name>',
-              },
-            });
-          }
-        });
-  
-        return middlewares;
+        return middlewares.concat([
+          // Mock successful requests for authorized user data
+          {
+            name: 'mock-api-authorized',
+            path: '/api/v1/authorized',
+            middleware: (_request, response) => {
+              response.send({
+                user: {
+                  username: '<mocked_user_name>',
+                },
+              });
+            }
+          },
+          // Mock requests for the world list
+          {
+            name: 'mock-api-worlds',
+            path: '/api/v1/worlds',
+            middleware: (_request, response) => {
+              response.send([
+                {
+                  id: 1,
+                  label: 'world one',
+                  version: '1.16.5',
+                  createdAt: '2023/06/28',
+                  lastOnline: '2023/06/28',
+                  createdBy: '@shaned.gg'
+                },
+                {
+                  id: 2,
+                  label: 'world two',
+                  version: '1.19.0',
+                  createdAt: '2023/06/28',
+                  lastOnline: '2023/06/28',
+                  createdBy: '@shaned.gg'
+                },
+                {
+                  id: 3,
+                  label: 'world three',
+                  version: '1.20.1',
+                  createdAt: '2023/06/28',
+                  lastOnline: '2023/06/28',
+                  createdBy: '@shaned.gg'
+                },
+              ]);
+            }
+          },
+        ]);
       },
 
       historyApiFallback: true
@@ -122,6 +154,7 @@ export default (env = {}, argv = {}) => {
       new HtmlWebpackPlugin({
         template: resolve(__dirname, './src/index.html'),
         title: 'trshcmpctr',
+        favicon: resolve(__dirname, './src/favicon.ico'),
       }),
     ],
 

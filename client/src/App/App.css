@@ -1,3 +1,16 @@
+a {
+  color: aqua;
+}
+
+a:visited {
+  color: blueviolet;
+}
+
 .navigation-list {
   list-style-type: none;
+  display: inline-flex;
+}
+
+.navigation-list li {
+  padding-right: 6px;
 }

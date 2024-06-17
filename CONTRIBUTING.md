@@ -4,7 +4,10 @@ Notes specifically for repository maintainers
 
 ## TODOs
 
+* upload cypress screenshots, videos, and/or
+rush *.log artifacts to github build artifacts for debugging
 * auth fails when switching discord accounts at login
+* auth fails on first couple renders, refresh resolves
 * upgrade to eslint v9
 * docs: updating/upgrading node
 * lint js/md on precommit?
@@ -50,7 +53,7 @@ git commit -m 'build(deps): rush update --full'
 
 ### 2. Minor Updates
 
-Use a custom rush command (see [command-line.json]) that calls
+Use a custom rush command[^1] (see [command-line.json]) that calls
 [npm-check-updates] to bump all packages to the latest minor version.
 
 ```sh
@@ -62,7 +65,7 @@ git commit -m 'build(deps): rush update-minor'
 
 ### 3. Major Upgrades
 
-Use a custom rush command (see [command-line.json]) that calls
+Use a custom rush command[^1] (see [command-line.json]) that calls
 [npm-check-updates] to bump all packages to the latest major version.
 
 ```sh
@@ -79,6 +82,8 @@ corresponds with the expected major version of Node and this repository
 will continue to use Node 18 until Node 20 becomes the active Long Term
 Support (LTS) version
 * `eslint` is excluded because some plugins are not compatible with v9
+* `@testing-library/react` is excluded because of peer dependency conflcts
+* `eslint-plugin-ava` is excluded because it expects `eslint` >= 9
 
 ## Updating pnpm
 
@@ -108,6 +113,11 @@ rush update
 git add rush.json common/scripts
 git commit -m 'build(deps): update rush from x to y'
 ```
+
+---
+
+[^1]: `update-minor` and `update-major` depend on [jq](https://stedolan.github.io/jq/)
+(with Homebrew: `brew install jq`)
 
 [--reject]: https://www.npmjs.com/package/npm-check-updates#reject
 [@trshcmpctr/scaffold]: ./scaffold

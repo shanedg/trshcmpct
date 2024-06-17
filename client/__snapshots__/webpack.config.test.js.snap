@@ -110,7 +110,7 @@ exports[`webpackConfig development mode matches snapshot 1`] = `
         "chunksSortMode": "auto",
         "compile": true,
         "excludeChunks": [],
-        "favicon": false,
+        "favicon": "<PROJECT_ROOT>/src/favicon.ico",
         "filename": "index.html",
         "hash": false,
         "inject": "head",
@@ -126,6 +126,7 @@ exports[`webpackConfig development mode matches snapshot 1`] = `
         "xhtml": false,
       },
       "userOptions": {
+        "favicon": "<PROJECT_ROOT>/src/favicon.ico",
         "template": "<PROJECT_ROOT>/src/index.html",
         "title": "trshcmpctr",
       },
@@ -253,7 +254,7 @@ exports[`webpackConfig production mode matches snapshot 1`] = `
         "chunksSortMode": "auto",
         "compile": true,
         "excludeChunks": [],
-        "favicon": false,
+        "favicon": "<PROJECT_ROOT>/src/favicon.ico",
         "filename": "index.html",
         "hash": false,
         "inject": "head",
@@ -269,6 +270,7 @@ exports[`webpackConfig production mode matches snapshot 1`] = `
         "xhtml": false,
       },
       "userOptions": {
+        "favicon": "<PROJECT_ROOT>/src/favicon.ico",
         "template": "<PROJECT_ROOT>/src/index.html",
         "title": "trshcmpctr",
       },
