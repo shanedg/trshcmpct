@@ -21,7 +21,7 @@
   "license": "UNLICENSED",
   "scripts": {
     "asdf": "plop --plopfile lib/index.js project -- --name asdf --path asdf",
-    "build": "echo fake build || true",
+    "build": "",
     "lint:md": "markdownlint-cli2 --config node_modules/@trshcmpctr/markdownlint-config/.markdownlint-cli2.jsonc",
     "lint": "eslint --report-unused-disable-directives --ext .cjs,.js --max-warnings=0 .",
     "test": "true"
