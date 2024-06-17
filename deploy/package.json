@@ -24,8 +24,7 @@
     "lint": "eslint --report-unused-disable-directives --max-warnings=0 .",
     "lint:md": "markdownlint-cli2 --config node_modules/@trshcmpctr/markdownlint-config/.markdownlint-cli2.jsonc",
     "start": "node lib/index.js",
-    "upload": "node lib/aws-s3-upload-artifacts.js",
-    "test": "true"
+    "upload": "node lib/aws-s3-upload-artifacts.js"
   },
   "devDependencies": {
     "@babel/eslint-parser": "~7.24.1",

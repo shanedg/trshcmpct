@@ -21,8 +21,7 @@
   "scripts": {
     "build": "",
     "lint": "eslint --report-unused-disable-directives --max-warnings=0 .",
-    "lint:md": "markdownlint-cli2 --config node_modules/@trshcmpctr/markdownlint-config/.markdownlint-cli2.jsonc",
-    "test": "true"
+    "lint:md": "markdownlint-cli2 --config node_modules/@trshcmpctr/markdownlint-config/.markdownlint-cli2.jsonc"
   },
   "dependencies": {
     "@jest/reporters": "~29.7.0"
