@@ -1,6 +1,6 @@
 import test from 'ava';
 
-import { LoginRouter } from './login-router';
+import { LoginRouter } from './login-router.js';
 
 const testConfiguration = {
   clientId: 'some-client-id',

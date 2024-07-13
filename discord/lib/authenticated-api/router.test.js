@@ -1,6 +1,6 @@
 import test from 'ava';
 
-import { AuthenticatedAPIRouter } from './router';
+import { AuthenticatedAPIRouter } from './router.js';
 
 const testConfiguration = {
   fetch: () => { /* noop */ },

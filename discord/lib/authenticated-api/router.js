@@ -1,10 +1,10 @@
 import express from 'express';
 
-import { handleApiError } from './handle-api-error';
-import { handleEndpointNotFound } from './handle-endpoint-not-found';
-import { handleGetGuildMembership } from './handle-get-guild-membership';
-import { requireAuthentication } from './require-authentication';
-import { requireGuildMembership } from './require-guild-membership';
+import { handleApiError } from './handle-api-error.js';
+import { handleEndpointNotFound } from './handle-endpoint-not-found.js';
+import { handleGetGuildMembership } from './handle-get-guild-membership.js';
+import { requireAuthentication } from './require-authentication.js';
+import { requireGuildMembership } from './require-guild-membership.js';
 
 /**
  * Dedicated router for authenticated (and authorized) endpoints

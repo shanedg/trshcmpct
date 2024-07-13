@@ -1,12 +1,9 @@
-import { dirname, resolve } from 'node:path';
-import { fileURLToPath } from 'node:url';
+const { resolve } = require('node:path');
 
-import ESLintPlugin from 'eslint-webpack-plugin';
-import HtmlWebpackPlugin from 'html-webpack-plugin';
-import TerserPlugin from 'terser-webpack-plugin';
-import { WebpackManifestPlugin } from 'webpack-manifest-plugin';
-
-const __dirname = dirname(fileURLToPath(import.meta.url));
+const ESLintPlugin = require('eslint-webpack-plugin');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const TerserPlugin = require('terser-webpack-plugin');
+const { WebpackManifestPlugin } = require('webpack-manifest-plugin');
 
 /**
  * Helper for setting the build mode
@@ -19,7 +16,7 @@ const getMode = productionFlag => productionFlag ? 'production' : 'development';
 // https://webpack.js.org/configuration/configuration-types/#exporting-a-function
 // https://webpack.js.org/api/cli/#environment-options
 // https://webpack.js.org/guides/environment-variables/
-export default (env = {}, argv = {}) => {
+module.exports = (env = {}, argv = {}) => {
   const isProduction = getMode(env.production) === 'production';
 
   return {

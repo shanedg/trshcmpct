@@ -1,4 +1,4 @@
-import { fetchWithOauth } from '../utils/get-fetch-with-oauth';
+import { fetchWithOauth } from '../utils/get-fetch-with-oauth.js';
 
 /**
  * Middleware handler that ensures a request is authorized

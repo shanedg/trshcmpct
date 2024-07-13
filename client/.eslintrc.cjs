@@ -1,12 +1,10 @@
 const cjsConfigFiles = [
   '.eslintrc.cjs',
   'babel.config.cjs',
-];
-
-const esmConfigFiles = [
-  'jest-setup.js',
-  'jest.config.js',
-  'webpack.config.js',
+  'jest-setup.cjs',
+  'jest.config.cjs',
+  'webpack.config.cjs',
+  'webpack.config.test.cjs',
 ];
 
 module.exports = {
@@ -16,18 +14,9 @@ module.exports = {
   overrides: [
     // All config files
     {
-      files: [...cjsConfigFiles, ...esmConfigFiles],
+      files: [...cjsConfigFiles],
       extends: ['plugin:node/recommended'],
       plugins: ['eslint-plugin-node'],
-    },
-
-    // ESM config files
-    {
-      files: [...esmConfigFiles],
-      parserOptions: {
-        sourceType: 'module',
-        ecmaVersion: 'latest'
-      },
     },
 
     // Browser files
@@ -79,6 +68,7 @@ module.exports = {
     // Tests
     {
       files: [
+        '*.test.cjs',
         '*.test.js',
         '*.test.jsx',
         '*.test.ts',

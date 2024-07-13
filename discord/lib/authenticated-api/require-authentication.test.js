@@ -1,7 +1,7 @@
 import test from 'ava';
 import sinon from 'sinon';
 
-import { requireAuthentication } from './require-authentication';
+import { requireAuthentication } from './require-authentication.js';
 
 /**
  * Helper to create requests for testing

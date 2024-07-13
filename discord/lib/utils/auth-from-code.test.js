@@ -1,7 +1,7 @@
 import test from 'ava';
 import sinon from 'sinon';
 
-import { authFromCode } from './auth-from-code';
+import { authFromCode } from './auth-from-code.js';
 
 test.before(async t => {
   // Mock fetch resolves

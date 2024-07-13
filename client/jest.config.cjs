@@ -1,9 +1,6 @@
-import { dirname, resolve } from 'node:path';
-import { fileURLToPath } from 'node:url';
+const path = require('node:path');
 
-const __dirname = dirname(fileURLToPath(import.meta.url));
-
-export default {
+module.exports = {
   rootDir: './',
   transform: {
     // Only files in src/ are built & transpiled by Babel, so only these should be transformed.
@@ -16,12 +13,12 @@ export default {
       'babel-jest',
       // Since the babel config isn't in the package root,
       // we need to locate it explicitly for babel-jest here.
-      { configFile: resolve(__dirname, 'babel.config.cjs') }
+      { configFile: path.resolve(__dirname, 'babel.config.cjs') }
     ],
   },
   collectCoverage: true,
   testEnvironment: 'jsdom',
-  setupFilesAfterEnv: ['<rootDir>/jest-setup.js'],
+  setupFilesAfterEnv: ['<rootDir>/jest-setup.cjs'],
   moduleNameMapper: {
     // See https://jestjs.io/docs/webpack#handling-static-assets
     '\\.(css|less)$': '<rootDir>/__mocks__/styleMock.cjs',

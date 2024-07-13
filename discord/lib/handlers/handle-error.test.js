@@ -1,7 +1,7 @@
 import test from 'ava';
 import sinon from 'sinon';
 
-import { handleError } from './handle-error';
+import { handleError } from './handle-error.js';
 
 /**
  * Helper to create requests for testing

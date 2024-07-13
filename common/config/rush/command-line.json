@@ -42,7 +42,6 @@
       "summary": "Test all projects",
       "commandKind": "bulk",
       "enableParallelism": true,
-      "allowWarningsInSuccessfulBuild": true,
       "ignoreMissingScript": true
     },
     {
@@ -58,8 +57,7 @@
       "summary": "Check types in typed projects",
       "commandKind": "bulk",
       "ignoreMissingScript": true,
-      "enableParallelism": true,
-      "allowWarningsInSuccessfulBuild": true
+      "enableParallelism": true
     },
     {
       "name": "update-major",

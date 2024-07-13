@@ -178,6 +178,8 @@ exports[`eslint-config-react calculated config snapshots rules 1`] = `
       ],
       "li": [
         "menuitem",
+        "menuitemradio",
+        "menuitemcheckbox",
         "option",
         "row",
         "tab",

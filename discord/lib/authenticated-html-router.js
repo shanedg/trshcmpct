@@ -1,8 +1,8 @@
 import express from 'express';
 
-import { handleError } from './handlers/handle-error';
-import { handleRedirect } from './handlers/handle-redirect';
-import { handleRenderAuthenticated } from './handlers/handle-render-authenticated';
+import { handleError } from './handlers/handle-error.js';
+import { handleRedirect } from './handlers/handle-redirect.js';
+import { handleRenderAuthenticated } from './handlers/handle-render-authenticated.js';
 
 /**
  * Dedicated router for rendering an authenticated html view
