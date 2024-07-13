@@ -1,6 +1,6 @@
-import serializer from 'jest-serializer-path';
+const serializer = require('jest-serializer-path');
 
-import webpackConfig from './webpack.config';
+const webpackConfig = require('./webpack.config.cjs');
 
 // Remove absolute file paths from snapshots.
 expect.addSnapshotSerializer(serializer);
