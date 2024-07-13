@@ -14,8 +14,8 @@ enforced rules.
 From this directory, run the following:
 
 ```sh
-npx npm-check-updates@16.14.18 --upgrade --target minor
-npx npm-check-updates@16.14.18 --upgrade --target latest --reject '@types/node'
+npx npm-check-updates@16.14.20 --upgrade --target minor
+npx npm-check-updates@16.14.20 --upgrade --target latest --reject '@types/node'
 ```
 
 > Keep the version of [npm-check-updates] used here in sync with
