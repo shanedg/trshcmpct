@@ -1,6 +1,6 @@
 import test from 'ava';
 
-import { AuthenticatedHTMLRouter } from './authenticated-html-router';
+import { AuthenticatedHTMLRouter } from './authenticated-html-router.js';
 
 const testConfiguration = {
   htmlDirectory: '/some/absolute/path',

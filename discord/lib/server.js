@@ -9,10 +9,10 @@ import store from 'session-file-store';
 
 import manifest from '@trshcmpctr/client' assert { type: 'json' };
 
-import { AuthenticatedAPIRouter } from './authenticated-api/router';
-import { AuthenticatedHTMLRouter } from './authenticated-html-router';
+import { AuthenticatedAPIRouter } from './authenticated-api/router.js';
+import { AuthenticatedHTMLRouter } from './authenticated-html-router.js';
 import config from './config.json' assert { type: 'json' };
-import { LoginRouter } from './login-router';
+import { LoginRouter } from './login-router.js';
 
 // Support overriding redirectUri from environment for cypress testing
 const optionalArgumentOverrideRedirectUri = process.argv.length > 2 ? process.argv[2] : null;

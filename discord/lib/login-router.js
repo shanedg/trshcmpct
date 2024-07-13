@@ -1,9 +1,9 @@
 import express from 'express';
 
-import { handleAuthorizationCodeGrant } from './handlers/handle-authorization-code-grant';
-import { handleError } from './handlers/handle-error';
-import { handleRedirect } from './handlers/handle-redirect';
-import { handleRenderLogin } from './handlers/handle-render-login';
+import { handleAuthorizationCodeGrant } from './handlers/handle-authorization-code-grant.js';
+import { handleError } from './handlers/handle-error.js';
+import { handleRedirect } from './handlers/handle-redirect.js';
+import { handleRenderLogin } from './handlers/handle-render-login.js';
 
 /**
  * Dedicated router for login and authentication

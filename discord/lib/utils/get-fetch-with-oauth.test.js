@@ -1,7 +1,7 @@
 import test from 'ava';
 import sinon from 'sinon';
 
-import { fetchWithOauth } from './get-fetch-with-oauth';
+import { fetchWithOauth } from './get-fetch-with-oauth.js';
 
 test.before(async t => {
   // Mock fetch resolves

@@ -1,7 +1,7 @@
 import test from 'ava';
 import sinon from 'sinon';
 
-import { handleAuthorizationCodeGrant } from './handle-authorization-code-grant';
+import { handleAuthorizationCodeGrant } from './handle-authorization-code-grant.js';
 
 /**
  * Helper to create requests for testing

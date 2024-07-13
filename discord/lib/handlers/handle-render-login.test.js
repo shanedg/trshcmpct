@@ -1,7 +1,7 @@
 import test from 'ava';
 import sinon from 'sinon';
 
-import { handleRenderLogin } from './handle-render-login';
+import { handleRenderLogin } from './handle-render-login.js';
 
 test.before(t => {
   t.context.request = {

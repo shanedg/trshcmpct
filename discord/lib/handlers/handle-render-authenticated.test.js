@@ -1,7 +1,7 @@
 import test from 'ava';
 import sinon from 'sinon';
 
-import { handleRenderAuthenticated } from './handle-render-authenticated';
+import { handleRenderAuthenticated } from './handle-render-authenticated.js';
 
 /**
  * Helper to create requests for testing

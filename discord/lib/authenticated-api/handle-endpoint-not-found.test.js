@@ -1,7 +1,7 @@
 import test from 'ava';
 import sinon from 'sinon';
 
-import { handleEndpointNotFound } from './handle-endpoint-not-found';
+import { handleEndpointNotFound } from './handle-endpoint-not-found.js';
 
 test('sends 404', t => {
   const request = {

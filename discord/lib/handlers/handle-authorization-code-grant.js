@@ -1,4 +1,4 @@
-import { authFromCode } from '../utils/auth-from-code';
+import { authFromCode } from '../utils/auth-from-code.js';
 
 /**
  * Middleware handler for authenticating a new session

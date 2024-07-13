@@ -1,7 +1,7 @@
 import test from 'ava';
 import sinon from 'sinon';
 
-import { requireGuildMembership } from './require-guild-membership';
+import { requireGuildMembership } from './require-guild-membership.js';
 
 /**
  * Helper to create requests for testing
