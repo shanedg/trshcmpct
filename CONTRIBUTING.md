@@ -89,7 +89,6 @@ corresponds with the expected major version of Node and this repository
 will continue to use Node 18 until Node 20 becomes the active Long Term
 Support (LTS) version
 * `eslint` is excluded because some plugins are not compatible with v9
-* `@testing-library/react` is excluded because of peer dependency conflcts
 * `eslint-plugin-ava` is excluded because it expects `eslint` >= 9
 
 ## Updating pnpm
