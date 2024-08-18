@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link, Outlet } from 'react-router-dom';
 
+import { LogoutLink } from './LogoutLink';
 import { useRequest } from '../hooks/use-request';
 
 type World = {
@@ -24,6 +25,9 @@ export const Worlds = () => {
         <ul className="navigation-list">
           <li>
             <Link to="/">back</Link>
+          </li>
+          <li>
+            <LogoutLink />
           </li>
         </ul>
       </nav>

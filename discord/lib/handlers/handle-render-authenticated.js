@@ -15,9 +15,9 @@
  * @param {express.NextFunction} next
  */
 export const handleRenderAuthenticated = (htmlDirectory, htmlFilename, request, response, next) => {
-  const { oauth, state } = request.session;
+  const { oauth } = request.session;
 
-  if (!oauth || !oauth.access_token || !state) {
+  if (!oauth || !oauth.access_token) {
     request.log.debug('not authenticated');
     return next();
   }
