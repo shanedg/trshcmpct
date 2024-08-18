@@ -5,6 +5,9 @@ import { authFromCode } from '../utils/auth-from-code.js';
  * with the authorization code grant flow:
  * https://discordjs.guide/oauth2/#authorization-code-grant-flow
  *
+ * Creates an authenticated express session based on this example:
+ * https://www.npmjs.com/package/express-session#user-login
+ *
  * Express expects handler function signatures have (at most) three parameters: request, response, next.
  * It's useful to do *partial application* with Function.prototype.bind()
  * to prefill the first two arguments and support the expected signature.
@@ -18,7 +21,7 @@ import { authFromCode } from '../utils/auth-from-code.js';
  * @param {string} configuration.clientSecret Discord client secret
  * @param {string} configuration.redirectUri Application authorization url
  * @param {express.Request} request
- * @param {express.Response} _response
+ * @param {express.Response} _response Unused
  * @param {express.NextFunction} next
  */
 export const handleAuthorizationCodeGrant = async (
@@ -63,8 +66,23 @@ export const handleAuthorizationCodeGrant = async (
     return next(new Error('bad authorization', { cause: oauthFinal.error }));
   }
 
-  const nowInSeconds = Date.now() / 1000;
-  request.session.oauth = oauthFinal;
-  request.session.oauthExpires = nowInSeconds + oauthFinal.expires_in;
-  next();
+  // Create a new, authenticated session
+  request.session.regenerate(sessionRegenerateError => {
+    if (sessionRegenerateError) {
+      return next(sessionRegenerateError);
+    }
+
+    request.session.oauth = oauthFinal;
+    const nowInUTCSeconds = Math.floor(Date.now() / 1000);
+    request.session.oauthExpires = nowInUTCSeconds + oauthFinal.expires_in;
+
+    // Manually save new session details back to the store
+    request.session.save(sessionSaveError => {
+      if (sessionSaveError) {
+        return next(sessionSaveError);
+      }
+
+      next();
+    });
+  });
 };
