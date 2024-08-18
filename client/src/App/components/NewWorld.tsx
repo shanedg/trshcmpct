@@ -1,6 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
+import { LogoutLink } from './LogoutLink';
+
 export const NewWorld = () => {
   return (
     <>
@@ -8,6 +10,9 @@ export const NewWorld = () => {
         <ul className="navigation-list">
           <li>
             <Link to="/">back</Link>
+          </li>
+          <li>
+            <LogoutLink />
           </li>
         </ul>
       </nav>

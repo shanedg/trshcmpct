@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 
 import { ErrorCard } from './ErrorCard';
 import { LoadingContent } from './LoadingContent';
+import { LogoutLink } from './LogoutLink';
 import { Unauthorized } from './Unauthorized';
 import { Welcome } from './Welcome';
 import { useRequest } from '../hooks/use-request';
@@ -35,6 +36,9 @@ export const Home = () => {
             </li>
             <li>
               <Link to="/worlds">worlds</Link>
+            </li>
+            <li>
+              <LogoutLink />
             </li>
           </ul>
         </nav>
