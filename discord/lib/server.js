@@ -42,9 +42,9 @@ app.engine('html', handlebarsForExpress);
 
 app.use(pinoLogger);
 
-// TODO: control session length with env variable
-const sessionLength = 10 * 60; // 10 minutes in seconds
-// 7 * 24 * 60 * 60 // 1 week in seconds (how long tokens are valid)
+// authorization tokens are valid for 1 week
+// so set session length to 1 week in seconds
+const sessionLength = 7 * 24 * 60 * 60;
 
 const SessionFileStore = store(expressSesssion);
 
