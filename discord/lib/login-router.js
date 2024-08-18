@@ -2,6 +2,7 @@ import express from 'express';
 
 import { handleAuthorizationCodeGrant } from './handlers/handle-authorization-code-grant.js';
 import { handleError } from './handlers/handle-error.js';
+import { handleLogout } from './handlers/handle-logout.js';
 import { handleRedirect } from './handlers/handle-redirect.js';
 import { handleRenderLogin } from './handlers/handle-render-login.js';
 
@@ -67,6 +68,11 @@ export class LoginRouter {
       handleAuthorizationCodeGrant.bind(null, fetch, { clientId, clientSecret, redirectUri }),
       // Redirect once authenticated
       redirectAfterAuthentication
+    ]);
+
+    loginRouter.get('/logout', [
+      handleLogout,
+      handleRedirect.bind(null, '/login'),
     ]);
 
     loginRouter.use(handleError);
