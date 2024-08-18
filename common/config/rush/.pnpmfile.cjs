@@ -34,13 +34,5 @@ function readPackage(packageJson, context) {
   //  packageJson.dependencies['log4js'] = '0.6.38';
   // }
 
-  if (packageJson.name === '@trshcmpctr/client') {
-    // Running into an issue with latest minor version of webpack-dev-middleware
-    // Possibly an interaction with start-server-and-test but downgrading helps
-    // https://github.com/webpack/webpack-dev-middleware/issues/1920
-    packageJson.dependencies['webpack-dev-middleware'] = '7.2.1';
-    context.log('Fixed up @trshcmpctr/client dependency, webpack-dev-middleware');
-  }
-
   return packageJson;
 }
