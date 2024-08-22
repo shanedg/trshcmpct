@@ -28,7 +28,7 @@
     "@trshcmpctr/eslint-config-jest": "workspace:*",
     "@trshcmpctr/jest-stdout-reporter": "workspace:*",
     "@trshcmpctr/markdownlint-config": "workspace:*",
-    "@typescript-eslint/parser": "~8.1.0",
+    "@typescript-eslint/parser": "~8.2.0",
     "eslint-plugin-eslint-comments": "~3.2.0",
     "eslint-plugin-import": "~2.29.1",
     "eslint-plugin-jest": "~28.8.0",
