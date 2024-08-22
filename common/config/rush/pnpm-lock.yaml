@@ -86,8 +86,8 @@ importers:
         specifier: ~18.3.0
         version: 18.3.0
       '@types/testing-library__jest-dom':
-        specifier: ~5.14.5
-        version: 5.14.9
+        specifier: ~6.0.0
+        version: 6.0.0
       '@typescript-eslint/eslint-plugin':
         specifier: ~8.2.0
         version: 8.2.0(@typescript-eslint/parser@8.2.0(eslint@8.57.0)(typescript@5.5.4))(eslint@8.57.0)(typescript@5.5.4)
@@ -2036,8 +2036,9 @@ packages:
   '@types/stack-utils@2.0.3':
     resolution: {integrity: sha512-9aEbYZ3TbYMznPdcdr3SmIrLXwC/AKZXQeCf9Pgao5CKb8CyHuEX5jzWPTkvregvhRJHcpRO6BFoGW9ycaOkYw==}
 
-  '@types/testing-library__jest-dom@5.14.9':
-    resolution: {integrity: sha512-FSYhIjFlfOpGSRyVoMBMuS3ws5ehFQODymf3vlI7U1K8c7PHwWwFY7VREfmsuzHSOnoKs/9/Y983ayOs7eRzqw==}
+  '@types/testing-library__jest-dom@6.0.0':
+    resolution: {integrity: sha512-bnreXCgus6IIadyHNlN/oI5FfX4dWgvGhOPvpr7zzCYDGAPIfvyIoAozMBINmhmsVuqV0cncejF2y5KC7ScqOg==}
+    deprecated: This is a stub types definition. @testing-library/jest-dom provides its own type definitions, so you do not need this installed.
 
   '@types/through@0.0.33':
     resolution: {integrity: sha512-HsJ+z3QuETzP3cswwtzt2vEIiHBk/dCcHGhbmG5X3ecnwFD/lPrMpliGXxSCg03L9AhrdwA4Oz/qfspkDW+xGQ==}
@@ -8887,9 +8888,9 @@ snapshots:
 
   '@types/stack-utils@2.0.3': {}
 
-  '@types/testing-library__jest-dom@5.14.9':
+  '@types/testing-library__jest-dom@6.0.0':
     dependencies:
-      '@types/jest': 29.5.12
+      '@testing-library/jest-dom': 6.4.8
 
   '@types/through@0.0.33':
     dependencies:
