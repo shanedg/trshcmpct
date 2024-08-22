@@ -41,7 +41,7 @@ jobs:
         ENVIRONMENT: fake_environment
 
     - name: Lint JavaScript
-      run: node common/scripts/install-run-rush.js lint
+      run: node common/scripts/install-run-rush.js lint --verbose
 
     - name: Lint Markdown
       run: node common/scripts/install-run-rush.js lint:md

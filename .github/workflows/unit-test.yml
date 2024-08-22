@@ -33,4 +33,4 @@ jobs:
         DISCORD_REDIRECT_URI: fake_discord_redirect_uri
 
     - name: Unit Tests
-      run: node common/scripts/install-run-rush.js test
+      run: node common/scripts/install-run-rush.js test --verbose

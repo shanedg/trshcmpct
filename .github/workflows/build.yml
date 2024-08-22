@@ -39,7 +39,7 @@ jobs:
 
     - name: Build
       if: steps.restore-build-cache.outputs.cache-hit != 'true'
-      run: node common/scripts/install-run-rush.js build
+      run: node common/scripts/install-run-rush.js build --verbose
 
     - name: Save Build Cache
       id: save-cache
