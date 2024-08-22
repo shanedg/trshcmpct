@@ -22,7 +22,7 @@
     "test": "jest --reporters=@trshcmpctr/jest-stdout-reporter --silent",
     "test:debug": "NODE_OPTIONS=--inspect jest --runInBand --no-cache",
     "test:watch": "jest --watch",
-    "test:cypress": "start-server-and-test serve http-get://localhost:8080 cy:run",
+    "test:cypress": "start-server-and-test serve http://localhost:8080 cy:run",
     "type-check": "tsc",
     "watch": "webpack --config webpack.config.cjs --watch"
   },
