@@ -25,7 +25,7 @@ jobs:
 
     - name: Install
       if: steps.restore-cache.outputs.cache-hit != 'true'
-      run: node common/scripts/install-run-rush.js install --verbose
+      run: node common/scripts/install-run-rush.js install
 
     - name: Save Cache
       id: save-cache
