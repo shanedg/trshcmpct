@@ -1,7 +1,6 @@
 const cjsConfigFiles = [
   '.eslintrc.cjs',
   'babel.config.cjs',
-  'jest-setup.cjs',
   'jest.config.cjs',
   'webpack.config.cjs',
   'webpack.config.test.cjs',

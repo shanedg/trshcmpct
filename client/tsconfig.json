@@ -25,5 +25,9 @@
     "target": "ESNext",
   },
 
-  "include": ["src"]
+  "include": [
+    "src",
+    // jest-setup.ts needs to be .ts to include @testing-library/jest-dom types
+    "./jest-setup.ts"
+  ]
 }

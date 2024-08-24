@@ -1,5 +1,3 @@
-const path = require('node:path');
-
 module.exports = {
   rootDir: './',
   transform: {
@@ -11,14 +9,16 @@ module.exports = {
     // Unfortunately, we can't use <rootDir> in this pattern.
     '\\/client\\/src\\/.+\\.[t|j]sx?$': [
       'babel-jest',
-      // Since the babel config isn't in the package root,
-      // we need to locate it explicitly for babel-jest here.
-      { configFile: path.resolve(__dirname, 'babel.config.cjs') }
+    ],
+    // jest-setup.ts needs to be .ts to include types for
+    // extended Jest matchers from @testing-library/jest-dom
+    '\\/client\\/jest-setup\\.ts$': [
+      'babel-jest',
     ],
   },
   collectCoverage: true,
   testEnvironment: 'jsdom',
-  setupFilesAfterEnv: ['<rootDir>/jest-setup.cjs'],
+  setupFilesAfterEnv: ['<rootDir>/jest-setup.ts'],
   moduleNameMapper: {
     // See https://jestjs.io/docs/webpack#handling-static-assets
     '\\.(css|less)$': '<rootDir>/__mocks__/styleMock.cjs',
