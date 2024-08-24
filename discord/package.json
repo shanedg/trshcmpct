@@ -31,7 +31,7 @@
     "cy:run": "cypress run --config-file=cypress/cypress.config.js",
     "debug": "DISCORD_LOG_LEVEL=debug node --experimental-fetch --experimental-import-meta-resolve --trace-warnings --inspect-brk lib/server.js",
     "dev": "DISCORD_LOG_LEVEL=debug nodemon --ignore sessions --experimental-fetch --experimental-import-meta-resolve --inspect lib/server.js",
-    "lint": "eslint --report-unused-disable-directives --max-warnings=0 --cache .",
+    "lint": "eslint --report-unused-disable-directives --max-warnings=0 .",
     "lint:md": "markdownlint-cli2 --config node_modules/@trshcmpctr/markdownlint-config/.markdownlint-cli2.jsonc",
     "start": "NODE_ENV=production node --experimental-fetch --experimental-import-meta-resolve lib/server.js",
     "start:test": "NODE_ENV=production node --experimental-fetch --experimental-import-meta-resolve lib/server.js http://localhost:53134/auth",

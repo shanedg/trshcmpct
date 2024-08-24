@@ -11,7 +11,11 @@ module.exports = {
   },
 
   only: [
+    // Only files in src/ are built & transpiled by Babel
     './src',
+    // jest-setup.ts is the only .ts module in the package root,
+    // needs to be transformed by Babel for Jest to understand it
+    './jest-setup.ts',
   ],
 
   plugins: [

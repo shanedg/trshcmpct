@@ -20,7 +20,7 @@
   "license": "UNLICENSED",
   "scripts": {
     "build": "",
-    "lint": "eslint --report-unused-disable-directives --max-warnings=0 --cache .",
+    "lint": "eslint --report-unused-disable-directives --max-warnings=0 .",
     "lint:md": "markdownlint-cli2 --config node_modules/@trshcmpctr/markdownlint-config/.markdownlint-cli2.jsonc",
     "test": "jest --no-cache --silent"
   },
