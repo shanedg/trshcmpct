@@ -44,8 +44,6 @@ export class AuthenticatedHTMLRouter {
 
     trshcmpctrClientRouter.get('/', [
       handleRenderAuthenticated.bind(null, htmlDirectory, htmlFilename),
-      // FIXME: redirect to /not-a-member or something if someone signs in but isn't a member?
-      // FIXME: OR do we just render a mostly-empty view via the client app when the guild membership data is empty?
       // Redirect to login if not authenticated
       handleRedirect.bind(null, '/login')
     ]);
