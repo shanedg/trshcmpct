@@ -7,7 +7,7 @@ import { LoadingContent } from './LoadingContent';
 import { LogoutLink } from './LogoutLink';
 import { Unauthorized } from './Unauthorized';
 import { Welcome } from './Welcome';
-import { useRequest } from '../hooks/use-request';
+import { useLatestRequest } from '../hooks/use-latest-request';
 
 const getWelcomeMessage = (guildUser: APIGuildMember) => {
   const welcome = 'welcome to the trash compactor';
@@ -23,7 +23,7 @@ const getWelcomeMessage = (guildUser: APIGuildMember) => {
  * The home page
  */
 export const Home = () => {
-  const useAuthorizedGuildMemberData = useRequest<APIGuildMember>('/api/v1/authorized');
+  const useAuthorizedGuildMemberData = useLatestRequest<APIGuildMember>('/api/v1/authorized');
   const { data: guildUser, error } = useAuthorizedGuildMemberData();
 
   if (guildUser) {

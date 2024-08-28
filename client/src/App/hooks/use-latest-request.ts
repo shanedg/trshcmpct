@@ -1,20 +1,21 @@
 import axios, { AxiosResponse, type AxiosRequestConfig } from 'axios';
 import { useEffect, useState } from 'react';
 
-export type UseRequestReturnType<T> = {
+type UseLatestRequestReturnType<T> = {
   data: T | null,
   error: Error | null,
   isLoading: boolean,
 };
 
 /**
- * Wrap network requests in a standard hook interface
+ * Wrap component network requests in a standard hook interface
+ * Only use result of most recent request
  * @param url Request url
  * @param config Request configuration
  * @returns A hook for wrapping network requests in a standard interface
  */
-export const useRequest = <T, D = never>(url: string, config?: AxiosRequestConfig<D>) => {
-  return (): UseRequestReturnType<T> => {
+export const useLatestRequest = <T, D = never>(url: string, config?: AxiosRequestConfig<D>) => {
+  return (): UseLatestRequestReturnType<T> => {
     const [data, setData] = useState<T | null>(null);
     const [error, setError] = useState<Error | null>(null);
     const [isLoading, setIsLoading] = useState<boolean>(false);

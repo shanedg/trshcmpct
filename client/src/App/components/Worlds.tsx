@@ -2,7 +2,7 @@ import React from 'react';
 import { Link, Outlet } from 'react-router-dom';
 
 import { LogoutLink } from './LogoutLink';
-import { useRequest } from '../hooks/use-request';
+import { useLatestRequest } from '../hooks/use-latest-request';
 
 type World = {
   id: number,
@@ -16,7 +16,7 @@ type World = {
 type Worlds = World[];
 
 export const Worlds = () => {
-  const useWrapped = useRequest<Worlds>('/api/v1/worlds');
+  const useWrapped = useLatestRequest<Worlds>('/api/v1/worlds');
   const { data: worlds } = useWrapped();
 
   return (

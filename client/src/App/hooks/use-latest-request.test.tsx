@@ -3,7 +3,7 @@ import axios, { CanceledError } from 'axios';
 
 jest.mock('axios');
 
-import { useRequest } from './use-request';
+import { useLatestRequest } from './use-latest-request';
 
 const mockedRequestTimeout = 100;
 
@@ -24,7 +24,7 @@ describe('useRequest', () => {
   it('wraps successful requests', async () => {
     (axios as jest.Mocked<typeof axios>).request.mockResolvedValue({ data: 'data!' });
 
-    const useSuccessfulRequest = useRequest<string>('/api/v1/success');
+    const useSuccessfulRequest = useLatestRequest<string>('/api/v1/success');
     const { result } = renderHook(useSuccessfulRequest);
     await act(async () => await jest.runAllTimersAsync());
 
@@ -36,7 +36,7 @@ describe('useRequest', () => {
   it('wraps requests with configurable options', async () => {
     (axios as jest.Mocked<typeof axios>).request.mockResolvedValue({ data: 'data!' });
 
-    const useCustomizableRequest = useRequest<string>('/api/v1/customizable', {
+    const useCustomizableRequest = useLatestRequest<string>('/api/v1/customizable', {
       baseURL: 'https://www.trshcmpctr.com',
     });
     renderHook(useCustomizableRequest);
@@ -53,7 +53,7 @@ describe('useRequest', () => {
       Error('request-error')
     );
 
-    const useFailedRequest = useRequest<string>('/api/v1/failed');
+    const useFailedRequest = useLatestRequest<string>('/api/v1/failed');
     const { result } = renderHook(useFailedRequest);
     await act(async () => await jest.runAllTimersAsync());
 
@@ -71,7 +71,7 @@ describe('useRequest', () => {
     );
     (axios as jest.Mocked<typeof axios>).isCancel.mockReturnValue(true);
 
-    const useCanceledRequest = useRequest<string>('/api/v1/canceled');
+    const useCanceledRequest = useLatestRequest<string>('/api/v1/canceled');
     const { result } = renderHook(useCanceledRequest);
     await act(async () => await jest.runAllTimersAsync());
 
@@ -93,7 +93,7 @@ describe('useRequest', () => {
       })
     );
 
-    const usePendingRequest = useRequest<string>('/api/v1/pending');
+    const usePendingRequest = useLatestRequest<string>('/api/v1/pending');
     const { result } = renderHook(usePendingRequest);
     await act(async () => await jest.advanceTimersByTimeAsync(mockedRequestTimeout - 1));
 
@@ -114,7 +114,7 @@ describe('useRequest', () => {
       new Promise(jest.fn())
     );
 
-    const usePendingRequest = useRequest<string>('/api/v1/pending');
+    const usePendingRequest = useLatestRequest<string>('/api/v1/pending');
     const { result, unmount } = renderHook(usePendingRequest);
     await act(async () => await jest.runAllTimersAsync());
 
