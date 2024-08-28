@@ -5,23 +5,22 @@ Notes specifically for repository maintainers
 ## TODOs
 
 * implement worlds api endpoint
-* add client logout button
-  * extend server session length to match how long discord auth tokens are valid
-  (maybe a bit shorter than max auth token age)
 * upload cypress screenshots, videos, and/or
 rush *.log artifacts to github build artifacts for debugging
-* auth fails when switching discord accounts at login
 * auth fails on first couple renders, refresh resolves
 * upgrade to eslint v9
   * upgrade eslint-plugin-ava to latest major
-* upgrade to latest @testing-library/react
-  * fix peer dependency issues
 * docs: updating/upgrading node
 * lint js/md on precommit?
-* build cache things
 * esm-ify more packages
 * publish
 * generate changelogs
+* @trshcmpctr/eslint-config-jest:
+  * <https://github.com/dangreenisrael/eslint-plugin-jest-formatting>
+  * <https://github.com/istanbuljs/eslint-plugin-istanbul>
+  * <https://www.npmjs.com/package/eslint-plugin-jest-dom>
+* @trshcmpctr/eslint-config-typescript
+  * <https://typescript-eslint.io/docs/linting/troubleshooting/#the-indent--typescript-eslintindent-rules>
 
 ## Scaffolding a New Project
 

@@ -51,7 +51,3 @@ module.exports = {
   root: true
 };
 ```
-
-## TODO
-
-* <https://typescript-eslint.io/docs/linting/troubleshooting/#the-indent--typescript-eslintindent-rules>
