@@ -93,11 +93,19 @@ Support (LTS) version
 Blockers for Eslint v9:
 
 * `eslint-plugin-import` <https://github.com/import-js/eslint-plugin-import/issues/2948>
+  * still no: <https://github.com/import-js/eslint-plugin-import/blob/18787d3e6966028983af81a878d1a505893932d4/package.json#L109>
+  * interesting idea that this plugin should be replaced by a purpose-built tool;
+  eslint is not really intended to support the api that this plugin uses
 * `eslint-plugin-jest`
+  * should be resolved by <https://github.com/jest-community/eslint-plugin-jest/pull/1547>
 * `eslint-plugin-jsx-a11y`
+  * should be resolved by <https://github.com/jsx-eslint/eslint-plugin-jsx-a11y/pull/1009>
 * `eslint-plugin-react-hooks`
+  * should be resolved by <https://github.com/facebook/react/pull/28773>
 * `eslint-plugin-testing-library`
+  * no resolution yet, only some discussion in issues
 * `@typescript-eslint/utils`
+  * should be resolved by <https://github.com/typescript-eslint/typescript-eslint/pull/9002>
 
 ## Updating pnpm
 
