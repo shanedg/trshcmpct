@@ -4,6 +4,7 @@ Notes specifically for repository maintainers
 
 ## TODOs
 
+* new deployment target that's just a local network raspberry pi
 * implement worlds api endpoint
 * upload cypress screenshots, videos, and/or
 rush *.log artifacts to github build artifacts for debugging
