@@ -17,7 +17,8 @@ const getMode = productionFlag => productionFlag ? 'production' : 'development';
 // https://webpack.js.org/api/cli/#environment-options
 // https://webpack.js.org/guides/environment-variables/
 module.exports = (env = {}, argv = {}) => {
-  const isProduction = getMode(env.production) === 'production';
+  const mode = getMode(env.production);
+  const isProduction = mode === 'production';
 
   return {
     devServer: {
@@ -81,7 +82,7 @@ module.exports = (env = {}, argv = {}) => {
 
     entry: resolve(__dirname, './src/index.ts'),
 
-    mode: getMode(env.production),
+    mode,
 
     module: {
       rules: [
