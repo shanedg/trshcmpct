@@ -130,6 +130,13 @@ module.exports = (env = {}, argv = {}) => {
       clean: true,
       filename: '[name].[chunkhash].js',
       path: resolve(__dirname, './dist'),
+      // Construct bundle paths relative to root:
+      // https://webpack.js.org/configuration/output/#outputpublicpath
+      // See note about `output.publicPath` in Webpack 5 migration guide:
+      // https://webpack.js.org/migrate/5/
+      // Mostly important for webpack-manifest-plugin:
+      // https://github.com/shellscape/webpack-manifest-plugin/issues/229#issuecomment-737617994
+      publicPath: '/',
     },
 
     plugins: [
@@ -143,12 +150,7 @@ module.exports = (env = {}, argv = {}) => {
         lintDirtyModulesOnly: !!argv.watch,
         reportUnusedDisableDirectives: !isProduction ? 'warn' : null,
       }),
-      new WebpackManifestPlugin({
-        // Issue with `publicPath: 'auto'` prepending manifest URLs with 'auto/':
-        // https://github.com/jantimon/html-webpack-plugin/issues/1514
-        // Supposedly fixed but still needs this workaround
-        publicPath: ''
-      }),
+      new WebpackManifestPlugin(),
       new HtmlWebpackPlugin({
         template: resolve(__dirname, './src/index.html'),
         title: 'trshcmpctr',
