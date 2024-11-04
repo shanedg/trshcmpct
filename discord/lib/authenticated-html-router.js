@@ -13,15 +13,18 @@ export class AuthenticatedHTMLRouter {
    * @param {Object} configuration
    * @param {string} configuration.htmlDirectory
    * @param {string} configuration.htmlFilename
+   * @param {string[]} configuration.paths
    */
   constructor(configuration) {
     const {
       htmlDirectory,
       htmlFilename,
+      paths,
     } = configuration;
 
     if (!htmlDirectory) throw new Error('missing html directory');
     if (!htmlFilename) throw new Error('missing html filename');
+    if (!paths) throw new Error('missing paths');
 
     this.configuration = Object.freeze(configuration);
 
@@ -38,11 +41,12 @@ export class AuthenticatedHTMLRouter {
     const {
       htmlDirectory,
       htmlFilename,
+      paths,
     } = this.configuration;
 
     const trshcmpctrClientRouter = express.Router();
 
-    trshcmpctrClientRouter.get('/', [
+    trshcmpctrClientRouter.get(paths, [
       handleRenderAuthenticated.bind(null, htmlDirectory, htmlFilename),
       // Redirect to login if not authenticated
       handleRedirect.bind(null, '/login')

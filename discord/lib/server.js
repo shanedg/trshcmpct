@@ -81,6 +81,7 @@ const clientDirectory = dirname(clientUrl.pathname);
 const authenticatedViewRouter = new AuthenticatedHTMLRouter({
   htmlDirectory: clientDirectory,
   htmlFilename: manifest['index.html'],
+  paths: ['/'],
 });
 app.use(authenticatedViewRouter.middleware);
 
