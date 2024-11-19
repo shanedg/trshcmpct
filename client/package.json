@@ -10,7 +10,7 @@
   "scripts": {
     "build": "webpack --config webpack.config.cjs",
     "build:production": "webpack --config webpack.config.cjs --env production",
-    "build:watch-webpack": "nodemon --exec 'webpack serve --config webpack.config.cjs' --watch 'webpack.config.cjs'",
+    "build:watch-webpack": "nodemon --exec 'webpack --config webpack.config.cjs' --watch webpack.config.cjs",
     "clean": "rm -rf dist",
     "cy:open": "cypress open --config-file=cypress/cypress.config.ts --e2e --browser=chrome",
     "cy:run": "cypress run --config-file=cypress/cypress.config.ts",
