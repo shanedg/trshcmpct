@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { createContext, useContext } from 'react';
 import { Link, Outlet } from 'react-router-dom';
 
 import { LogoutLink } from './LogoutLink';
@@ -12,12 +12,16 @@ export type World = {
 
 type Worlds = World[];
 
+const WorldContext = createContext<Worlds | null>(null);
+
+export const useWorldContext = () => useContext(WorldContext);
+
 export const Worlds = () => {
   const useWrapped = useLatestRequest<Worlds>('/api/v1/worlds');
   const { data: worlds } = useWrapped();
 
   return (
-    <>
+    <WorldContext.Provider value={worlds}>
       <nav>
         <ul className="navigation-list">
           <li>
@@ -52,6 +56,6 @@ export const Worlds = () => {
         </table>
       </article>
       <Outlet />
-    </>
+    </WorldContext.Provider>
   );
 };
