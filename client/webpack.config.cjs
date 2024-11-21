@@ -47,27 +47,18 @@ module.exports = (env = {}, argv = {}) => {
               response.send([
                 {
                   id: 1,
-                  label: 'world one',
-                  version: '1.16.5',
-                  createdAt: '2023/06/28',
-                  lastOnline: '2023/06/28',
-                  createdBy: '@shaned.gg'
+                  name: 'world one',
+                  status: 'pending',
                 },
                 {
                   id: 2,
-                  label: 'world two',
-                  version: '1.19.0',
-                  createdAt: '2023/06/28',
-                  lastOnline: '2023/06/28',
-                  createdBy: '@shaned.gg'
+                  name: 'world two',
+                  status: 'pending',
                 },
                 {
                   id: 3,
-                  label: 'world three',
-                  version: '1.20.1',
-                  createdAt: '2023/06/28',
-                  lastOnline: '2023/06/28',
-                  createdBy: '@shaned.gg'
+                  name: 'world three',
+                  status: 'pending',
                 },
               ]);
             }
