@@ -23,6 +23,16 @@ rush *.log artifacts to github build artifacts for debugging
 * @trshcmpctr/eslint-config-typescript
   * <https://typescript-eslint.io/docs/linting/troubleshooting/#the-indent--typescript-eslintindent-rules>
 
+## Mysteries
+
+* ava test watch in discord always reruns on /session changes;
+package.json options to ignore patterns when watching don't work
+* 'import()' expressions are not supported yet ???
+eslint-disable-next-line node/no-unsupported-features/es-syntax -- node/no-unsupported-features/es-syntax
+This should not be a problem but adjusting the engines field
+and overwriting the rule to set the node version explicitly
+doesn't seem to be working :(
+
 ## Scaffolding a New Project
 
 Use a custom rush command (see [command-line.json]) that calls [plop] to
