@@ -20,7 +20,49 @@ module.exports = (env = {}, argv = {}) => {
   const mode = getMode(env.production);
   const isProduction = mode === 'production';
 
-  return {
+  return [{
+    entry: {
+      paths: resolve(__dirname, './src/paths.ts'),
+    },
+    output: {
+      clean: true,
+      filename: '[name].js',
+      path: resolve(__dirname, './lib'),
+      library: {
+        type: 'module',
+      },
+    },
+    experiments: {
+      outputModule: true,
+    },
+    resolve: {
+      extensions: ['.js', '.jsx', '.ts', '.tsx'],
+    },
+    mode,
+    module: {
+      rules:  [
+        {
+          test: /\.(ts|tsx)$/,
+          exclude: /node_modules/,
+          loader: 'babel-loader',
+          options: {
+            configFile: resolve(__dirname, 'babel.config.lib.cjs'),
+          },
+        },
+      ],
+    },
+
+    plugins: [
+      new ESLintPlugin({
+        emitError: isProduction,
+        emitWarning: !isProduction,
+        extensions: ['.ts', '.tsx'],
+        failOnError: isProduction,
+        lintDirtyModulesOnly: !!argv.watch,
+        reportUnusedDisableDirectives: !isProduction ? 'warn' : null,
+      }),
+    ],
+  }, {
     devServer: {
       setupMiddlewares: (middlewares, devServer) => {
         if (!devServer) {
@@ -152,5 +194,5 @@ module.exports = (env = {}, argv = {}) => {
     resolve: {
       extensions: ['.js', '.jsx', '.ts', '.tsx'],
     },
-  };
+  }];
 };

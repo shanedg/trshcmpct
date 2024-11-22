@@ -2,15 +2,21 @@
   "name": "@trshcmpctr/client",
   "version": "1.0.0",
   "description": "Frontend React app",
-  "files": ["dist"],
+  "files": [
+    "dist",
+    "lib/paths.js"
+  ],
   "type": "module",
   "main": "./dist/manifest.json",
   "module": "./dist/manifest.json",
-  "exports": "./dist/manifest.json",
+  "exports": {
+    ".": "./dist/manifest.json",
+    "./paths": "./lib/paths.js"
+  },
   "scripts": {
     "build": "webpack --config webpack.config.cjs",
     "build:production": "webpack --config webpack.config.cjs --env production",
-    "build:watch-webpack": "nodemon --exec 'webpack --config webpack.config.cjs' --watch webpack.config.cjs --watch babel.config.cjs",
+    "build:watch-webpack": "nodemon --exec 'webpack --config webpack.config.cjs' --watch webpack.config.cjs --watch babel.config.cjs --watch babel.config.lib.cjs",
     "clean": "rm -rf dist",
     "cy:open": "cypress open --config-file=cypress/cypress.config.ts --e2e --browser=chrome",
     "cy:run": "cypress run --config-file=cypress/cypress.config.ts",

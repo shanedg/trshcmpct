@@ -8,6 +8,7 @@ import pinoHttp from 'pino-http';
 import store from 'session-file-store';
 
 import manifest from '@trshcmpctr/client' assert { type: 'json' };
+import { paths } from '@trshcmpctr/client/paths';
 
 import { AuthenticatedAPIRouter } from './authenticated-api/router.js';
 import { AuthenticatedHTMLRouter } from './authenticated-html-router.js';
@@ -81,7 +82,7 @@ const clientDirectory = dirname(clientUrl.pathname);
 const authenticatedViewRouter = new AuthenticatedHTMLRouter({
   htmlDirectory: clientDirectory,
   htmlFilename: manifest['index.html'],
-  paths: ['/'],
+  paths,
 });
 app.use(authenticatedViewRouter.middleware);
 
