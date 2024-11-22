@@ -1,5 +1,5 @@
 import React from 'react';
-import { useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 
 import { useWorldContext } from './Worlds';
 
@@ -9,6 +9,9 @@ export const WorldDetail = () => {
   const thisWorld = worlds?.find(({ id }) => id === worldId);
   return (
     <article>
+      <nav>
+        <Link to="..">close</Link>
+      </nav>
       <h3>{worldId}</h3>
       {thisWorld ? (
         <>
