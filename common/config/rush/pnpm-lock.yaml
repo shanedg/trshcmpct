@@ -18,6 +18,9 @@ importers:
       core-js:
         specifier: ~3.38.0
         version: 3.38.1
+      prop-types:
+        specifier: ~15.8.1
+        version: 15.8.1
       react:
         specifier: ~18.3.1
         version: 18.3.1
@@ -79,6 +82,9 @@ importers:
       '@types/node':
         specifier: ~18.19.31
         version: 18.19.45
+      '@types/prop-types':
+        specifier: ~15.7.12
+        version: 15.7.12
       '@types/react':
         specifier: ~18.3.3
         version: 18.3.4
