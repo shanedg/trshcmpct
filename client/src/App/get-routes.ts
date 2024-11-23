@@ -7,7 +7,7 @@ import { NewWorld } from './components/NewWorld';
 import { WorldDetail } from './components/WorldDetail';
 import { Worlds } from './components/Worlds';
 
-import type { RouteObject } from 'react-router';
+import type { RouteObject } from 'react-router-dom';
 
 type NamedRoute = Pick<RouteObject, 'element' | 'errorElement'>;
 
@@ -19,7 +19,7 @@ export type NamedRoutes = Record<string, NamedRouteWithChildren>;
 
 /**
  * A map of named routes declaring the application route hierarchy
- * Not understood by react-router browser router
+ * Not understood by react-router-dom browser router
  */
 export const namedRoutes: NamedRoutes = {
   '/': {
@@ -49,7 +49,7 @@ export const namedRoutes: NamedRoutes = {
 };
 
 /**
- * Transform named routes map into a list of routes for react-router browser router
+ * Transform named routes map into a list of routes for react-router-dom browser router
  * @param routes Named routes
  * @returns A list of routes for browser router
  */

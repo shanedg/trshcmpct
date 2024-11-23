@@ -1,5 +1,5 @@
 import React, { createContext, useContext } from 'react';
-import { Link, Outlet } from 'react-router';
+import { Link, Outlet } from 'react-router-dom';
 
 import { LogoutLink } from './LogoutLink';
 import { useLatestRequest } from '../hooks/use-latest-request';

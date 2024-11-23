@@ -1,6 +1,6 @@
 import { type APIGuildMember } from 'discord-api-types/v10';
 import React from 'react';
-import { Link } from 'react-router';
+import { Link } from 'react-router-dom';
 
 import { ErrorCard } from './ErrorCard';
 import { LoadingContent } from './LoadingContent';
