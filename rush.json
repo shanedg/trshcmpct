@@ -16,7 +16,7 @@
    * path segment in the "$schema" field for all your Rush config files.  This will ensure
    * correct error-underlining and tab-completion for editors such as VS Code.
    */
-  "rushVersion": "5.131.4",
+  "rushVersion": "5.131.5",
 
   /**
    * The next field selects which package manager should be installed and determines its version.
@@ -409,7 +409,7 @@
     {
       "packageName": "@trshcmpctr/eslint-config",
       "projectFolder": "eslint-config",
-      "cyclicDependencyProjects": [
+      "decoupledLocalDependencies": [
         "@trshcmpctr/eslint-config-jest",
         "@trshcmpctr/jest-stdout-reporter"
       ]
