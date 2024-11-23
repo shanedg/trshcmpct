@@ -19,6 +19,7 @@ jobs:
           */.rush/temp
           */node_modules
           */dist
+          client/lib
         key: ${{ runner.os }}-build-${{ hashFiles('common/config/rush/repo-state.json') }}
         fail-on-cache-miss: true
 
