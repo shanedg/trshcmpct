@@ -88,17 +88,17 @@ module.exports = (env = {}, argv = {}) => {
             middleware: (_request, response) => {
               response.send([
                 {
-                  id: 1,
+                  id: 'abc',
                   name: 'world one',
                   status: 'pending',
                 },
                 {
-                  id: 2,
+                  id: 'def',
                   name: 'world two',
                   status: 'pending',
                 },
                 {
-                  id: 3,
+                  id: 'ghi',
                   name: 'world three',
                   status: 'pending',
                 },
