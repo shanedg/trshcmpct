@@ -88,6 +88,7 @@ exports[`eslint-config calculated config snapshots rules 1`] = `
         ],
         "type",
       ],
+      "named": false,
       "newlines-between": "always",
       "warnOnUnassignedImports": false,
     },
