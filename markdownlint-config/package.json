@@ -23,9 +23,9 @@
     "lint:md": "markdownlint-cli2 --config .markdownlint-cli2.jsonc"
   },
   "devDependencies": {
-    "markdownlint-cli2": "~0.13.0"
+    "markdownlint-cli2": "~0.15.0"
   },
   "peerDependencies": {
-    "markdownlint-cli2": "~0.13.0"
+    "markdownlint-cli2": "~0.15.0"
   }
 }
