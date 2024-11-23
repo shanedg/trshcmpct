@@ -1,26 +1,27 @@
-import React from 'react';
+import React, { createContext, useContext } from 'react';
 import { Link, Outlet } from 'react-router-dom';
 
 import { LogoutLink } from './LogoutLink';
-import { useRequest } from '../hooks/use-request';
+import { useLatestRequest } from '../hooks/use-latest-request';
 
-type World = {
-  id: number,
-  label: string,
-  version: string,
-  createdAt: string,
-  lastOnline: string,
-  createdBy: string,
+export type World = {
+  id: string,
+  name: string,
+  status: string,
 };
 
 type Worlds = World[];
 
+const WorldContext = createContext<Worlds | null>(null);
+
+export const useWorldContext = () => useContext(WorldContext);
+
 export const Worlds = () => {
-  const useWrapped = useRequest<Worlds>('/api/v1/worlds');
+  const useWrapped = useLatestRequest<Worlds>('/api/v1/worlds');
   const { data: worlds } = useWrapped();
 
   return (
-    <>
+    <WorldContext.Provider value={worlds}>
       <nav>
         <ul className="navigation-list">
           <li>
@@ -36,22 +37,18 @@ export const Worlds = () => {
         <table>
           <thead>
             <tr>
+              <td>id</td>
               <td>name</td>
-              <td>version</td>
-              <td>created</td>
-              <td>last online</td>
-              <td>created by</td>
+              <td>status</td>
             </tr>
           </thead>
           <tbody>
-            {worlds && worlds.map(({ id, label, version, createdAt, createdBy, lastOnline }) => {
+            {worlds && worlds.map(({ id, name, status }) => {
               return (
-                <tr key={`${id}-${label}-${version}`}>
-                  <td><Link to={`${id}`}>{label}</Link></td>
-                  <td>{version}</td>
-                  <td>{new Date(createdAt).toLocaleDateString()}</td>
-                  <td>{new Date(lastOnline).toLocaleDateString()}</td>
-                  <td>{createdBy}</td>
+                <tr key={`${id}-${name}`}>
+                  <td>{id}</td>
+                  <td><Link to={`${id}`}>{name}</Link></td>
+                  <td>{status}</td>
                 </tr>
               );
             })}
@@ -59,6 +56,6 @@ export const Worlds = () => {
         </table>
       </article>
       <Outlet />
-    </>
+    </WorldContext.Provider>
   );
 };

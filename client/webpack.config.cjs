@@ -17,9 +17,52 @@ const getMode = productionFlag => productionFlag ? 'production' : 'development';
 // https://webpack.js.org/api/cli/#environment-options
 // https://webpack.js.org/guides/environment-variables/
 module.exports = (env = {}, argv = {}) => {
-  const isProduction = getMode(env.production) === 'production';
+  const mode = getMode(env.production);
+  const isProduction = mode === 'production';
 
-  return {
+  return [{
+    entry: {
+      paths: resolve(__dirname, './src/paths.ts'),
+    },
+    output: {
+      clean: true,
+      filename: '[name].js',
+      path: resolve(__dirname, './lib'),
+      library: {
+        type: 'module',
+      },
+    },
+    experiments: {
+      outputModule: true,
+    },
+    resolve: {
+      extensions: ['.js', '.jsx', '.ts', '.tsx'],
+    },
+    mode,
+    module: {
+      rules:  [
+        {
+          test: /\.(ts|tsx)$/,
+          exclude: /node_modules/,
+          loader: 'babel-loader',
+          options: {
+            configFile: resolve(__dirname, 'babel.config.lib.cjs'),
+          },
+        },
+      ],
+    },
+
+    plugins: [
+      new ESLintPlugin({
+        emitError: isProduction,
+        emitWarning: !isProduction,
+        extensions: ['.ts', '.tsx'],
+        failOnError: isProduction,
+        lintDirtyModulesOnly: !!argv.watch,
+        reportUnusedDisableDirectives: !isProduction ? 'warn' : null,
+      }),
+    ],
+  }, {
     devServer: {
       setupMiddlewares: (middlewares, devServer) => {
         if (!devServer) {
@@ -45,28 +88,19 @@ module.exports = (env = {}, argv = {}) => {
             middleware: (_request, response) => {
               response.send([
                 {
-                  id: 1,
-                  label: 'world one',
-                  version: '1.16.5',
-                  createdAt: '2023/06/28',
-                  lastOnline: '2023/06/28',
-                  createdBy: '@shaned.gg'
+                  id: 'abc',
+                  name: 'world one',
+                  status: 'pending',
                 },
                 {
-                  id: 2,
-                  label: 'world two',
-                  version: '1.19.0',
-                  createdAt: '2023/06/28',
-                  lastOnline: '2023/06/28',
-                  createdBy: '@shaned.gg'
+                  id: 'def',
+                  name: 'world two',
+                  status: 'pending',
                 },
                 {
-                  id: 3,
-                  label: 'world three',
-                  version: '1.20.1',
-                  createdAt: '2023/06/28',
-                  lastOnline: '2023/06/28',
-                  createdBy: '@shaned.gg'
+                  id: 'ghi',
+                  name: 'world three',
+                  status: 'pending',
                 },
               ]);
             }
@@ -81,7 +115,7 @@ module.exports = (env = {}, argv = {}) => {
 
     entry: resolve(__dirname, './src/index.ts'),
 
-    mode: getMode(env.production),
+    mode,
 
     module: {
       rules: [
@@ -129,6 +163,13 @@ module.exports = (env = {}, argv = {}) => {
       clean: true,
       filename: '[name].[chunkhash].js',
       path: resolve(__dirname, './dist'),
+      // Construct bundle paths relative to root:
+      // https://webpack.js.org/configuration/output/#outputpublicpath
+      // See note about `output.publicPath` in Webpack 5 migration guide:
+      // https://webpack.js.org/migrate/5/
+      // Mostly important for webpack-manifest-plugin:
+      // https://github.com/shellscape/webpack-manifest-plugin/issues/229#issuecomment-737617994
+      publicPath: '/',
     },
 
     plugins: [
@@ -142,12 +183,7 @@ module.exports = (env = {}, argv = {}) => {
         lintDirtyModulesOnly: !!argv.watch,
         reportUnusedDisableDirectives: !isProduction ? 'warn' : null,
       }),
-      new WebpackManifestPlugin({
-        // Issue with `publicPath: 'auto'` prepending manifest URLs with 'auto/':
-        // https://github.com/jantimon/html-webpack-plugin/issues/1514
-        // Supposedly fixed but still needs this workaround
-        publicPath: ''
-      }),
+      new WebpackManifestPlugin(),
       new HtmlWebpackPlugin({
         template: resolve(__dirname, './src/index.html'),
         title: 'trshcmpctr',
@@ -158,5 +194,5 @@ module.exports = (env = {}, argv = {}) => {
     resolve: {
       extensions: ['.js', '.jsx', '.ts', '.tsx'],
     },
-  };
+  }];
 };

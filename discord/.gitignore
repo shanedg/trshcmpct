@@ -2,3 +2,6 @@ lib/config.json
 
 # https://www.npmjs.com/package/session-file-store#options
 sessions
+
+# https://www.npmjs.com/package/lowdb#usage
+db.json

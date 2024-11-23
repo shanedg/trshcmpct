@@ -4,10 +4,12 @@ import { fileURLToPath } from 'node:url';
 import express from 'express';
 import expressSesssion from 'express-session';
 import handlebars from 'hbs';
+import { JSONFilePreset } from 'lowdb/node';
 import pinoHttp from 'pino-http';
 import store from 'session-file-store';
 
 import manifest from '@trshcmpctr/client' assert { type: 'json' };
+import { paths } from '@trshcmpctr/client/paths';
 
 import { AuthenticatedAPIRouter } from './authenticated-api/router.js';
 import { AuthenticatedHTMLRouter } from './authenticated-html-router.js';
@@ -81,13 +83,18 @@ const clientDirectory = dirname(clientUrl.pathname);
 const authenticatedViewRouter = new AuthenticatedHTMLRouter({
   htmlDirectory: clientDirectory,
   htmlFilename: manifest['index.html'],
+  paths,
 });
 app.use(authenticatedViewRouter.middleware);
+
+const defaultData = { worlds: [] };
+const pathToDbStorage = `${join(__dirname, '..')}/db.json`;
+const db = await JSONFilePreset(pathToDbStorage, defaultData);
 
 const authenticatedApiRouter = new AuthenticatedAPIRouter({
   fetch,
   guildId,
-});
+}, db);
 app.use('/api/v1', authenticatedApiRouter.middleware);
 
 app.listen(port, () => pinoLogger.logger.info(`App listening at http://localhost:${port}`));

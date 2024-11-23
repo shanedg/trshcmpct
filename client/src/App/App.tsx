@@ -3,55 +3,34 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 
 import './App.css';
 
-import { ErrorCard } from './components/ErrorCard';
+import { ErrorBoundary } from './components/ErrorBoundary';
 import { Footer } from './components/Footer';
 import { Header } from './components/Header';
-import { Home } from './components/Home';
-import { NewWorld } from './components/NewWorld';
-import { WorldDetail } from './components/WorldDetail';
-import { Worlds } from './components/Worlds';
+import { getRoutes } from './get-routes';
 
-const router = createBrowserRouter([
-  {
-    path: '/',
-    element: <Home />,
-    errorElement: <ErrorCard error={Error('Problem rendering the route')} />,
-  },
-  {
-    path: '/worlds',
-    element: <Worlds />,
-    children: [
-      {
-        path: ':worldId',
-        element: <WorldDetail />,
-      },
-    ],
-  },
-  {
-    path: '/new',
-    element: <NewWorld />,
-  },
-]);
+const router = createBrowserRouter(getRoutes());
 
 export const App = () => {
   return (
     <StrictMode>
-      <div
-        style={{
-          display: 'flex',
-          flexDirection: 'column',
-          height: '100vh',
-          justifyContent: 'space-between',
-          padding: '6px 15px 0',
-          width: '100vw',
-        }}
-      >
-        <div>
-          <Header />
-          <RouterProvider router={router} />
-        </div>
-        <Footer />
-      </div>
+      <ErrorBoundary displayName="AppErrorBoundary">
+        <article
+          style={{
+            display: 'flex',
+            flexDirection: 'column',
+            height: '100vh',
+            justifyContent: 'space-between',
+            padding: '6px 15px 0',
+            width: '100vw',
+          }}
+        >
+          <div>
+            <Header />
+            <RouterProvider router={router} />
+          </div>
+          <Footer />
+        </article>
+      </ErrorBoundary>
     </StrictMode>
   );
 };

@@ -13,15 +13,18 @@ export class AuthenticatedHTMLRouter {
    * @param {Object} configuration
    * @param {string} configuration.htmlDirectory
    * @param {string} configuration.htmlFilename
+   * @param {string[]} configuration.paths
    */
   constructor(configuration) {
     const {
       htmlDirectory,
       htmlFilename,
+      paths,
     } = configuration;
 
     if (!htmlDirectory) throw new Error('missing html directory');
     if (!htmlFilename) throw new Error('missing html filename');
+    if (!paths) throw new Error('missing paths');
 
     this.configuration = Object.freeze(configuration);
 
@@ -38,14 +41,13 @@ export class AuthenticatedHTMLRouter {
     const {
       htmlDirectory,
       htmlFilename,
+      paths,
     } = this.configuration;
 
     const trshcmpctrClientRouter = express.Router();
 
-    trshcmpctrClientRouter.get('/', [
+    trshcmpctrClientRouter.get(paths, [
       handleRenderAuthenticated.bind(null, htmlDirectory, htmlFilename),
-      // FIXME: redirect to /not-a-member or something if someone signs in but isn't a member?
-      // FIXME: OR do we just render a mostly-empty view via the client app when the guild membership data is empty?
       // Redirect to login if not authenticated
       handleRedirect.bind(null, '/login')
     ]);

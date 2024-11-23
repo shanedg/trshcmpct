@@ -9,19 +9,25 @@ const testConfiguration = {
 
 test('throws if missing fetch', t => {
   t.throws(
-    () => new AuthenticatedAPIRouter({ ...testConfiguration, fetch: undefined }),
+    () => new AuthenticatedAPIRouter({ ...testConfiguration, fetch: undefined }, {}),
     { message: 'missing fetch' }
   );
 });
 
 test('throws if missing guild id', t => {
   t.throws(
-    () => new AuthenticatedAPIRouter({ ...testConfiguration, guildId: undefined })
+    () => new AuthenticatedAPIRouter({ ...testConfiguration, guildId: undefined }, {})
+  );
+});
+
+test('throws if missing db', t => {
+  t.throws(
+    () => new AuthenticatedAPIRouter(testConfiguration, undefined),
   );
 });
 
 test('throws if configuration is modified after construction', t => {
-  const router = new AuthenticatedAPIRouter(testConfiguration);
+  const router = new AuthenticatedAPIRouter(testConfiguration, {});
 
   t.throws(
     () => router.configuration.guildId = 'some-other-guild-id',
@@ -30,7 +36,7 @@ test('throws if configuration is modified after construction', t => {
 });
 
 test('throws if middleware reinitialized', t => {
-  const router = new AuthenticatedAPIRouter(testConfiguration);
+  const router = new AuthenticatedAPIRouter(testConfiguration, {});
 
   t.throws(
     () => router.initializeMiddleware(),

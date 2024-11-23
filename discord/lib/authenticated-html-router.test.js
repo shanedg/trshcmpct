@@ -5,6 +5,7 @@ import { AuthenticatedHTMLRouter } from './authenticated-html-router.js';
 const testConfiguration = {
   htmlDirectory: '/some/absolute/path',
   htmlFilename: 'index.html',
+  paths: ['/']
 };
 
 test('throws if missing html directory', t => {
@@ -18,6 +19,13 @@ test('throws if missing html filename', t => {
   t.throws(
     () => new AuthenticatedHTMLRouter({ ...testConfiguration, htmlFilename: undefined }),
     { message: 'missing html filename' }
+  );
+});
+
+test('throws if missing paths', t => {
+  t.throws(
+    () => new AuthenticatedHTMLRouter({ ...testConfiguration, paths: undefined }),
+    { message: 'missing paths' }
   );
 });
 

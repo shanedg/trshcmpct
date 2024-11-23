@@ -4,24 +4,33 @@ Notes specifically for repository maintainers
 
 ## TODOs
 
-* implement worlds api endpoint
-* add client logout button
-  * extend server session length to match how long discord auth tokens are valid
-  (maybe a bit shorter than max auth token age)
+* new deployment target that's just a local network raspberry pi
 * upload cypress screenshots, videos, and/or
 rush *.log artifacts to github build artifacts for debugging
-* auth fails when switching discord accounts at login
 * auth fails on first couple renders, refresh resolves
 * upgrade to eslint v9
   * upgrade eslint-plugin-ava to latest major
-* upgrade to latest @testing-library/react
-  * fix peer dependency issues
 * docs: updating/upgrading node
 * lint js/md on precommit?
-* build cache things
 * esm-ify more packages
 * publish
 * generate changelogs
+* @trshcmpctr/eslint-config-jest:
+  * <https://github.com/dangreenisrael/eslint-plugin-jest-formatting>
+  * <https://github.com/istanbuljs/eslint-plugin-istanbul>
+  * <https://www.npmjs.com/package/eslint-plugin-jest-dom>
+* @trshcmpctr/eslint-config-typescript
+  * <https://typescript-eslint.io/docs/linting/troubleshooting/#the-indent--typescript-eslintindent-rules>
+
+## Mysteries
+
+* ava test watch in discord always reruns on /session changes;
+package.json options to ignore patterns when watching don't work
+* 'import()' expressions are not supported yet ???
+eslint-disable-next-line node/no-unsupported-features/es-syntax -- node/no-unsupported-features/es-syntax
+This should not be a problem but adjusting the engines field
+and overwriting the rule to set the node version explicitly
+doesn't seem to be working :(
 
 ## Scaffolding a New Project
 
@@ -94,11 +103,19 @@ Support (LTS) version
 Blockers for Eslint v9:
 
 * `eslint-plugin-import` <https://github.com/import-js/eslint-plugin-import/issues/2948>
+  * still no: <https://github.com/import-js/eslint-plugin-import/blob/18787d3e6966028983af81a878d1a505893932d4/package.json#L109>
+  * interesting idea that this plugin should be replaced by a purpose-built tool;
+  eslint is not really intended to support the api that this plugin uses
 * `eslint-plugin-jest`
+  * should be resolved by <https://github.com/jest-community/eslint-plugin-jest/pull/1547>
 * `eslint-plugin-jsx-a11y`
+  * should be resolved by <https://github.com/jsx-eslint/eslint-plugin-jsx-a11y/pull/1009>
 * `eslint-plugin-react-hooks`
+  * should be resolved by <https://github.com/facebook/react/pull/28773>
 * `eslint-plugin-testing-library`
+  * no resolution yet, only some discussion in issues
 * `@typescript-eslint/utils`
+  * should be resolved by <https://github.com/typescript-eslint/typescript-eslint/pull/9002>
 
 ## Updating pnpm
 
