@@ -99,6 +99,7 @@ will continue to use Node 18 until Node 20 becomes the active Long Term
 Support (LTS) version
 * `eslint` is excluded because some plugins are not compatible with v9
 * `eslint-plugin-ava` is excluded until we can upgrade to eslint v9
+* `eslint-plugin-cypress` is excluded until we can upgrade to eslint v9
 
 Blockers for Eslint v9:
 

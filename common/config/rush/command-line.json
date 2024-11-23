@@ -73,7 +73,7 @@
         --minimal \
         --dep 'prod','dev','optional','packageManager','peer' \
         --target latest \
-        --reject '@types/node,eslint,eslint-plugin-ava' \
+        --reject '@types/node,eslint,eslint-plugin-ava,eslint-plugin-cypress' \
         && \
         node common/scripts/install-run.js npm-check-updates@17.1.0 \
         npm-check-updates \
@@ -82,7 +82,7 @@
         --minimal \
         --dep 'prod','dev','optional','packageManager','peer' \
         --target latest \
-        --reject '@types/node,eslint,eslint-plugin-ava'"
+        --reject '@types/node,eslint,eslint-plugin-ava,eslint-plugin-cypress'"
     },
     {
       "name": "update-minor",
